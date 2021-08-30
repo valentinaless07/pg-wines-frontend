@@ -1,0 +1,33 @@
+.container{
+    /* height: 5rem; */
+    background-color: var(--main-navbar-bg-color);
+    color: white;
+    /* vertical-align: center;
+    line-height: 5rem;
+     text-align: center;   
+    margin: 0;
+    padding: 0 1rem;  */   
+
+}
+
+.ulContainer {
+    margin: 0;
+    padding: 1rem;
+    /* width: 100%; */
+    display: flex;
+    justify-content: space-between;
+
+   
+}
+
+.ulContainer > li{
+    list-style: none;
+    color: white;
+}
+
+.ulContainer > li > a{
+    text-decoration: none;
+    color: white
+   
+}
+
