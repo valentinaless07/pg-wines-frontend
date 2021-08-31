@@ -4,14 +4,11 @@ export let userTypes = {
 }
 
 let initialState = {
-    loggedIn: false,
+    loggedIn: true,
 }
 
 const  userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case userTypes.login:
-            
-            break;
     
         default:
             return state;
