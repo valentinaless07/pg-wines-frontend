@@ -1,33 +1,78 @@
-.container{
-    /* height: 5rem; */
-    background-color: var(--main-navbar-bg-color);
-    color: white;
-    /* vertical-align: center;
-    line-height: 5rem;
-     text-align: center;   
-    margin: 0;
-    padding: 0 1rem;  */   
-
+.container {
+  height: 8rem;
+  background-color: var(--main-navbar-bg-color);
+  color: white;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-image: url("./background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
-.ulContainer {
-    margin: 0;
-    padding: 1rem;
-    /* width: 100%; */
-    display: flex;
-    justify-content: space-between;
-
-   
+.logo_searchbar_login {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2.5rem;
 }
 
-.ulContainer > li{
-    list-style: none;
-    color: white;
+.logo_searchbar_login > a {
+  text-decoration: none;
+  color: white;
+  display: inline-flex;
+  align-items: center;
 }
 
-.ulContainer > li > a{
-    text-decoration: none;
-    color: white
-   
+.cart_login {
+  padding-right: 55px;
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart_login > span {
+  font-size: 22px;
+  width: 150px;
+  cursor: pointer;
+}
+.cart_login > img {
+  width: 40px;
+  height: 35px;
 }
 
+.logo {
+  text-decoration: none;
+  color: white;
+}
+
+.searchBar {
+  height: 30px;
+  width: 250px;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+  border: none;
+}
+
+.logo_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  font-size: 22px;
+  padding-left: 10px;
+}
+
+.about_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 13%;
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.searchbar_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
