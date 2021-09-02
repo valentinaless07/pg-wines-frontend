@@ -1,5 +1,131 @@
 .container {
-    background-color: var(--main-bg-color);
+    display: flex;
+    justify-content: center;
+    /* border: 2px solid red; */
+    box-shadow: 0px 1px 3px 2px rgba(0,0,0,0.34);
+    -webkit-box-shadow: 0px 1px 3px 2px rgba(0,0,0,0.34);
+    -moz-box-shadow: 0px 1px 3px 2px rgba(0,0,0,0.34);
+    
+
+}
+
+.mainImage{
+    width: 50%;
+}
+
+.mainImage img{
+    width: 100%;
+}
+
+.detailProduct{
+    width: 50%;
+}
+
+.detailProduct h1{
+    margin-top: 60px;
+    font-weight: bold;
+}
+
+.detailProductIcon{
+    color: #f8a41d;
+    margin-top: 20px;
+    font-size: 25px;
+    margin-right: 5px;
+}
+
+.detailProduct p{
+    margin-top: 20px;
+    font-size: 25px;
    
-    /* flex-grow: 1; */
+}
+
+.detailProduct hr{
+    width: 95%;
+}
+
+.lineaProduct{
+    border-top: 1px solid black;
+    height: 2px;
+    max-width: 200px;
+    padding: 0;
+    margin:0;
+    margin-top: 100px;
+}
+
+.detailProduct button{
+    margin-top: 20px;
+    background-color: #3483fa;
+    color: #fff;
+    border: none;
+    padding: 10px 35px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cartProductDetail{
+    display: flex;
+    
+}
+
+.labelCantidad{
+    font-size: 12px;
+    color: #333;
+    display: block;
+    margin-top: 10px;
+}
+
+.cartProductDetail select{
+    width: 64px;
+    height: 50px;
+    line-height: 50px;
+    background: #fff;
+    cursor: pointer;
+    padding: 0 10px;
+    font-size: 14px;
+    text-align: center;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin-top: 20px;
+    margin-right: 4px;
+}
+
+.description{
+    min-height: 150px;
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+.description p{
+    font-size: 25px;
+}
+
+@media screen and (max-width: 992px) {
+    
+    .container{
+       display: block;
+    }
+
+    .mainImage{
+        width: 100%;
+    }
+
+    .detailProduct{
+        width: 100%;
+    }
+
+    .cartProductDetail{
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .labelCantidad{
+        display: none;
+    }
+
+    .lineaProduct{
+        margin: auto;
+        margin-top: 10px;
+    }
+    
 }
