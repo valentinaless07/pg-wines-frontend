@@ -16,9 +16,11 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 //     );
 // }
 
-const generateStore = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
-);
+// const generateStore = createStore(
+//   rootReducer,
+//   composeEnhancers(applyMiddleware(thunk))
+// );
 
-export default generateStore;
+ const store = createStore(rootReducer,composeEnhancers(applyMiddleware(thunk)));
+// export default generateStore;
+export default store;

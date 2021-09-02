@@ -14,6 +14,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
     useEffect(() => {
         getProductDetail(id)
         return () => { getProductDetailReset() }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
     return (
         <React.Fragment>

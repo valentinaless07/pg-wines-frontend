@@ -27,7 +27,7 @@ const AppRouter = () => {
           <Route exact path="/login/:id" component={LoginScreen} />
           <Route exact path="/home" component={HomeScreen} />
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
-          {/* <Redirect to="/home" /> */}
+          <Redirect to="/home" />
           {/* <Route path="/" component={PublicRoutes} /> */}
           {/* <Route path="/" component={PrivateRoutes} /> */}
         </Switch>
