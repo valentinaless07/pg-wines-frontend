@@ -20,9 +20,10 @@ import './Slider1.css';
 
 
 const Slider1 = () => {
+    // proof
     return (
         <div>
-            <Carousel infiniteLoop autoplay showThumbs={false} width={'85%'} >
+            <Carousel infiniteLoop autoplay showThumbs={false} width={'100%'} >
                 <div className="image">
                     <img src={slider_1} alt="wine13" />
                 </div>
