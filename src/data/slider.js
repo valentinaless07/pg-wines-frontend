@@ -1,8 +1,8 @@
 
 const slider =[
     {
-       phot: 'slider_1',
-       caption: 'photo 1',
+       asfsafafadfphot: 'slider_1',
+       captions: 'photo 1',
        onClickGoTo: '',
     },
     {
