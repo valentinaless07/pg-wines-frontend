@@ -8,7 +8,7 @@ import styles from './HomeScreen.module.css';
 const HomeScreen = () => {
 
     return (
-        <>      
+        <React.Fragment>      
         <Navbar/>      
             <div className={`${styles.container} `}>
                 <h1>HomeScreen</h1>
@@ -17,7 +17,7 @@ const HomeScreen = () => {
             <Slider />
             <Footer/>
            
-        </>
+        </React.Fragment>
     );
 }
 
