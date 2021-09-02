@@ -1,7 +1,80 @@
 .container {
-    background-color: black;
-    background-color: var(--main-navbar-bg-color);
-    color: white;
+    background: url("https://flordecana.com/img/bg.jpg") repeat top center;
+    height: 200px;
+    display: flex;
+    
+}
+ 
+.tecnologia{
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+}
+
+.tecnologia div h2{
+    color: #fff;
     font-weight: bold;
-    height: 3rem;
+    width: 100%;
+    margin: 20px 80px;
+}
+
+
+.tecnologia img{
+    height: 50px;
+    margin: 5px 20px;
+}
+
+.tecnologia div{
+    margin: 0 auto;
+}
+
+.piedepagina{
+    display: flex;
+    width: 40%;
+}
+
+.piedepagina div{
+    margin: 0 80px;
+}
+
+.piedepagina h2{
+    color: #fff;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+.piedepagina p{
+    text-align: center;
+}
+
+.contactusinfooter{
+    margin: auto;
+}
+
+.contactusinfooter button{
+    background-color: transparent;
+    border: 2px solid #fff;
+    padding: 15px 30px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.contactusinfooter :hover{
+    background-color: #3483fa;
+
+}
+
+.copyright{
+    display: inline-block;
+    margin: 10px auto;
+    width: 100%;
+}
+
+.copyright p{
+    font-size: 18px;
+    line-height: 26px;
+    color: #adb5bd !important;
+    text-align: center;
 }
