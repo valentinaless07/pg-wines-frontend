@@ -1,0 +1,20 @@
+export const category = [
+    {id: 1,
+    category: 'Vinos'},
+    {id: 2,
+    category: 'Espumantes'},
+    {id: 3,
+    category: 'Wiskys'},
+    {id: 4,
+    category: 'Cervezas'},
+    {id: 5,
+    category: 'Licores'},
+    {id: 6,
+    category: 'Aperitivos'},
+    {id: 7,
+    category: 'Gin'},
+    {id: 8,
+    category: 'Destilados varios'},
+    {id: 9,
+    category: 'Son alcohol'}
+]
