@@ -12,8 +12,8 @@ import AuthContext from '../auth/AuthContext';
 import HomeScreen from '../pages/home/HomeScreen';
 import ProductDetailsScreen from '../pages/productDetails/ProductDetailsScreen';
 import './AppRouter';
-import Navbar from '../components/navbar/Navbar';
-import Footer from '../components/footer/Footer';
+// import Navbar from '../components/navbar/Navbar';
+// import Footer from '../components/footer/Footer';
 
 const AppRouter = () => {
   const { user } = useContext(AuthContext);
