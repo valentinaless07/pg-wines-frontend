@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import AuthContext from '../../auth/AuthContext';
+// import logo from '../../assests/images/logoBodegasDelSur.png';
 import { types } from '../../types/types';
 
 const Navbar = () => {
@@ -20,7 +21,10 @@ const Navbar = () => {
         <nav className={styles.container}>
             <ul className={styles.ulContainer}>
                 <li>
-                    <NavLink to="/">Bodegas del Sur</NavLink>
+                    <NavLink to="/">  
+                    Bodegas del Sur                      
+                        {/* <img src={logo} alt="" /> */}
+                    </NavLink>
                 </li>
                 <li>
                     <NavLink to="/">About</NavLink>

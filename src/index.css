@@ -1,6 +1,6 @@
 :root {
   --main-bg-color: yellow;
-  --main-navbar-bg-color: rgb(83, 69, 69);
+  --main-navbar-bg-color: rgba(0, 0, 0);
 }
 
 body {
