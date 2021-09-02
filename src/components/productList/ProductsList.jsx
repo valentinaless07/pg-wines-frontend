@@ -21,6 +21,7 @@ function ProductList({state, category, getProducts, getCategory}) {
     useEffect(()=>{        
         setTimeout(function(){ getProducts() }, 1000);
         getCategory()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const[product, setproduct] = useState(state)
@@ -38,9 +39,9 @@ function ProductList({state, category, getProducts, getCategory}) {
 
     function handlePages(e){
         setCurrentPage(e.target.id)
-        document.getElementsByClassName('ProductsList_active__1qDe2')[0].classList.remove('ProductsList_active__1qDe2')
+        // document.getElementsByClassName('ProductsList_active__1qDe2')[0].classList.remove('ProductsList_active__1qDe2')
         let page = document.getElementById(e.target.id)
-        page.classList.add('ProductsList_active__1qDe2')
+        // page.classList.add('ProductsList_active__1qDe2')
     }
 
     function activeFilter(){
