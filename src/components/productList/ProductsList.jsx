@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles  from './ProductsList.module.css';
 import { connect } from 'react-redux';
-import { getProducts } from '../../redux/actions/userActions';
+import { getProducts, getCategory } from '../../redux/actions/userActions';
 
 // const products= require('../../data/products').default
 
@@ -16,17 +16,18 @@ import { getProducts } from '../../redux/actions/userActions';
 
 //   const img=importAll(images)
   
-function ProductList({state, getProducts}) {
+function ProductList({state, category, getProducts, getCategory}) {
 
     useEffect(()=>{        
         setTimeout(function(){ getProducts() }, 1000);
+        getCategory()
     }, [])
 
+    const[product, setproduct] = useState(state)
     const[currentPage, setCurrentPage] = useState(1)
     const[resultsPage, setResultsPage] = useState(12)
-
     const totalResultsPage = currentPage * resultsPage
-    const firstResultPAge = totalResultsPage - resultsPage
+    const firstResultPAge = totalResultsPage - resultsPage    
     const currentResults = state.slice(firstResultPAge, totalResultsPage)
 
     const pages =[]
@@ -42,8 +43,30 @@ function ProductList({state, getProducts}) {
         page.classList.add('ProductsList_active__1qDe2')
     }
 
+    function activeFilter(){
+        document.getElementById('sidebar').classList.toggle('ProductsList_filterActive__1GIHe')
+    }
+
+    function handleFilter(id){
+        console.log('entra')
+        let filter = state.filter(item=>item.category===id)
+        console.log(product)
+    }
+
+
     return (
         <div className={`${styles.container}`}>
+            <div id='sidebar' className={`${styles.filter}`}>
+                <span className={styles.filterTittle}> Filter by</span>
+                <button onClick={activeFilter} id='filter' className={styles.filterBtn}><i className="fas fa-filter"></i></button>
+                <ul className={styles.filterOptions}>
+                    {
+                        category.map(category=><li className={styles.filterItem} onClick={()=>handleFilter(1)} key={category.id}>
+                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{category.category}
+                        </li>)
+                    }
+                </ul>
+            </div>
             <div className={styles.productList}>
                 {
                     state.length>0 ? currentResults.map(item=><div className={styles.productContainer} key={item.id}>
@@ -77,8 +100,9 @@ function ProductList({state, getProducts}) {
 
 function MapStateToProps(state){
     return{
-        state: state.products.products
+        state: state.products.products,
+        category: state.products.category
     }
 }
 
-export default connect(MapStateToProps, {getProducts})(ProductList)
+export default connect(MapStateToProps, {getProducts, getCategory})(ProductList)
