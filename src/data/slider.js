@@ -2,6 +2,7 @@
 const slider =[
     {
        asfsafafadfphot: 'slider_1',
+       asfasf: 'sfadf',
        captions: 'photo 1',
        onClickGoTo: '',
     },
