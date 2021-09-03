@@ -13,6 +13,8 @@
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
+  margin: 0;
+  padding: 0;
 }
 
 .logo_container {
@@ -45,17 +47,25 @@
 }
 
 .searchbar_container > img {
-  width: 30px;
-  height: 25px;
+  width: 35px;
+  height: 30px;
 }
 .searchbar_container {
-  width: 270px;
+  width: 37vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .searchBar {
-  width: 260px;
+  height: 35px;
+  width: 30vw;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+  border: none;
+  border-radius: 2px;
+}
+
+.searchBar::placeholder {
+  padding-left: 10px;
 }
 
 .nav_menu_active {
@@ -95,44 +105,16 @@
   display: none;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 700px) {
   .bars_cart_container {
-    padding-right: 10px;
-    width: 110px;
-  }
-  .searchbar_container {
-    width: 240px;
-  }
-  .searchBar {
-    width: 170px;
-  }
-  .searchbar_container > img {
-    width: 25px;
-    height: 20px;
-    padding-left: 5px;
-  }
-}
-
-@media (max-width: 650px) {
-  .bars_cart_container {
-    padding-right: 5px;
-    width: 85px;
+    padding-right: 25px;
+    width: 100px;
   }
   .bars_cart_container > img {
     width: 35px;
     height: 30px;
   }
-  .searchbar_container {
-    width: 200px;
-  }
-  .searchBar {
-    width: 90px;
-  }
-  .searchbar_container > img {
-    width: 25px;
-    height: 20px;
-    padding-left: 5px;
-  }
+
   .logo_container {
     display: flex;
     font-size: 22px;
@@ -150,22 +132,21 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 580px) {
   .searchbar_container {
     width: 180px;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 70px;
+    padding-top: 35px;
   }
-  .searchBar {
-    width: 50px;
-  }
+
   .searchbar_container > img {
-    width: 25px;
-    height: 20px;
+    width: 30px;
+    height: 25px;
     padding-left: 1vw;
   }
-  .bars_cart_container {
-    padding-right: 2vw;
-    width: 75px;
-  }
+
   .bars_cart_container > img {
     width: 30px;
     height: 25px;
@@ -179,5 +160,27 @@
   .logo_img {
     width: 130px;
     height: 70px;
+  }
+}
+
+@media (max-width: 420px) {
+  .bars_cart_container {
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items: center;
+    height: 65px;
+    width: 60px;
+  }
+  .bars_cart_container > img {
+    width: 25px;
+    height: 20px;
+  }
+  .searchbar_container > img {
+    width: 30px;
+    height: 25px;
+  }
+  .searchBar {
+    height: 30px;
   }
 }

@@ -82,7 +82,7 @@ const Navbar = () => {
 
       <div className={stylesMobile.searchbar_container}>
         <input
-          className={styles.searchBar}
+          className={stylesMobile.searchBar}
           placeholder="Buscar Bebidas..."
           type="search"
         />
