@@ -10,6 +10,7 @@ import logo from "./logo.png";
 import favorite from "./favorite-icon.svg";
 import bars from "./bars.svg";
 
+
 // sdafa
 
 const Navbar = () => {
@@ -81,7 +82,7 @@ const Navbar = () => {
 
       <div className={stylesMobile.searchbar_container}>
         <input
-          className={styles.searchBar}
+          className={stylesMobile.searchBar}
           placeholder="Buscar Bebidas..."
           type="search"
         />
