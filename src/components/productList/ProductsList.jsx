@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles  from './ProductsList.module.css';
 import { connect } from 'react-redux';
 import { getProducts, getCategory } from '../../redux/actions/userActions';
+import './productList.css'
 
 // const products= require('../../data/products').default
 
@@ -38,14 +39,15 @@ function ProductList({state, category, getProducts, getCategory}) {
     }
 
     function handlePages(e){
-        setCurrentPage(e.target.id)
-        // document.getElementsByClassName('ProductsList_active__1qDe2')[0].classList.remove('ProductsList_active__1qDe2')
+        console.log(document.getElementsByClassName('activate'))
+        document.getElementsByClassName('activate')[0].classList.remove('activate')
         let page = document.getElementById(e.target.id)
-        // page.classList.add('ProductsList_active__1qDe2')
+        page.classList.add('activate')
+        setCurrentPage(e.target.id)
     }
 
     function activeFilter(){
-        document.getElementById('sidebar').classList.toggle('ProductsList_filterActive__1GIHe')
+        document.getElementById('sidebar').classList.toggle('filterActive')
     }
 
     function handleFilter(id){
@@ -57,9 +59,9 @@ function ProductList({state, category, getProducts, getCategory}) {
 
     return (
         <div className={`${styles.container}`}>
-            <div id='sidebar' className={`${styles.filter}`}>
+            <div id='sidebar' className='filter'>
                 <span className={styles.filterTittle}> Filter by</span>
-                <button onClick={activeFilter} id='filter' className={styles.filterBtn}><i className="fas fa-filter"></i></button>
+                <button onClick={activeFilter} id='filter' className='filterBtn'><i className="fas fa-filter"></i></button>
                 <ul className={styles.filterOptions}>
                     {
                         category.map(category=><li className={styles.filterItem} onClick={()=>handleFilter(1)} key={category.id}>
@@ -90,7 +92,7 @@ function ProductList({state, category, getProducts, getCategory}) {
             </div>
             <div>
                 <ul className={styles.pagination}>
-                    {pages.length>0 && pages.map(number=><li className={`${styles.pagItem} ${number===1 && styles.active}`} onClick={handlePages} id={number} key={number}>
+                    {pages.length>0 && pages.map(number=><li className={`${styles.pagItem} ${number===1 ? 'activate' : 'pag'}`} onClick={handlePages} id={number} key={number}>
                         {number}
                     </li>)}
                 </ul>
