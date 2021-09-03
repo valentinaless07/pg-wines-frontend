@@ -2,7 +2,7 @@
 const slider =[
     {
        photo: 'slider_1',
-       captions: 'photo 1',
+       caption: 'photo 1',
        onClickGoTo: '',
     },
     {
