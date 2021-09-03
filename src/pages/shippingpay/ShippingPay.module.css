@@ -1,0 +1,90 @@
+.bodyshipping{
+  background: #f7f7f7;
+  
+}
+
+.titlestilos{
+    display: flex;
+    justify-content: center;
+}
+
+.buydetails{
+  background: #fff;
+  width: 50%;
+  margin-left: 100px;
+  margin-top: 40px;
+}
+
+.revisararticulo h4{
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.flexboxshopping{
+  display: flex;
+}
+
+.flexboxshopping img{
+  height: 200px;
+}
+
+.flexboxshopping h4{
+  font-size: 20px;
+  font-style: italic;
+}
+
+.flexboxshopping p{
+  font-size: 15px;
+  margin-bottom: 20px;
+  font-weight: bolder;
+  font-style:italic ;
+}
+
+.flexboxshopping label{
+  margin-right: 8px;
+}
+
+.flexboxshopping select{
+  height: 40px;
+  padding: 0 32px 0 16px;
+}
+
+.flexboxshopping button{
+  border: none;
+  background: no-repeat;
+  text-decoration: underline;
+  color: blue;
+}
+
+.radiobutton{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.radiobutton span{
+  padding-right: 1rem;
+}
+
+.radiobutton input{
+  height: 20px;
+  width: 20px;
+  
+}
+
+.radiobutton p{
+  font-size: 14px;
+  color:#767676;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.serviceprice{
+  width: 100%; 
+}
+
+.serviceprice h4{
+  margin-top: 0;
+  margin-left: 42px;
+  font-size: 15px;
+}

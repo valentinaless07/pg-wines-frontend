@@ -11,6 +11,7 @@ import AuthContext from '../auth/AuthContext';
 // import PrivateRoutes from './PrivateRoutes';
 import HomeScreen from '../pages/home/HomeScreen';
 import ProductDetailsScreen from '../pages/productDetails/ProductDetailsScreen';
+import ShippingPay from '../pages/shippingpay/ShippingPay';
 import './AppRouter';
 // import Navbar from '../components/navbar/Navbar';
 // import Footer from '../components/footer/Footer';
@@ -27,6 +28,7 @@ const AppRouter = () => {
           <Route exact path="/login/:id" component={LoginScreen} />
           <Route exact path="/home" component={HomeScreen} />
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
+          <Route exact path="/checkout" component={ShippingPay} />
           <Redirect to="/home" />
           {/* <Route path="/" component={PublicRoutes} /> */}
           {/* <Route path="/" component={PrivateRoutes} /> */}
