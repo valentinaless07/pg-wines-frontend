@@ -39,13 +39,13 @@ const Navbar = () => {
     }
   }
 
-  return screenSize > 1030 ? (
+  return screenSize > 1100 ? (
     // NAVBAR CON WIDTH MAYOR A 1000
     <nav className={styles.container}>
       <div className={styles.logo_searchbar_login}>
         <div className={styles.logo_container}>
           <NavLink className={styles.logo} to="/">
-            <img src={logo} alt="" />
+            <h1>BODEGAS DEL SUR</h1>
           </NavLink>
         </div>
 
@@ -76,7 +76,7 @@ const Navbar = () => {
     <nav className={stylesMobile.container}>
       <div className={stylesMobile.logo_container}>
         <NavLink className={stylesMobile.logo} to="/">
-          <img className={stylesMobile.logo_img} src={logo} alt="" />
+          <h1>BODEGAS DEL SUR</h1>
         </NavLink>
       </div>
 
