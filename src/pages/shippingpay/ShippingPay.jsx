@@ -101,11 +101,24 @@ const ShippingPay = () => {
                 </div>
 
             </div>
-
+            <div className={styles.addres}>
+            <div>
+                <h2>Enviar a</h2>
+            </div>
+            <div className={styles.lineaddres}></div>
+            <div className={styles.pais}>
+                <p>País o región</p>
+                <select name="" id="">
+                    <option value="">usa</option>
+                </select>
+            </div>
+        </div>
 
 
 
         </div>
+        
+
     </>
 }
 
