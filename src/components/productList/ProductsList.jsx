@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles  from './ProductsList.module.css';
 import { connect } from 'react-redux';
-import { getProducts, getCategory } from '../../redux/actions/userActions';
+import { getProducts, getCategory, filteredBy } from '../../redux/actions/userActions';
 import './productList.css'
 
 // const products= require('../../data/products').default
@@ -17,7 +17,7 @@ import './productList.css'
 
 //   const img=importAll(images)
   
-function ProductList({state, category, getProducts, getCategory}) {
+function ProductList({state, category, filtered, getProducts, getCategory, filteredBy}) {
 
     useEffect(()=>{        
         setTimeout(function(){ getProducts() }, 1000);
@@ -25,19 +25,42 @@ function ProductList({state, category, getProducts, getCategory}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const[product, setproduct] = useState(state)
+    const[items, setItems] = useState(state)
     const[currentPage, setCurrentPage] = useState(1)
     const[resultsPage, setResultsPage] = useState(12)
     const totalResultsPage = currentPage * resultsPage
     const firstResultPAge = totalResultsPage - resultsPage    
-    const currentResults = state.slice(firstResultPAge, totalResultsPage)
+    let mapState = state
+    let currentResults = mapState.slice(firstResultPAge, totalResultsPage)
+    const pRender= items.slice(firstResultPAge, totalResultsPage).map(item=>{
+        
+        return(items.length>0 && <div className={styles.productContainer} key={item.id}>
+            <div className={styles.title}>
+                <span>{item.name}</span>
+                <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
+            </div>
+            <div className={styles.imgContainer}>
+                <img className={styles.img} src={item.image} alt=''/>
+            </div>
+            <div className={styles.price}>
+                {item.discount>5 && <span>{item.discount}% Desc</span>}
+                {item.discount>5 ? <span className={styles.desc}>{'$ '+((item.cost)*(1-(item.discount/100))).toFixed(2)}</span>:<span>$ {item.cost}</span>}
+            </div>
+            <button className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
+        </div>)
+    })
 
     const pages =[]
 
+    // if(items!==0){
+    //     for (let i = 1; i <= Math.ceil(items.length/resultsPage); i++) {
+    //         pages.push(i)}        
+    // }else if(items.length===0){
+        
+    // }
     for (let i = 1; i <= Math.ceil(state.length/resultsPage); i++) {
-        pages.push(i)
-    }
-
+        pages.push(i)}
+    
     function handlePages(e){
         console.log(document.getElementsByClassName('activate'))
         document.getElementsByClassName('activate')[0].classList.remove('activate')
@@ -51,28 +74,39 @@ function ProductList({state, category, getProducts, getCategory}) {
     }
 
     function handleFilter(id){
-        console.log('entra')
-        let filter = state.filter(item=>item.category===id)
-        console.log(product)
+
+        console.log(typeof(id)+" "+id)
+        console.log(state)
+        let prueba = state.filter(item=>item.category===id)
+        setItems(prueba)
+        console.log(prueba)
+        // ----------------------------------------------
+        // let prueba= document.getElementById()
     }
 
 
     return (
         <div className={`${styles.container}`}>
             <div id='sidebar' className='filter'>
-                <span className={styles.filterTittle}> Filter by</span>
+                <span className='filterTittle'> Filter by</span>
                 <button onClick={activeFilter} id='filter' className='filterBtn'><i className="fas fa-filter"></i></button>
-                <ul className={styles.filterOptions}>
+                <div className='filterOptions'>
                     {
-                        category.map(category=><li className={styles.filterItem} onClick={()=>handleFilter(1)} key={category.id}>
+                    // <input type="checkbox" name="" id="" />
+                        
+                        category.map(category=><li className='filterItem' onClick={()=>handleFilter(category.id)} key={category.id}>
                             {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{category.category}
                         </li>)
+                        // category.map(item=><React.Fragment><input id={item.id} onClick={handleFilter} type='checkbox'/><span>{item.category}</span><br/></React.Fragment>)
                     }
-                </ul>
+                </div>
             </div>
+            {items.length>0 && <div className={styles.productList}>
+                    {pRender}                
+                </div>}
             <div className={styles.productList}>
                 {
-                    state.length>0 ? currentResults.map(item=><div className={styles.productContainer} key={item.id}>
+                    state.length>0 && items.length===0 ? currentResults.map(item=><div className={styles.productContainer} key={item.id}>
                         <div className={styles.title}>
                             <span>{item.name}</span>
                             <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
@@ -87,7 +121,7 @@ function ProductList({state, category, getProducts, getCategory}) {
                         <button className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
                     </div>)
                     :
-                    <h1>Cargando...</h1>
+                    <React.Fragment></React.Fragment>
                 }
             </div>
             <div>
@@ -104,8 +138,9 @@ function ProductList({state, category, getProducts, getCategory}) {
 function MapStateToProps(state){
     return{
         state: state.products.products,
-        category: state.products.category
+        category: state.products.category,
+        filtered: state.products.productsFiltered
     }
 }
 
-export default connect(MapStateToProps, {getProducts, getCategory})(ProductList)
+export default connect(MapStateToProps, {getProducts, getCategory, filteredBy})(ProductList)

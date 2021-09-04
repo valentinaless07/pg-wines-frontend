@@ -19,24 +19,33 @@
     box-shadow: 5px 5px 15px #566573;
     left: -170px;
     width: 170px;
-    background-color: violet;
     z-index: 100;
     transition: all 150ms linear;
     padding: 20px 0px;
     border-radius: 0px 10px 10px 0px;
     top: 190px;
+    background: rgba( 202, 164, 36, 0.4 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 2px );
+    -webkit-backdrop-filter: blur( 2px );
+    border-radius: 10px;
 }
 
 .filterBtn{
     position: absolute;
     left: 170px;
     cursor: pointer;
-    background-color: violet;
     border: none;
     outline: none;
     font-size: 20px;
     padding: 10px 15px;
     border-radius: 0px 10px 10px 0px;
+    background: rgba( 202, 164, 36, 0.4 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 2px );
+    -webkit-backdrop-filter: blur( 2px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    z-index: 10;
 }
 
 .filterOptions{
