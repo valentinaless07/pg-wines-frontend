@@ -67,9 +67,7 @@ const Slider2 = () => {
     }
 
     const handleVerMasClick = (e) => {
-        console.log('hola')
         console.log(e);
-        // console.log(e.target.value);
     }
 
     return (

@@ -1,6 +1,9 @@
-export const types = {
+const types = {
     login: 'LOGIN',
-    logout: 'LOGOUT',
-    
+    logout: 'LOGOUT',    
+    login_success: "LOGIN_SUCCESS",
+    login_error: "LOGIN_ERROR",  
 }
+
+export default types;
 
