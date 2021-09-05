@@ -1,8 +1,9 @@
-import {GET_PRODUCTS, GET_CATEGORY} from '../actions/userActions'
+import {GET_PRODUCTS, GET_CATEGORY, FILTER_BY} from '../actions/userActions'
 
 let initialState={
     products:[],
-    category:[]
+    category:[],
+    productsFiltered:[]
 }
 
 const productReducer = (state = initialState, action) =>{
@@ -17,6 +18,13 @@ const productReducer = (state = initialState, action) =>{
             return{
                 ...state,
                 category: action.payload
+            }
+        }
+
+        case FILTER_BY:{
+            return{
+                ...state,
+                productsFiltered: action.payload
             }
         }
         default:
