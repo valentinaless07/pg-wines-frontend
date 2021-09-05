@@ -1,26 +1,24 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { connect } from 'react-redux';
+import { NavLink, useHistory } from "react-router-dom";
+import { getFirstName } from '../../helpers/helpers';
 import styles from "./Navbar.module.css";
 import stylesMobile from "./NavbarMobile.module.css";
-// import AuthContext from '../../auth/AuthContext';
-// import { types } from '../../types/types';
 import cart from "./cart-icon.svg";
 import search from "./search.svg";
-import logo from "./logo.png";
+// import logo from "./logo.png";
+import { logOutAction } from '../../redux/actions/authActions';
 import favorite from "./favorite-icon.svg";
 import bars from "./bars.svg";
 
+const Navbar = ({ authState, logOutAction }) => {
+  const history = useHistory();
 
-// sdafa
-
-const Navbar = () => {
-  // const { user: { name }, dispatch } = useContext(AuthContext);
-  // const history = useHistory();
-
-  // const handleLogout = () => {
-  //     history.replace('/login/24');
-  //     dispatch({type: types.logout});
-  // }
+  const handleLogout = () => {
+    // history.replace('/login');
+    history.push('/home');
+    logOutAction();
+  }
 
   const [screenSize, setScreenSize] = useState(window.innerWidth);
   const [barsStatus, setBarsStatus] = useState("off");
@@ -62,8 +60,21 @@ const Navbar = () => {
           <img src={search} alt="" />
         </div>
 
+        <NavLink to="/manage" className={styles.about_container}>
+          <span>Area Privada</span>
+        </NavLink>
+
         <div className={styles.cart_login}>
-          <span>Iniciar Sesión</span>
+          {
+            (authState.loggedIn)
+              ? <><span className={styles.login} onClick={handleLogout} >Logout</span>
+                <span>{getFirstName(authState)}</span>
+              </>
+              : <NavLink to="/login" className={styles.login}>
+                <span >Login</span>
+              </NavLink>
+          }
+
           <div className={styles.cart_favorite}>
             <img src={cart} alt="" />
             <img src={favorite} alt="" />
@@ -108,4 +119,16 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  return {
+    authState: state.auth,
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logOutAction: () => dispatch(logOutAction()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

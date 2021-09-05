@@ -35,6 +35,19 @@
   align-items: center;
 }
 
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  cursor: pointer;
+  font-size: 22px;
+  text-decoration: none;
+  color: white;
+
+
+}
+
 .cart_login {
   width: 400px;
   display: flex;

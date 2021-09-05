@@ -7,12 +7,13 @@ import generateStore from "./redux/store/store";
 // import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 // import store from "./redux/store/store";
+let store = generateStore();
 
 ReactDOM.render(
-  <Provider store={generateStore}>
+  <Provider store={store}>
     <BrowserRouter>
       <App />
-    </BrowserRouter>,
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
