@@ -26,14 +26,8 @@ const AppRouter = ({ authState }) => {
         <Switch>
           <Route exact path="/login/:id" component={LoginScreen} />
           <Route exact path="/home" component={HomeScreen} />
-          <PrivateRoute              
-            isAuthenticated={loggedIn}
-            path="/product/:id" 
-            component={ProductDetailsScreen} />
-          <PrivateRoute  
-            isAuthenticated={loggedIn}
-            path="/checkout"
-            component={ShippingPay} /> 
+          <Route exact path="/product/:id" component={ProductDetailsScreen} />
+          <Route exact path="/checkout" component={ShippingPay} /> 
           <PrivateRoute
             isAuthenticated={loggedIn}
             path='/manage'
