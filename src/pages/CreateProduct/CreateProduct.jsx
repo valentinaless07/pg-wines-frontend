@@ -10,7 +10,7 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
 
     useEffect(() => {
         getCategories()
-    } , []);
+    } , [getCategories]);
 
     
 
@@ -76,6 +76,17 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
         if(Object.keys(validateSubmit).length === 0){
             
             postProductCreated(newProductData)
+            setNewProductData({
+                name: "",
+                description: "",
+                cost: "",
+                capacity: "",
+                discount: "0",
+                stock: "0",
+                image: ["01_1605539265"],
+                categoryId: "",
+                sales: "0"
+            })
             alert("Producto creado")
         }
         else{
@@ -98,30 +109,30 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
 
                 <div>
                     <label>Nombre:</label>
-                    <input onChange={e => handleChange(e)} name="name" type="text"/>
+                    <input value={newProductData.name} onChange={e => handleChange(e)} name="name" type="text"/>
                     {errors.name && (<p className={styles.error}>{errors.name}</p>)}
                 </div>
 
                 <div>
                     <label>Descripción:</label>
-                    <input onChange={e => handleChange(e)} name="description" type="text"/>
+                    <input value={newProductData.description} onChange={e => handleChange(e)} name="description" type="text"/>
                 </div>
 
                 <div>
                     <label>Precio:</label>
-                    <input onChange={e => handleChange(e)} name="cost" type="number"/>
+                    <input value={newProductData.cost} onChange={e => handleChange(e)} name="cost" type="number"/>
                     {errors.cost && (<p className={styles.error}>{errors.cost}</p>)}
                 </div>
 
                 <div>
                     <label>Capacidad (ml):</label>
-                    <input onChange={e => handleChange(e)} name="capacity" type="number"/>
+                    <input value={newProductData.capacity} onChange={e => handleChange(e)} name="capacity" type="number"/>
                     {errors.capacity && (<p className={styles.error}>{errors.capacity}</p>)}
                 </div>
 
                 <div>
                     <label>Stock:</label>
-                    <input onChange={e => handleChange(e)} name="stock" type="number"/>
+                    <input value={newProductData.stock} onChange={e => handleChange(e)} name="stock" type="number"/>
                 </div>
 
                  {/* <div>
@@ -135,7 +146,7 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
 
                 <div>
                     <label>Descuento:</label>
-                    <input onChange={e => handleChange(e)} name="discount" type="number"/>
+                    <input value={newProductData.discount} onChange={e => handleChange(e)} name="discount" type="number"/>
                 </div>
                 
                 <div>

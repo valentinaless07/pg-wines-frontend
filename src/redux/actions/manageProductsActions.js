@@ -1,13 +1,10 @@
 import axios from "axios"
 
 export function postProductCreated (payload) {
-    console.log(payload)
+    
     return async function () {
         
-        console.log(payload)
         const res = await axios.post("https://delsur-api-1.herokuapp.com/product", payload)
-        
-        
         
 
         return res
