@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 import LoginScreen from '../pages/login/LoginScreen';
 import HomeScreen from '../pages/home/HomeScreen';
 import ProductDetailsScreen from '../pages/productDetails/ProductDetailsScreen';
+import ShippingPay from '../pages/shippingpay/ShippingPay';
+import './AppRouter';
 import PrivateRoute from './PrivateRoute';
 import ManageProductsScreen from '../pages/manageProducts/ManageProductsScreen';
 
@@ -22,10 +24,16 @@ const AppRouter = ({ authState }) => {
     <Router>
       <div>
         <Switch>
-          <Route exact path='/home' component={HomeScreen} />
-          <Route exact path='/login' component={LoginScreen} />
-          <Route exact path='/product/:id' component={ProductDetailsScreen} />
-          
+          <Route exact path="/login/:id" component={LoginScreen} />
+          <Route exact path="/home" component={HomeScreen} />
+          <PrivateRoute              
+            isAuthenticated={loggedIn}
+            path="/product/:id" 
+            component={ProductDetailsScreen} />
+          <PrivateRoute  
+            isAuthenticated={loggedIn}
+            path="/checkout"
+            component={ShippingPay} /> 
           <PrivateRoute
             isAuthenticated={loggedIn}
             path='/manage'

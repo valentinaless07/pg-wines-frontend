@@ -1,0 +1,233 @@
+.bodyshipping{
+  background: #f7f7f7;
+  padding-bottom: 40px;
+  
+}
+
+.titlestilos{
+    display: flex;
+    justify-content: center;
+}
+
+.buydetails{
+  background: #fff;
+  width: 50%;
+  margin-left: 100px;
+  margin-top: 40px;
+}
+
+.revisararticulo h4{
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.flexboxshopping{
+  display: flex;
+}
+
+.flexboxshopping img{
+  height: 200px;
+}
+
+.flexboxshopping h4{
+  font-size: 20px;
+  font-style: italic;
+}
+
+.flexboxshopping p{
+  font-size: 15px;
+  margin-bottom: 20px;
+  font-weight: bolder;
+  font-style:italic ;
+}
+
+.flexboxshopping label{
+  margin-right: 8px;
+}
+
+.flexboxshopping select{
+  height: 40px;
+  padding: 0 32px 0 16px;
+}
+
+.flexboxshopping button{
+  border: none;
+  background: no-repeat;
+  text-decoration: underline;
+  color: blue;
+}
+
+.radiobutton{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.radiobutton span{
+  padding-right: 1rem;
+}
+
+.radiobutton input{
+  height: 20px;
+  width: 20px;
+  
+}
+
+.radiobutton p{
+  font-size: 14px;
+  color:#767676;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.serviceprice{
+  width: 100%; 
+}
+
+.serviceprice h4{
+  margin-top: 0;
+  margin-left: 42px;
+  font-size: 15px;
+}
+
+.addres{
+  background: #fff;
+  width: 50%;
+  margin-left: 100px;
+  margin-top: 40px;
+  
+  
+}
+
+.addres h2{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+}
+
+.lineaddres{
+  width: 100%;
+  height: 1px;
+  background:#f7f7f7;
+}
+
+.pais{
+  width: 50%;
+}
+
+.pais p{
+  font-size: 15px;
+  margin-bottom: 20px;
+  font-weight: bolder;
+  font-style:italic ;
+  padding-left: 40px;
+  color: #767676;
+  margin-top: 20px;
+}
+
+.pais select{
+  height: 1.8125rem;
+  font-weight: 700;
+  width: 84%!important;
+  background-color: transparent;
+  border: 0;
+  padding-left: 0;
+  border-bottom: 1px solid #4e4e4e;
+  margin-left: 40px;
+}
+
+.datospersonales div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.datospersonales input{
+  width: 42%;
+  margin: 15px 10px;
+  height: 1.8125rem;
+  font-weight: 700;
+  border: 0;
+  border-bottom: 1px solid #4e4e4e;
+}
+
+.direccionenvio div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.direccionenvio input{
+  width: 42%;
+  margin: 15px 10px;
+  height: 1.8125rem;
+  font-weight: 700;
+  border: 0;
+  border-bottom: 1px solid #4e4e4e;
+}
+
+.ciudadestado div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.ciudadestado input{
+  width: 27%;
+  margin-top:10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 1.8125rem;
+  font-weight: 700;
+  border: 0;
+  border-bottom: 1px solid #4e4e4e;
+}
+
+.correoelectronico div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.correoelectronico input{
+  width: 42%;
+  margin: 15px 10px;
+  height: 1.8125rem;
+  font-weight: 700;
+  border: 0;
+  border-bottom: 1px solid #4e4e4e;
+}
+
+.numerotelefono div{
+  width: 100%;
+  display: flex;
+  margin-top: 10px;
+  margin-left: 25px;
+}
+
+.numerotelefono input{
+  width: 42%;
+  margin: 15px 10px;
+  height: 1.8125rem;
+  font-weight: 700;
+  border: 0;
+  border-bottom: 1px solid #4e4e4e;
+}
+
+
+.botonlisto button{
+  margin-top: 20px;
+  background-color: #3483fa;
+  color: #fff;
+  border: none;
+  padding: 15px 40px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 34px;
+  margin-bottom: 30px;
+}
+
