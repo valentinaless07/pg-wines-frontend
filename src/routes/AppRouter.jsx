@@ -13,8 +13,10 @@ import ShippingPay from '../pages/shippingpay/ShippingPay';
 import './AppRouter';
 import PrivateRoute from './PrivateRoute';
 import ManageProductsScreen from '../pages/manageProducts/ManageProductsScreen';
+import CreateProduct from '../pages/CreateProduct/CreateProduct';
 import Favorites from '../pages/favorites/Favorites.jsx';
 import AboutUs from '../pages/aboutUs/AboutUs';
+
 
 const AppRouter = ({ authState }) => {
 
@@ -36,6 +38,12 @@ const AppRouter = ({ authState }) => {
             component={ManageProductsScreen}
           />
           <PrivateRoute
+
+            isAuthenticated={loggedIn}
+            path='/createproduct'
+            component={CreateProduct}
+          />
+           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
             path='/checkout'
@@ -47,6 +55,7 @@ const AppRouter = ({ authState }) => {
             path='/favorites'
             component={Favorites}
           />
+
 
           <Redirect to='/home' />
 

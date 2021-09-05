@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 90vh;
+  margin-top: -40px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  margin-top: 50px;
+}
+.error {
+  color: red;
+}
+
+.backIcon {
+  text-decoration: none;
+  color: black;
+  margin-left: 10%;
+  display: inline;
+}
+.backIcon > i {
+  margin-top: 15px;
+}

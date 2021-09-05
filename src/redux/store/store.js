@@ -2,6 +2,7 @@ import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import userReducer from '../reducers/userReducer';
 import productReducer from '../reducers/productRecuder';
 import authReducer from '../reducers/authReducer';
+import manageProductsReducer from '../reducers/manageProductsReducer';
 import thunk from 'redux-thunk';
 import { restoreSessionAction } from '../actions/authActions';
 
@@ -9,6 +10,7 @@ let rootReducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   products: productReducer,
+  manageProducts: manageProductsReducer
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
