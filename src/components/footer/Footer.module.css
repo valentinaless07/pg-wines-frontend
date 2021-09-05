@@ -1,5 +1,5 @@
 .container {
-    background: url("https://flordecana.com/img/bg.jpg") repeat top center;
+    background:#232f3e;
     height: 200px;
     display: flex;
     
@@ -29,8 +29,9 @@
 }
 
 .piedepagina{
-    display: flex;
+    display: block;
     width: 40%;
+    text-align: center;
 }
 
 .piedepagina div{
@@ -42,6 +43,12 @@
     font-weight: bold;
     width: 100%;
     text-align: center;
+}
+
+.footericon{
+    font-size: 30px;
+    color: white;
+    margin: 0 7px;
 }
 
 .piedepagina p{
@@ -77,4 +84,8 @@
     line-height: 26px;
     color: #adb5bd !important;
     text-align: center;
+}
+
+.express{
+    filter: brightness(0) invert(1);
 }
