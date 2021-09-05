@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,  
+  Redirect,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoginScreen from '../pages/login/LoginScreen';
@@ -13,13 +13,14 @@ import ShippingPay from '../pages/shippingpay/ShippingPay';
 import './AppRouter';
 import PrivateRoute from './PrivateRoute';
 import ManageProductsScreen from '../pages/manageProducts/ManageProductsScreen';
-
+import Favorites from '../pages/favorites/Favorites.jsx';
+import AboutUs from '../pages/aboutUs/AboutUs';
 
 const AppRouter = ({ authState }) => {
 
   let loggedIn = authState.loggedIn;
   // if(!authState.loggedIn) loggedIn = false; 
- 
+
   return (
     <Router>
       <div>
@@ -27,13 +28,28 @@ const AppRouter = ({ authState }) => {
           <Route exact path="/login" component={LoginScreen} />
           <Route exact path="/home" component={HomeScreen} />
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
-          <Route exact path="/checkout" component={ShippingPay} /> 
+          <Route exact path="/about" component={AboutUs} />
+          {/* <Route exact path="/checkout" component={ShippingPay} />  */}
           <PrivateRoute
             isAuthenticated={loggedIn}
-            path='/manage'
+            path='/manageProducts'
             component={ManageProductsScreen}
           />
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            path='/checkout'
+            component={ShippingPay}
+          />
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            path='/favorites'
+            component={Favorites}
+          />
+
           <Redirect to='/home' />
+
         </Switch>
 
       </div>
@@ -48,7 +64,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return { }
+  return {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);

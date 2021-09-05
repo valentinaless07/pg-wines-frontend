@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import styles from './LoginScreen.module.css';
 import { connect } from 'react-redux';
 import { startGoogleLogin, logOutAction } from '../../redux/actions/authActions';
-import Navbar from '../../components/navbar/Navbar';
 
 const LoginScreen = ({ authState, startGoogleLogin, logOutAction }) => {
     const history = useHistory();
@@ -19,7 +18,7 @@ const LoginScreen = ({ authState, startGoogleLogin, logOutAction }) => {
 
     if (authState.fetching) return <p>Loading...</p>
     return (
-        <>           
+        <>          
             <div className={`card ${styles.container} ${styles.mt_1}`}>
                 {
                     authState.loggedIn
