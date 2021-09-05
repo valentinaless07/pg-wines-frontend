@@ -1,22 +1,14 @@
-.container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 80vh;
-}
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 100%;
-}
-.error {
-  color: red;
-}
-
 .nav {
   list-style: none;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+}
+.nav > a {
+  text-decoration: none;
+  color: black;
+}
+
+.manageProductsContainer {
+  height: 90vh;
 }

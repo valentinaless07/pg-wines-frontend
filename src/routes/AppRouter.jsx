@@ -13,6 +13,7 @@ import ShippingPay from '../pages/shippingpay/ShippingPay';
 import './AppRouter';
 import PrivateRoute from './PrivateRoute';
 import ManageProductsScreen from '../pages/manageProducts/ManageProductsScreen';
+import CreateProduct from '../pages/CreateProduct/CreateProduct';
 
 
 const AppRouter = ({ authState }) => {
@@ -32,6 +33,11 @@ const AppRouter = ({ authState }) => {
             isAuthenticated={loggedIn}
             path='/manage'
             component={ManageProductsScreen}
+          />
+          <PrivateRoute
+            isAuthenticated={loggedIn}
+            path='/createproduct'
+            component={CreateProduct}
           />
           <Redirect to='/home' />
         </Switch>
