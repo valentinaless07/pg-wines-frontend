@@ -24,7 +24,7 @@ const AppRouter = ({ authState }) => {
     <Router>
       <div>
         <Switch>
-          <Route exact path="/login/:id" component={LoginScreen} />
+          <Route exact path="/login" component={LoginScreen} />
           <Route exact path="/home" component={HomeScreen} />
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
           <Route exact path="/checkout" component={ShippingPay} /> 
