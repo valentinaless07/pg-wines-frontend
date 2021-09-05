@@ -35,26 +35,7 @@ const slider =[
        caption: 'photo 7',
        onClickGoTo: '',
     },
-    {
-       photo: 'slider_8',
-       caption: 'photo 8',
-       onClickGoTo: '',
-    },
-    {
-       photo: 'slider_9',
-       caption: 'photo 9',
-       onClickGoTo: '',
-    },
-    {
-       photo: 'slider_10',
-       caption: 'photo 10',
-       onClickGoTo: '',
-    },
-    {
-       photo: 'slider_11',
-       caption: 'photo 11',
-       onClickGoTo: '',
-    },
+   
 
 ];
 

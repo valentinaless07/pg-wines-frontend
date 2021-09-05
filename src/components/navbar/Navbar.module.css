@@ -1,15 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");
+
 .container {
-  height: 10rem;
-  background-color: var(--main-navbar-bg-color);
+  height: 5rem;
+  background-color: #000000;
   color: white;
   position: sticky;
   top: 0;
   width: 100%;
-  background-image: url("./background.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
   z-index: 1000;
+}
+
+.logo {
+  font-size: 12px;
+  display: flex;
+
+  justify-content: center;
+  width: 100%;
+  text-decoration: none;
+  color: white;
+  font-family: "Libre Baskerville", serif;
 }
 
 .logo_searchbar_login {
@@ -24,6 +33,19 @@
   color: white;
   display: inline-flex;
   align-items: center;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  cursor: pointer;
+  font-size: 22px;
+  text-decoration: none;
+  color: white;
+
+
 }
 
 .cart_login {
@@ -50,15 +72,8 @@
   width: 110px;
 }
 
-.logo {
-  width: 20px;
-  height: 20px;
-  padding-top: 15px;
-  padding-left: 20px;
-}
-
 .searchBar {
-  height: 30px;
+  height: 36px;
   width: 270px;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
   border: none;
@@ -70,16 +85,17 @@
 
 .logo_container {
   display: flex;
-  width: 200px;
+  width: 230px;
   font-size: 22px;
   height: 100%;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .about_container {
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   width: 160px;
   cursor: pointer;
   font-size: 22px;
@@ -119,36 +135,6 @@
   .cart_login > span {
     font-size: 20px;
     width: 130px;
-  }
-
-  .cart_favorite > img {
-    width: 35px;
-    height: 30px;
-  }
-}
-
-@media (max-width: 1070px) {
-  .about_container {
-    width: 140px;
-    font-size: 19px;
-  }
-  .searchbar_container > img {
-    width: 30px;
-    height: 25px;
-  }
-  .searchbar_container {
-    width: 260px;
-  }
-  .searchBar {
-    width: 220px;
-  }
-
-  .cart_login {
-    width: 360px;
-  }
-  .cart_login > span {
-    font-size: 19px;
-    width: 110px;
   }
 
   .cart_favorite > img {

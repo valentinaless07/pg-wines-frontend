@@ -1,18 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");
+
 .container {
-  height: 10rem;
+  height: 5rem;
   background-color: var(--main-navbar-bg-color);
   color: white;
   position: sticky;
   top: 0;
   width: 100%;
-  background-image: url("./background.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
+  background-color: rgb(0, 0, 0);
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
+  margin: 0;
+  padding: 0;
 }
 
 .logo_container {
@@ -22,13 +23,13 @@
 }
 
 .logo {
-  padding-top: 15px;
-  padding-left: 20px;
-}
-
-.logo_img {
-  width: 200px;
-  height: 110px;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  text-decoration: none;
+  color: white;
+  font-family: "Libre Baskerville", serif;
+  font-size: 12px;
 }
 
 .bars_cart_container > img {
@@ -45,24 +46,32 @@
 }
 
 .searchbar_container > img {
-  width: 30px;
-  height: 25px;
+  width: 35px;
+  height: 30px;
 }
 .searchbar_container {
-  width: 270px;
+  width: 37vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .searchBar {
-  width: 260px;
+  height: 35px;
+  width: 30vw;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+  border: none;
+  border-radius: 2px;
+}
+
+.searchBar::placeholder {
+  padding-left: 10px;
 }
 
 .nav_menu_active {
   position: fixed;
   width: 100%;
   height: 40vh;
-  top: 143px;
+  top: 80px;
   background: rgb(227, 212, 197, 0.95);
   text-align: center;
   list-style: none;
@@ -95,53 +104,20 @@
   display: none;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 700px) {
   .bars_cart_container {
-    padding-right: 10px;
-    width: 110px;
-  }
-  .searchbar_container {
-    width: 240px;
-  }
-  .searchBar {
-    width: 170px;
-  }
-  .searchbar_container > img {
-    width: 25px;
-    height: 20px;
-    padding-left: 5px;
-  }
-}
-
-@media (max-width: 650px) {
-  .bars_cart_container {
-    padding-right: 5px;
-    width: 85px;
+    padding-right: 25px;
+    width: 100px;
   }
   .bars_cart_container > img {
     width: 35px;
     height: 30px;
   }
-  .searchbar_container {
-    width: 200px;
-  }
-  .searchBar {
-    width: 90px;
-  }
-  .searchbar_container > img {
-    width: 25px;
-    height: 20px;
-    padding-left: 5px;
-  }
+
   .logo_container {
     display: flex;
     font-size: 22px;
     justify-content: flex-start;
-  }
-
-  .logo {
-    padding-top: 10px;
-    padding-left: 15px;
   }
 
   .logo_img {
@@ -150,34 +126,63 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 620px) {
   .searchbar_container {
     width: 180px;
+    justify-content: space-between;
+    height: 70px;
   }
-  .searchBar {
-    width: 50px;
-  }
+
   .searchbar_container > img {
-    width: 25px;
-    height: 20px;
+    width: 30px;
+    height: 25px;
     padding-left: 1vw;
   }
-  .bars_cart_container {
-    padding-right: 2vw;
-    width: 75px;
-  }
+
   .bars_cart_container > img {
     width: 30px;
     height: 25px;
   }
-
-  .logo {
-    padding-top: 7px;
-    padding-left: 12px;
+  .bars_cart_container {
+    padding-right: 0px;
+    justify-content: space-around;
   }
+}
 
-  .logo_img {
-    width: 130px;
-    height: 70px;
+@media (max-width: 560px) {
+  .bars_cart_container {
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    margin-top: 10px;
+    align-items: center;
+    height: 65px;
+    width: 60px;
+  }
+  .bars_cart_container > img {
+    width: 25px;
+    height: 20px;
+  }
+  .searchbar_container > img {
+    width: 30px;
+    height: 25px;
+  }
+  .searchBar {
+    height: 30px;
+  }
+}
+
+@media (max-width: 520px) {
+  .searchBar {
+    height: 25px;
+  }
+  .logo {
+    font-size: 10px;
+  }
+  .searchbar_container > img {
+    width: 25px;
+    height: 20px;
+  }
+  .searchbar_container {
+    justify-content: space-around;
   }
 }

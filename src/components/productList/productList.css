@@ -1,0 +1,72 @@
+.prueba{
+    background-color: lightcoral;
+}
+
+.activate{
+    animation-name: btn;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes btn{
+    0%{box-shadow: inset 0 0 0 0px #73737c;}
+    100%{box-shadow: inset 0 0 0 2px #73737c;}
+}
+
+.filter{
+    position: fixed;
+    opacity: 1;
+    box-shadow: 5px 5px 15px #566573;
+    left: -170px;
+    width: 170px;
+    z-index: 100;
+    transition: all 150ms linear;
+    padding: 20px 0px;
+    border-radius: 0px 10px 10px 0px;
+    top: 190px;
+    background: rgba( 202, 164, 36, 0.4 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 2px );
+    -webkit-backdrop-filter: blur( 2px );
+    border-radius: 10px;
+}
+
+.filterBtn{
+    position: absolute;
+    left: 170px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    padding: 10px 15px;
+    border-radius: 0px 10px 10px 0px;
+    background: rgba( 202, 164, 36, 0.4 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 2px );
+    -webkit-backdrop-filter: blur( 2px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    z-index: 10;
+}
+
+.filterOptions{
+    list-style: none;
+    padding: 0 0 0 0px;
+}
+
+.filterItem{
+    cursor: pointer;
+}
+
+.filterItem:hover{
+    cursor: pointer;
+    background-color: teal;
+}
+
+.filterTittle{
+    font-weight: 500;
+    padding-left: 5px;
+}
+
+.filterActive{
+    left: 0px;
+}

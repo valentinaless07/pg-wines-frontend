@@ -4,12 +4,12 @@ import Footer from '../../components/footer/Footer';
 import styles from './ProductDetailsScreen.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWineGlass } from '@fortawesome/free-solid-svg-icons';
-import { getProductDetail, getProductDetailReset } from "../../redux/actions/ProductDetailsActions";
+import { getProductDetail, getProductDetailReset } from "../../redux/actions/productDetailsActions";
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset}) => {
-    console.log('PD', product_detail);
+    console.log(getProductDetail);
     const { id } = useParams()
     useEffect(() => {
         getProductDetail(id)
@@ -65,7 +65,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
 
 function mapStateToProps(state) {
     return {
-      product_detail: state.user.product_detail,
+      product_detail: state.user.product_detail
     };
   };
   
