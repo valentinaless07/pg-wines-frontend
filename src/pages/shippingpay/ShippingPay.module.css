@@ -1,5 +1,6 @@
 .bodyshipping{
   background: #f7f7f7;
+  padding-bottom: 40px;
   
 }
 
@@ -95,6 +96,7 @@
   margin-left: 100px;
   margin-top: 40px;
   
+  
 }
 
 .addres h2{
@@ -109,6 +111,10 @@
   background:#f7f7f7;
 }
 
+.pais{
+  width: 50%;
+}
+
 .pais p{
   font-size: 15px;
   margin-bottom: 20px;
@@ -118,3 +124,110 @@
   color: #767676;
   margin-top: 20px;
 }
+
+.pais select{
+  height: 1.8125rem;
+  font-weight: 700;
+  width: 84%!important;
+  background-color: transparent;
+  border: 0;
+  padding-left: 0;
+  border-bottom: 1px solid #4e4e4e;
+  margin-left: 40px;
+}
+
+.datospersonales div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.datospersonales input{
+  width: 42%;
+  margin: 15px 10px;
+  height: 1.8125rem;
+  font-weight: 700;
+  border: 0;
+  border-bottom: 1px solid #4e4e4e;
+}
+
+.direccionenvio div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.direccionenvio input{
+  width: 42%;
+  margin: 15px 10px;
+  height: 1.8125rem;
+  font-weight: 700;
+  border: 0;
+  border-bottom: 1px solid #4e4e4e;
+}
+
+.ciudadestado div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.ciudadestado input{
+  width: 27%;
+  margin-top:10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 1.8125rem;
+  font-weight: 700;
+  border: 0;
+  border-bottom: 1px solid #4e4e4e;
+}
+
+.correoelectronico div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.correoelectronico input{
+  width: 42%;
+  margin: 15px 10px;
+  height: 1.8125rem;
+  font-weight: 700;
+  border: 0;
+  border-bottom: 1px solid #4e4e4e;
+}
+
+.numerotelefono div{
+  width: 100%;
+  display: flex;
+  margin-top: 10px;
+  margin-left: 25px;
+}
+
+.numerotelefono input{
+  width: 42%;
+  margin: 15px 10px;
+  height: 1.8125rem;
+  font-weight: 700;
+  border: 0;
+  border-bottom: 1px solid #4e4e4e;
+}
+
+
+.botonlisto button{
+  margin-top: 20px;
+  background-color: #3483fa;
+  color: #fff;
+  border: none;
+  padding: 15px 40px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 34px;
+  margin-bottom: 30px;
+}
+

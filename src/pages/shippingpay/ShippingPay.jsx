@@ -102,22 +102,58 @@ const ShippingPay = () => {
 
             </div>
             <div className={styles.addres}>
-            <div>
-                <h2>Enviar a</h2>
+                <div>
+                    <h2>Enviar a</h2>
+                </div>
+                <div className={styles.lineaddres}></div>
+                <div className={styles.pais}>
+                    <p>País o región</p>
+                    <select name="" id="">
+                        <option value="">usa</option>
+                        <option value="">nic</option>
+                    </select>
+                </div>
+                <div className={styles.datospersonales}>
+                    <div>
+                        <input type="text" placeholder="Nombre" />
+                        <input type="text" placeholder="Apellido" />
+                    </div>
+                </div>
+                <div className={styles.direccionenvio}>
+                    <div>
+                        <input type="text" placeholder="Direccion" />
+                        <input type="text" placeholder="Direccion 2 (Opcional)" />
+                    </div>
+                </div>
+                <div className={styles.ciudadestado}>
+                    <div>
+                        <input type="text" placeholder="Ciudad" />
+                        <input type="text" placeholder="Estado, Provincia o Region" />
+                        <input type="text" placeholder="Código Postal" />
+                    </div>
+                </div>
+                <div className={styles.correoelectronico}>
+                    <div>
+                        <input type="text" placeholder="Correo electronico" />
+                        <input type="text" placeholder="Confirmar correo electronico" />
+                    </div>
+                </div>
+                <div className={styles.numerotelefono}>
+                    <div>
+                        <input type="number" placeholder="Numero de telefono" />
+                    </div>
+                </div>
+                <div className={styles.botonlisto}>
+                    <div>
+                        <button>Listo</button>
+                    </div>
+                </div>
             </div>
-            <div className={styles.lineaddres}></div>
-            <div className={styles.pais}>
-                <p>País o región</p>
-                <select name="" id="">
-                    <option value="">usa</option>
-                </select>
-            </div>
+
+
+
         </div>
 
-
-
-        </div>
-        
 
     </>
 }
