@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './ManageProductsScreen.module.css'
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import CreateProduct from '../CreateProduct/CreateProduct'
+
 
 const ManageProductsScreen = () => {
 
