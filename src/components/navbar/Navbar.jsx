@@ -37,6 +37,10 @@ const Navbar = ({ authState, logOutAction }) => {
     }
   }
 
+  function goTo(route) {
+    history.push(`/${route}`);
+  }
+
   return screenSize > 1100 ? (
     // NAVBAR CON WIDTH MAYOR A 1000
     <nav className={styles.container}>
@@ -60,24 +64,26 @@ const Navbar = ({ authState, logOutAction }) => {
           <img src={search} alt="" />
         </div>
 
-        <NavLink to="/manage" className={styles.about_container}>
-          <span>Area Privada</span>
-        </NavLink>
+        {/* <NavLink to="/manageProducts" className={styles.about_container}>
+                  <span>Area Reservada</span>
+                </NavLink> */}
 
         <div className={styles.cart_login}>
           {
             (authState.loggedIn)
-              ? <><span className={styles.login} onClick={handleLogout} >Logout</span>
+              ? <>               
+                <span className={styles.login} onClick={()=>goTo('manageProducts')} >Area Reservada</span>
+                <span className={styles.login} onClick={handleLogout} >Salir</span>
                 <span>{getFirstName(authState)}</span>
               </>
               : <NavLink to="/login" className={styles.login}>
-                <span >Login</span>
+                <span >Iniciá Sesión</span>
               </NavLink>
           }
 
           <div className={styles.cart_favorite}>
-            <img src={cart} alt="" />
-            <img src={favorite} alt="" />
+            <img src={cart} alt="" onClick={() => goTo('checkout')} />
+            <img src={favorite} alt="" onClick={() => goTo('favorites')} />
           </div>
         </div>
       </div>
@@ -111,9 +117,24 @@ const Navbar = ({ authState, logOutAction }) => {
             : stylesMobile.nav_menu_disabled
         }
       >
-        <li>INICIAR SESIÓN</li>
-        <li>SOBRE NOSOTROS</li>
-        <li>FAVORITOS</li>
+
+        {
+          (authState.loggedIn)
+            ?
+            <>
+              <li onClick={() => goTo('checkout')}>CARRITO</li>
+              <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
+              <li onClick={() => goTo('favorites')}>FAVORITOS</li>
+              <li onClick={() => goTo('manageProducts')}>AREA RESERVADA</li>
+              <li onClick={handleLogout}>SALIR</li>
+            </>
+            :
+            <>
+              <li onClick={() => goTo('login')}>INICIÁ SESIÓN</li>
+              <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
+            </>
+        }
+
       </ul>
     </nav>
   );

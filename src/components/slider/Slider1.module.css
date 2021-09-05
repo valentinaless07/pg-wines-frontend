@@ -17,6 +17,7 @@
 .carousel .slide img{
   max-height: 100%;
   width: auto;
+  /* object-fit: fill; */
 }
 
 .image{
@@ -24,28 +25,27 @@
   height: 100%;
   width: auto;
 }
-
+/* 
 @media only screen and (max-width: 1200px){
   .carousel{
-    /* height: 90vh; */
-
+     height: 90vh; 
   }
 
 }
 
 @media only screen and (max-width: 900px){
   .carousel{
-    /* height: 80vh; */
+     height: 80vh; 
   }
 
 }
 
 @media only screen and (max-width: 750px){
   .carousel{
-    /* height: 70vh; */
+     height: 70vh; 
   }
 
-}
+} */
 @media only screen and (max-width: 650px){
   .carousel{
     height: 40vh;
