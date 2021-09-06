@@ -119,7 +119,7 @@ function ProductList({state, category, filtered, getProducts, getCategory, filte
                             <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
                         </div>
                         <div className={styles.imgContainer}>
-                            <img className={styles.img} src={item.image} alt=''/>
+                            <img className={styles.img} onClick={()=>handleGoToProducDescription(item.id)} src={item.image} alt=''/>
                         </div>
                         <div className={styles.price}>
                             {item.discount>5 && <span>{item.discount}% Desc</span>}
