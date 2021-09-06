@@ -3,6 +3,7 @@ import styles from './ManageProductsScreen.module.css'
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProducts } from '../../redux/actions/manageProductsActions';
+import ProductManageCard from '../../components/productManageCard/ProductManageCard';
 
 
 
@@ -13,6 +14,8 @@ const ManageProductsScreen = ({productState, getProducts}) => {
     useEffect(() => {
         getProducts()
     } , [getProducts]);
+
+    
 
     return (
         <div className={styles.manageProductsContainer}>
@@ -27,7 +30,7 @@ const ManageProductsScreen = ({productState, getProducts}) => {
         <div className={styles.productsList}>
             <h1>Productos:</h1>
             {productState && productState.map(el =>{
-                return <div className={styles.product} key={el.id}>{el.id}. {el.name} ({el.category}) <b>${el.cost}</b><div className={styles.icons}><i className="fas fa-trash-alt fa-1x" ></i> <i className="fas fa-edit"></i></div></div>
+                return <ProductManageCard key={el.id} id={el.id} name={el.name} category={el.category} cost={el.cost}/>
             })}
         </div>
         
