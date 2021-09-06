@@ -66,7 +66,8 @@ function ProductList({state, category, filtered, getProducts, getCategory, filte
         
     // }
     for (let i = 1; i <= Math.ceil(state.length/resultsPage); i++) {
-        pages.push(i)}
+        i<=10&&pages.push(i)
+    }
     
     function handlePages(e){
         // console.log(document.getElementsByClassName('activate'))
