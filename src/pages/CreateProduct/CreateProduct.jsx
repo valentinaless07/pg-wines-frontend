@@ -100,7 +100,7 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
         <div className={styles.createProduct}>
 
         
-        <Link to="manage" className={styles.backIcon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
+        <Link to="/manageProducts" className={styles.backIcon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
         
 
         <div className={styles.container}>

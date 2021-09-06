@@ -22,3 +22,15 @@ export function getCategories() {
          })
     }
  }
+
+ export function getProducts () {
+    return async function(dispatch) {
+        var json = await axios.get("https://delsur-api-1.herokuapp.com/products")
+        
+
+        return dispatch({
+            type: "GET_PRODUCTS",
+            payload: json.data
+        })
+   }
+ }
