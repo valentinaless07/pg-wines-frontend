@@ -1,5 +1,5 @@
-export const getFirstName = (fullName) => {
-    return fullName.displayName.split(' ')[0];
+export const getFirstName = (fullName) => {    
+    return fullName?.split(' ')[0];
 }
 
 export const saveStorage = (auth) => {

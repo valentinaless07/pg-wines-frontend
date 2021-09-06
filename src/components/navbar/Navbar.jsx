@@ -21,7 +21,7 @@ const Navbar = ({ authState, logOutAction }) => {
       window.removeEventListener("resize", changeScreen);
     }
   }, []);
-  
+
   // window.addEventListener("resize", changeScreen);
 
   const handleLogout = () => {
@@ -82,7 +82,8 @@ const Navbar = ({ authState, logOutAction }) => {
               ? <>
                 <span className={styles.login} onClick={() => goTo('manageProducts')} >Area Reservada</span>
                 <span className={styles.login} onClick={handleLogout} >Salir</span>
-                <span>{getFirstName(authState)}</span>
+                <img className={styles.avatar} src={authState.photoURL} alt={authState.displayName} />
+
               </>
               : <NavLink to="/login" className={styles.login}>
                 <span >Iniciá Sesión</span>
@@ -115,6 +116,9 @@ const Navbar = ({ authState, logOutAction }) => {
       </div>
 
       <div className={stylesMobile.bars_cart_container}>
+        {
+          (authState.loggedIn) && <img className={styles.avatar} src={authState.photoURL} alt={authState?.displayName} />
+        }
         <img onClick={changeBarsStatus} src={bars} alt="" />
         {/* <img src={cart} alt="" /> */}
       </div>
@@ -132,8 +136,8 @@ const Navbar = ({ authState, logOutAction }) => {
             <>
               <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
               <li onClick={() => goTo('manageProducts')}>AREA RESERVADA</li>
-              <li onClick={() => goTo('checkout')}>CARRITO</li>
               <li onClick={() => goTo('favorites')}>FAVORITOS</li>
+              <li onClick={() => goTo('checkout')}>CARRITO</li>
               <li onClick={handleLogout}>SALIR</li>
             </>
             :
