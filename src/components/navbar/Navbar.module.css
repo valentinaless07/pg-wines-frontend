@@ -23,7 +23,7 @@
 
 .logo_searchbar_login {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   height: 100%;
 }
@@ -44,8 +44,6 @@
   font-size: 22px;
   text-decoration: none;
   color: white;
-
-
 }
 
 .cart_login {
@@ -55,9 +53,10 @@
   align-items: center;
 }
 .cart_login > span {
-  font-size: 22px;
+  font-size: 20px;
   width: 150px;
   cursor: pointer;
+  text-align: center;
 }
 
 .cart_favorite > img {
@@ -69,12 +68,13 @@
 .cart_favorite {
   display: flex;
   justify-content: space-between;
-  width: 110px;
+  width: 150px;
+  margin-left: 10px;
 }
 
 .searchBar {
   height: 36px;
-  width: 270px;
+  width: 250px;
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
   border: none;
   border-radius: 2px;
@@ -98,14 +98,14 @@
   justify-content: center;
   width: 160px;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .searchbar_container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 315px;
+  width: 290px;
 }
 .searchbar_container > img {
   width: 30px;
