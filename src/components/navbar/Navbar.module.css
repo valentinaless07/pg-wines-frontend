@@ -75,7 +75,7 @@
 .cart_favorite {
   display: flex;
   justify-content: space-between;
-  width: 150px;
+  width: 110px;
   margin-left: 10px;
 }
 
