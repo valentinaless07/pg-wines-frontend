@@ -69,7 +69,7 @@ function ProductList({state, category, filtered, getProducts, getCategory, filte
         pages.push(i)}
     
     function handlePages(e){
-        console.log(document.getElementsByClassName('activate'))
+        // console.log(document.getElementsByClassName('activate'))
         document.getElementsByClassName('activate')[0].classList.remove('activate')
         let page = document.getElementById(e.target.id)
         page.classList.add('activate')
@@ -82,11 +82,11 @@ function ProductList({state, category, filtered, getProducts, getCategory, filte
 
     function handleFilter(id){
 
-        console.log(typeof(id)+" "+id)
-        console.log(state)
+        // console.log(typeof(id)+" "+id)
+        // console.log(state)
         let prueba = state.filter(item=>item.category===id)
         setItems(prueba)
-        console.log(prueba)
+        // console.log(prueba)
         // ----------------------------------------------
         // let prueba= document.getElementById()
     }
