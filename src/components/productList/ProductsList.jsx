@@ -1,29 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import styles  from './ProductsList.module.css';
 import { connect } from 'react-redux';
-import { getProducts, getCategory, filteredBy } from '../../redux/actions/userActions';
+import { getProducts } from '../../redux/actions/userActions';
+import { getCategories } from '../../redux/actions/manageProductsActions';
 import './productList.css'
-
-// const products= require('../../data/products').default
-
-// const images = require.context('../../data/images', false)
-
-// function importAll(r) {
-//     let images = {};
-//     // console.log(r.keys()[0])
-//     r.keys().map((item, index)=>{images[item.replace('./', '')] = r(item)});
-//     return images;
-//   }
-
-//   const img=importAll(images)
   
-function ProductList({state, category, filtered, getProducts, getCategory, filteredBy}) {
+function ProductList({state, manageProductState, getProducts, getCategories}) {
 
     useEffect(()=>{        
-        setTimeout(function(){ getProducts() }, 1000);
-        getCategory()
+        getProducts();
+        getCategories()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [])    
 
     const[items, setItems] = useState(state)
     const[currentPage, setCurrentPage] = useState(1)
@@ -52,12 +40,6 @@ function ProductList({state, category, filtered, getProducts, getCategory, filte
 
     const pages =[]
 
-    // if(items!==0){
-    //     for (let i = 1; i <= Math.ceil(items.length/resultsPage); i++) {
-    //         pages.push(i)}        
-    // }else if(items.length===0){
-        
-    // }
     for (let i = 1; i <= Math.ceil(state.length/resultsPage); i++) {
         pages.push(i)}
     
@@ -74,14 +56,9 @@ function ProductList({state, category, filtered, getProducts, getCategory, filte
     }
 
     function handleFilter(id){
-
-        console.log(typeof(id)+" "+id)
         console.log(state)
         let prueba = state.filter(item=>item.category===id)
         setItems(prueba)
-        console.log(prueba)
-        // ----------------------------------------------
-        // let prueba= document.getElementById()
     }
 
 
@@ -94,10 +71,10 @@ function ProductList({state, category, filtered, getProducts, getCategory, filte
                     {
                     // <input type="checkbox" name="" id="" />
                         
-                        category.map(category=><li className='filterItem' onClick={()=>handleFilter(category.id)} key={category.id}>
-                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{category.category}
+                        manageProductState.map(category=><li className='filterItem' onClick={()=>handleFilter(category.name)} key={category.id}>
+                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{category.name}
                         </li>)
-                        // category.map(item=><React.Fragment><input id={item.id} onClick={handleFilter} type='checkbox'/><span>{item.category}</span><br/></React.Fragment>)
+                        // manageProductState.map(item=><React.Fragment><input id={item.id} onClick={handleFilter} type='checkbox'/><span>{item.category}</span><br/></React.Fragment>)
                     }
                 </div>
             </div>
@@ -138,9 +115,8 @@ function ProductList({state, category, filtered, getProducts, getCategory, filte
 function MapStateToProps(state){
     return{
         state: state.products.products,
-        category: state.products.category,
-        filtered: state.products.productsFiltered
+        manageProductState: state.manageProducts.categories
     }
 }
 
-export default connect(MapStateToProps, {getProducts, getCategory, filteredBy})(ProductList)
+export default connect(MapStateToProps, {getProducts, getCategories})(ProductList)

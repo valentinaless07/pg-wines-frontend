@@ -16,5 +16,5 @@ export const category = [
     {id: 8,
     category: 'Destilados varios'},
     {id: 9,
-    category: 'Son alcohol'}
+    category: 'Sin Alcohol'}
 ]
