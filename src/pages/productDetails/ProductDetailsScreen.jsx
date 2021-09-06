@@ -35,7 +35,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
                     <hr />
                     <div className={styles.description}>
                         {product_detail.description}
-                          <p>{product_detail.price}</p>
+                          <p>${product_detail.cost}</p>
                     </div>
                     <div className={styles.lineaProduct}></div>
                         <label htmlFor="" className={styles.labelCantidad}>Cantidad:</label>
@@ -53,7 +53,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
                             <option value="10">10</option>
 
                         </select>
-                        <button>Add to Cart</button>
+                        <button>Agregar al carrito</button>
                     </div>
 
                 </div>
