@@ -35,6 +35,13 @@
   align-items: center;
 }
 
+.avatar {
+  width: 40px;
+  height: 35px;
+  border-radius: 50px;
+  margin-right: .3rem;
+}
+
 .login {
   display: flex;
   align-items: center;
