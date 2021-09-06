@@ -8,7 +8,7 @@ const images = require.context('../../data/images', false)
 function importAll(r) {
     let images = {};
     // console.log(r.keys()[0])
-    r.keys().map((item, index)=>{images[item.replace('./', '')] = r(item)});
+    r.keys().map((item, index)=>{return images[item.replace('./', '')] = r(item)});
     return images;
   }
 
