@@ -18,10 +18,10 @@ function importAll(r) {
 
 export const getProducts = ()=>{
     return function(dispatch){
-        let newData=data.map(item=>{
-            return{...item,
-                image:img[item.image].default}})
-        return dispatch({type: GET_PRODUCTS, payload: newData})
+        // let newData=data.map(item=>{
+        //     return{...item,
+        //         image:img[item.image].default}})
+        return dispatch({type: GET_PRODUCTS, payload: data})
     }
 }
 
