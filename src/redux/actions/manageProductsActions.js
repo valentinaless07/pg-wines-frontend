@@ -33,4 +33,17 @@ export function getCategories() {
             payload: json.data
         })
    }
+   
+ }
+
+ export function deleteProduct (payload) {
+    
+    return async function () {
+        
+        
+        const resp = await axios.delete("https://delsur-api-1.herokuapp.com/product/delete", {data: {id: payload}})
+        
+        console.log(resp)
+        return resp
+    }
  }
