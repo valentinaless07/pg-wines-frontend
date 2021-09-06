@@ -27,7 +27,7 @@ const ManageProductsScreen = ({productState, getProducts}) => {
         <div className={styles.productsList}>
             <h1>Productos:</h1>
             {productState && productState.map(el =>{
-                return <div className={styles.product} key={el.id}>{el.id}. {el.name} ({el.category}) <b>${el.cost}</b><div className={styles.icons}><i className="fas fa-trash-alt fa-1x" ></i> <i class="fas fa-edit"></i></div></div>
+                return <div className={styles.product} key={el.id}>{el.id}. {el.name} ({el.category}) <b>${el.cost}</b><div className={styles.icons}><i className="fas fa-trash-alt fa-1x" ></i> <i className="fas fa-edit"></i></div></div>
             })}
         </div>
         

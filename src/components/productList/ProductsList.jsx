@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import styles  from './ProductsList.module.css';
 import { connect } from 'react-redux';
 import { getProducts, getCategory, filteredBy } from '../../redux/actions/userActions';
@@ -18,7 +19,8 @@ import './productList.css'
 //   const img=importAll(images)
   
 function ProductList({state, category, filtered, getProducts, getCategory, filteredBy}) {
-
+    const history = useHistory();
+    
     useEffect(()=>{        
         setTimeout(function(){ getProducts() }, 1000);
         getCategory()
@@ -27,6 +29,7 @@ function ProductList({state, category, filtered, getProducts, getCategory, filte
 
     const[items, setItems] = useState(state)
     const[currentPage, setCurrentPage] = useState(1)
+    // eslint-disable-next-line no-unused-vars
     const[resultsPage, setResultsPage] = useState(12)
     const totalResultsPage = currentPage * resultsPage
     const firstResultPAge = totalResultsPage - resultsPage    
@@ -39,7 +42,7 @@ function ProductList({state, category, filtered, getProducts, getCategory, filte
                 <span>{item.name}</span>
                 <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
             </div>
-            <div className={styles.imgContainer}>
+            <div className={styles.imgContainer} onClick={()=>handleGoToProducDescription(item.id)} >
                 <img className={styles.img} src={item.image} alt=''/>
             </div>
             <div className={styles.price}>
@@ -49,6 +52,10 @@ function ProductList({state, category, filtered, getProducts, getCategory, filte
             <button className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
         </div>)
     })
+
+    function handleGoToProducDescription(productId){
+        history.push(`/product/${productId}`);
+    }
 
     const pages =[]
 
