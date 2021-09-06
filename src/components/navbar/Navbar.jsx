@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from 'react-redux';
 import { NavLink, useHistory } from "react-router-dom";
 import { getFirstName } from '../../helpers/helpers';
@@ -14,8 +14,17 @@ import bars from "./bars.svg";
 const Navbar = ({ authState, logOutAction }) => {
   const history = useHistory();
 
+
+  useEffect(() => {
+    window.addEventListener("resize", changeScreen);
+    return () => {
+      window.removeEventListener("resize", changeScreen);
+    }
+  }, []);
+  
+  // window.addEventListener("resize", changeScreen);
+
   const handleLogout = () => {
-    // history.replace('/login');
     history.push('/home');
     logOutAction();
   }
@@ -23,7 +32,6 @@ const Navbar = ({ authState, logOutAction }) => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
   const [barsStatus, setBarsStatus] = useState("off");
 
-  window.addEventListener("resize", changeScreen);
 
   function changeScreen(e) {
     setScreenSize(e.target.innerWidth);
@@ -71,8 +79,8 @@ const Navbar = ({ authState, logOutAction }) => {
         <div className={styles.cart_login}>
           {
             (authState.loggedIn)
-              ? <>               
-                <span className={styles.login} onClick={()=>goTo('manageProducts')} >Area Reservada</span>
+              ? <>
+                <span className={styles.login} onClick={() => goTo('manageProducts')} >Area Reservada</span>
                 <span className={styles.login} onClick={handleLogout} >Salir</span>
                 <span>{getFirstName(authState)}</span>
               </>
