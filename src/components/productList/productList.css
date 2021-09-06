@@ -70,3 +70,8 @@
 .filterActive{
     left: 0px;
 }
+
+a{
+    text-decoration: none;
+    color: black;
+}

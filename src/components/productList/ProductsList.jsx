@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import styles  from './ProductsList.module.css';
 import { connect } from 'react-redux';
-import { getProducts } from '../../redux/actions/userActions';
+import { getProducts, getProductsbyCategory } from '../../redux/actions/userActions';
 import { getCategories } from '../../redux/actions/manageProductsActions';
+import ProductsContainer from './productsContainer';
 import './productList.css'
   
-function ProductList({state, manageProductState, getProducts, getCategories}) {
+function ProductList({state, manageProductState, getProductsbyCategory, getProducts, getCategories}) {
 
     useEffect(()=>{        
         getProducts();
@@ -20,23 +20,23 @@ function ProductList({state, manageProductState, getProducts, getCategories}) {
     const firstResultPAge = totalResultsPage - resultsPage    
     let mapState = state
     let currentResults = mapState.slice(firstResultPAge, totalResultsPage)
-    const pRender= items.slice(firstResultPAge, totalResultsPage).map(item=>{
+    // const pRender= items.slice(firstResultPAge, totalResultsPage).map(item=>{
         
-        return(items.length>0 && <div className={styles.productContainer} key={item.id}>
-            <div className={styles.title}>
-                <span>{item.name}</span>
-                <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
-            </div>
-            <div className={styles.imgContainer}>
-                <img className={styles.img} src={item.image} alt=''/>
-            </div>
-            <div className={styles.price}>
-                {item.discount>5 && <span>{item.discount}% Desc</span>}
-                {item.discount>5 ? <span className={styles.desc}>{'$ '+((item.cost)*(1-(item.discount/100))).toFixed(2)}</span>:<span>$ {item.cost}</span>}
-            </div>
-            <button className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
-        </div>)
-    })
+    //     return(items.length>0 && <div className={styles.productContainer} key={item.id}>
+    //         <div className={styles.title}>
+    //             <span>{item.name}</span>
+    //             <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
+    //         </div>
+    //         <div className={styles.imgContainer}>
+    //             <img className={styles.img} src={item.image} alt=''/>
+    //         </div>
+    //         <div className={styles.price}>
+    //             {item.discount>5 && <span>{item.discount}% Desc</span>}
+    //             {item.discount>5 ? <span className={styles.desc}>{'$ '+((item.cost)*(1-(item.discount/100))).toFixed(2)}</span>:<span>$ {item.cost}</span>}
+    //         </div>
+    //         <button className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
+    //     </div>)
+    // })
 
     const pages =[]
 
@@ -44,7 +44,6 @@ function ProductList({state, manageProductState, getProducts, getCategories}) {
         pages.push(i)}
     
     function handlePages(e){
-        console.log(document.getElementsByClassName('activate'))
         document.getElementsByClassName('activate')[0].classList.remove('activate')
         let page = document.getElementById(e.target.id)
         page.classList.add('activate')
@@ -55,15 +54,19 @@ function ProductList({state, manageProductState, getProducts, getCategories}) {
         document.getElementById('sidebar').classList.toggle('filterActive')
     }
 
-    function handleFilter(id){
-        console.log(state)
-        let prueba = state.filter(item=>item.category===id)
-        setItems(prueba)
+    function handleFilter(name){
+        // let prueba = state.filter(item=>item.category===id)
+        // setItems(prueba)
+        name!=='clear' ?
+        getProductsbyCategory(name)
+        :
+        getProducts()
     }
 
 
     return (
-        <div className={`${styles.container}`}>
+        // <div className={`${styles.container}`}>
+        <React.Fragment>
             <div id='sidebar' className='filter'>
                 <span className='filterTittle'> Filter by</span>
                 <button onClick={activeFilter} id='filter' className='filterBtn'><i className="fas fa-filter"></i></button>
@@ -76,39 +79,43 @@ function ProductList({state, manageProductState, getProducts, getCategories}) {
                         </li>)
                         // manageProductState.map(item=><React.Fragment><input id={item.id} onClick={handleFilter} type='checkbox'/><span>{item.category}</span><br/></React.Fragment>)
                     }
+                    <li className='filterItem' onClick={()=>handleFilter('clear')}>Clear All</li>
                 </div>
             </div>
-            {items.length>0 && <div className={styles.productList}>
-                    {pRender}                
-                </div>}
-            <div className={styles.productList}>
-                {
-                    state.length>0 && items.length===0 ? currentResults.map(item=><div className={styles.productContainer} key={item.id}>
-                        <div className={styles.title}>
-                            <span>{item.name}</span>
-                            <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
-                        </div>
-                        <div className={styles.imgContainer}>
-                            <img className={styles.img} src={item.image} alt=''/>
-                        </div>
-                        <div className={styles.price}>
-                            {item.discount>5 && <span>{item.discount}% Desc</span>}
-                            {item.discount>5 ? <span className={styles.desc}>{'$ '+((item.cost)*(1-(item.discount/100))).toFixed(2)}</span>:<span>$ {item.cost}</span>}
-                        </div>
-                        <button className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
-                    </div>)
-                    :
-                    <React.Fragment></React.Fragment>
-                }
-            </div>
-            <div>
-                <ul className={styles.pagination}>
-                    {pages.length>0 && pages.map(number=><li className={`${styles.pagItem} ${number===1 ? 'activate' : 'pag'}`} onClick={handlePages} id={number} key={number}>
-                        {number}
-                    </li>)}
-                </ul>
-            </div>
-        </div>
+        {/* //     {items.length>0 && <div className={styles.productList}>
+        //             {pRender}                
+        //         </div>}
+        //     <div className={styles.productList}> */}
+        {/* //         { */}
+        {/* //             state.length>0 && items.length===0 ? currentResults.map(item=><div className={styles.productContainer} key={item.id}>
+        //                 <div className={styles.title}>
+        //                     <span>{item.name}</span>
+        //                     <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
+        //                 </div>
+        //                 <div className={styles.imgContainer}>
+        //                     <img className={styles.img} src={item.image} alt=''/>
+        //                 </div>
+        //                 <div className={styles.price}>
+        //                     {item.discount>5 && <span>{item.discount}% Desc</span>}
+        //                     {item.discount>5 ? <span className={styles.desc}>{'$ '+((item.cost)*(1-(item.discount/100))).toFixed(2)}</span>:<span>$ {item.cost}</span>}
+        //                 </div>
+        //                 <button className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
+        //             </div>)
+        //             :
+        //             <React.Fragment></React.Fragment>
+        //         } */}
+        {/* //     </div> */}
+        {/* //     <div>
+        //         <ul className={styles.pagination}>
+        //             {pages.length>0 && pages.map(number=><li className={`${styles.pagItem} ${number===1 ? 'activate' : 'pag'}`} onClick={handlePages} id={number} key={number}>
+        //                 {number}
+        //             </li>)}
+        //         </ul>
+        //     </div>
+        // </div> */}
+        
+            {state.length>0 ? <ProductsContainer state={state}/> : <h1>Cargando...</h1>}            
+        </React.Fragment>
     )
 }
 
@@ -119,4 +126,4 @@ function MapStateToProps(state){
     }
 }
 
-export default connect(MapStateToProps, {getProducts, getCategories})(ProductList)
+export default connect(MapStateToProps, {getProducts, getProductsbyCategory, getCategories})(ProductList)

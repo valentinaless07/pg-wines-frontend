@@ -1,7 +1,7 @@
 import axios from "axios"
 export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_CATEGORY = 'GET_CATEGORY';
-export const FILTER_BY = 'FILTER_BY'
+export const PRODUCT_BY_CATEGORY = 'PRODCUT_BY_CATEGORY'
 
 // export const getProducts = ()=>{
 //     return function(dispatch){
@@ -14,11 +14,23 @@ export const FILTER_BY = 'FILTER_BY'
 
 export const getProducts =()=>{
     return async function(dispatch){
-        axios.get('https://delsur-api-1.herokuapp.com/products')
+        await axios.get('https://delsur-api-1.herokuapp.com/products')
         .then(results=>{
-            console.log(results.data)
             dispatch({
                 type:GET_PRODUCTS,
+                payload: results.data
+            })
+        })
+    }
+}
+
+export const getProductsbyCategory=(categoryName)=>{
+    return async function(dispatch){
+        await axios.get('https://delsur-api-1.herokuapp.com/products?category='+categoryName)
+        .then(results =>{
+            console.log(results)
+            dispatch({
+                type: PRODUCT_BY_CATEGORY,
                 payload: results.data
             })
         })
