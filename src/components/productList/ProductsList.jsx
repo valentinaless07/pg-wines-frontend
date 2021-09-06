@@ -27,6 +27,7 @@ function ProductList({state, category, filtered, getProducts, getCategory, filte
 
     const[items, setItems] = useState(state)
     const[currentPage, setCurrentPage] = useState(1)
+    // eslint-disable-next-line no-unused-vars
     const[resultsPage, setResultsPage] = useState(12)
     const totalResultsPage = currentPage * resultsPage
     const firstResultPAge = totalResultsPage - resultsPage    
