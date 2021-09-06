@@ -116,7 +116,7 @@ const Navbar = ({ authState, logOutAction }) => {
 
       <div className={stylesMobile.bars_cart_container}>
         <img onClick={changeBarsStatus} src={bars} alt="" />
-        <img src={cart} alt="" />
+        {/* <img src={cart} alt="" /> */}
       </div>
       <ul
         className={
@@ -130,10 +130,10 @@ const Navbar = ({ authState, logOutAction }) => {
           (authState.loggedIn)
             ?
             <>
-              <li onClick={() => goTo('checkout')}>CARRITO</li>
               <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
-              <li onClick={() => goTo('favorites')}>FAVORITOS</li>
               <li onClick={() => goTo('manageProducts')}>AREA RESERVADA</li>
+              <li onClick={() => goTo('checkout')}>CARRITO</li>
+              <li onClick={() => goTo('favorites')}>FAVORITOS</li>
               <li onClick={handleLogout}>SALIR</li>
             </>
             :
