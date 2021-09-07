@@ -71,12 +71,16 @@ function ProductList({state, manageProductState, getProductsbyCategory, getProdu
                 <span className='filterTittle'> Filter by</span>
                 <button onClick={activeFilter} id='filter' className='filterBtn'><i className="fas fa-filter"></i></button>
                 <div className='filterOptions'>
+                    <select name='categories'>
+                        <option></option>
+                    </select>
                     {
                     // <input type="checkbox" name="" id="" />
                         
                         manageProductState.map(category=><li className='filterItem' onClick={()=>handleFilter(category.name)} key={category.id}>
                             {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{category.name}
                         </li>)
+                        
                         // manageProductState.map(item=><React.Fragment><input id={item.id} onClick={handleFilter} type='checkbox'/><span>{item.category}</span><br/></React.Fragment>)
                     }
                     <li className='filterItem' onClick={()=>handleFilter('clear')}>Clear All</li>
