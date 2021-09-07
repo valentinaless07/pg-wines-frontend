@@ -16,21 +16,7 @@ const Footer = () => {
         <>
             <div className={styles.container}>
 
-                <div className={styles.tecnologia}>
-                    <div>
-                        <h2>Tecnologias usadas</h2>
-                    </div>
-                    <div>
-                        <img src={ReactIcon} alt="react-icon" />
-                        <img src={PostgresqlIcon} alt="postgre-icon" />
-                        <img src={IconRedux} alt="redux-icon" />
-                    </div>
-                    <div>
-                        <img src={NodeIcon} alt="node-icon" />
-                        <img src={ExpressIcon} className={styles.express} alt="express-icon" />
-
-                    </div>
-                </div>
+               
                 <div className={styles.piedepagina}>
                     <div>
                         <h2>Siguenos</h2>
