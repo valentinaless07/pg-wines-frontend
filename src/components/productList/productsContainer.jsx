@@ -1,9 +1,18 @@
 import styles  from './ProductsList.module.css';
 import './productList.css'
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
+
 
 export default function ProductsContainer(state){
     
+    const history = useHistory();
+    console.log(history)
+    
+    function handleGoToProducDescription(productId){
+        history.push(`/product/${productId}`);
+    }
+
     return(<div className={`${styles.container}`}>
         <div className={styles.productList}>
             {
@@ -14,7 +23,7 @@ export default function ProductsContainer(state){
                             <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
                         </div>
                             <div className={styles.imgContainer}>
-                                <img className={styles.img} src={item.image} alt=''/>
+                                <img onClick={()=>handleGoToProducDescription(item.id)} className={styles.img} src={item.image} alt=''/>
                             </div>
                             <div className={styles.price}>
                                 {item.discount>5 && <span>{item.discount}% Desc</span>}

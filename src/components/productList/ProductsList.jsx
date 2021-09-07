@@ -12,7 +12,7 @@ function ProductList({state, manageProductState, getProductsbyCategory, getProdu
         getCategories()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
+    
     const [values, setValues] = useState({
         min: '',
         max: ''
@@ -53,12 +53,13 @@ function ProductList({state, manageProductState, getProductsbyCategory, getProdu
         })
 
     }
+
     return (
         <React.Fragment>
             <form action="" onSubmit={handleSubmit}>
                 <div id='sidebar' className='filter'>
                     <span className='filterTittle'>BUSQUEDA</span>
-                    <button onClick={activeFilter} id='filter' className='filterBtn'><i className="fas fa-filter"></i></button>
+                    <span onClick={activeFilter} id='filter' className='filterBtn'><i className="fas fa-filter"></i></span>
                     <div className='filterOptions'>
                         <select name='categories' id='category' onChange={handleFilter} defaultValue={'DEFAULT'}>
                             <option disabled value='DEFAULT'>Categoria</option>
