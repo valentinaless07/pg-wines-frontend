@@ -3,12 +3,18 @@ import styles from './Cart.module.css'
 import {addCartProduct} from "../../redux/actions/cartActions"
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import CartProduct from '../../components/cart_product/CartProduct';
 
 
 
 
-const Cart = () => {
+const Cart = ({cartState}) => {
 
+    function totalPrice () {
+        let total = 0
+        cartState.forEach(el => total += el.cost)
+        return total
+    }
     
 
     return (
@@ -24,12 +30,16 @@ const Cart = () => {
                 <div className={styles.cart_items_container}>
                     <div className={styles.cart_items}>
                         
+                        {cartState && cartState.map(el => 
+                        <CartProduct image={el.image} name={el.name} cost={el.cost} />
+                            )}
+
                     </div>
                     <div className={styles.total_products}>
                         <div className={styles.total_container}>
                             <div className={styles.cost}>
                             <p>Total</p><br/>
-                            <b>$100</b>
+                            <b>${totalPrice()}</b>
                             </div>
                             <hr className={styles.hr}></hr>
                             <button className={styles.buttonSubmit}>CHECKOUT</button>
