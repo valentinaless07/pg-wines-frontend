@@ -4,7 +4,7 @@ import Footer from '../../components/footer/Footer';
 import styles from './ProductDetailsScreen.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWineGlass } from '@fortawesome/free-solid-svg-icons';
-import { getProductDetail, getProductDetailReset } from '../../redux/actions/ProductDetailsActions.js';
+import { getProductDetail, getProductDetailReset } from '../../redux/actions/productDetailsActions';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 

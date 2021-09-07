@@ -17,6 +17,7 @@ import CreateProduct from '../pages/CreateProduct/CreateProduct';
 import Favorites from '../pages/favorites/Favorites.jsx';
 import AboutUs from '../pages/aboutUs/AboutUs';
 import Cart from '../pages/cart/Cart';
+import PutProduct from '../pages/PutProduct/PutProduct';
 
 
 const AppRouter = ({ authState }) => {
@@ -56,6 +57,12 @@ const AppRouter = ({ authState }) => {
             isAuthenticated={loggedIn}
             path='/favorites'
             component={Favorites}
+          />
+          <PrivateRoute
+          exact
+          isAuthenticated={loggedIn}
+          path='/update/:id'
+          component={PutProduct}
           />
           
 
