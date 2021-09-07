@@ -4,18 +4,18 @@ import Footer from '../../components/footer/Footer';
 import styles from './ProductDetailsScreen.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWineGlass } from '@fortawesome/free-solid-svg-icons';
-import { getProductDetail, getProductDetailReset } from '../../redux/actions/productDetailsActions';
+import { getProductByName, getProductByNameReset } from '../../redux/actions/products';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { addCartProduct } from '../../redux/actions/cartActions';
 
-const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct}) => {
+const ProductByName = ({ product_detail, getProductByName, getProductByNameReset, addCartProduct}) => {
     // console.log(getProductDetail);
-    const { id } = useParams()
+    const { name } = useParams()
     useEffect(() => {
-        getProductDetail(id)
-        return () => { getProductDetailReset() }
+        getProductByName(name)
+        return () => { getProductByNameReset() }
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
 
@@ -34,12 +34,13 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
     return (
         <React.Fragment>
             <Navbar />
+           {product_detail.length  > 0 ?
             <div className={styles.container}>
                 <div className={styles.mainImage}>
-                    <img src={product_detail.image} alt="gin" />
+                    <img src={product_detail[0].image} alt="gin" />
                 </div>
                 <div className={styles.detailProduct}>
-                    <h1>{product_detail.name}</h1>
+                    <h1>{product_detail[0].name}</h1>
                     <FontAwesomeIcon className={styles.detailProductIcon} icon={faWineGlass} />
                     <FontAwesomeIcon className={styles.detailProductIcon} icon={faWineGlass} />
                     <FontAwesomeIcon className={styles.detailProductIcon} icon={faWineGlass} />
@@ -49,8 +50,8 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
                     <br />
                     <hr />
                     <div className={styles.description}>
-                        {product_detail.description}
-                          <p>${product_detail.cost}</p>
+                        {product_detail[0].description}
+                          <p>${product_detail[0].cost}</p>
                     </div>
                     <div className={styles.lineaProduct}></div>
                         <label htmlFor="" className={styles.labelCantidad}>Cantidad:</label>
@@ -73,24 +74,29 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
 
                 </div>
             </div>
-            <Footer />
+            : <div className="notFoundWrapper"> 
+                    <h2>Pokemon not found</h2>
+                </div> }
+                
+        <Footer />
         </React.Fragment>
+        
     );
 }
 
 function mapStateToProps(state) {
     return {
-      product_detail: state.products.product_detail
+      product_detail: state.products.product_search
     };
   };
   
   function mapDispatchToProps(dispatch) {
     return {
-        getProductDetail: (product) => dispatch(getProductDetail(product)),
-        getProductDetailReset: () => dispatch(getProductDetailReset()),
+        getProductByName: (product) => dispatch(getProductByName(product)),
+        getProductByNameReset: () => dispatch(getProductByNameReset()),
         addCartProduct: (id) => dispatch(addCartProduct(id)) 
 
     };
   };
   
-  export default connect(mapStateToProps, mapDispatchToProps)(ProductDetailsScreen);
+  export default connect(mapStateToProps, mapDispatchToProps)(ProductByName);

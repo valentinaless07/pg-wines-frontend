@@ -13,6 +13,7 @@ import bars from "./bars.svg";
 
 const Navbar = ({ authState, logOutAction }) => {
   const history = useHistory();
+  const [name, setName] = useState('');
 
 
   useEffect(() => {
@@ -49,6 +50,18 @@ const Navbar = ({ authState, logOutAction }) => {
     history.push(`/${route}`);
   }
 
+  const handleChange = (e) => {
+    setName(e.target.value);
+};
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+    if (name) {
+        history.push(`/vino/${name}`);
+        setName({})
+    }
+};
+
   return screenSize > 1100 ? (
     // NAVBAR CON WIDTH MAYOR A 1000
     <nav className={styles.container}>
@@ -63,14 +76,18 @@ const Navbar = ({ authState, logOutAction }) => {
           <span>Sobre Nosotros</span>
         </NavLink>
 
-        <div className={styles.searchbar_container}>
+        <form className={styles.searchbar_container} onSubmit={handleSubmit}>
           <input
             className={styles.searchBar}
             placeholder="Buscar Bebidas..."
             type="search"
+            onChange={handleChange} 
           />
+          <button type="submit">
           <img src={search} alt="" />
-        </div>
+          </button>
+          
+        </form>
 
         {/* <NavLink to="/manageProducts" className={styles.about_container}>
                   <span>Area Reservada</span>
