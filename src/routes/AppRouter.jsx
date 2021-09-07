@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Redirect,
@@ -35,12 +35,13 @@ const AppRouter = ({ authState }) => {
           {/* <Route exact path="/checkout" component={ShippingPay} />  */}
           <Route exact path="/cart" component={Cart}/>
           <PrivateRoute
+            exact
             isAuthenticated={loggedIn}
             path='/manageProducts'
             component={ManageProductsScreen}
           />
           <PrivateRoute
-
+            exact
             isAuthenticated={loggedIn}
             path='/createproduct'
             component={CreateProduct}
