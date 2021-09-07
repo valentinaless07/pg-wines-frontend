@@ -17,7 +17,7 @@ import CreateProduct from '../pages/CreateProduct/CreateProduct';
 import Favorites from '../pages/favorites/Favorites.jsx';
 import AboutUs from '../pages/aboutUs/AboutUs';
 import Cart from '../pages/cart/Cart';
-
+import Login2 from '../pages/login/LoginScreen2';
 
 const AppRouter = ({ authState }) => {
 
@@ -60,7 +60,8 @@ const AppRouter = ({ authState }) => {
           
 
 
-          <Redirect to='/home' />
+          <Redirect to='/LoginScreen2' />
+          {/* <Redirect to='/home' /> */}
 
         </Switch>
 

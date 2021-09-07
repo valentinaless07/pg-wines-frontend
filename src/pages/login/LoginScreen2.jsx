@@ -1,8 +1,8 @@
 import React from 'react';
 import useForm from '../../hooks/useForm';
 import { useDispatch } from 'react-redux';
-import { startLogin, startRegister } from '../../redux/actions/authActions';
-import './login.css';
+// import { startLogin, startRegister } from '../../redux/actions/authActions';
+import './LoginScreen2.css';
 import Swal from 'sweetalert2';
 
 
@@ -19,14 +19,14 @@ const initialRegisterState = {
 }
 
 
-const LoginScreen = () => {
+const LoginScreen2 = () => {
     const dispatch = useDispatch();
     const [loginForm, handleLoginInputChange] = useForm(initialLoginState);
     const [registerForm, handleRegisterInputChange] = useForm(initialRegisterState);
 
     const handleLogin = (e) => {
         e.preventDefault();
-        dispatch(startLogin(loginForm.loginEmail, loginForm.loginPassword))
+        // dispatch(startLogin(loginForm.loginEmail, loginForm.loginPassword))
     }
 
     const handleRegister = (e) => {
@@ -36,7 +36,7 @@ const LoginScreen = () => {
             return Swal.fire('Error', 'Passwords must be equals', 'error');
         }
 
-        dispatch(startRegister(registerForm.registerEmail, registerForm.registerPassword, registerForm.registerName));
+        // dispatch(startRegister(registerForm.registerEmail, registerForm.registerPassword, registerForm.registerName));
     }
 
     return (
@@ -139,4 +139,4 @@ const LoginScreen = () => {
     )
 }
 
-export default LoginScreen;
+export default LoginScreen2;
