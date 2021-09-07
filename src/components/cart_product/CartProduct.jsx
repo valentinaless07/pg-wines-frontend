@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 
 const CartProduct = (props) => {
-
+    
     const [cantidadItems, setCantidadItems] = useState(1)
 
     function sum (){

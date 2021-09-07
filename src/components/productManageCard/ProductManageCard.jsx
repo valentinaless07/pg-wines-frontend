@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import {deleteProduct} from '../../redux/actions/manageProductsActions'
 import { useHistory } from "react-router-dom";
 import { getProductDetail} from '../../redux/actions/productDetailsActions';
-
+import Swal from 'sweetalert2'
 
 const ProductManageCard = ({getProductDetail, id, deleteProduct, getProducts, name, cost, category}) => {
 
@@ -13,9 +13,25 @@ const ProductManageCard = ({getProductDetail, id, deleteProduct, getProducts, na
 
     
          async function handleDelete() {
+          const respuesta = await Swal.fire({
+            title: '¿Estás seguro que quieres eliminar este producto?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Si',
+            cancelButtonText: 'No'
+          })
+          
+            if (respuesta.isConfirmed) {
+              await deleteProduct(id)
+              await getProducts()
+              Swal.fire(
+                'Producto Eliminado!',
+                '',
+                'success'
+              )
             
-            await deleteProduct(id)
-            await getProducts()
+            } 
+          
       
         }
 

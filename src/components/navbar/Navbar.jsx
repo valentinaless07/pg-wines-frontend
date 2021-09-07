@@ -91,7 +91,7 @@ const Navbar = ({ authState, logOutAction }) => {
           }
 
           <div className={styles.cart_favorite}>
-            <img src={cart} alt="" onClick={() => goTo('checkout')} />
+            <img src={cart} alt="" onClick={() => goTo('cart')} />
             <img src={favorite} alt="" onClick={() => goTo('favorites')} />
           </div>
         </div>
@@ -137,7 +137,7 @@ const Navbar = ({ authState, logOutAction }) => {
               <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
               <li onClick={() => goTo('manageProducts')}>AREA RESERVADA</li>
               <li onClick={() => goTo('favorites')}>FAVORITOS</li>
-              <li onClick={() => goTo('checkout')}>CARRITO</li>
+              <li onClick={() => goTo('cart')}>CARRITO</li>
               <li onClick={handleLogout}>SALIR</li>
             </>
             :

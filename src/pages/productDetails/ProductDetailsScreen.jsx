@@ -7,8 +7,10 @@ import { faWineGlass } from '@fortawesome/free-solid-svg-icons';
 import { getProductDetail, getProductDetailReset } from '../../redux/actions/productDetailsActions';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { useState } from 'react';
+import { addCartProduct } from '../../redux/actions/cartActions';
 
-const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset}) => {
+const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct}) => {
     // console.log(getProductDetail);
     const { id } = useParams()
     useEffect(() => {
@@ -16,6 +18,19 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
         return () => { getProductDetailReset() }
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
+
+      const [cantidadItems, setCantidadItems] = useState(1)
+
+      function selectChange(e) {
+          setCantidadItems(e.target.value)
+      }
+
+      function addProductCart(){
+         let detail = product_detail
+         detail.cantidadItems = cantidadItems
+        addCartProduct(detail)
+      }
+
     return (
         <React.Fragment>
             <Navbar />
@@ -40,7 +55,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
                     <div className={styles.lineaProduct}></div>
                         <label htmlFor="" className={styles.labelCantidad}>Cantidad:</label>
                         <div className={styles.cartProductDetail}>
-                        <select name="cantidad" id="cantidad">
+                        <select name="cantidad" id="cantidad" onChange={e => selectChange(e)}>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -53,7 +68,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
                             <option value="10">10</option>
 
                         </select>
-                        <button>Agregar al carrito</button>
+                        <button onClick={addProductCart}>Agregar al carrito</button>
                     </div>
 
                 </div>
@@ -72,7 +87,8 @@ function mapStateToProps(state) {
   function mapDispatchToProps(dispatch) {
     return {
         getProductDetail: (product) => dispatch(getProductDetail(product)),
-        getProductDetailReset: () => dispatch(getProductDetailReset())
+        getProductDetailReset: () => dispatch(getProductDetailReset()),
+        addCartProduct: (id) => dispatch(addCartProduct(id)) 
 
     };
   };

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {getProductDetailReset } from '../../redux/actions/productDetailsActions';
 import { updateProduct } from '../../redux/actions/manageProductsActions';
-
+import Swal from 'sweetalert2'
 
 
 const PutProduct = ({updateProduct, getProductDetailReset, product_detail}) => {
@@ -88,9 +88,13 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail}) => {
         if(Object.keys(validateSubmit).length === 0){
             
             updateProduct(detailData)
+            Swal.fire('Producto Editado')
+            history.push("/manageProducts")
             
         }
-
+        else{
+            Swal.fire('Completar todos los campos requeridos')
+        }
     }
 
 

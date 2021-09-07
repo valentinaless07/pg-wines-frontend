@@ -4,6 +4,9 @@ import { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {getCategories, postProductCreated} from '../../redux/actions/manageProductsActions'
+import Swal from 'sweetalert2'
+
+
 
 
 const CreateProduct = ({ manageProductState, getCategories, postProductCreated}) => {
@@ -87,10 +90,10 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
                 categoryId: "",
                 sales: "0"
             })
-            alert("Producto creado")
+            Swal.fire('Producto Creado')
         }
         else{
-            alert("Completar todos los campos")
+            Swal.fire('Completar todos los campos requeridos')
         }
         
     }
