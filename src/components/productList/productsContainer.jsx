@@ -3,8 +3,7 @@ import './productList.css'
 import { Link } from 'react-router-dom';
 
 export default function ProductsContainer(state){
-    console.log('here')
-    console.log(state.state)
+    
     return(<div className={`${styles.container}`}>
         <div className={styles.productList}>
             {

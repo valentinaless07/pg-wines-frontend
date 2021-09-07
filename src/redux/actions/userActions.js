@@ -28,7 +28,6 @@ export const getProductsbyCategory=(categoryName)=>{
     return async function(dispatch){
         await axios.get('https://delsur-api-1.herokuapp.com/products?category='+categoryName)
         .then(results =>{
-            console.log(results)
             dispatch({
                 type: PRODUCT_BY_CATEGORY,
                 payload: results.data

@@ -9,7 +9,6 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset}) => {
-    console.log(getProductDetail);
     const { id } = useParams()
     useEffect(() => {
         getProductDetail(id)
