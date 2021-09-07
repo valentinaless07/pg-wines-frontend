@@ -22,3 +22,37 @@ export function getCategories() {
          })
     }
  }
+
+ export function getProducts () {
+    return async function(dispatch) {
+        var json = await axios.get("https://delsur-api-1.herokuapp.com/products")
+        
+
+        return dispatch({
+            type: "GET_PRODUCTS",
+            payload: json.data
+        })
+   }
+   
+ }
+
+ export function deleteProduct (payload) {
+    
+    return async function () {
+        
+        
+        const resp = await axios.delete("https://delsur-api-1.herokuapp.com/product/delete", {data: {id: payload}})
+        
+        return resp
+    }
+ }
+
+ export function updateProduct (payload) {
+    
+    return async function () {
+        
+        const respuesta = await axios.put("https://delsur-api-1.herokuapp.com/product/update", payload)
+        
+        return respuesta
+    }
+ }

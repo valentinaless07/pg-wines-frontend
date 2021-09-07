@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap");
+
+.backicon > i {
+  text-decoration: none;
+  color: black;
+  padding-left: 120px;
+  padding-top: 30px;
+}
+
+.container {
+  background-color: #f7f7f7;
+}
+
+.backicon {
+  cursor: pointer;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  margin-top: -40px;
+}
+
+.cart_container {
+  height: 20vh;
+  background-color: rgb(255, 255, 255);
+  height: 65vh;
+  overflow-y: scroll;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.cart_items_container {
+  height: auto;
+  display: flex;
+}
+
+.cart_items {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-bottom: 30px;
+}
+
+.total_products {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+}
+
+.total_container {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  height: 250px;
+  margin-top: 70px;
+  position: fixed;
+  width: 250px;
+  text-align: center;
+}
+
+.hr {
+  margin-left: 10%;
+  margin-right: 10%;
+  border-color: rgba(0, 0, 0, 0.125);
+  margin-top: 20px;
+}
+
+.buttonSubmit {
+  background-color: #1a1a1a;
+  color: white;
+  margin-top: 45px;
+  width: 115px;
+  height: 50px;
+  font-family: "Nunito Sans", sans-serif;
+  cursor: pointer;
+  line-height: 1.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  vertical-align: middle;
+  display: inline-block;
+  border: 0 solid transparent;
+  text-align: center;
+  border-radius: 2px;
+}

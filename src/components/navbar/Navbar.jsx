@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from 'react-redux';
 import { NavLink, useHistory } from "react-router-dom";
 import { getFirstName } from '../../helpers/helpers';
@@ -14,8 +14,17 @@ import bars from "./bars.svg";
 const Navbar = ({ authState, logOutAction }) => {
   const history = useHistory();
 
+
+  useEffect(() => {
+    window.addEventListener("resize", changeScreen);
+    return () => {
+      window.removeEventListener("resize", changeScreen);
+    }
+  }, []);
+
+  // window.addEventListener("resize", changeScreen);
+
   const handleLogout = () => {
-    // history.replace('/login');
     history.push('/home');
     logOutAction();
   }
@@ -23,7 +32,6 @@ const Navbar = ({ authState, logOutAction }) => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
   const [barsStatus, setBarsStatus] = useState("off");
 
-  window.addEventListener("resize", changeScreen);
 
   function changeScreen(e) {
     setScreenSize(e.target.innerWidth);
@@ -71,10 +79,11 @@ const Navbar = ({ authState, logOutAction }) => {
         <div className={styles.cart_login}>
           {
             (authState.loggedIn)
-              ? <>               
-                <span className={styles.login} onClick={()=>goTo('manageProducts')} >Area Reservada</span>
+              ? <>
+                <span className={styles.login} onClick={() => goTo('manageProducts')} >Area Reservada</span>
                 <span className={styles.login} onClick={handleLogout} >Salir</span>
-                <span>{getFirstName(authState)}</span>
+                <img className={styles.avatar} src={authState.photoURL} alt={authState.displayName} />
+
               </>
               : <NavLink to="/login" className={styles.login}>
                 <span >Iniciá Sesión</span>
@@ -82,7 +91,7 @@ const Navbar = ({ authState, logOutAction }) => {
           }
 
           <div className={styles.cart_favorite}>
-            <img src={cart} alt="" onClick={() => goTo('checkout')} />
+            <img src={cart} alt="" onClick={() => goTo('cart')} />
             <img src={favorite} alt="" onClick={() => goTo('favorites')} />
           </div>
         </div>
@@ -107,8 +116,11 @@ const Navbar = ({ authState, logOutAction }) => {
       </div>
 
       <div className={stylesMobile.bars_cart_container}>
+        {
+          (authState.loggedIn) && <img className={styles.avatar} src={authState.photoURL} alt={authState?.displayName} />
+        }
         <img onClick={changeBarsStatus} src={bars} alt="" />
-        <img src={cart} alt="" />
+        {/* <img src={cart} alt="" /> */}
       </div>
       <ul
         className={
@@ -122,10 +134,10 @@ const Navbar = ({ authState, logOutAction }) => {
           (authState.loggedIn)
             ?
             <>
-              <li onClick={() => goTo('checkout')}>CARRITO</li>
               <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
-              <li onClick={() => goTo('favorites')}>FAVORITOS</li>
               <li onClick={() => goTo('manageProducts')}>AREA RESERVADA</li>
+              <li onClick={() => goTo('favorites')}>FAVORITOS</li>
+              <li onClick={() => goTo('cart')}>CARRITO</li>
               <li onClick={handleLogout}>SALIR</li>
             </>
             :

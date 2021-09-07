@@ -8,7 +8,11 @@
   text-decoration: none;
   color: black;
 }
-
-.manageProductsContainer {
-  height: 90vh;
+.productsList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 25px;
+  padding-bottom: 30px;
 }

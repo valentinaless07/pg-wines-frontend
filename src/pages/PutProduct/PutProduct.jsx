@@ -1,49 +1,63 @@
 import React from 'react';
-import styles from './CreateProduct.module.css'
+import styles from './PutProduct.module.css'
 import { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {getCategories, postProductCreated} from '../../redux/actions/manageProductsActions'
+import { useHistory } from 'react-router-dom';
+import {getProductDetailReset } from '../../redux/actions/productDetailsActions';
+import { updateProduct } from '../../redux/actions/manageProductsActions';
 import Swal from 'sweetalert2'
 
 
-
-
-const CreateProduct = ({ manageProductState, getCategories, postProductCreated}) => {
-
-    useEffect(() => {
-        getCategories()
-    } , [getCategories]);
+const PutProduct = ({updateProduct, getProductDetailReset, product_detail}) => {
+    
+    let history = useHistory()
 
     
 
-    const [newProductData, setNewProductData] = useState({
+    const [detailData, setDetailData] = useState(
+        {
+            id: product_detail.id,
+            name: product_detail.name,
+            description: product_detail.description,
+            cost: product_detail.cost,
+            capacity: product_detail.capacity,
+            stock: product_detail.stock,
+            discount: product_detail.discount,
+            
+        }
+    )
 
-        name: "",
-        description: "",
-        cost: "",
-        capacity: "",
-        discount: "0",
-        stock: "0",
-        image: ["01_1605539265"],
-        categoryId: "",
-        sales: "0"
-    })
+    if(detailData.name === undefined){
+        history.push('/manageProducts')
+    }
+
+
+    useEffect(() => {
+        
+        getProductDetailReset()
+    
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [getProductDetailReset])
+    
+      
+      
 
     const [errors, setErrors] = useState({})
 
 
     function handleChange (e) {
-        setNewProductData({
-            ...newProductData,
-            [e.target.name] : e.target.value
-        })
-
+        
+        setDetailData({...detailData, [e.target.name] : e.target.value})
+        
         setErrors(validate({
-            ...newProductData,
+            ...detailData,
             [e.target.name] : e.target.value
         }))
+    
     }
+
+        
 
     function validate(input) {
         let errors = {}
@@ -59,13 +73,7 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
             errors.capacity = "Ingrese una capacidad"
         }
         
-        else if(!input.categoryId){
-            errors.categoryId = "Ingrese una categoría"
-        }
-
-        // else if(!input.image1){
-        //     errors.image1 = "Ingrese al menos una imagen"
-        // }
+        
 
         return errors
 
@@ -74,68 +82,60 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
     function handleSubmit (e) {
         e.preventDefault()
         
-        let validateSubmit = validate(newProductData)
+          let validateSubmit = validate(detailData)
+          
         
         if(Object.keys(validateSubmit).length === 0){
             
-            postProductCreated(newProductData)
-            setNewProductData({
-                name: "",
-                description: "",
-                cost: "",
-                capacity: "",
-                discount: "0",
-                stock: "0",
-                image: ["01_1605539265"],
-                categoryId: "",
-                sales: "0"
-            })
-            Swal.fire('Producto Creado')
+            updateProduct(detailData)
+            Swal.fire('Producto Editado')
+            history.push("/manageProducts")
+            
         }
         else{
             Swal.fire('Completar todos los campos requeridos')
         }
-        
     }
 
 
     return (
-        <div className={styles.createProduct}>
+        
+        <div>
 
         
         <Link to="/manageProducts" className={styles.backIcon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
         
 
         <div className={styles.container}>
-            <h1>Crear nuevo producto</h1>
+            <h1>Editar producto</h1>
             <form className={styles.form} onSubmit={e => handleSubmit(e)}>
 
                 <div>
                     <label>Nombre:</label>
-                    <input value={newProductData.name} onChange={e => handleChange(e)} name="name" type="text"/>
+                    <input value={detailData.name || ""} onChange={e => handleChange(e)} name="name" type="text"/>
                     {errors.name && (<p className={styles.error}>{errors.name}</p>)}
                 </div>
 
                 <div>
                     <label>Descripción:</label>
-                    <input value={newProductData.description} onChange={e => handleChange(e)} name="description" type="text"/>
+                    <input value={detailData.description || ""} onChange={e => handleChange(e)} name="description" type="text"/>
                 </div>
 
                 <div>
                     <label>Precio:</label>
-                    <input value={newProductData.cost} onChange={e => handleChange(e)} name="cost" type="number"/>
+                    <input value={detailData.cost || ""} onChange={e => handleChange(e)} name="cost" type="number"/>
                     {errors.cost && (<p className={styles.error}>{errors.cost}</p>)}
                 </div>
 
                 <div>
                     <label>Capacidad (ml):</label>
-                    <input value={newProductData.capacity} onChange={e => handleChange(e)} name="capacity" type="number"/>
+                    <input value={detailData.capacity || ""} onChange={e => handleChange(e)} name="capacity" type="number"/>
                     {errors.capacity && (<p className={styles.error}>{errors.capacity}</p>)}
                 </div>
 
                 <div>
                     <label>Stock:</label>
-                    <input value={newProductData.stock} onChange={e => handleChange(e)} name="stock" type="number"/>
+                    <input value={detailData.stock || ""} onChange={e => handleChange(e)} name="stock" type="number"/>
                 </div>
 
                  {/* <div>
@@ -149,10 +149,10 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
 
                 <div>
                     <label>Descuento:</label>
-                    <input value={newProductData.discount} onChange={e => handleChange(e)} name="discount" type="number"/>
+                    <input value={detailData.discount || ""} onChange={e => handleChange(e)} name="discount" type="number"/>
                 </div>
                 
-                <div>
+                {/* <div>
                     <label>Category:</label>
                     <select name="categoryId" onChange={e => handleChange(e)}>
                         {
@@ -162,30 +162,33 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
                         }
                     </select>
                     {errors.categoryId && (<p className={styles.error}>{errors.categoryId}</p>)}
-                </div>    
+                </div>     */}
 
-                <button type="submit">Crear Producto</button>
+                <button type="submit">Enviar Producto</button>
 
             </form>
         </div>
         </div>
+       
+            
         
     );
 }
 
 const mapStateToProps = (state) => {
     return {
-      manageProductState: state.manageProducts,
+        product_detail: state.user.product_detail
     };
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
-      getCategories: () => dispatch(getCategories()),
-      postProductCreated: (newProductData) => dispatch( postProductCreated(newProductData))  
+        getProductDetailReset: () => dispatch(getProductDetailReset()),
+        updateProduct: (detailData) => dispatch(updateProduct(detailData))
+
     }
   }
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateProduct);
+export default connect(mapStateToProps, mapDispatchToProps)(PutProduct);

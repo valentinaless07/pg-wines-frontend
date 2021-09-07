@@ -4,7 +4,7 @@ import { getProducts, getProductsbyCategory } from '../../redux/actions/userActi
 import { getCategories } from '../../redux/actions/manageProductsActions';
 import ProductsContainer from './productsContainer';
 import './productList.css'
-  
+
 function ProductList({state, manageProductState, getProductsbyCategory, getProducts, getCategories}) {
 
     useEffect(()=>{        
@@ -21,7 +21,6 @@ function ProductList({state, manageProductState, getProductsbyCategory, getProdu
     function activeFilter(){
         document.getElementById('sidebar').classList.toggle('filterActive')
         document.getElementById('filter').classList.toggle('btnFilterActive')
-
     }
 
     function handleFilter(name){

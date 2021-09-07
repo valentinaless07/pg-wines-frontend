@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Redirect,
@@ -16,6 +16,8 @@ import ManageProductsScreen from '../pages/manageProducts/ManageProductsScreen';
 import CreateProduct from '../pages/CreateProduct/CreateProduct';
 import Favorites from '../pages/favorites/Favorites.jsx';
 import AboutUs from '../pages/aboutUs/AboutUs';
+import Cart from '../pages/cart/Cart';
+import PutProduct from '../pages/PutProduct/PutProduct';
 
 
 const AppRouter = ({ authState }) => {
@@ -32,13 +34,15 @@ const AppRouter = ({ authState }) => {
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
           <Route exact path="/about" component={AboutUs} />
           {/* <Route exact path="/checkout" component={ShippingPay} />  */}
+          <Route exact path="/cart" component={Cart}/>
           <PrivateRoute
+            exact
             isAuthenticated={loggedIn}
             path='/manageProducts'
             component={ManageProductsScreen}
           />
           <PrivateRoute
-
+            exact
             isAuthenticated={loggedIn}
             path='/createproduct'
             component={CreateProduct}
@@ -55,6 +59,13 @@ const AppRouter = ({ authState }) => {
             path='/favorites'
             component={Favorites}
           />
+          <PrivateRoute
+          exact
+          isAuthenticated={loggedIn}
+          path='/update/:id'
+          component={PutProduct}
+          />
+          
 
 
           <Redirect to='/home' />
