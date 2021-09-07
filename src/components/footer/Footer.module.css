@@ -5,30 +5,6 @@
     
 }
  
-.tecnologia{
-    display: flex;
-    flex-direction: column;
-    width: 33%;
-    visibility: hidden;
-}
-
-.tecnologia div h2{
-    color: #fff;
-    font-weight: bold;
-    width: 100%;
-    margin: 20px 80px;
-}
-
-
-.tecnologia img{
-    height: 50px;
-    margin: 5px 20px;
-    
-}
-
-.tecnologia div{
-    margin: 0 auto;
-}
 
 .piedepagina{
     display: block;
@@ -90,4 +66,20 @@
 
 .express{
     filter: brightness(0) invert(1);
+}
+
+@media screen and (max-width: 992px){
+    .piedepagina{
+        text-align: center;
+        display: inline;
+    }
+
+    .contactusinfooter{
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .container{
+        display: block;
+    }
 }
