@@ -23,10 +23,11 @@ const Cart = ({cartState}) => {
             <Link to="/home" className={styles.backicon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
 
             <div className={styles.title}>    
-                <h1>Carrito de compras</h1>
+            <h1>Carrito de compras</h1>
             </div>
 
             <div className={styles.cart_container}>
+                { cartState.length > 0 ?
                 <div className={styles.cart_items_container}>
                     <div className={styles.cart_items}>
                         
@@ -46,6 +47,7 @@ const Cart = ({cartState}) => {
                         </div>
                     </div>
                 </div>
+               : <div className={styles.carritoVacio}>El carrito de compras está vacío.</div> }
             </div>
         
         </div>
