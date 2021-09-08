@@ -23,12 +23,15 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
       const [cantidadItems, setCantidadItems] = useState(1)
 
       function selectChange(e) {
-          setCantidadItems(e.target.value)
+          let num = parseInt(e.target.value)
+          setCantidadItems(num)
       }
 
       function addProductCart(){
         if(cart_state.findIndex(el => el.id === product_detail.id) === -1){
-        addCartProduct(product_detail)
+        let detail = product_detail
+        detail.itemsAmount = cantidadItems    
+        addCartProduct(detail)
         Swal.fire('Producto agregado al carrito')
         }
       }

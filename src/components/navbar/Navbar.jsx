@@ -11,7 +11,7 @@ import { logOutAction } from '../../redux/actions/authActions';
 import favorite from "./favorite-icon.svg";
 import bars from "./bars.svg";
 
-const Navbar = ({ authState, logOutAction }) => {
+const Navbar = ({ authState, logOutAction, cartState }) => {
   const history = useHistory();
 
 
@@ -48,6 +48,13 @@ const Navbar = ({ authState, logOutAction }) => {
   function goTo(route) {
     history.push(`/${route}`);
   }
+
+  function totalItems () {
+    let total = 0
+    cartState.forEach(el => total += el.itemsAmount)
+    if(total > 99){return "+99"}
+    return total
+}
 
   return screenSize > 1100 ? (
     // NAVBAR CON WIDTH MAYOR A 1000
@@ -91,8 +98,15 @@ const Navbar = ({ authState, logOutAction }) => {
           }
 
           <div className={styles.cart_favorite}>
+          <img src={favorite} alt="" onClick={() => goTo('favorites')} />
+            <div className={styles.cart_container}>
             <img src={cart} alt="" onClick={() => goTo('cart')} />
-            <img src={favorite} alt="" onClick={() => goTo('favorites')} />
+            {totalItems() > 0 ?
+            <span>{totalItems()}</span>
+            :<div></div>
+            }
+            </div>
+
           </div>
         </div>
       </div>
@@ -155,6 +169,7 @@ const Navbar = ({ authState, logOutAction }) => {
 const mapStateToProps = (state) => {
   return {
     authState: state.auth,
+    cartState: state.cart.cartState
   };
 }
 

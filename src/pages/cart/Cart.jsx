@@ -12,7 +12,7 @@ const Cart = ({cartState}) => {
 
     function totalPrice () {
         let total = 0
-        cartState.forEach(el => total += el.cost)
+        cartState.forEach(el => total += el.cost * el.itemsAmount)
         return total
     }
     
@@ -32,7 +32,7 @@ const Cart = ({cartState}) => {
                     <div className={styles.cart_items}>
                         
                         {cartState && cartState.map(el => 
-                        <CartProduct image={el.image} name={el.name} cost={el.cost} id={el.id}/>
+                        <CartProduct image={el.image} name={el.name} cost={el.cost} id={el.id} itemsAmount={el.itemsAmount}/>
                             )}
 
                     </div>
