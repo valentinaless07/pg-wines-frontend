@@ -14,4 +14,16 @@ export function deleteCartProduct(payload) {
     }
 }
 
+export function editItemsAmount(payload){
+    
+    return {
+        type: "EDIT_ITEMS_AMOUNT",
+        payload
+    }
+}
 
+export function getTotalPrice () {
+    return {
+        type: "GET_TOTAL_PRICE"
+    }
+}

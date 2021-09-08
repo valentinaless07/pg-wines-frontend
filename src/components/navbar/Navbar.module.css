@@ -83,7 +83,7 @@
   position: absolute;
   top: 0;
   background: white;
-  width: auto;
+  width: 14px;
   height: 14px;
   border-radius: 50%;
   color: black;
@@ -172,5 +172,12 @@
     width: 35px;
     height: 30px;
     margin-top: 5px;
+  }
+  .cart_container {
+    margin-right: 20px;
+    margin-left: 0px;
+  }
+  .cart_favorite {
+    width: 145px;
   }
 }
