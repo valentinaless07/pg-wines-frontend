@@ -15,16 +15,15 @@
 
 .filter{
     position: fixed;
-    opacity: 1;
     box-shadow: 5px 5px 15px #566573;
-    left: -170px;
-    width: 170px;
+    left: -290px;
+    width: 250px;
     z-index: 100;
     transition: all 150ms linear;
-    padding: 20px 0px;
+    padding: 20px;
     border-radius: 0px 10px 10px 0px;
     top: 190px;
-    background: rgba( 202, 164, 36, 0.4 );
+    background: rgba( 245, 176, 65, 0.7 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 2px );
     -webkit-backdrop-filter: blur( 2px );
@@ -33,19 +32,16 @@
 
 .filterBtn{
     position: absolute;
-    left: 170px;
+    left: 300px;
     cursor: pointer;
     border: none;
     outline: none;
     font-size: 20px;
-    padding: 10px 15px;
-    border-radius: 0px 10px 10px 0px;
-    background: rgba( 202, 164, 36, 0.4 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 2px );
-    -webkit-backdrop-filter: blur( 2px );
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    z-index: 10;
+    padding: 10px 12px;
+    border-radius: 50%;
+    background-color: #5D6D7E;
+    color: #ffffff;
+    transition: all 0.5s;
 }
 
 .filterOptions{
@@ -69,4 +65,62 @@
 
 .filterActive{
     left: 0px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.valuesMM{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10PX;
+}
+
+.value{
+    width: 60px;
+}
+
+select{
+    width: 100%;
+    margin-top: 15px;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+}
+
+#clean, #search{
+    width: 80%;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    display: block;
+    margin: auto;
+    margin-top: 15px;
+    padding: 5px 0px;
+    border-radius: 3px;
+    font-weight: 400;
+    transition: all 0.5s;
+}
+
+.priceFilter{
+    display: block;
+    margin: auto;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.filterBtn:hover{
+    background-color: #2ECC71;
+}
+
+.btnFilterActive{
+    background-color: #2ECC71;
+}
+
+#clean:hover, #search:hover{
+    background-color: #2ECC71;
+    color: #ffffff;
 }
