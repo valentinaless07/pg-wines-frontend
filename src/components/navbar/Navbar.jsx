@@ -56,6 +56,7 @@ const Navbar = ({ authState, logOutAction }) => {
 
 const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('submitting');
     if (name) {
         history.push(`/vino/${name}`);
         setName({})

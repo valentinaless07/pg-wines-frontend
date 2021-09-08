@@ -5,15 +5,15 @@ import styles from '../../components/productList/ProductsList.module.css';
 import { getProductByName, getProductByNameReset } from '../../redux/actions/products';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addCartProduct } from '../../redux/actions/cartActions';
 import { useHistory } from 'react-router-dom'
 
-const SearchResults = ({ product_detail, getProductByName, getProductByNameReset, addCartProduct }) => {
+const SearchResults = ({ product_detail, getProductByName, getProductByNameReset }) => {
     // console.log(getProductDetail);
     const { name } = useParams()
     const history = useHistory();
 
     useEffect(() => {
+        console.log(name);
         getProductByName(name)
         return () => { getProductByNameReset() }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,7 +53,10 @@ const SearchResults = ({ product_detail, getProductByName, getProductByNameReset
                     </div>)
                 })
             : <div className="notFoundWrapper">
-    <h2>Vino not found</h2> 
+    <div>
+        <h2>Producto no encontrado</h2>
+        <img src="https://static.diariofemenino.com/uploads/psicologia/sonarcoparota1.jpg" alt="" />
+    </div> 
     </div> 
     }
     </div>
@@ -76,8 +79,6 @@ function mapDispatchToProps(dispatch) {
     return {
         getProductByName: (product) => dispatch(getProductByName(product)),
         getProductByNameReset: () => dispatch(getProductByNameReset()),
-        addCartProduct: (id) => dispatch(addCartProduct(id))
-
     };
 };
 
