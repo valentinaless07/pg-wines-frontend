@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { useState } from 'react';
 import { addCartProduct} from '../../redux/actions/cartActions';
 
-const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct}) => {
+const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state}) => {
     // console.log(getProductDetail);
     const { id } = useParams()
     useEffect(() => {
@@ -26,7 +26,9 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
       }
 
       function addProductCart(){
+        if(cart_state.findIndex(el => el.id === product_detail.id) === -1){
         addCartProduct(product_detail)
+        }
       }
 
     return (
@@ -78,7 +80,8 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
 
 function mapStateToProps(state) {
     return {
-      product_detail: state.user.product_detail
+      product_detail: state.user.product_detail,
+      cart_state: state.cart.cartState
     };
   };
   
