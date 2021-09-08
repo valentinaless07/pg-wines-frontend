@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './CartProduct.module.css'
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { deleteCartProduct, getTotalPrice } from '../../redux/actions/cartActions';
 import { editItemsAmount } from '../../redux/actions/cartActions';
@@ -18,7 +17,7 @@ const CartProduct = (props) => {
 
     useEffect(() => {
         props.editItemsAmount({id: props.id, amount: amount})
-    } , []);
+    } , [amount, props]);
 
     function sum (){
         props.editItemsAmount({id: props.id, amount: cantidadItems + 1})
