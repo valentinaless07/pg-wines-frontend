@@ -10,7 +10,18 @@ export default function cartReducer (state = initialState, action) {
           return {
             ...state,
             cartState: state.cartState.concat(action.payload)
+            
           }
+    
+
+          case "DELETE_CART_PRODUCT":
+            return{
+              ...state,
+              cartState: state.cartState.filter(el => el.id !== action.payload)
+            }
+
+           
+    
         
         default: return state
     }

@@ -8,7 +8,7 @@ import { getProductDetail, getProductDetailReset } from '../../redux/actions/pro
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useState } from 'react';
-import { addCartProduct } from '../../redux/actions/cartActions';
+import { addCartProduct} from '../../redux/actions/cartActions';
 
 const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct}) => {
     // console.log(getProductDetail);
@@ -26,9 +26,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
       }
 
       function addProductCart(){
-         let detail = product_detail
-         detail.cantidadItems = cantidadItems
-        addCartProduct(detail)
+        addCartProduct(product_detail)
       }
 
     return (
@@ -88,7 +86,8 @@ function mapStateToProps(state) {
     return {
         getProductDetail: (product) => dispatch(getProductDetail(product)),
         getProductDetailReset: () => dispatch(getProductDetailReset()),
-        addCartProduct: (id) => dispatch(addCartProduct(id)) 
+        addCartProduct: (id) => dispatch(addCartProduct(id)),
+        
 
     };
   };

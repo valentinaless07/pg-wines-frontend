@@ -31,7 +31,7 @@ const Cart = ({cartState}) => {
                     <div className={styles.cart_items}>
                         
                         {cartState && cartState.map(el => 
-                        <CartProduct image={el.image} name={el.name} cost={el.cost} />
+                        <CartProduct image={el.image} name={el.name} cost={el.cost} id={el.id}/>
                             )}
 
                     </div>

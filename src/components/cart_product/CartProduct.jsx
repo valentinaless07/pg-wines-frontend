@@ -3,20 +3,29 @@ import styles from './CartProduct.module.css'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { deleteCartProduct } from '../../redux/actions/cartActions';
+
 
 
 
 
 const CartProduct = (props) => {
     
+    
     const [cantidadItems, setCantidadItems] = useState(1)
 
     function sum (){
-        setCantidadItems(cantidadItems + 1)
+        setCantidadItems(cantidadItems+1)
+        
+
     }
 
     function res () {
-        setCantidadItems(cantidadItems - 1)
+        setCantidadItems(cantidadItems-1)
+    }
+
+    function handleDelete () {
+        props.deleteCartProduct(props.id)
     }
 
     return (
@@ -32,7 +41,7 @@ const CartProduct = (props) => {
                             {cantidadItems > 1 ?
                             <i onClick={res} className="fas fa-minus-circle fa-2x"></i>
                             :
-                            <i className="fas fa-trash-alt fa-2x"></i>
+                            <i onClick={handleDelete} className="fas fa-trash-alt fa-2x"></i>
                             }
                             </div>
         </div>
@@ -41,10 +50,17 @@ const CartProduct = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-      cartState: state.cart.cartState,
+      cartState: state.cart.cartState
     };
+  }
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteCartProduct: (id) => dispatch(deleteCartProduct(id)),
+        
+    }
   }
   
   
 
-export default connect(mapStateToProps)(CartProduct);
+export default connect(mapStateToProps, mapDispatchToProps)(CartProduct);
