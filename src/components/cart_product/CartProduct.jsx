@@ -11,8 +11,8 @@ import { deleteCartProduct } from '../../redux/actions/cartActions';
 
 const CartProduct = (props) => {
     
-    
-    const [cantidadItems, setCantidadItems] = useState(1)
+    let amount = props.itemsAmount
+    const [cantidadItems, setCantidadItems] = useState(amount)
 
     function sum (){
         setCantidadItems(cantidadItems+1)
