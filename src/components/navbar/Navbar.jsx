@@ -52,7 +52,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
   function totalItems () {
     let total = 0
     cartState.forEach(el => total += el.itemsAmount)
-    if(total > 99){return "+99"}
+    if(total > 99){return "99"}
     return total
 }
 
@@ -102,7 +102,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
             <div className={styles.cart_container}>
             <img src={cart} alt="" onClick={() => goTo('cart')} />
             {totalItems() > 0 ?
-            <span>{totalItems()}</span>
+             <span>{totalItems()}</span>
             :<div></div>
             }
             </div>

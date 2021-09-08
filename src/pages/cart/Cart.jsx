@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Cart.module.css'
 import {addCartProduct} from "../../redux/actions/cartActions"
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartProduct from '../../components/cart_product/CartProduct';
+import { getTotalPrice } from '../../redux/actions/cartActions';
 
 
 
+const Cart = ({cartState, getTotalPrice, totalPrice}) => {
 
-const Cart = ({cartState}) => {
-
-    function totalPrice () {
-        let total = 0
-        cartState.forEach(el => total += el.cost * el.itemsAmount)
-        return total
-    }
+    
+    useEffect(() => {
+        getTotalPrice()
+    } , [getTotalPrice]);
+    
     
 
     return (
@@ -40,7 +40,7 @@ const Cart = ({cartState}) => {
                         <div className={styles.total_container}>
                             <div className={styles.cost}>
                             <p>Total</p><br/>
-                            <b>${totalPrice()}</b>
+                            <b>${totalPrice}</b>
                             </div>
                             <hr className={styles.hr}></hr>
                             <button className={styles.buttonSubmit}>CHECKOUT</button>
@@ -57,12 +57,15 @@ const Cart = ({cartState}) => {
 const mapStateToProps = (state) => {
     return {
       cartState: state.cart.cartState,
+      totalPrice: state.cart.totalPrice
+
     };
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
-      addCartProduct: () => dispatch(addCartProduct())
+      addCartProduct: () => dispatch(addCartProduct()),
+      getTotalPrice: () => dispatch(getTotalPrice())
     }
   }
 
