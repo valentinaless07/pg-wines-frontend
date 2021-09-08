@@ -12,15 +12,16 @@ const SearchResults = ({ product_detail, getProductByName, getProductByNameReset
     const { name } = useParams()
     const history = useHistory();
 
+
     useEffect(() => {
-        console.log(name);
+        // console.log(name);
         getProductByName(name)
         return () => { getProductByNameReset() }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
 
 
-    function handleGoToProducDescription(productId){
+    function handleGoToProducDescription(productId) {
         history.push(`/product/${productId}`);
     }
 
@@ -30,42 +31,42 @@ const SearchResults = ({ product_detail, getProductByName, getProductByNameReset
             <Navbar />
             <div className={`${styles.container}`}>
                 <h2>Resultados para: {name}</h2>
-            <div className={styles.productList}>
+                <div className={styles.productList}>
 
-            {product_detail.length > 0 ?
+                    {product_detail.length > 0 ?
 
-                product_detail.map(item => {
+                        product_detail.map(item => {
 
-                    return (
-                    <div className={styles.productContainer} key={item.id}>
-                        <div className={styles.title}>
-                            <span>{item.name}</span>
-                            <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
+                            return (
+                                <div className={styles.productContainer} key={item.id}>
+                                    <div className={styles.title}>
+                                        <span>{item.name}</span>
+                                        <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
+                                    </div>
+                                    <div className={styles.imgContainer} onClick={() => handleGoToProducDescription(item.id)} >
+                                        <img className={styles.img} src={item.image} alt='' />
+                                    </div>
+                                    <div className={styles.price}>
+                                        {item.discount > 5 && <span>{item.discount}% Desc</span>}
+                                        {item.discount > 5 ? <span className={styles.desc}>{'$ ' + ((item.cost) * (1 - (item.discount / 100))).toFixed(2)}</span> : <span>$ {item.cost}</span>}
+                                    </div>
+                                    <button className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
+                                </div>)
+                        })
+                        : <div className="notFoundWrapper">
+                            <div>
+                                <h2>Producto no encontrado</h2>
+                                <img src="https://static.diariofemenino.com/uploads/psicologia/sonarcoparota1.jpg" alt="" />
+                            </div>
                         </div>
-                        <div className={styles.imgContainer} onClick={() => handleGoToProducDescription(item.id)} >
-                            <img className={styles.img} src={item.image} alt='' />
-                        </div>
-                        <div className={styles.price}>
-                            {item.discount > 5 && <span>{item.discount}% Desc</span>}
-                            {item.discount > 5 ? <span className={styles.desc}>{'$ ' + ((item.cost) * (1 - (item.discount / 100))).toFixed(2)}</span> : <span>$ {item.cost}</span>}
-                        </div>
-                        <button className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
-                    </div>)
-                })
-            : <div className="notFoundWrapper">
-    <div>
-        <h2>Producto no encontrado</h2>
-        <img src="https://static.diariofemenino.com/uploads/psicologia/sonarcoparota1.jpg" alt="" />
-    </div> 
-    </div> 
-    }
-    </div>
+                    }
+                </div>
 
-</div> 
+            </div>
 
-<Footer />
+            <Footer />
         </React.Fragment >
-        
+
     );
 }
 

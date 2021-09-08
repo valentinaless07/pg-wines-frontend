@@ -26,6 +26,7 @@
   justify-content: space-around;
   align-items: center;
   height: 100%;
+  position: relative;
 }
 
 .logo_searchbar_login > a {
@@ -113,6 +114,14 @@
   align-items: center;
   justify-content: space-between;
   width: 290px;
+}
+
+.autoContainer{
+  display: block;
+  background: lightgray;
+  position: absolute;
+  top: 57px;
+  width: 250px;
 }
 .searchbar_container > button {
   background: no-repeat;
