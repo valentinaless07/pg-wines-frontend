@@ -85,3 +85,10 @@
   text-align: center;
   border-radius: 2px;
 }
+
+.carritoVacio {
+  display: flex;
+  justify-content: center;
+  font-family: "Nunito Sans", sans-serif;
+  padding-top: 25px;
+}

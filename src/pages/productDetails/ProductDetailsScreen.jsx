@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { addCartProduct} from '../../redux/actions/cartActions';
+import Swal from 'sweetalert2'
 
 const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state}) => {
     // console.log(getProductDetail);
@@ -28,6 +29,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
       function addProductCart(){
         if(cart_state.findIndex(el => el.id === product_detail.id) === -1){
         addCartProduct(product_detail)
+        Swal.fire('Producto agregado al carrito')
         }
       }
 
