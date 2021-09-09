@@ -126,7 +126,7 @@ const RegisterScreen = ({ authState, uiState, setError, removeError, startRegist
                     </button>
 
                     <Link
-                        to="/login2"
+                        to="/login"
                         className="link"
                     >
                         Already registered?
