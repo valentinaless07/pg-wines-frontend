@@ -2,21 +2,27 @@ import styles  from './ProductsList.module.css';
 import './productList.css'
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom'
+import ReactPaginate from 'react-paginate'
+import { connect } from 'react-redux';
+import { getProductsByPage } from '../../redux/actions/userActions';
 
 
-export default function ProductsContainer(state){
+function ProductsContainer({state, getProductsByPage}){
     
     const history = useHistory();
-    console.log(history)
     
     function handleGoToProducDescription(productId){
         history.push(`/product/${productId}`);
     }
 
+    function changePage({selected}){
+        getProductsByPage(selected+1)
+    }
+
     return(<div className={`${styles.container}`}>
         <div className={styles.productList}>
             {
-                state.state.map(item=>{return<Link to='#' key={item.id}>
+                state.products.map(item=>{return<Link to='#' key={item.id}>
                     <div className={styles.productContainer}>
                         <div className={styles.title}>
                             <span>{item.name}</span>
@@ -34,5 +40,14 @@ export default function ProductsContainer(state){
                 </Link>})
             }
         </div>
+        <ReactPaginate
+        previousLabel={<i className="fas fa-chevron-left"></i>}
+        nextLabel={<i className="fas fa-chevron-right"></i>}
+        pageCount={state.totalPage}
+        onPageChange={changePage}
+        activeClassName={'pruebaActiva'}
+        />
     </div>)
 }
+
+export default connect(null, {getProductsByPage})(ProductsContainer)

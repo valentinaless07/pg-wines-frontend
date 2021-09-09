@@ -18,6 +18,7 @@ import Favorites from '../pages/favorites/Favorites.jsx';
 import AboutUs from '../pages/aboutUs/AboutUs';
 import Cart from '../pages/cart/Cart';
 import PutProduct from '../pages/PutProduct/PutProduct';
+import manageProductInf from '../pages/manageProductInf/ManageProductInf';
 
 
 const AppRouter = ({ authState }) => {
@@ -33,6 +34,7 @@ const AppRouter = ({ authState }) => {
           <Route exact path="/home" component={HomeScreen} />
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
           <Route exact path="/about" component={AboutUs} />
+          <Route exact path='/manage' component={manageProductInf}/>
           {/* <Route exact path="/checkout" component={ShippingPay} />  */}
           <Route exact path="/cart" component={Cart}/>
           <PrivateRoute

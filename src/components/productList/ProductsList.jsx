@@ -12,7 +12,7 @@ function ProductList({state, manageProductState, getProductsbyCategory, getProdu
         getCategories()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    
+    console.log(state.products)
     const [values, setValues] = useState({
         min: '',
         max: ''
@@ -27,7 +27,7 @@ function ProductList({state, manageProductState, getProductsbyCategory, getProdu
         let value = document.getElementById('category')
         let selected = value.options[value.selectedIndex].text
         selected!=='Clear All' ?
-        getProductsbyCategory(selected)
+        getProductsbyCategory(selected.replace(' ','%20'))
         :
         getProducts()
     }
@@ -84,7 +84,7 @@ function ProductList({state, manageProductState, getProductsbyCategory, getProdu
                 </div>
             </form>
         
-            {state.length>0 ? <ProductsContainer state={state}/> : <h1>Cargando...</h1>}            
+            {state.products ? <ProductsContainer state={state}/> : <h1>Cargando...</h1>}            
         </React.Fragment>
     )
 }
