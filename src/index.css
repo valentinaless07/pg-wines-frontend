@@ -1,36 +1,111 @@
 :root {
   --main-bg-color: yellow;
   --main-navbar-bg-color: rgba(0, 0, 0);
+
+  /* Register and login forms */
+  --primary: #5c62c5;
+  --dark-grey: #363636;
+  --light-grey: #d8d8d8;
+  --white: #fff;
+  --google-blue: #166af29b;
+  --button-active-blue: #1669f2;
+  --button-login: rgba(255, 166, 0, 0.534);
+  --button-login-hover: rgba(255, 166, 0, 0.267);
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f6f6f6;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-h1, p{
+h1,
+p {
   margin: 0;
 }
 
-/* 
-.container{
-  max-width: 860px;
-  margin: 0 auto;
+/* ToolTip common */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  /* border-bottom: 1px dotted black; */
 }
 
-.card{
-  background-color:blueviolet;
-  border-radius: 5px;
-  padding: 10px 20px 30px;
-  margin-top: 50px;
-} */
+.tooltip .tiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: var(--dark-grey);
+  color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  padding: 6px 0;
+  position: absolute;
+  z-index: 1;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.tooltip .tiptext::after {
+  content: "";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+}
+.tooltip:hover .tiptext {
+  visibility: visible;
+}
+
+/* Tootip Up */
+.tooltip.top .tiptext {
+  margin-left: -60px;
+  bottom: 150%;
+  left: 50%;
+}
+.tooltip.top .tiptext::after {
+  margin-left: -5px;
+  top: 100%;
+  left: 50%;
+  border-color: #2e2e2e transparent transparent transparent;
+}
+
+/* Tooltip Down */
+.tooltip.bottom .tiptext {
+  margin-left: -60px;
+  top: 150%;
+  left: 50%;
+}
+.tooltip.bottom .tiptext::after {
+  margin-left: -5px;
+  bottom: 100%;
+  left: 50%;
+  border-color: transparent transparent #2e2e2e transparent;
+}
+
+/* Tooltip Left */
+.tooltip.left .tiptext {
+  top: -5px;
+  right: 110%;
+}
+.tooltip.left .tiptext::after {
+  margin-top: -5px;
+  top: 50%;
+  left: 100%;
+  border-color: transparent transparent transparent #2e2e2e;
+}
+
+/* Tooltip Right */
+.tooltip.right .tiptext {
+  top: -5px;
+  left: 110%;
+}
+.tooltip.right .tiptext::after {
+  margin-top: -5px;
+  top: 50%;
+  right: 100%;
+  border-color: transparent #2e2e2e transparent transparent;
+}
