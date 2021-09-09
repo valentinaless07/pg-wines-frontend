@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux';
 import { getProductsByPage } from '../../redux/actions/userActions';
+import './productList.css'
 
 
 function ProductsContainer({state, getProductsByPage}){
@@ -19,7 +20,7 @@ function ProductsContainer({state, getProductsByPage}){
         getProductsByPage(selected+1)
     }
 
-    return(<div className={`${styles.container}`}>
+    return(<div id='containerProducts' className={`${styles.container}`}>
         <div className={styles.productList}>
             {
                 state.products.map(item=>{return<Link to='#' key={item.id}>
@@ -45,7 +46,7 @@ function ProductsContainer({state, getProductsByPage}){
         nextLabel={<i className="fas fa-chevron-right"></i>}
         pageCount={state.totalPage}
         onPageChange={changePage}
-        activeClassName={'pruebaActiva'}
+        activeClassName={'activePaginationBtn'}
         />
     </div>)
 }

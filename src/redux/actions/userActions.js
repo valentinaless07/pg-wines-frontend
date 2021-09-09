@@ -39,3 +39,11 @@ export const getProductsbyCategory=(categoryName)=>{
         })
     }
 }
+
+export const getFilteredProductsList=({category, initialPrice, finalPrice})=>{
+    console.log(category, initialPrice, finalPrice)
+    let url= 'https://delsur-api-1.herokuapp.com/products?';
+    return async function(dispatch){
+
+    }
+}
