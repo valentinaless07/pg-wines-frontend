@@ -1,0 +1,191 @@
+.auth__main {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: var(--primary);
+    justify-content: center;
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+}
+
+.auth__box-container {
+    background-color: white;    
+    padding: 2.5em;
+    min-width: 300px;
+    width: 400px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.auth__title {
+    color: darken(var(--primary), 20);
+    margin-bottom: 1.8rem;   
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.auth__input {
+    border: 0px;
+    border: 1px solid var(--light-grey);
+    font-size: 1.1rem;
+    border-radius: 4px;
+    margin-bottom: 13px;
+    height: 2rem;
+    padding: 0.5rem;
+    transition: border 0.3s ease;
+}
+
+.auth__input:focus {
+    border: 1px solid var(--dark-grey);
+    outline: none;
+}
+
+.auth__button {
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: var(--button-login);
+    border: 1px solid transparent;   
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-stretch: expanded;
+    color:white;
+}
+
+button:hover{
+    background-color: var(--button-login-hover);
+    border: 1px solid orange;    
+    color:black;
+    font-weight: normal;
+    cursor:pointer; 
+}
+
+.auth__social-networks {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.auth__social-networks  > p{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.social-icon { 
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;   
+}
+
+.social-icon > div:hover{
+    background-color: var(--button-active-blue);
+    color:white;
+    cursor:pointer;   
+   
+}
+
+.auth__social-networks .auth__social-buttons-container .social-icon img{
+    width: 2rem;
+    border-right: 1px solid black;
+    padding: .5rem; 
+}
+
+.auth__social-networks .auth__social-buttons-container .social-icon div{
+    flex:1 0 auto;
+    line-height: 2.6rem;
+    display: flex;
+    justify-content: center; 
+    align-self: stretch  
+}
+
+
+.auth__container-cancel-new-account { 
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.auth__container-cancel-new-account a{
+    text-decoration: none;
+    color: White;
+    background-color: royalblue;
+    font-size: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    padding-left:1rem;
+    padding-right: 1rem;     
+}
+
+#cancel{
+    background-color: white;
+    color: black;
+    border: 1px solid red;
+}
+
+#cancel:hover{
+    background-color: red;
+    color: white; 
+    font-weight: bold;
+    cursor:pointer; 
+}
+
+#new-account{
+    font-weight: 400;
+    background-color:  var(--button-active-blue);
+    color: white;
+    border: 1px solid var(--google-blue);
+}
+#new-account:hover{
+    border: 1px solid var(--button-active-blue);
+    background-color: var(--google-blue);
+    color:black;
+
+}
+
+.auth__alert-error {
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 400px) {
+    .auth__main {
+        background-color: white;
+    }
+
+    .auth__box-container {
+        background-color: white;      
+        padding: .5em;
+        min-width: 300px;
+        width: 400px;
+    }
+
+    .auth__container-cancel-new-account{
+        display: flex;
+        flex-direction: column;
+        text-align: center;        
+    }
+    
+  }

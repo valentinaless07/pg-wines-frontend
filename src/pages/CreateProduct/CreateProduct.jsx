@@ -11,6 +11,7 @@ import Swal from 'sweetalert2'
 
 const CreateProduct = ({ manageProductState, getCategories, postProductCreated}) => {
 
+
     useEffect(() => {
         getCategories()
     } , [getCategories]);
@@ -108,6 +109,7 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
 
         <div className={styles.container}>
             <h1>Crear nuevo producto</h1>
+            <div className={styles.container_form}>
             <form className={styles.form} onSubmit={e => handleSubmit(e)}>
 
                 <div>
@@ -155,6 +157,7 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
                 <div>
                     <label>Category:</label>
                     <select name="categoryId" onChange={e => handleChange(e)}>
+                    <option disabled selected>Selecciona una categoría</option>
                         {
                             manageProductState.categories && manageProductState.categories.map(el => {
                                     return <option value={el.id} key={el.id}>{el.name}</option>
@@ -167,6 +170,7 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
                 <button type="submit">Crear Producto</button>
 
             </form>
+            </div>
         </div>
         </div>
         
