@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Cart.module.css'
 import {addCartProduct} from "../../redux/actions/cartActions"
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import CartProduct from '../../components/cart_product/CartProduct';
+import { getTotalPrice } from '../../redux/actions/cartActions';
 
 
 
+const Cart = ({cartState, getTotalPrice, totalPrice}) => {
 
-const Cart = () => {
-
+    
+    useEffect(() => {
+        getTotalPrice()
+    } , [getTotalPrice]);
+    
     
 
     return (
@@ -17,25 +23,31 @@ const Cart = () => {
             <Link to="/home" className={styles.backicon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
 
             <div className={styles.title}>    
-                <h1>Carrito de compras</h1>
+            <h1>Carrito de compras</h1>
             </div>
 
             <div className={styles.cart_container}>
+                { cartState.length > 0 ?
                 <div className={styles.cart_items_container}>
                     <div className={styles.cart_items}>
                         
+                        {cartState && cartState.map(el => 
+                        <CartProduct image={el.image} name={el.name} cost={el.cost} id={el.id} itemsAmount={el.itemsAmount}/>
+                            )}
+
                     </div>
                     <div className={styles.total_products}>
                         <div className={styles.total_container}>
                             <div className={styles.cost}>
                             <p>Total</p><br/>
-                            <b>$100</b>
+                            <b>${totalPrice}</b>
                             </div>
                             <hr className={styles.hr}></hr>
                             <button className={styles.buttonSubmit}>CHECKOUT</button>
                         </div>
                     </div>
                 </div>
+               : <div className={styles.carritoVacio}>El carrito de compras está vacío.</div> }
             </div>
         
         </div>
@@ -45,12 +57,15 @@ const Cart = () => {
 const mapStateToProps = (state) => {
     return {
       cartState: state.cart.cartState,
+      totalPrice: state.cart.totalPrice
+
     };
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
-      addCartProduct: () => dispatch(addCartProduct())
+      addCartProduct: () => dispatch(addCartProduct()),
+      getTotalPrice: () => dispatch(getTotalPrice())
     }
   }
 

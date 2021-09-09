@@ -1,7 +1,7 @@
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import uiReducer from '../reducers/uiReducer';
 import userReducer from '../reducers/userReducer';
-import productReducer from '../reducers/productRecuder';
+import productReducer from '../reducers/productReducer';
 import authReducer from '../reducers/authReducer';
 import manageProductsReducer from '../reducers/manageProductsReducer';
 import thunk from 'redux-thunk';

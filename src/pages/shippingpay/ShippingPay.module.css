@@ -11,7 +11,7 @@
 
 .buydetails{
   background: #fff;
-  width: 50%;
+  width: 70%;
   margin-left: 100px;
   margin-top: 40px;
 }
@@ -24,10 +24,15 @@
 
 .flexboxshopping{
   display: flex;
+  justify-content: space-evenly;
+}
+
+.margenimg{
+  margin: auto;
 }
 
 .flexboxshopping img{
-  height: 200px;
+  height: 250px;
 }
 
 .flexboxshopping h4{
@@ -92,8 +97,6 @@
 
 .addres{
   background: #fff;
-  width: 50%;
-  margin-left: 100px;
   margin-top: 40px;
   
   
@@ -229,5 +232,106 @@
   font-weight: bold;
   margin-left: 34px;
   margin-bottom: 30px;
+}
+
+.checkoutshipping{
+  display: flex;
+  width:100%;
+}
+
+.confirmpay{
+  background: #fff;
+  width: 30%;
+  margin-left: 50px;
+  margin-top: 40px;
+  margin-right: 100px;
+  margin-bottom: 70px;
+  
+  
+}
+
+.confirmpay table{
+  width: 100%;
+}
+
+.labelenvio{
+  text-align: left;
+  padding-left: 15px;
+  padding-top: 15px;
+  font-weight: bold;
+}
+
+.labelmount{
+  text-align: right;
+  padding-right:15px;
+  padding-top: 15px;
+  font-weight: bold;
+}
+
+.lineacheckout{
+  border-top: 1px solid #767676;
+  height: 2px;
+  max-width: 250px;
+  padding: 0;
+  margin: 50px auto 0 auto;
+}
+
+.labeltotaltext{
+  text-align: left;
+  padding-left: 15px;
+  padding-top: 15px;
+  font-weight: bolder;
+  color: #3483fa;
+}
+
+.labeltotalmount{
+  text-align: right;
+  padding-right:15px;
+  padding-top: 15px;
+  font-weight: bolder;
+  color: #3483fa;
+}
+
+.botonconfirmar button{
+  margin-top: 20px;
+  background-color: #3483fa;
+  color: #fff;
+  border: none;
+  padding: 15px 40px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 30px;
+  margin-top: 40px;
+}
+
+@media screen and (max-width: 992px){
+
+  .flexboxshopping{
+    display: flex !important;
+    justify-content: space-evenly !important;
+    flex-wrap: wrap !important;
+  }
+
+  .confirmpay{
+    width: 100%;
+  }
+
+  .confirmpay button{
+    margin: 0;
+  }
+
+  .addres{
+    width: 100%;
+    display: table-cell;
+  }
+
+  .checkoutshipping{
+    flex-wrap: wrap;
+  }
+
+  .buydetails{
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
