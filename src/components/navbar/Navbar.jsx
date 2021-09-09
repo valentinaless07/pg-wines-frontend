@@ -13,7 +13,7 @@ import bars from "./bars.svg";
 import { getProductByName } from "../../redux/actions/products";
 import { useDispatch } from "react-redux";
 
-const Navbar = ({ authState, logOutAction }) => {
+const Navbar = ({ authState, logOutAction, cartState }) => {
   const history = useHistory();
   const [name, setName] = useState('');
   const vinos = useSelector((state) => state.products.product_search);
@@ -75,6 +75,13 @@ const Navbar = ({ authState, logOutAction }) => {
   function handleGoToProducDescription(productId) {
     history.push(`/product/${productId}`);
 }
+  function totalItems () {
+    let total = 0
+    cartState.forEach(el => total += el.itemsAmount)
+    if(total > 99){return "99"}
+    return total
+}
+
   return screenSize > 1100 ? (
     // NAVBAR CON WIDTH MAYOR A 1000
     <nav className={styles.container}>
@@ -131,8 +138,15 @@ const Navbar = ({ authState, logOutAction }) => {
           }
 
           <div className={styles.cart_favorite}>
+          <img src={favorite} alt="" onClick={() => goTo('favorites')} />
+            <div className={styles.cart_container}>
             <img src={cart} alt="" onClick={() => goTo('cart')} />
-            <img src={favorite} alt="" onClick={() => goTo('favorites')} />
+            {totalItems() > 0 ?
+             <span>{totalItems()}</span>
+            :<div></div>
+            }
+            </div>
+
           </div>
         </div>
       </div>
@@ -197,6 +211,7 @@ const Navbar = ({ authState, logOutAction }) => {
 const mapStateToProps = (state) => {
   return {
     authState: state.auth,
+    cartState: state.cart.cartState
   };
 }
 

@@ -1,22 +1,41 @@
 import React from 'react';
 import styles from './CartProduct.module.css'
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { deleteCartProduct, getTotalPrice } from '../../redux/actions/cartActions';
+import { editItemsAmount } from '../../redux/actions/cartActions';
+import { useEffect } from 'react';
 
 
 
 
 const CartProduct = (props) => {
     
-    const [cantidadItems, setCantidadItems] = useState(1)
+
+    let amount = props.itemsAmount
+    const [cantidadItems, setCantidadItems] = useState(amount)
+
+    useEffect(() => {
+        props.editItemsAmount({id: props.id, amount: amount})
+    } , [amount, props]);
 
     function sum (){
-        setCantidadItems(cantidadItems + 1)
+        props.editItemsAmount({id: props.id, amount: cantidadItems + 1})
+        setCantidadItems(cantidadItems+1)
+        props.getTotalPrice()
+        
+
     }
 
     function res () {
-        setCantidadItems(cantidadItems - 1)
+        props.editItemsAmount({id: props.id, amount: cantidadItems - 1})
+        setCantidadItems(cantidadItems-1)
+        props.getTotalPrice()
+    }
+
+    function handleDelete () {
+        props.deleteCartProduct(props.id)
+        props.getTotalPrice()
     }
 
     return (
@@ -32,7 +51,7 @@ const CartProduct = (props) => {
                             {cantidadItems > 1 ?
                             <i onClick={res} className="fas fa-minus-circle fa-2x"></i>
                             :
-                            <i className="fas fa-trash-alt fa-2x"></i>
+                            <i onClick={handleDelete} className="fas fa-trash-alt fa-2x"></i>
                             }
                             </div>
         </div>
@@ -41,10 +60,19 @@ const CartProduct = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-      cartState: state.cart.cartState,
+      cartState: state.cart.cartState
     };
+  }
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteCartProduct: (id) => dispatch(deleteCartProduct(id)),
+        editItemsAmount: (amount) => dispatch(editItemsAmount(amount)),
+        getTotalPrice: () => dispatch(getTotalPrice())
+        
+    }
   }
   
   
 
-export default connect(mapStateToProps)(CartProduct);
+export default connect(mapStateToProps, mapDispatchToProps)(CartProduct);

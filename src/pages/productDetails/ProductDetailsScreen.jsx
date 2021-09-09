@@ -8,9 +8,10 @@ import { getProductDetail, getProductDetailReset } from '../../redux/actions/pro
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useState } from 'react';
-import { addCartProduct } from '../../redux/actions/cartActions';
+import { addCartProduct} from '../../redux/actions/cartActions';
+import Swal from 'sweetalert2'
 
-const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct}) => {
+const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state}) => {
     // console.log(getProductDetail);
     const { id } = useParams()
     useEffect(() => {
@@ -22,13 +23,17 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
       const [cantidadItems, setCantidadItems] = useState(1)
 
       function selectChange(e) {
-          setCantidadItems(e.target.value)
+          let num = parseInt(e.target.value)
+          setCantidadItems(num)
       }
 
       function addProductCart(){
-         let detail = product_detail
-         detail.cantidadItems = cantidadItems
+        if(cart_state.findIndex(el => el.id === product_detail.id) === -1){
+        let detail = product_detail
+        detail.itemsAmount = cantidadItems    
         addCartProduct(detail)
+        Swal.fire('Producto agregado al carrito')
+        }
       }
 
     return (
@@ -80,7 +85,8 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
 
 function mapStateToProps(state) {
     return {
-      product_detail: state.products.product_detail
+      product_detail: state.user.product_detail,
+      cart_state: state.cart.cartState
     };
   };
   
@@ -88,7 +94,8 @@ function mapStateToProps(state) {
     return {
         getProductDetail: (product) => dispatch(getProductDetail(product)),
         getProductDetailReset: () => dispatch(getProductDetailReset()),
-        addCartProduct: (id) => dispatch(addCartProduct(id)) 
+        addCartProduct: (id) => dispatch(addCartProduct(id)),
+        
 
     };
   };

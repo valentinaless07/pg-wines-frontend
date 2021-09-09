@@ -1,154 +1,99 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom'
-import styles  from './ProductsList.module.css';
 import { connect } from 'react-redux';
-import { getProducts, getCategory, filteredBy } from '../../redux/actions/userActions';
+import { getProducts, getProductsbyCategory } from '../../redux/actions/userActions';
+import { getCategories } from '../../redux/actions/manageProductsActions';
+import ProductsContainer from './productsContainer';
 import './productList.css'
 
-// const products= require('../../data/products').default
+function ProductList({state, manageProductState, getProductsbyCategory, getProducts, getCategories}) {
 
-// const images = require.context('../../data/images', false)
-
-// function importAll(r) {
-//     let images = {};
-//     // console.log(r.keys()[0])
-//     r.keys().map((item, index)=>{images[item.replace('./', '')] = r(item)});
-//     return images;
-//   }
-
-//   const img=importAll(images)
-  
-function ProductList({state, category, filtered, getProducts, getCategory, filteredBy}) {
-    const history = useHistory();
-    
     useEffect(()=>{        
-        setTimeout(function(){ getProducts() }, 1000);
-        getCategory()
+        getProducts();
+        getCategories()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    const[items, setItems] = useState(state)
-    const[currentPage, setCurrentPage] = useState(1)
-    // eslint-disable-next-line no-unused-vars
-    const[resultsPage, setResultsPage] = useState(12)
-    const totalResultsPage = currentPage * resultsPage
-    const firstResultPAge = totalResultsPage - resultsPage    
-    let mapState = state
-    let currentResults = mapState.slice(firstResultPAge, totalResultsPage)
-    const pRender= items.slice(firstResultPAge, totalResultsPage).map(item=>{
-        
-        return(items.length>0 && <div className={styles.productContainer} key={item.id}>
-            <div className={styles.title}>
-                <span>{item.name}</span>
-                <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
-            </div>
-            <div className={styles.imgContainer} onClick={()=>handleGoToProducDescription(item.id)} >
-                <img className={styles.img} src={item.image} alt=''/>
-            </div>
-            <div className={styles.price}>
-                {item.discount>5 && <span>{item.discount}% Desc</span>}
-                {item.discount>5 ? <span className={styles.desc}>{'$ '+((item.cost)*(1-(item.discount/100))).toFixed(2)}</span>:<span>$ {item.cost}</span>}
-            </div>
-            <button className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
-        </div>)
-    })
-
-    function handleGoToProducDescription(productId){
-        history.push(`/product/${productId}`);
-    }
-
-    const pages =[]
-
-    // if(items!==0){
-    //     for (let i = 1; i <= Math.ceil(items.length/resultsPage); i++) {
-    //         pages.push(i)}        
-    // }else if(items.length===0){
-        
-    // }
-    for (let i = 1; i <= Math.ceil(state.length/resultsPage); i++) {
-        i<=10&&pages.push(i)
-    }
     
-    function handlePages(e){
-        // console.log(document.getElementsByClassName('activate'))
-        document.getElementsByClassName('activate')[0].classList.remove('activate')
-        let page = document.getElementById(e.target.id)
-        page.classList.add('activate')
-        setCurrentPage(e.target.id)
-    }
+    const [values, setValues] = useState({
+        min: '',
+        max: ''
+    })
 
     function activeFilter(){
         document.getElementById('sidebar').classList.toggle('filterActive')
+        document.getElementById('filter').classList.toggle('btnFilterActive')
     }
 
-    function handleFilter(id){
-
-        // console.log(typeof(id)+" "+id)
-        // console.log(state)
-        let prueba = state.filter(item=>item.category===id)
-        setItems(prueba)
-        // console.log(prueba)
-        // ----------------------------------------------
-        // let prueba= document.getElementById()
+    function handleFilter(name){
+        let value = document.getElementById('category')
+        let selected = value.options[value.selectedIndex].text
+        selected!=='Clear All' ?
+        getProductsbyCategory(selected)
+        :
+        getProducts()
     }
 
+    function valueFilter(e){
+    e.target.value>0&&
+    setValues({
+        ...values,
+        [e.target.name]: e.target.value
+    })
+    }
+
+    function handleSubmit(e){
+        e.preventDefault()
+        let category = document.getElementById('category')
+        let branch = document.getElementById('branch')
+        category.selectedIndex = category.options[0].value
+        branch.selectedIndex = branch.options[0].value
+        setValues({
+            min: '',
+            max: ''
+        })
+
+    }
 
     return (
-        <div className={`${styles.container}`}>
-            <div id='sidebar' className='filter'>
-                <span className='filterTittle'> Filter by</span>
-                <button onClick={activeFilter} id='filter' className='filterBtn'><i className="fas fa-filter"></i></button>
-                <div className='filterOptions'>
-                    {
-                    // <input type="checkbox" name="" id="" />
-                        
-                        category.map(category=><li className='filterItem' onClick={()=>handleFilter(category.id)} key={category.id}>
-                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{category.category}
-                        </li>)
-                        // category.map(item=><React.Fragment><input id={item.id} onClick={handleFilter} type='checkbox'/><span>{item.category}</span><br/></React.Fragment>)
-                    }
+        <React.Fragment>
+            <form action="" onSubmit={handleSubmit}>
+                <div id='sidebar' className='filter'>
+                    <span className='filterTittle'>BUSQUEDA</span>
+                    <span onClick={activeFilter} id='filter' className='filterBtn'><i className="fas fa-filter"></i></span>
+                    <div className='filterOptions'>
+                        <select name='categories' id='category' onChange={handleFilter} defaultValue={'DEFAULT'}>
+                            <option disabled value='DEFAULT'>Categoria</option>
+                            {
+                                manageProductState.map(category=><option key={category.id}>{category.name}</option>)
+                            }
+                        </select><br/>
+                        <select name='branch' id='branch' defaultValue={'DEFAULT'}>
+                            <option disabled value='DEFAULT'>Marca</option>
+                        </select><br/>
+                        <span className='priceFilter'>PRECIO $</span>
+                        <div className='valuesMM'>
+                            <div>
+                            <span>Min $</span><input onChange={valueFilter} type="number" name="min" id="minValue" className='value' value={values.min} />
+                            </div>
+                            <div>
+                            <span>Max $</span><input onChange={valueFilter} type="number" name="max" id="maxValue" className='value' value={values.max} />
+                            </div>
+                        </div>
+                        <button type='submit' id='clean'>Limpiar filtros <i className="fas fa-broom"></i></button>
+                        <button type='submit' id='search' >Buscar <i className="fas fa-search"></i></button>
+                    </div>
                 </div>
-            </div>
-            {items.length>0 && <div className={styles.productList}>
-                    {pRender}                
-                </div>}
-            <div className={styles.productList}>
-                {
-                    state.length>0 && items.length===0 ? currentResults.map(item=><div className={styles.productContainer} key={item.id}>
-                        <div className={styles.title}>
-                            <span>{item.name}</span>
-                            <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
-                        </div>
-                        <div className={styles.imgContainer}>
-                            <img className={styles.img} onClick={()=>handleGoToProducDescription(item.id)} src={item.image} alt=''/>
-                        </div>
-                        <div className={styles.price}>
-                            {item.discount>5 && <span>{item.discount}% Desc</span>}
-                            {item.discount>5 ? <span className={styles.desc}>{'$ '+((item.cost)*(1-(item.discount/100))).toFixed(2)}</span>:<span>$ {item.cost}</span>}
-                        </div>
-                        <button className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
-                    </div>)
-                    :
-                    <React.Fragment></React.Fragment>
-                }
-            </div>
-            <div>
-                <ul className={styles.pagination}>
-                    {pages.length>0 && pages.map(number=><li className={`${styles.pagItem} ${number===1 ? 'activate' : 'pag'}`} onClick={handlePages} id={number} key={number}>
-                        {number}
-                    </li>)}
-                </ul>
-            </div>
-        </div>
+            </form>
+        
+            {state.length>0 ? <ProductsContainer state={state}/> : <h1>Cargando...</h1>}            
+        </React.Fragment>
     )
 }
 
 function MapStateToProps(state){
     return{
         state: state.products.products,
-        category: state.products.category,
-        filtered: state.products.productsFiltered
+        manageProductState: state.manageProducts.categories
     }
 }
 
-export default connect(MapStateToProps, {getProducts, getCategory, filteredBy})(ProductList)
+export default connect(MapStateToProps, {getProducts, getProductsbyCategory, getCategories})(ProductList)

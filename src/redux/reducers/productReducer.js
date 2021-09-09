@@ -22,6 +22,13 @@ const productReducer = (state = initialState, action) => {
                 category: action.payload
             }
         }
+        case PRODUCT_BY_CATEGORY:{
+            
+            return{
+                ...state,
+                products: action.payload
+            }
+        }
         case "GET_PRODUCT_BY_ID":
             return {
                 ...state,

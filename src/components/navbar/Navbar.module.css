@@ -40,7 +40,7 @@
   width: 40px;
   height: 35px;
   border-radius: 50px;
-  margin-right: .3rem;
+  margin-right: 0.3rem;
 }
 
 .login {
@@ -73,11 +73,35 @@
   cursor: pointer;
 }
 
+.cart_container > img {
+  width: 40px;
+  height: 35px;
+  cursor: pointer;
+  position: relative;
+}
+
+.cart_container > span {
+  position: absolute;
+  top: 0;
+  background: white;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  color: black;
+  padding: 3px 4px 3px 4px;
+  text-align: center;
+  font-size: 11px;
+  margin-top: 10px;
+  margin-left: 4px;
+  font-weight: bold;
+  cursor: default;
+}
+
 .cart_favorite {
   display: flex;
   justify-content: space-between;
-  width: 110px;
-  margin-left: 10px;
+  width: 135px;
+  margin-left: 20px;
 }
 
 .searchBar {
@@ -167,5 +191,13 @@
   .cart_favorite > img {
     width: 35px;
     height: 30px;
+    margin-top: 5px;
+  }
+  .cart_container {
+    margin-right: 20px;
+    margin-left: 0px;
+  }
+  .cart_favorite {
+    width: 145px;
   }
 }
