@@ -205,7 +205,7 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, categ
 
 const mapStateToProps = (state) => {
     return {
-        product_detail: state.user.product_detail,
+        product_detail: state.products.product_detail,
         categories: state.manageProducts.categories,
     };
   }
