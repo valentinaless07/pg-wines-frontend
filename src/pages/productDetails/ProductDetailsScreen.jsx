@@ -73,7 +73,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
                             <option value="10">10</option>
 
                         </select>
-                        <button onClick={addProductCart}>Agregar al carrito</button>
+                        <button onClick={addProductCart} className={styles.addProductButton}>Agregar al carrito</button>
                     </div>
 
                 </div>
