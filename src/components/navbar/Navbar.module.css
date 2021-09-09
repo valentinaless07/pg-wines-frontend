@@ -123,6 +123,14 @@
   top: 57px;
   width: 250px;
 }
+
+.autoContainer button{
+  width: 100%;
+  background-color: white;
+  border: none;
+  text-align: left;
+}
+
 .searchbar_container > button {
   background: no-repeat;
   border: none;
