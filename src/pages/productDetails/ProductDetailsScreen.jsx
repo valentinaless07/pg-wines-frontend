@@ -85,7 +85,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
 
 function mapStateToProps(state) {
     return {
-      product_detail: state.user.product_detail,
+      product_detail: state.products.product_detail,
       cart_state: state.cart.cartState
     };
   };
