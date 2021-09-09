@@ -1,27 +1,11 @@
 import Swal from 'sweetalert2';
-import { firebase, googleAuthProvider } from '../../firebase/firebaseConfig';
+import { googleAuthProvider } from '../../firebase/firebaseConfig';
 import { saveStorage } from '../../helpers/helpers';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, getAuth, signInWithPopup } from 'firebase/auth';
 export const AUTH_LOGIN = 'AUTH_LOGIN';
 export const AUTH_LOGIN_SUCCESS = 'AUTH_LOGIN_SUCCESS';
 export const AUTH_LOGIN_ERROR = 'AUTH_LOGIN_ERROR';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
-
-export const AUTH_LOGIN_2 = 'AUTH_LOGIN_2';
-export const AUTH_LOGOUT_2 = 'AUTH_LOGOUT_2';
-
-// export const startLoginEmailPassword = () => {
-//     return (dispatch) => {
-//         dispatch({
-//             type: AUTH_LOGIN,
-//             payload: { loggedIn: true }
-//         });
-//         dispatch({
-//             type: AUTH_LOGIN_SUCCESS,
-//             payload: { loggedIn: true }
-//         });
-//     }
-// }
 
 export const startGoogleLogin = () => {
     return (dispatch, getState) => {
@@ -106,6 +90,10 @@ export const startRegisterWithEmailAndPassword = (name, email, password) => {
                         }
                     )
                     saveStorage(getState().auth);
+                    return Swal.fire({
+                        icon: 'ok',                       
+                        text: 'La cuenta fue creada con suceso',                      
+                    });
                 })
             })
             .catch((error) => {

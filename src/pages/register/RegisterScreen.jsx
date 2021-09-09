@@ -21,7 +21,7 @@ const RegisterScreen = ({ authState, uiState, setError, removeError, startRegist
     const [formValues, handleInputChange] = useForm(initialState);
     const { name, email, password, password2 } = formValues;
     const { msgError } = uiState;
-    console.log('msgError: ', msgError);
+    // console.log('msgError: ', msgError);
     useEffect(() => {
         useRefName.current.select();
     }, []);
@@ -119,6 +119,7 @@ const RegisterScreen = ({ authState, uiState, setError, removeError, startRegist
                     />
 
                     <button
+                        disabled={authState.fetching}
                         type="submit"
                         className="register__button"
                     >

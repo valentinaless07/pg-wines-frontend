@@ -110,6 +110,7 @@ const LoginScreen2 = ({ authState, uiState, setError, removeError, startLoginWit
                     />
 
                     <button
+                        disabled={authState.fetching}
                         onClick={handleStarLoginWithEmailAndPassword}
                         type="submit"
                         className="auth__button"
