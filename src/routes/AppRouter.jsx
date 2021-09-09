@@ -6,7 +6,6 @@ import {
   Redirect,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LoginScreen from '../pages/login/LoginScreen';
 import HomeScreen from '../pages/home/HomeScreen';
 import ProductDetailsScreen from '../pages/productDetails/ProductDetailsScreen';
 import ShippingPay from '../pages/shippingpay/ShippingPay';
@@ -17,7 +16,8 @@ import CreateProduct from '../pages/CreateProduct/CreateProduct';
 import Favorites from '../pages/favorites/Favorites.jsx';
 import AboutUs from '../pages/aboutUs/AboutUs';
 import Cart from '../pages/cart/Cart';
-import Login2 from '../pages/login/LoginScreen2';
+import RegisterScreen from '../pages/register/RegisterScreen';
+import LoginScreen from '../pages/login/LoginScreen';
 
 const AppRouter = ({ authState }) => {
 
@@ -28,19 +28,21 @@ const AppRouter = ({ authState }) => {
     <Router>
       <div>
         <Switch>
+          {/* <Route exact path="/login" component={LoginScreen} /> */}
           <Route exact path="/login" component={LoginScreen} />
           <Route exact path="/home" component={HomeScreen} />
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
           <Route exact path="/about" component={AboutUs} />
+          <Route  path="/register" component={RegisterScreen} />
           {/* <Route exact path="/checkout" component={ShippingPay} />  */}
           <Route exact path="/cart" component={Cart}/>
+
           <PrivateRoute
             isAuthenticated={loggedIn}
             path='/manageProducts'
             component={ManageProductsScreen}
           />
           <PrivateRoute
-
             isAuthenticated={loggedIn}
             path='/createproduct'
             component={CreateProduct}
@@ -57,11 +59,8 @@ const AppRouter = ({ authState }) => {
             path='/favorites'
             component={Favorites}
           />
-          
-
-
-          <Redirect to='/LoginScreen2' />
-          {/* <Redirect to='/home' /> */}
+                    
+          <Redirect to='/home' />         
 
         </Switch>
 
