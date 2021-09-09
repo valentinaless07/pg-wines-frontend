@@ -26,6 +26,7 @@
   justify-content: space-around;
   align-items: center;
   height: 100%;
+  position: relative;
 }
 
 .logo_searchbar_login > a {
@@ -138,10 +139,29 @@
   justify-content: space-between;
   width: 290px;
 }
-.searchbar_container > img {
-  width: 30px;
-  height: 25px;
-  cursor: pointer;
+
+.autoContainer{
+  display: block;
+  background: lightgray;
+  position: absolute;
+  top: 57px;
+  width: 250px;
+}
+
+.autoContainer button{
+  width: 100%;
+  background-color: white;
+  border: none;
+  text-align: left;
+}
+
+.searchbar_container > button {
+  background: no-repeat;
+  border: none;
+}
+
+.searchbar_container  img {
+  height: 28px;
 }
 
 @media (max-width: 1150px) {

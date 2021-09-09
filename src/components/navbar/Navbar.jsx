@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { NavLink, useHistory } from "react-router-dom";
 import { getFirstName } from '../../helpers/helpers';
 import styles from "./Navbar.module.css";
@@ -10,10 +10,14 @@ import search from "./search.svg";
 import { logOutAction } from '../../redux/actions/authActions';
 import favorite from "./favorite-icon.svg";
 import bars from "./bars.svg";
+import { getProductByName } from "../../redux/actions/products";
+import { useDispatch } from "react-redux";
 
 const Navbar = ({ authState, logOutAction, cartState }) => {
   const history = useHistory();
-
+  const [name, setName] = useState('');
+  const vinos = useSelector((state) => state.products.product_search);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     window.addEventListener("resize", changeScreen);
@@ -49,6 +53,28 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
     history.push(`/${route}`);
   }
 
+  const handleChange = (e) => {
+    setName(e.target.value);
+    buscarVinos()
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('submitting');
+    if (name) {
+      history.push(`/vino/${name}`);
+      setName({})
+    }
+  };
+
+  const buscarVinos = (e) => {
+    dispatch(getProductByName(name));
+    console.log('Vinos', vinos)
+  }
+
+  function handleGoToProducDescription(productId) {
+    history.push(`/product/${productId}`);
+}
   function totalItems () {
     let total = 0
     cartState.forEach(el => total += el.itemsAmount)
@@ -70,14 +96,28 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
           <span>Sobre Nosotros</span>
         </NavLink>
 
-        <div className={styles.searchbar_container}>
+        <form className={styles.searchbar_container} onSubmit={handleSubmit}>
           <input
             className={styles.searchBar}
             placeholder="Buscar Bebidas..."
             type="search"
+            onChange={handleChange}
           />
-          <img src={search} alt="" />
+         
+          <button type="submit">
+            <img src={search} alt="" />
+          </button>
+
+        </form>
+        {(vinos.length > 0 && name) ?
+        <div className={styles.autoContainer}>
+         {vinos.map(item => {
+           return (
+             <button className="item-autocomplete" key={item.id} onClick={() => handleGoToProducDescription(item.id)} >{item.name}</button>
+           )
+         })}
         </div>
+        : ''}
 
         {/* <NavLink to="/manageProducts" className={styles.about_container}>
                   <span>Area Reservada</span>
@@ -126,6 +166,8 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
           placeholder="Buscar Bebidas..."
           type="search"
         />
+        
+    
         <img src={search} alt="" />
       </div>
 
