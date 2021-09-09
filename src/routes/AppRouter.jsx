@@ -19,6 +19,7 @@ import AboutUs from '../pages/aboutUs/AboutUs';
 import Cart from '../pages/cart/Cart';
 import PutProduct from '../pages/PutProduct/PutProduct';
 import SearchResults from '../pages/productDetails/SearchResults';
+import  NotFound  from '../pages/NotFound/NotFound';
 
 
 const AppRouter = ({ authState }) => {
@@ -37,6 +38,7 @@ const AppRouter = ({ authState }) => {
           <Route exact path="/about" component={AboutUs} />
           {/* <Route exact path="/checkout" component={ShippingPay} />  */}
           <Route exact path="/cart" component={Cart}/>
+          
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
@@ -69,8 +71,8 @@ const AppRouter = ({ authState }) => {
           />
           
 
-
           <Redirect to='/home' />
+          <Route component={NotFound} />
 
         </Switch>
 

@@ -5,7 +5,7 @@ export const PRODUCT_BY_CATEGORY = 'PRODCUT_BY_CATEGORY'
 
 export const getProducts =()=>{
     return async function(dispatch){
-        await axios.get('https://delsur-api-1.herokuapp.com/products')
+        await axios.get('https://pg-delsur.herokuapp.com/products')
         .then(results=>{
             dispatch({
                 type:GET_PRODUCTS,
