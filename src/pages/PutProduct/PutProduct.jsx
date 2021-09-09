@@ -7,14 +7,21 @@ import { useHistory } from 'react-router-dom';
 import {getProductDetailReset } from '../../redux/actions/productDetailsActions';
 import { updateProduct } from '../../redux/actions/manageProductsActions';
 import Swal from 'sweetalert2'
+import { getCategories } from '../../redux/actions/manageProductsActions';
+import { getProducts } from '../../redux/actions/manageProductsActions';
 
 
-const PutProduct = ({updateProduct, getProductDetailReset, product_detail}) => {
+const PutProduct = ({updateProduct, getProductDetailReset, product_detail, categories, getCategories, getProducts}) => {
     
     let history = useHistory()
 
-    
 
+    useEffect(() => {
+        getCategories()
+        
+    } , []);
+
+    const [firstCategory, setFirstCategory] = useState({category: product_detail.category})
     const [detailData, setDetailData] = useState(
         {
             id: product_detail.id,
@@ -24,9 +31,11 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail}) => {
             capacity: product_detail.capacity,
             stock: product_detail.stock,
             discount: product_detail.discount,
+            category: product_detail.category
             
         }
     )
+    
 
     if(detailData.name === undefined){
         history.push('/manageProducts')
@@ -86,10 +95,27 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail}) => {
           
         
         if(Object.keys(validateSubmit).length === 0){
+    
+            if(detailData.category === firstCategory.category){
+                let categId = categories.find(el => el.name === firstCategory.category).id
+                setDetailData(
+                    {
+                        ...detailData,
+                        category: categId
+                    }
+                )
+                updateProduct(detailData)
+                Swal.fire('Producto Editado')
+                history.push("/manageProducts")
+                getProducts()
+            }
+            else{
+                updateProduct(detailData)
+                Swal.fire('Producto Editado')
+                history.push("/manageProducts")
+                getProducts()
+            }
             
-            updateProduct(detailData)
-            Swal.fire('Producto Editado')
-            history.push("/manageProducts")
             
         }
         else{
@@ -152,17 +178,19 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail}) => {
                     <input value={detailData.discount || ""} onChange={e => handleChange(e)} name="discount" type="number"/>
                 </div>
                 
-                {/* <div>
+                <div>
                     <label>Category:</label>
-                    <select name="categoryId" onChange={e => handleChange(e)}>
+                    <select name="category" onChange={e => handleChange(e)}>
+                        <option disabled selected>{product_detail.category}</option>
+                        
                         {
-                            manageProductState.categories && manageProductState.categories.map(el => {
-                                    return <option value={el.id} key={el.id}>{el.name}</option>
+                            categories && categories.filter(el => el.name !== firstCategory.category).map(el => {
+                                    return <option value={el.id} key={el.id} >{el.name}</option>
                             })
                         }
                     </select>
-                    {errors.categoryId && (<p className={styles.error}>{errors.categoryId}</p>)}
-                </div>     */}
+                    
+                </div>     
 
                 <button type="submit">Enviar Producto</button>
 
@@ -177,14 +205,17 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail}) => {
 
 const mapStateToProps = (state) => {
     return {
-        product_detail: state.user.product_detail
+        product_detail: state.user.product_detail,
+        categories: state.manageProducts.categories,
     };
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
         getProductDetailReset: () => dispatch(getProductDetailReset()),
-        updateProduct: (detailData) => dispatch(updateProduct(detailData))
+        updateProduct: (detailData) => dispatch(updateProduct(detailData)),
+        getCategories: () => dispatch(getCategories()),
+        getProducts: () => dispatch(getProducts()),
 
     }
   }
