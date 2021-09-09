@@ -7,6 +7,7 @@ const initialState = {
     email: null,
     photoURL: null,
     uid: null,
+
 }
 
 const authReducer = (state = initialState, action) => {
@@ -38,7 +39,7 @@ const authReducer = (state = initialState, action) => {
 
         case AUTH_LOGOUT: {
             return { ...initialState }
-        }
+        }       
 
         default:
             return state;

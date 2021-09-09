@@ -1,4 +1,5 @@
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import uiReducer from '../reducers/uiReducer';
 import userReducer from '../reducers/userReducer';
 import productReducer from '../reducers/productRecuder';
 import authReducer from '../reducers/authReducer';
@@ -9,6 +10,7 @@ import cartReducer from '../reducers/cartReducer';
 
 let rootReducer = combineReducers({
   auth: authReducer,
+  ui: uiReducer,
   user: userReducer,
   products: productReducer,
   manageProducts: manageProductsReducer,

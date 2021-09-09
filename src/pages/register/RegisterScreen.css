@@ -1,0 +1,162 @@
+.register__main {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: var(--primary);
+    justify-content: center;
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+}
+
+.register__box-container {
+    background-color: white;    
+    padding: 2.5em;
+    min-width: 300px;
+    width: 400px;
+}
+
+.auth__alert-error {
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.register__title {
+    color: darken(var(--primary), 20);
+    margin-bottom: 1.8rem;   
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.register__input {
+    border: 0px;
+    border: 1px solid var(--light-grey);
+    font-size: 1.1rem;
+    border-radius: 4px;
+    margin-bottom: 13px;
+    height: 2rem;
+    padding: 0.5rem;
+    transition: border 0.3s ease;
+}
+
+.register__input:focus {
+    border: 1px solid var(--dark-grey);
+    outline: none;
+}
+
+.register__button {
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: var(--button-login);
+    border: 1px solid transparent;   
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-stretch: expanded;
+    color:white;
+}
+
+button:hover{
+    background-color: var(--button-login-hover);
+    border: 1px solid orange;    
+    color:black;
+    font-weight: normal;
+    cursor:pointer; 
+}
+
+
+
+
+
+
+
+
+
+.register__container-cancel-new-account { 
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.register__container-cancel-new-account a{
+    text-decoration: none;
+    color: White;
+    background-color: royalblue;
+    font-size: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    padding-left:1rem;
+    padding-right: 1rem;     
+}
+
+#cancel{
+    background-color: white;
+    color: black;
+    border: 1px solid red;
+}
+
+#cancel:hover{
+    background-color: red;
+    color: white; 
+    font-weight: bold;
+    cursor:pointer; 
+}
+
+#new-account{
+    font-weight: 400;
+    background-color:  var(--button-active-blue);
+    color: white;
+    border: 1px solid var(--google-blue);
+}
+#new-account:hover{
+    border: 1px solid var(--button-active-blue);
+    background-color: var(--google-blue);
+    color:black;
+
+}
+
+/* .register__alert-error {
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    padding: 5px;
+} */
+
+@media screen and (max-width: 400px) {
+    .register__main {
+        background-color: white;
+    }
+
+    .register__box-container {
+        background-color: white;      
+        padding: .5em;
+        min-width: 300px;
+        width: 400px;
+    }
+
+    .register__container-cancel-new-account{
+        display: flex;
+        flex-direction: column;
+        text-align: center;        
+    }
+    
+  }
