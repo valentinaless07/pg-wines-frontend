@@ -40,8 +40,9 @@ const CartProduct = (props) => {
 
     return (
         <div className={styles.cart_product}>
-                            
+                            <div className={styles.img_container}>
                             <img src={props.image} alt="" />
+                            </div>
                             <div className={styles.name_price_product}>
                                 <p>{props.name}</p><p className={styles.cost}>Precio: ${props.cost}</p>
                             </div>
