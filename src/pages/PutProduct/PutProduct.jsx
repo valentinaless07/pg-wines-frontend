@@ -134,6 +134,7 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, categ
 
         <div className={styles.container}>
             <h1>Editar producto</h1>
+            <div className={styles.container_form}>
             <form className={styles.form} onSubmit={e => handleSubmit(e)}>
 
                 <div>
@@ -184,7 +185,7 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, categ
                         <option disabled selected>{product_detail.category}</option>
                         
                         {
-                            categories && categories.filter(el => el.name !== firstCategory.category).map(el => {
+                            categories && categories.map(el => {
                                     return <option value={el.id} key={el.id} >{el.name}</option>
                             })
                         }
@@ -195,6 +196,7 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, categ
                 <button type="submit">Enviar Producto</button>
 
             </form>
+            </div>
         </div>
         </div>
        
