@@ -2,11 +2,12 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 90vh;
+  height: 130vh;
   margin-top: -40px;
 }
+
 .container_form {
-  height: 80vh;
+  height: 100vh;
   display: flex;
   align-items: flex-start;
 }

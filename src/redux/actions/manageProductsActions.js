@@ -4,7 +4,7 @@ export function postProductCreated (payload) {
     
     return async function () {
         
-        const res = await axios.post("https://delsur-api-1.herokuapp.com/product", payload)
+        const res = await axios.post("https://pg-delsur.herokuapp.com/products", payload)
         
 
         return res
@@ -13,7 +13,7 @@ export function postProductCreated (payload) {
 
 export function getCategories() {
     return async function(dispatch) {
-         var json = await axios.get("https://delsur-api-1.herokuapp.com/categories")
+         var json = await axios.get("https://pg-delsur.herokuapp.com/categories")
          
 
          return dispatch({
@@ -54,5 +54,31 @@ export function getCategories() {
         const respuesta = await axios.put("https://delsur-api-1.herokuapp.com/product/update", payload)
         
         return respuesta
+    }
+ }
+
+ export function getBrands() {
+    return async function(dispatch) {
+         var json = await axios.get("https://pg-delsur.herokuapp.com/brands")
+         
+        
+
+         return dispatch({
+             type: "GET_BRANDS",
+             payload: json.data
+         })
+    }
+ }
+
+ export function getPacking() {
+    return async function(dispatch) {
+         var json = await axios.get("https://pg-delsur.herokuapp.com/packing")
+         
+        
+
+         return dispatch({
+             type: "GET_PACKING",
+             payload: json.data
+         })
     }
  }

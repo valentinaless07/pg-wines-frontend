@@ -20,7 +20,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice}) => {
     return (
         <div className={styles.container}>
             
-            <Link to="/home" className={styles.backicon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
+            <Link to="/" className={styles.backicon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
 
             <div className={styles.title}>    
             <h1>Carrito de compras</h1>
