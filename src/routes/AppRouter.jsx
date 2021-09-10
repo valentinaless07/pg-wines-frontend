@@ -20,6 +20,7 @@ import RegisterScreen from '../pages/register/RegisterScreen';
 import LoginScreen from '../pages/login/LoginScreen';
 import PutProduct from '../pages/PutProduct/PutProduct';
 import SearchResults from '../pages/productDetails/SearchResults';
+import SliderManager from '../pages/sliderManager/SliderManager';
 
 const AppRouter = ({ authState }) => {
 
@@ -38,13 +39,20 @@ const AppRouter = ({ authState }) => {
           <Route  path="/register" component={RegisterScreen} />
           {/* <Route exact path="/checkout" component={ShippingPay} />  */}
           <Route exact path="/cart" component={Cart}/>
+          <Route exact path="/sliderManager" component={SliderManager} />
 
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
             path='/manageProducts'
             component={ManageProductsScreen}
-          />
+          />       
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            path='/manageProducts'
+            component={ManageProductsScreen}
+          />       
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
@@ -70,7 +78,8 @@ const AppRouter = ({ authState }) => {
           component={PutProduct}
           />
             
-          <Redirect to='/home' />      
+          {/* <Redirect to='/home' />       */}
+          <Redirect to='/sliderManager' />      
 
         </Switch>
 
