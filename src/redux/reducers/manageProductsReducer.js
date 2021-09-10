@@ -14,11 +14,16 @@ export default function manageProductsReducer (state = initialState, action) {
             categories: action.payload
         }
 
-        case "GET_PRODUCTS":
+        case "GET_PRODUCTS_PAGINATION":
             return {
                 ...state,
                 products: action.payload
             }
+        case "GET_PRODUCTS_PAGE":
+            return {
+                ...state,
+                products: action.payload
+            }     
         case "GET_BRANDS":
             return{
                 ...state,
