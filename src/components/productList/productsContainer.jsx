@@ -10,8 +10,8 @@ import Swal from 'sweetalert2'
 import { addCartProduct } from '../../redux/actions/cartActions';
 
 
-function ProductsContainer({state, getProductsByPage}){
-
+function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct}){
+    
     const history = useHistory();
 
     function handleGoToProducDescription(productId){
@@ -19,11 +19,11 @@ function ProductsContainer({state, getProductsByPage}){
     }
 
     function addProductCart(item){
-        if(state.cart_state.findIndex(el => el.id === item.id) === -1){
+        if(cart_state.findIndex(el => el.id === item.id) === -1){
         let detail = item
         detail.itemsAmount = 1
 
-        state.addCartProduct(detail)
+        addCartProduct(detail)
         Swal.fire('Producto agregado al carrito')
 
         }
