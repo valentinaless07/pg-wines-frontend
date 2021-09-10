@@ -16,3 +16,26 @@
   padding-top: 25px;
   padding-bottom: 30px;
 }
+
+.manageProductsContainer ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.manageProductsContainer ul li {
+  padding: 13px;
+  margin: 10px 10px 0px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: 0.5s;
+}
+
+.manageProductsContainer ul li:hover {
+  background-color: rgb(223, 223, 223);
+  box-shadow: inset 0px 0px 4px 1px gray;
+}
+.activePaginationBtn {
+  background-color: rgb(223, 223, 223);
+  box-shadow: inset 0px 0px 4px 1px gray;
+}

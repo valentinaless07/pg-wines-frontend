@@ -13,31 +13,31 @@ const ProductManageCard = ({getProductDetail, id, deleteProduct, getProducts, na
 
     
          async function handleDelete() {
-          const respuesta = await Swal.fire({
-            title: '¿Estás seguro que quieres eliminar este producto?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Si',
-            cancelButtonText: 'No'
-          })
+          // const respuesta = await Swal.fire({
+          //   title: '¿Estás seguro que quieres eliminar este producto?',
+          //   icon: 'warning',
+          //   showCancelButton: true,
+          //   confirmButtonText: 'Si',
+          //   cancelButtonText: 'No'
+          // })
           
-            if (respuesta.isConfirmed) {
-              await deleteProduct(id)
-              await getProducts()
-              Swal.fire(
-                'Producto Eliminado!',
-                '',
-                'success'
-              )
+          //   if (respuesta.isConfirmed) {
+          //     await deleteProduct(id)
+          //     await getProducts()
+          //     Swal.fire(
+          //       'Producto Eliminado!',
+          //       '',
+          //       'success'
+          //     )
             
-            } 
+          //   } 
           
       
         }
 
         async function handlePut() {
-          await getProductDetail(id)
-          history.push('/update/'+id)
+          // await getProductDetail(id)
+          // history.push('/update/'+id)
         }
 
     return (
@@ -45,7 +45,7 @@ const ProductManageCard = ({getProductDetail, id, deleteProduct, getProducts, na
          <div 
           className={styles.product} 
           >
-          {id}. {name} ({category}) <b>${cost}</b><div className={styles.icons}><i onClick={handleDelete} className="fas fa-trash-alt fa-1x" ></i> <i onClick={handlePut} className="fas fa-edit"></i></div>
+          {name} () <b>${cost}</b><div className={styles.icons}><i onClick={handleDelete} className="fas fa-trash-alt fa-1x" ></i> <i onClick={handlePut} className="fas fa-edit"></i></div>
         
      </div>
         
