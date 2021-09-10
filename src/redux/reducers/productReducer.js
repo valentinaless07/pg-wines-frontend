@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_CATEGORY, PRODUCT_BY_CATEGORY } from '../actions/userActions'
+import { GET_PRODUCTS, GET_CATEGORY, PRODUCT_BY_CATEGORY, PRODUCTS_PAGE } from '../actions/userActions'
 
 let initialState = {
     products: [],
