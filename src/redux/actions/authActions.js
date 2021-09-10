@@ -6,6 +6,7 @@ export const AUTH_LOGIN = 'AUTH_LOGIN';
 export const AUTH_LOGIN_SUCCESS = 'AUTH_LOGIN_SUCCESS';
 export const AUTH_LOGIN_ERROR = 'AUTH_LOGIN_ERROR';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+export const AUTH_REMOVE_ERROR = 'AUTH_REMOVE_ERROR';
 
 export const startGoogleLogin = () => {
     return (dispatch, getState) => {
@@ -61,12 +62,15 @@ export const logOutAction = () => (dispatch, getState) => {
 // ------- Login 2
 
 export const startRegisterWithEmailAndPassword = (name, email, password) => {
-    return (dispatch, getState) => {
+    return async(dispatch, getState) => {
         const auth = getAuth();
-        dispatch({
+        await dispatch({
+            type: AUTH_REMOVE_ERROR
+        });
+        await dispatch({
             type: AUTH_LOGIN
         });
-        createUserWithEmailAndPassword(auth, email, password)
+        await createUserWithEmailAndPassword(auth, email, password)
             .then(async (userCredential) => {
                 const user = userCredential.user;
                 console.log({ userCredential });
@@ -90,10 +94,10 @@ export const startRegisterWithEmailAndPassword = (name, email, password) => {
                         }
                     )
                     saveStorage(getState().auth);
-                    return Swal.fire({
-                        icon: 'ok',                       
-                        text: 'La cuenta fue creada con suceso',                      
-                    });
+                    // return Swal.fire({
+                    //     icon: 'ok',                       
+                    //     text: 'La cuenta fue creada con suceso',                      
+                    // });
                 })
             })
             .catch((error) => {
@@ -120,6 +124,14 @@ export const startRegisterWithEmailAndPassword = (name, email, password) => {
                             text: 'El email no es valido.',
                             // text: 'Thrown if the email address is not valid.',
                         });
+                    case (errorCode === 'auth/network-request-failed'):
+                        return Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Conección a Iternet inexistente.',
+                            // text: 'Thrown if the email address is not valid.',
+                        });
+
 
                     default:
                         console.log(error);
