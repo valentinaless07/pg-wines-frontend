@@ -1,4 +1,4 @@
-export const getFirstName = (fullName) => {    
+export const getFirstName = (fullName) => {
     return fullName?.split(' ')[0];
 }
 

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { connect, useSelector } from 'react-redux';
 import { NavLink, useHistory } from "react-router-dom";
-import { getFirstName } from '../../helpers/helpers';
 import styles from "./Navbar.module.css";
 import stylesMobile from "./NavbarMobile.module.css";
 import cart from "./cart-icon.svg";
 import search from "./search.svg";
-// import logo from "./logo.png";
 import { logOutAction } from '../../redux/actions/authActions';
 import favorite from "./favorite-icon.svg";
 import bars from "./bars.svg";
@@ -51,6 +49,16 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
 
   function goTo(route) {
     history.push(`/${route}`);
+  }
+
+  function getAvatar() {
+    if (authState.loggedIn) {
+      return (<div className="tooltip bottom">
+         <span class="tiptext">{authState.displayName}</span>
+        <div style={{ fontSize: '2em', color: 'green' }}><i class="far fa-user-circle" with="100px"></i></div>
+      </div>);
+    }
+    return;
   }
 
   const handleChange = (e) => {
@@ -129,8 +137,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
               ? <>
                 <span className={styles.login} onClick={() => goTo('manageProducts')} >Area Reservada</span>
                 <span className={styles.login} onClick={handleLogout} >Salir</span>
-                <img className={styles.avatar} src={authState.photoURL} alt={authState.displayName} />
-
+                {getAvatar()}
               </>
               : <NavLink to="/login" className={styles.login}>
                 <span >Iniciá Sesión</span>
@@ -172,9 +179,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
       </div>
 
       <div className={stylesMobile.bars_cart_container}>
-        {
-          (authState.loggedIn) && <img className={styles.avatar} src={authState.photoURL} alt={authState?.displayName} />
-        }
+        {getAvatar()}
         <img onClick={changeBarsStatus} src={bars} alt="" />
         {/* <img src={cart} alt="" /> */}
       </div>
@@ -198,7 +203,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
             </>
             :
             <>
-              <li onClick={() => goTo('login')}>INICIÁ SESIÓN</li>
+              <li onClick={() => goTo('login2')}>INICIÁ SESIÓN</li>
               <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
             </>
         }
