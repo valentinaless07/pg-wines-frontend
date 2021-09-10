@@ -54,8 +54,8 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
   function getAvatar() {
     if (authState.loggedIn) {
       return (<div className="tooltip bottom">
-         <span class="tiptext">{authState.displayName}</span>
-        <div style={{ fontSize: '2em', color: 'green' }}><i class="far fa-user-circle" with="100px"></i></div>
+         <span className="tiptext">{authState.displayName}</span>
+        <div style={{ fontSize: '2em', color: 'green' }}><i className="far fa-user-circle" with="100px"></i></div>
       </div>);
     }
     return;
