@@ -7,6 +7,7 @@ import {getCategories, postProductCreated} from '../../redux/actions/manageProdu
 import Swal from 'sweetalert2'
 import { getBrands } from '../../redux/actions/manageProductsActions';
 import { getPacking } from '../../redux/actions/manageProductsActions';
+import { useHistory } from 'react-router';
 
 const CreateProduct = ({ manageProductState, getCategories, postProductCreated, getBrands, getPacking}) => {
 
@@ -17,7 +18,7 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
         getPacking()
     } , [getCategories, getBrands, getPacking]);
 
-    
+    const history = useHistory()
 
     const [newProductData, setNewProductData] = useState({
 
@@ -103,6 +104,7 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
                 packingId: ""
             })
             Swal.fire('Producto Creado')
+            history.push("/manageProducts")
         }
         else{
             Swal.fire('Completar todos los campos requeridos')

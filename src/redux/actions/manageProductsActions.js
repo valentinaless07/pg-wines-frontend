@@ -23,25 +23,38 @@ export function getCategories() {
     }
  }
 
- export function getProducts () {
+ export function getProductsPagination () {
     return async function(dispatch) {
-        var json = await axios.get("https://delsur-api-1.herokuapp.com/products")
+        var json = await axios.get("https://pg-delsur.herokuapp.com/products?itemsPerPage=20&orderBy=id")
         
 
         return dispatch({
-            type: "GET_PRODUCTS",
+            type: "GET_PRODUCTS_PAGINATION",
             payload: json.data
         })
    }
    
  }
 
+ export const getProductsPage=(page)=>{
+    return async function(dispatch){
+        await axios.get("https://pg-delsur.herokuapp.com/products?itemsPerPage=20&orderBy=id&page="+page)
+        .then(results=>{
+            dispatch({
+                type:"GET_PRODUCTS_PAGE",
+                payload: results.data
+            })
+        })
+    }
+}
+
+
  export function deleteProduct (payload) {
     
     return async function () {
         
         
-        const resp = await axios.delete("https://delsur-api-1.herokuapp.com/product/delete", {data: {id: payload}})
+        const resp = await axios.delete("https://pg-delsur.herokuapp.com/products/delete", {data: {id: payload}})
         
         return resp
     }
@@ -51,8 +64,8 @@ export function getCategories() {
     
     return async function () {
         
-        const respuesta = await axios.put("https://delsur-api-1.herokuapp.com/product/update", payload)
-        
+        const respuesta = await axios.put("https://pg-delsur.herokuapp.com/products/update", payload)
+        console.log(respuesta)
         return respuesta
     }
  }

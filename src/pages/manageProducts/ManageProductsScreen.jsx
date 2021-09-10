@@ -2,20 +2,20 @@ import React from 'react';
 import styles from './ManageProductsScreen.module.css'
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getProducts} from '../../redux/actions/userActions';
+import { getProductsPagination } from '../../redux/actions/manageProductsActions';
 import ProductManageCard from '../../components/productManageCard/ProductManageCard';
 import ReactPaginate from 'react-paginate'
-import { getProductsByPage } from '../../redux/actions/userActions';
+import { getProductsPage } from '../../redux/actions/manageProductsActions';
 import { useEffect } from 'react';
 
-const ManageProductsScreen = ({products, getProductsByPage, getProducts}) => {
+const ManageProductsScreen = ({products, getProductsPage, getProductsPagination}) => {
 
   useEffect(() => {
-    getProducts()
+    getProductsPagination()
 } , []);
 
   function changePage({selected}){
-    getProductsByPage(selected+1)
+    getProductsPage(selected+1)
 }
 
     return (
@@ -47,14 +47,14 @@ const ManageProductsScreen = ({products, getProductsByPage, getProducts}) => {
 
 const mapStateToProps = (state) => {
     return {
-      products: state.products.products,
+      products: state.manageProducts.products,
     };
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
-      getProducts: () => dispatch(getProducts()),
-      getProductsByPage: (num) => dispatch(getProductsByPage(num))
+      getProductsPagination: () => dispatch(getProductsPagination()),
+      getProductsPage: (num) => dispatch(getProductsPage(num))
     }
   }
 
