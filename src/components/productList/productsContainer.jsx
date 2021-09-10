@@ -2,17 +2,18 @@ import styles  from './ProductsList.module.css';
 import './productList.css'
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom'
-import { addCartProduct } from '../../redux/actions/cartActions';
-import Swal from 'sweetalert2'
+import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux';
+import { getProductsByPage } from '../../redux/actions/userActions';
+import './productList.css'
+import Swal from 'sweetalert2'
+import { addCartProduct } from '../../redux/actions/cartActions';
 
 
+function ProductsContainer({state, getProductsByPage}){
 
-function ProductsContainer(state){
-    
     const history = useHistory();
-    console.log(history)
-    
+
     function handleGoToProducDescription(productId){
         history.push(`/product/${productId}`);
     }
@@ -20,18 +21,22 @@ function ProductsContainer(state){
     function addProductCart(item){
         if(state.cart_state.findIndex(el => el.id === item.id) === -1){
         let detail = item
-        detail.itemsAmount = 1    
-        
+        detail.itemsAmount = 1
+
         state.addCartProduct(detail)
         Swal.fire('Producto agregado al carrito')
 
         }
         }
 
-    return(<div className={`${styles.container}`}>
+        function changePage({selected}){
+            getProductsByPage(selected+1)
+        }
+
+    return(<div id='containerProducts' className={`${styles.container}`}>
         <div className={styles.productList}>
             {
-                state.state.map(item=>{return<Link to='#' key={item.id}>
+                state.products.map(item=>{return<Link to='#' key={item.id}>
                     <div className={styles.productContainer}>
                         <div className={styles.title}>
                             <span>{item.name}</span>
@@ -49,6 +54,13 @@ function ProductsContainer(state){
                 </Link>})
             }
         </div>
+        <ReactPaginate
+        previousLabel={<i className="fas fa-chevron-left"></i>}
+        nextLabel={<i className="fas fa-chevron-right"></i>}
+        pageCount={state.totalPage}
+        onPageChange={changePage}
+        activeClassName={'activePaginationBtn'}
+        />
     </div>)
 }
 
@@ -58,13 +70,14 @@ function mapStateToProps(state) {
       cart_state: state.cart.cartState
     };
   };
-  
+
   function mapDispatchToProps(dispatch) {
     return {
         addCartProduct: (id) => dispatch(addCartProduct(id)),
-        
+        getProductsByPage: (num) => dispatch(getProductsByPage(num))
+
 
     };
   };
-  
+
   export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);

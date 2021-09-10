@@ -18,7 +18,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
         getProductDetail(id)
         return () => { getProductDetailReset() }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [])
+      }, [id])
 
       const [cantidadItems, setCantidadItems] = useState(1)
 

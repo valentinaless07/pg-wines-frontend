@@ -19,8 +19,9 @@ import Cart from '../pages/cart/Cart';
 import RegisterScreen from '../pages/register/RegisterScreen';
 import LoginScreen from '../pages/login/LoginScreen';
 import PutProduct from '../pages/PutProduct/PutProduct';
+import manageProductInf from '../pages/manageProductInf/ManageProductInf';
 import SearchResults from '../pages/productDetails/SearchResults';
-import  NotFound  from '../pages/NotFound/NotFound';
+import NotFound from '../pages/NotFound/NotFound';
 
 const AppRouter = ({ authState }) => {
 
@@ -32,14 +33,14 @@ const AppRouter = ({ authState }) => {
         <Switch>
 
           <Route exact path="/login" component={LoginScreen} />
-          <Route exact path="/home" component={HomeScreen} />
+          <Route exact path="/" component={HomeScreen} />
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
           <Route exact path="/vino/:name" component={SearchResults} />
           <Route exact path="/about" component={AboutUs} />
-          <Route  path="/register" component={RegisterScreen} />
+          <Route exact path='/manage' component={manageProductInf} />
+          <Route path="/register" component={RegisterScreen} />
           {/* <Route exact path="/checkout" component={ShippingPay} />  */}
-          <Route exact path="/cart" component={Cart}/>
-          <Route path='/notfound' component={NotFound} />
+          <Route exact path="/cart" component={Cart} />
 
           <PrivateRoute
             exact
@@ -53,7 +54,7 @@ const AppRouter = ({ authState }) => {
             path='/createproduct'
             component={CreateProduct}
           />
-           <PrivateRoute
+          <PrivateRoute
             exact
             isAuthenticated={loggedIn}
             path='/checkout'
@@ -64,16 +65,17 @@ const AppRouter = ({ authState }) => {
             isAuthenticated={loggedIn}
             path='/favorites'
             component={Favorites}
-          />    
-          <PrivateRoute
-          exact
-          isAuthenticated={loggedIn}
-          path='/update/:id'
-          component={PutProduct}
           />
-          
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            path='/update/:id'
+            component={PutProduct}
+          />
 
-          <Redirect to='/notfound' />
+
+        <Route component={NotFound} />
+
 
         </Switch>
 
@@ -93,6 +95,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);
-
-
-
