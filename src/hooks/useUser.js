@@ -18,6 +18,9 @@ export default function useUser() {
   const { replace } = useHistory();
 
   const startGoogleLogin = useCallback(() => {
+    dispatch({
+      type: AUTH_LOGIN,
+    });
     signInWithPopup(auth, googleAuthProvider)
       .then(({ user }) => {
         dispatch({
