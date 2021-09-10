@@ -141,9 +141,10 @@ button:hover{
     padding: 5px;
 } */
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
     .register__main {
         background-color: white;
+        align-items: start;
     }
 
     .register__box-container {
