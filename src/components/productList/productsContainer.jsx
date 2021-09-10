@@ -33,7 +33,7 @@ function ProductsContainer({state, getProductsByPage}){
             getProductsByPage(selected+1)
         }
 
-    return(<div className={`${styles.container}`}>
+    return(<div id='containerProducts' className={`${styles.container}`}>
         <div className={styles.productList}>
             {
                 state.products.map(item=>{return<Link to='#' key={item.id}>
