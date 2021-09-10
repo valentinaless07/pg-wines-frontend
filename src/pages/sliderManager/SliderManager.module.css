@@ -1,7 +1,241 @@
-.container {
+/* .main_container {
     background-color: lightgray;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
+
+.container {
+    margin-left: 2rem;
+    margin-right: 2rem;
+   
+    width:800px;
+    min-width:350px;
+    height:600px;
+    border: 1px black solid;
+    background-color: yellow;
+    display:flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    
+}
+
+.slider {
+    background-color: gray;
+    max-heigh: 400px;
+    height:400px;
+}
+
+select {
+    background-color: white;
+    color: black;
+}
+
+
+@media (max-width: 500px) {
+    .main_container{
+        
+        align-items: start;
+    }
+    .container{
+        
+        margin: 0px;
+    }
+} */
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap");
+
+.backicon > i {
+  text-decoration: none;
+  color: black;
+  padding-left: 120px;
+  padding-top: 30px;
+}
+
+.container {
+  background-color: #f7f7f7;
+}
+
+.backicon {
+  cursor: pointer;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  margin-top: -40px;
+}
+
+.cart_container {
+  height: 20vh;
+  background-color: rgb(255, 255, 255);
+  height: 65vh;
+  overflow-y: scroll;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.cart_items_container {
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.cart_items {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-bottom: 30px;
+}
+
+.total_products {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+}
+
+.total_container {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  height: 250px;
+  margin-top: 70px;
+  position: fixed;
+  width: 250px;
+  text-align: center;
+}
+
+.hr {
+  margin-left: 10%;
+  margin-right: 10%;
+  border-color: rgba(0, 0, 0, 0.125);
+  margin-top: 20px;
+}
+
+.buttonSubmit {
+  background-color: #1a1a1a;
+  color: white;
+  margin-top: 45px;
+  width: 115px;
+  height: 50px;
+  font-family: "Nunito Sans", sans-serif;
+  cursor: pointer;
+  line-height: 1.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  vertical-align: middle;
+  display: inline-block;
+  border: 0 solid transparent;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.carritoVacio {
+  display: flex;
+  justify-content: center;
+  font-family: "Nunito Sans", sans-serif;
+  padding-top: 25px;
+}
+
+.cost {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.insert_item {
+    display: flex;
+    justify-content: center;
+    
+}
+
+
+
+@media (max-width: 970px) {
+  .total_container {
+    width: 210px;
+  }
+  .total_products {
+    width: 25%;
+  }
+  .cart_items {
+    width: 75%;
+  }
+}
+
+@media (max-width: 900px) {
+  .total_container {
+    width: 190px;
+  }
+}
+
+@media (max-width: 850px) {
+  .buttonSubmit {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .total_container {
+    width: 170px;
+  }
+}
+
+@media (max-width: 720px) {
+  .total_container {
+    width: 130px;
+  }
+  .buttonSubmit {
+    font-size: 0.7rem;
+    width: 100px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 650px) {
+  .total_container {
+    width: 110px;
+  }
+  .cost {
+    font-size: 18px;
+  }
+  .buttonSubmit {
+    width: 85px;
+  }
+}
+
+/* --------------------------- Item ------------------------ */
+.item-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+    margin-top: -40px;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin-top: 50px;
+  }
+  .error {
+    color: red;
+  }
+  
+  .backIcon {
+    text-decoration: none;
+    color: black;
+    margin-left: 10%;
+    display: inline;
+  }
+  .backIcon > i {
+    margin-top: 15px;
+  }
+  
+

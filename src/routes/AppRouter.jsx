@@ -84,8 +84,8 @@ const AppRouter = ({ authState }) => {
           component={PutProduct}
           />
             
-          {/* <Redirect to='/home' />       */}
-          <Redirect to='/sliderManager' />      
+          <Redirect to='/home' />      
+          {/* <Redirect to='/sliderManager' />       */}
 
         </Switch>
 

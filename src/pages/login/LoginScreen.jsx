@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import validator from 'validator';
 import useForm from '../../hooks/useForm';
 import React, { useRef, useEffect } from 'react';
@@ -9,7 +10,7 @@ import './LoginScreen.css';
 import spinner from '../../assests/images/spinnerLargeBkTransparent.svg';
 
 
-const LoginScreen2 = ({ authState, uiState, setError, removeError, startLoginWithEmailAndPassword, startGoogleLogin, logOutAction }) => {
+const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWithEmailAndPassword, startGoogleLogin }) => {
     const { msgError } = uiState;
     const useRefEmail = useRef();
     const history = useHistory();
@@ -22,14 +23,11 @@ const LoginScreen2 = ({ authState, uiState, setError, removeError, startLoginWit
 
     useEffect(() => {
         useRefEmail.current.select();
-    }, []);
-    // const handleLogout = () => {
-    //     logOutAction();
-    // }
+    }, []);    
 
     const handleLoginWithGoogle = (event) => {
         startGoogleLogin();
-        // history.push('/home');
+        history.replace('/home');
     }
 
     const handleStarLoginWithEmailAndPassword = (event) => {
@@ -38,10 +36,10 @@ const LoginScreen2 = ({ authState, uiState, setError, removeError, startLoginWit
         if (isFormValid()) {
             console.log('is form valid ok')
             startLoginWithEmailAndPassword(formValues.email, formValues.password);
+            history.replace('/home');
         } else {
             console.log('Form is not valid');
         }
-        // history.push('/home');
     }
 
     const isFormValid = () => {
@@ -180,4 +178,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen2);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
