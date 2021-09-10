@@ -63,7 +63,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
 
   const handleChange = (e) => {
     setName(e.target.value);
-    buscarVinos()
+    buscarVinos(name)
   };
 
   const handleSubmit = (e) => {
