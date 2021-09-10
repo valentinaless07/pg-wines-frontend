@@ -197,13 +197,14 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
             <>
               <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
               <li onClick={() => goTo('manageProducts')}>AREA RESERVADA</li>
+              <li onClick={() => goTo('sliderManager')}>GESTION SLIDER</li>
               <li onClick={() => goTo('favorites')}>FAVORITOS</li>
               <li onClick={() => goTo('cart')}>CARRITO</li>
               <li onClick={handleLogout}>SALIR</li>
             </>
             :
             <>
-              <li onClick={() => goTo('login2')}>INICIÁ SESIÓN</li>
+              <li onClick={() => goTo('login')}>INICIÁ SESIÓN</li>
               <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
             </>
         }

@@ -39,8 +39,14 @@ const AppRouter = ({ authState }) => {
           <Route  path="/register" component={RegisterScreen} />
           {/* <Route exact path="/checkout" component={ShippingPay} />  */}
           <Route exact path="/cart" component={Cart}/>
-          <Route exact path="/sliderManager" component={SliderManager} />
+          {/* <Route exact path="/sliderManager" component={SliderManager} /> */}
 
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            path='/sliderManager'
+            component={SliderManager}
+          />       
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
