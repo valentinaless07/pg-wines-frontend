@@ -2,12 +2,17 @@ import React from 'react';
 import styles from './ManageProductsScreen.module.css'
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getProducts } from '../../redux/actions/manageProductsActions';
+import { getProducts} from '../../redux/actions/userActions';
 import ProductManageCard from '../../components/productManageCard/ProductManageCard';
 import ReactPaginate from 'react-paginate'
 import { getProductsByPage } from '../../redux/actions/userActions';
+import { useEffect } from 'react';
 
-const ManageProductsScreen = ({products, getProductsByPage}) => {
+const ManageProductsScreen = ({products, getProductsByPage, getProducts}) => {
+
+  useEffect(() => {
+    getProducts()
+} , []);
 
   function changePage({selected}){
     getProductsByPage(selected+1)
@@ -17,7 +22,7 @@ const ManageProductsScreen = ({products, getProductsByPage}) => {
         <div className={styles.manageProductsContainer}>
         <nav>
             <ul className={styles.nav}>
-                <NavLink to="/home"><li>Volver a la página de inicio</li></NavLink>
+                <NavLink to="/"><li>Volver a la página de inicio</li></NavLink>
                 <NavLink to="createproduct"><li>Crear producto</li></NavLink>
                 
             </ul>
