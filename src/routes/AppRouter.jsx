@@ -19,6 +19,7 @@ import Cart from '../pages/cart/Cart';
 import RegisterScreen from '../pages/register/RegisterScreen';
 import LoginScreen from '../pages/login/LoginScreen';
 import PutProduct from '../pages/PutProduct/PutProduct';
+import manageProductInf from '../pages/manageProductInf/ManageProductInf';
 import SearchResults from '../pages/productDetails/SearchResults';
 
 const AppRouter = ({ authState }) => {
@@ -35,6 +36,7 @@ const AppRouter = ({ authState }) => {
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
           <Route exact path="/vino/:name" component={SearchResults} />
           <Route exact path="/about" component={AboutUs} />
+          <Route exact path='/manage' component={manageProductInf}/>
           <Route  path="/register" component={RegisterScreen} />
           {/* <Route exact path="/checkout" component={ShippingPay} />  */}
           <Route exact path="/cart" component={Cart}/>
@@ -62,15 +64,15 @@ const AppRouter = ({ authState }) => {
             isAuthenticated={loggedIn}
             path='/favorites'
             component={Favorites}
-          />    
+          />
           <PrivateRoute
           exact
           isAuthenticated={loggedIn}
           path='/update/:id'
           component={PutProduct}
           />
-            
-          <Redirect to='/home' />      
+
+          <Redirect to='/home' />
 
         </Switch>
 
@@ -90,6 +92,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);
-
-
-

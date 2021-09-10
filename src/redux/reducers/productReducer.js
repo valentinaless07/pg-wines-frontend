@@ -29,6 +29,11 @@ const productReducer = (state = initialState, action) => {
                 products: action.payload
             }
         }
+        case PRODUCTS_PAGE:
+            return{
+                ...state,
+                products: action.payload
+            }
         case "GET_PRODUCT_BY_ID":
             return {
                 ...state,
