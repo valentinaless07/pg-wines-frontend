@@ -1,24 +1,31 @@
+
+
 @import url("https://fonts.googleapis.com/css?family=Fira+Sans");
 /*Variables*/
-.left-section .inner-content {
+
+
+
+.container .left-section .inner-content {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
 
-* {
+.container * {
   box-sizing: border-box;
 }
 
-html, body {
+.container html, body {
   margin: 0;
   padding: 0;
 }
 
-/* body {
+.container body {
   font-family: "Fira Sans", sans-serif;
   color: #f5f6fa;
-} */
+}
+
+
 
 .background {
   position: absolute;
