@@ -33,7 +33,7 @@ export const PRODUCT_DETAIL_RESET = 'PRODUCT_DETAIL_RESET';
 
 export const getProductDetail=(id)=>{
     return async function(dispatch){
-        await axios.get('https://delsur-api-1.herokuapp.com/product/'+id)
+        await axios.get('https://pg-delsur.herokuapp.com/products/'+id)
         .then(results =>{
             console.log(results)
             dispatch({

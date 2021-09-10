@@ -21,6 +21,7 @@ import LoginScreen from '../pages/login/LoginScreen';
 import PutProduct from '../pages/PutProduct/PutProduct';
 import manageProductInf from '../pages/manageProductInf/ManageProductInf';
 import SearchResults from '../pages/productDetails/SearchResults';
+import  NotFound  from '../pages/NotFound/NotFound';
 
 const AppRouter = ({ authState }) => {
 
@@ -72,7 +73,9 @@ const AppRouter = ({ authState }) => {
           component={PutProduct}
           />
 
+
           <Redirect to='/home' />
+          <Route component={NotFound} />
 
         </Switch>
 
