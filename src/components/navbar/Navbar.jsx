@@ -63,7 +63,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
 
   const handleChange = (e) => {
     setName(e.target.value);
-    if (name.length > 3) {
+    if (name.length > 2) {
       buscarVinos(name)
     }
   };
@@ -119,7 +119,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
           </button>
 
         </form>
-        {(vinos.length > 0 && name && name.length > 3) ?
+        {(vinos.length > 0 && name && name.length > 2) ?
         <div className={styles.autoContainer}>
          {vinos.map(item => {
            return (

@@ -39,7 +39,7 @@ const AppRouter = ({ authState }) => {
           <Route exact path="/about" component={AboutUs} />
           <Route exact path='/manage' component={manageProductInf} />
           <Route path="/register" component={RegisterScreen} />
-          {/* <Route exact path="/checkout" component={ShippingPay} />  */}
+          <Route exact path="/checkout" component={ShippingPay} /> 
           <Route exact path="/cart" component={Cart} />
 
           <PrivateRoute

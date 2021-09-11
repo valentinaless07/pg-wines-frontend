@@ -32,7 +32,8 @@ const Cart = ({cartState, getTotalPrice, totalPrice}) => {
                     <div className={styles.cart_items}>
                         
                         {cartState && cartState.map(el => 
-                        <CartProduct image={el.image} name={el.name} cost={el.cost} id={el.id} itemsAmount={el.itemsAmount}/>
+                        <CartProduct image={el.image} name={el.name} cost={el.cost} id={el.id} itemsAmount={el.itemsAmount}
+                         isCheckout={false}/>
                             )}
 
                     </div>
@@ -43,7 +44,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice}) => {
                             <b>${totalPrice}</b>
                             </div>
                             <hr className={styles.hr}></hr>
-                            <button className={styles.buttonSubmit}>CHECKOUT</button>
+                            <Link to='/checkout' className={styles.buttonSubmit}>CHECKOUT</Link>
                         </div>
                     </div>
                 </div>
@@ -53,7 +54,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice}) => {
         </div>
     );
 }
-
+ 
 const mapStateToProps = (state) => {
     return {
       cartState: state.cart.cartState,
