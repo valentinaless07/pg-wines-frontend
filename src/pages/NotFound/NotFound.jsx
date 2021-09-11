@@ -5,7 +5,7 @@ const NotFound = () => (
 
     <React.Fragment>
         <div className={styles.container}>
-            not found
+            
         </div>
 
     </React.Fragment>
