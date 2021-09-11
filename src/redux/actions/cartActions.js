@@ -1,6 +1,6 @@
 
 export function addCartProduct (payload) {
-    console.log(payload)
+    
     return {
         type: "ADD_CART_PRODUCT",
         payload

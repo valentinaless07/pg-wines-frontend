@@ -19,18 +19,19 @@ const CartProduct = (props) => {
         props.editItemsAmount({ id: props.id, amount: amount })
     }, [amount, props]);
 
-    function sum() {
-        props.editItemsAmount({ id: props.id, amount: cantidadItems + 1 })
-        setCantidadItems(cantidadItems + 1)
+    function sum (){
+        props.editItemsAmount({id: props.id, amount: cantidadItems + 1})
         props.getTotalPrice()
-
+        let item = props.cartState.find(el => el.id ===props.id).itemsAmount
+        setCantidadItems(item)
 
     }
 
-    function res() {
-        props.editItemsAmount({ id: props.id, amount: cantidadItems - 1 })
-        setCantidadItems(cantidadItems - 1)
+    function res () {
+        props.editItemsAmount({id: props.id, amount: cantidadItems - 1})
         props.getTotalPrice()
+        let item = props.cartState.find(el => el.id ===props.id).itemsAmount
+        setCantidadItems(item)
     }
 
     function handleDelete() {
