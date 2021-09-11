@@ -32,7 +32,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
         let detail = product_detail
         detail.itemsAmount = cantidadItems    
         addCartProduct(detail)
-        Swal.fire('Producto agregado al carrito')
+        
         }
       }
 

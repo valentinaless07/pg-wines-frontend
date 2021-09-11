@@ -8,9 +8,9 @@ import { getProductsByPage } from '../../redux/actions/userActions';
 import './productList.css'
 import Swal from 'sweetalert2'
 import { addCartProduct } from '../../redux/actions/cartActions';
+import { editItemsAmount } from '../../redux/actions/cartActions';
 
-
-function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct}){
+function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct, editItemsAmount}){
     
     const history = useHistory();
 
@@ -24,9 +24,10 @@ function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct
         detail.itemsAmount = 1
 
         addCartProduct(detail)
-        Swal.fire('Producto agregado al carrito')
-
+        
         }
+
+        
         }
 
         function changePage({selected}){
@@ -74,7 +75,8 @@ function mapStateToProps(state) {
   function mapDispatchToProps(dispatch) {
     return {
         addCartProduct: (id) => dispatch(addCartProduct(id)),
-        getProductsByPage: (num) => dispatch(getProductsByPage(num))
+        getProductsByPage: (num) => dispatch(getProductsByPage(num)),
+        editItemsAmount: (amount) => dispatch(editItemsAmount(amount))
 
 
     };
