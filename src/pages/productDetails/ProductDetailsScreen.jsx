@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { useState } from 'react';
 import { addCartProduct} from '../../redux/actions/cartActions';
 import { reloadCartLocalStorage } from '../../redux/actions/cartActions';
+import { useHistory } from 'react-router';
 
 const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state, reloadCartLocalStorage}) => {
     // console.log(getProductDetail);
@@ -21,6 +22,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
       }, [id])
 
       const [cantidadItems, setCantidadItems] = useState(1)
+      const history = useHistory()
 
       function selectChange(e) {
           let num = parseInt(e.target.value)
@@ -34,6 +36,9 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
         await addCartProduct(detail)
         reloadCartLocalStorage()
         
+        }
+        else{
+            history.push("/cart")
         }
       }
 
