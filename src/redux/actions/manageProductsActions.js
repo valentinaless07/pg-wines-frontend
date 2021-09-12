@@ -99,7 +99,7 @@ export function getPacking() {
     }
 }
 
-export function getProducts() {
+export function getAllProductsSlider() {
     return async function (dispatch) {
         var json = await axios.get("https://pg-delsur.herokuapp.com/products?itemsPerPage=300");
         console.log('JSON', json.data.products);
@@ -107,7 +107,7 @@ export function getProducts() {
             const products = json.data.products;
            
             return dispatch({
-                type: "GET_PRODUCTS",
+                type: "GET_ALL_PRODUCTS_SLIDER",
                 payload: products,
             });
         }

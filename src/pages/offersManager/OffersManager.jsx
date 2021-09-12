@@ -5,7 +5,7 @@ import styles from './OffersManager.module.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getOffers, postOffers, } from '../../redux/actions/offersManagerActions';
-import { getProducts } from '../../redux/actions/manageProductsActions';
+import { getAllProductsSlider } from '../../redux/actions/manageProductsActions';
 import OfferItem from '../../components/offerItem/OfferItem';
 import spinner from '../../assests/images/spinnerLargeBkTransparent.svg';
 
@@ -16,7 +16,7 @@ const initialState = {
 }
 
 
-const OffersManager = ({ offersState, getOffers, postOffers, getProducts, productState, }) => {
+const OffersManager = ({ offersState, getOffers, postOffers, getAllProductsSlider, productState, }) => {
     const [formState, setFormState] = useState(initialState);
     const offers = offersState.offers;
     let fileInput = useRef(null);
@@ -24,9 +24,9 @@ const OffersManager = ({ offersState, getOffers, postOffers, getProducts, produc
 
     useEffect(() => {
         getOffers();
-        getProducts();
+        getAllProductsSlider();
         console.log('PRODUCTOS',productState);
-    }, [getOffers, getProducts]);
+    }, [getOffers, getAllProductsSlider]);
     
 
     const handleOnChange = (event) => {
@@ -185,7 +185,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getOffers: () => dispatch(getOffers()),
         postOffers: (file, slug, productId, status) => dispatch(postOffers(file, slug, productId, status)),
-        getProducts: () => dispatch(getProducts()),
+        getAllProductsSlider: () => dispatch(getAllProductsSlider()),
     }
 }
 
