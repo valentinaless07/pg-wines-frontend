@@ -34,6 +34,10 @@ function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct
         
         }
 
+        else{
+            history.push("/cart")
+        }
+
         
         }
 

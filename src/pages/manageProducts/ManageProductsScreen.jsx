@@ -12,7 +12,7 @@ const ManageProductsScreen = ({products, getProductsPage, getProductsPagination}
 
   useEffect(() => {
     getProductsPagination()
-} , []);
+} , [getProductsPagination]);
 
   function changePage({selected}){
     getProductsPage(selected+1)

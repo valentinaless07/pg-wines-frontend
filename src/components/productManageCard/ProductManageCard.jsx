@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './productManageCard.module.css'
-import { getProductsPagination } from '../../redux/actions/manageProductsActions';
 import { connect } from 'react-redux';
 import {deleteProduct} from '../../redux/actions/manageProductsActions'
 import { useHistory } from "react-router-dom";
