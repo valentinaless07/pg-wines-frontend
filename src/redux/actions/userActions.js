@@ -3,10 +3,11 @@ export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_CATEGORY = 'GET_CATEGORY';
 export const PRODUCT_BY_CATEGORY = 'PRODCUT_BY_CATEGORY'
 export const PRODUCTS_PAGE = 'PODUCTS_PAGE'
+export const PRODUCTS_FILTERED = 'PRODUCTS_FILTERED'
 
 export const getProducts =()=>{
     return async function(dispatch){
-        await axios.get('https://pg-delsur.herokuapp.com/products')
+        await axios.get('https://pg-delsur.herokuapp.com/products?itemsPerPage=12')
         .then(results=>{
             dispatch({
                 type:GET_PRODUCTS,
@@ -16,9 +17,9 @@ export const getProducts =()=>{
     }
 }
 
-export const getProductsByPage=(page)=>{
+export const getProductsByPage=(categoryId, initPrice, finalPrice, page)=>{
     return async function(dispatch){
-        await axios.get('https://pg-delsur.herokuapp.com/products?page='+page)
+        await axios.get(`https://pg-delsur.herokuapp.com/products?itemsPerPage=12&categoryId=${categoryId}&initPrice=${initPrice}&finalPrice=${finalPrice}&page=${page}`)
         .then(results=>{
             dispatch({
                 type:PRODUCTS_PAGE,
@@ -28,22 +29,28 @@ export const getProductsByPage=(page)=>{
     }
 }
 
-export const getProductsbyCategory=(categoryName)=>{
+// export const getProductsbyCategory=(categoryName)=>{
+//     return async function(dispatch){
+//         await axios.get('https://delsur-api-1.herokuapp.com/products?category='+categoryName)
+//         .then(results =>{
+//             dispatch({
+//                 type: PRODUCT_BY_CATEGORY,
+//                 payload: results.data
+//             })
+//         })
+//     }
+// }
+
+export const getFilteredProductsList=({categoryId, initPrice, finalPrice})=>{
+    console.log(categoryId, initPrice, finalPrice)
     return async function(dispatch){
-        await axios.get('https://delsur-api-1.herokuapp.com/products?category='+categoryName)
-        .then(results =>{
+        await axios.get(`https://pg-delsur.herokuapp.com/products?itemsPerPage=12&page=1&categoryId=${categoryId}&initPrice=${initPrice}&finalPrice=${finalPrice}`)
+        .then(results=>{
+            console.log(results)
             dispatch({
-                type: PRODUCT_BY_CATEGORY,
+                type: PRODUCTS_FILTERED,
                 payload: results.data
             })
         })
-    }
-}
-
-export const getFilteredProductsList=({category, initialPrice, finalPrice})=>{
-    console.log(category, initialPrice, finalPrice)
-    let url= 'https://delsur-api-1.herokuapp.com/products?';
-    return async function(dispatch){
-
     }
 }

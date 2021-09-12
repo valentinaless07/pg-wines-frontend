@@ -1,7 +1,7 @@
 import styles  from './ProductsList.module.css';
 import './productList.css'
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux';
 import { getProductsByPage } from '../../redux/actions/userActions';
@@ -9,10 +9,12 @@ import './productList.css'
 import Swal from 'sweetalert2'
 import { addCartProduct } from '../../redux/actions/cartActions';
 
-
 function ProductsContainer({state, getProductsByPage}){
 
-    const history = useHistory();
+        let {search} = useLocation();
+        let history = useHistory();
+        
+        var query = new URLSearchParams(search)
 
     function handleGoToProducDescription(productId){
         history.push(`/product/${productId}`);
@@ -30,7 +32,11 @@ function ProductsContainer({state, getProductsByPage}){
         }
 
         function changePage({selected}){
-            getProductsByPage(selected+1)
+            let category = query.get('category') || ''
+            let initPrice = query.get('initPrice') || ''
+            let finalPrice = query.get('finalPrice') || ''
+            let page = selected+1
+            getProductsByPage(category, initPrice, finalPrice, page)
         }
 
     return(<div id='containerProducts' className={`${styles.container}`}>
@@ -60,6 +66,7 @@ function ProductsContainer({state, getProductsByPage}){
         pageCount={state.totalPage}
         onPageChange={changePage}
         activeClassName={'activePaginationBtn'}
+        initialPage={0}
         />
     </div>)
 }
@@ -74,7 +81,7 @@ function mapStateToProps(state) {
   function mapDispatchToProps(dispatch) {
     return {
         addCartProduct: (id) => dispatch(addCartProduct(id)),
-        getProductsByPage: (num) => dispatch(getProductsByPage(num))
+        getProductsByPage: (category, initPrice, finalPrice, page) => dispatch(getProductsByPage(category, initPrice, finalPrice, page))
 
 
     };
