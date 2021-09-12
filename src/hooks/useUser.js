@@ -42,7 +42,7 @@ export default function useUser() {
           photoURL: user.photoURL,
           email: user.email,
         });
-        replace("/home");
+        replace("/");
       })
       .catch((err) => {
         console.error(err);

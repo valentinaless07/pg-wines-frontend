@@ -26,7 +26,7 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
     
     useEffect(() => {
         if (authState.loggedIn) {           
-            return history.replace('/home');
+            return history.replace('/');
         }
 
     }, [authState.loggedIn, history]);
@@ -140,7 +140,7 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
 
                         <Link
                             id="cancel"
-                            to="/home"
+                            to="/"
                             className="link"
                         >
                             Cancel
