@@ -23,7 +23,7 @@ function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct
     }
 
     async function addProductCart(item){
-        if(cart_state.findIndex(el => el.id === item.id) === -1){
+        if(cart_state?.findIndex(el => el.id === item.id) === -1){
         let detail = item
         detail.itemsAmount = 1
 
