@@ -28,7 +28,7 @@
     text-align: center;
 }
 
-form {
+.register_form {
     display: flex;
     flex-direction: column;
     width: 100%;

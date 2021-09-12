@@ -34,15 +34,18 @@ const AppRouter = ({ authState }) => {
         <Switch>
 
           <Route exact path="/login" component={LoginScreen} />
-          <Route exact path="/" component={HomeScreen} />
+          <Route exact path="/home" component={HomeScreen} />
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
           <Route exact path="/vino/:name" component={SearchResults} />
           <Route exact path="/about" component={AboutUs} />
           <Route exact path='/manage' component={manageProductInf} />
           <Route exact path="/register" component={RegisterScreen} />
           <Route exact path="/checkout" component={ShippingPay} /> 
+          <Route exact path="/offersManager" component={OffersManager} /> 
+
           <Route exact path="/cart" component={Cart} />
-          <Route component={NotFound} />
+          {/* <Route exact path="/notFound" component={NotFound} /> */}
+         
 
           <PrivateRoute
             exact

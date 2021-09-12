@@ -16,7 +16,7 @@
     width: 400px;
 }
 
-form {
+.login_form {
     display: flex;
     flex-direction: column;
     width: 100%;
