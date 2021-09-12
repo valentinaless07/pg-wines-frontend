@@ -63,11 +63,15 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
                         {product_detail.description}
                           <p>${product_detail.cost}</p>
                     </div>
+                    
                     <div className={styles.lineaProduct}></div>
                         <label htmlFor="" className={styles.labelCantidad}>Cantidad:</label>
                         <div className={styles.cartProductDetail}>
                             <input type="text" id="cantidad" onChange={e => selectChange(e)}  />    
                         <button onClick={addProductCart} className={styles.addProductButton}>Agregar al carrito</button>
+                    </div>
+                    <div>
+                    <label htmlFor="" className={styles.labelStock}>Stock Disponible:{product_detail.stock}</label>
                     </div>
 
                 </div>
