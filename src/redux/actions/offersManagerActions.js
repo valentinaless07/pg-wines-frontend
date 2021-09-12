@@ -1,6 +1,5 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
-// import { fileUpload } from '../../helpers/helpers';
 export const OFFERS_LOADING = 'OFFERS_LOADING';
 export const OFFERS_SUCCESS = 'OFFERS_SUCCESS';
 export const OFFERS_ERROR = 'OFFERS_ERROR';
@@ -41,7 +40,7 @@ export const postOffers = (file, slug, productId, status) => {
         formData.append('image', file);
         formData.append('slug', slug);
         formData.append('productId', productId);
-        // console.log(JSON.stringify(formData));
+        console.log('FORM_DATA',{status, file, slug, productId});
         dispatch({
             type: OFFERS_LOADING
         });
@@ -68,8 +67,7 @@ export const postOffers = (file, slug, productId, status) => {
                 });
                 throw await resp.json();
             }
-        } catch (error) {
-            // throw error;
+        } catch (error) {           
             console.log('NO SUBE LA IMAGEN', { error });
             dispatch({
                 type: OFFERS_ERROR,
@@ -92,9 +90,7 @@ export const updateOfferById = (id, status) => {
             type: OFFERS_LOADING
         });
         try {
-            // console.log('LE PASO:', { id, status })
             results = await axios.put(`https://pg-delsur.herokuapp.com/offers/update`, { id: id, status: status.toString() });
-            // console.log('RESULTS AXIOS OK===>>:', results)
             await getOffers()(dispatch, getState);
             dispatch({
                 type: OFFERS_UPDATE,
@@ -108,7 +104,6 @@ export const updateOfferById = (id, status) => {
                 payload: error
             });
         }
-        // console.log('file from action: ',{file:file,slug: slug, productId: productId,status: status} );
     }
 }
 

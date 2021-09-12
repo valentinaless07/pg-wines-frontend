@@ -44,7 +44,7 @@ const OffersManager = ({ offersState, getOffers, postOffers, getProducts, produc
                 slug: productName
             });
         }
-
+        
         setFormState({
             ...formState,
             [event.target.name]: value,
@@ -80,7 +80,7 @@ const OffersManager = ({ offersState, getOffers, postOffers, getProducts, produc
         fileInput.current.value = '';
         fileName.current.value = '';
         document.getElementById('status').selectedIndex = 0;
-        setFormState({});
+        setFormState(initialState);
     }
 
     const handlePhotoUpload = () => {
@@ -150,23 +150,7 @@ const OffersManager = ({ offersState, getOffers, postOffers, getProducts, produc
                             }
                         </select>
                     </div>
-                    <div>
-                        {/* <label htmlFor="slug">Slug</label> */}
-                        {/* <input
-                            type="input"
-                            placeholder="Agregar slug"
-                            // ref={slug}
-                            id="slug"
-                            value={formState.slug}
-                            name="slug"
-                            onChange={handleOnChange}
-                            className={errorState.error ? styles.border_error : ''}
-                        /> */}
-                        {/* {
-                            (errorState.error)
-                                ? (<p className={styles.input_error}>{errorState.errorMsg}</p>)
-                                : null
-                        } */}
+                    <div>                     
                         <input type="text" id="fileName" name="fileName" ref={fileName} placeholder="Nombre de la foto" className={styles.file_name_input} />
                         <input
                             value={formState.file}
