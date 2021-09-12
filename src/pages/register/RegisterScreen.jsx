@@ -10,10 +10,10 @@ import { startRegisterWithEmailAndPassword } from '../../redux/actions/authActio
 import spinner from '../../assests/images/spinnerLargeBkTransparent.svg';
 
 const initialState = {
-    name: 'Juancho',
-    email: 'juancho@gmail.com',
-    password: 'EnUnCampin_&23g',
-    password2: 'EnUnCampin_&23g'
+    name: '',
+    email: '',
+    password: '',
+    password2: ''
 }
 
 const RegisterScreen = ({ authState, uiState, setError, removeError, startRegisterWithEmailAndPassword }) => {
