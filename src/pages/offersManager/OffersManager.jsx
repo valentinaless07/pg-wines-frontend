@@ -116,7 +116,14 @@ const OffersManager = ({ offersState, getOffers, postOffers, getAllProductsSlide
                 {
                     (offers.length > 0)
                         ?
-                        (offers.map(offer => (
+                        (offers.sort((a,b)=>{
+                            if(a.id < b.id){
+                                return 1;
+                            }else if(a.id > b.id){
+                                return -1;
+                            }
+                            return 0;
+                        }).map(offer => (
                             <div key={uniqid()} className={styles.cart_items_container}>
                                 <div className={styles.cart_items}>
                                     <OfferItem offer={offer} />
