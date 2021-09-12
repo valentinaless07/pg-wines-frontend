@@ -44,7 +44,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice}) => {
                             <b>${totalPrice}</b>
                             </div>
                             <hr className={styles.hr}></hr>
-                            <Link to='/checkout' className={styles.buttonSubmit}>CHECKOUT</Link>
+                            <Link to='/checkout' className={styles.buttonSubmit}><p>CHECKOUT</p></Link>
                         </div>
                     </div>
                 </div>

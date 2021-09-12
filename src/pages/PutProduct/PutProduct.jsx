@@ -95,6 +95,7 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, manag
         return errors
 
     }
+    
 
     function handleSubmit (e) {
         e.preventDefault()
@@ -103,23 +104,7 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, manag
           
         
         if(Object.keys(validateSubmit).length === 0){
-            let categId = detailData.categoryId
-            let brandId = detailData.brandId
-            let packId = detailData.packingId
-
-            detailData.categoryId.id === firstCategory.category.id ? categId = manageProductsState.categories.find(el => el.id === firstCategory.category.id).id : categId = detailData.categoryId
-            detailData.brandId.id === firstBrand.brand.id ? brandId = manageProductsState.brands.find(el => el.id === firstBrand.brand.id).id : brandId = detailData.brandId
-            detailData.packingId.id === firstPacking.packing.id ? packId = manageProductsState.packing.find(el => el.id === firstPacking.packing.id).id : packId = detailData.packingId
             
-                    
-           setDetailData(
-               {
-                   ...detailData,
-                   packingId: packId,
-                   categoryId: categId,
-                   brandId: brandId
-               }
-           )
 
             
                 updateProduct(detailData)
