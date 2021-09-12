@@ -76,7 +76,7 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
                 } */}
                 <h3 className="auth__title">Login to your account</h3>
 
-                <form onSubmit={handleStarLoginWithEmailAndPassword}>
+                <form className="login_form" onSubmit={handleStarLoginWithEmailAndPassword}>
                     {
                         msgError &&
                         (

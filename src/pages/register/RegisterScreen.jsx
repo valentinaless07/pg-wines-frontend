@@ -79,7 +79,7 @@ const RegisterScreen = ({ authState, uiState, setError, removeError, startRegist
             <div className="register__box-container">
                 <h3 className="register__title">Register</h3>
 
-                <form onSubmit={handleRegister}>
+                <form className="register_form" onSubmit={handleRegister}>
                     {
                         msgError &&
                         (
