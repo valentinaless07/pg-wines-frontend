@@ -10,11 +10,12 @@ import Swal from 'sweetalert2'
 import { addCartProduct } from '../../redux/actions/cartActions';
 import { editItemsAmount } from '../../redux/actions/cartActions';
 import { reloadCartLocalStorage } from '../../redux/actions/cartActions';
+import noFound from '../../assests/images/noFound.png'
 
 function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct, editItemsAmount, reloadCartLocalStorage}){
   console.log(cart_state);
      let {search} = useLocation();
-        
+        console.log(state.products)
     var query = new URLSearchParams(search)
     const history = useHistory();
 
@@ -47,7 +48,7 @@ function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct
     return(<div id='containerProducts' className={`${styles.container}`}>
         <div className={styles.productList}>
             {
-                state.products.map(item=>{return<Link to='#' key={item.id}>
+                state.products.length>0 ? state.products.map(item=>{return<Link to='#' key={item.id}>
                     <div className={styles.productContainer}>
                         <div className={styles.title}>
                             <span>{item.name}</span>
@@ -60,9 +61,18 @@ function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct
                                 {item.discount>5 && <span>{item.discount}% Desc</span>}
                                 {item.discount>5 ? <span className={styles.desc}>{'$ '+((item.cost)*(1-(item.discount/100))).toFixed(2)}</span>:<span>$ {item.cost}</span>}
                             </div>
+                            {item.stock ===0 ? 
+                            <button className={`${styles.bnt} ${styles.btnBuy} ${styles.noStock}`}>Sin Stock</button>
+                            :                            
                             <button onClick={() => addProductCart(item)} className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
+                            }
                     </div>
                 </Link>})
+                :
+                <div >
+                    <img className={styles.noFound} src={noFound} alt="noFound" />
+                    <h1>PERDÓN, NO ENCONTRAMOS LO QUE BUSCABAS</h1>
+                </div>
             }
         </div>
         <ReactPaginate
