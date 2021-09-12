@@ -5,12 +5,12 @@ export const PRODUCT_BY_NAME_RESET = 'PRODUCT_BY_NAME_RESET';
 
 export const getProductByName = (name) => {
     return async function(dispatch){
-        await axios.get(`https://delsur-api-1.herokuapp.com/products?name=${name}`)
+        await axios.get(`https://pg-delsur.herokuapp.com/products?name=${name}`)
         .then (results => {
             console.log(results)
             dispatch({
                 type: GET_PRODUCT_BY_NAME,
-                payload: results.data
+                payload: results.data.products
             })
         })       
     };

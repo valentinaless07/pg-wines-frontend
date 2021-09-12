@@ -9,16 +9,16 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { addCartProduct} from '../../redux/actions/cartActions';
-import Swal from 'sweetalert2'
+import { reloadCartLocalStorage } from '../../redux/actions/cartActions';
 
-const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state}) => {
+const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state, reloadCartLocalStorage}) => {
     // console.log(getProductDetail);
     const { id } = useParams()
     useEffect(() => {
         getProductDetail(id)
         return () => { getProductDetailReset() }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [])
+      }, [id])
 
       const [cantidadItems, setCantidadItems] = useState(1)
 
@@ -27,12 +27,13 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
           setCantidadItems(num)
       }
 
-      function addProductCart(){
+      async function addProductCart(){
         if(cart_state.findIndex(el => el.id === product_detail.id) === -1){
         let detail = product_detail
         detail.itemsAmount = cantidadItems    
-        addCartProduct(detail)
-        Swal.fire('Producto agregado al carrito')
+        await addCartProduct(detail)
+        reloadCartLocalStorage()
+        
         }
       }
 
@@ -95,6 +96,7 @@ function mapStateToProps(state) {
         getProductDetail: (product) => dispatch(getProductDetail(product)),
         getProductDetailReset: () => dispatch(getProductDetailReset()),
         addCartProduct: (id) => dispatch(addCartProduct(id)),
+        reloadCartLocalStorage: () => dispatch(reloadCartLocalStorage())
         
 
     };

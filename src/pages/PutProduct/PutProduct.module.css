@@ -5,6 +5,13 @@
   height: 90vh;
   margin-top: -40px;
 }
+
+.container_form {
+  height: 80vh;
+  display: flex;
+  align-items: flex-start;
+  margin-left: 15px;
+}
 .form {
   display: flex;
   flex-direction: column;

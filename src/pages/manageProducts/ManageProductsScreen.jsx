@@ -1,27 +1,28 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './ManageProductsScreen.module.css'
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getProducts } from '../../redux/actions/manageProductsActions';
+import { getProductsPagination } from '../../redux/actions/manageProductsActions';
 import ProductManageCard from '../../components/productManageCard/ProductManageCard';
+import ReactPaginate from 'react-paginate'
+import { getProductsPage } from '../../redux/actions/manageProductsActions';
+import { useEffect } from 'react';
 
+const ManageProductsScreen = ({products, getProductsPage, getProductsPagination}) => {
 
+  useEffect(() => {
+    getProductsPagination()
+} , []);
 
-const ManageProductsScreen = ({productState, getProducts}) => {
-
-    
-
-    useEffect(() => {
-        getProducts()
-    } , [getProducts]);
-
-    
+  function changePage({selected}){
+    getProductsPage(selected+1)
+}
 
     return (
         <div className={styles.manageProductsContainer}>
         <nav>
             <ul className={styles.nav}>
-                <NavLink to="/home"><li>Volver a la página de inicio</li></NavLink>
+                <NavLink to="/"><li>Volver a la página de inicio</li></NavLink>
                 <NavLink to="createproduct"><li>Crear producto</li></NavLink>
                 
             </ul>
@@ -29,24 +30,31 @@ const ManageProductsScreen = ({productState, getProducts}) => {
 
         <div className={styles.productsList}>
             <h1>Productos:</h1>
-            {productState && productState.map(el =>{
+            {products.products && products.products.map(el =>{
                 return <ProductManageCard key={el.id} id={el.id} name={el.name} category={el.category} cost={el.cost}/>
             })}
         </div>
-        
+        <ReactPaginate
+        previousLabel={<i className="fas fa-chevron-left"></i>}
+        nextLabel={<i className="fas fa-chevron-right"></i>}
+        pageCount={products.totalPage}
+        onPageChange={changePage}
+        activeClassName={'activePaginationBtn'}
+        />
         </div>
     );
 }
 
 const mapStateToProps = (state) => {
     return {
-      productState: state.manageProducts.products,
+      products: state.manageProducts.products,
     };
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
-      getProducts: () => dispatch(getProducts())
+      getProductsPagination: () => dispatch(getProductsPagination()),
+      getProductsPage: (num) => dispatch(getProductsPage(num))
     }
   }
 

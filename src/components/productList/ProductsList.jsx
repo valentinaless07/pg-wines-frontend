@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { getProducts, getProductsbyCategory } from '../../redux/actions/userActions';
+import { getProducts, getFilteredProductsList } from '../../redux/actions/userActions';
 import { getCategories } from '../../redux/actions/manageProductsActions';
 import ProductsContainer from './productsContainer';
 import './productList.css'
+import { useHistory } from 'react-router';
 
-function ProductList({state, manageProductState, getProductsbyCategory, getProducts, getCategories}) {
+function ProductList({state, manageProductState, getFilteredProductsList, getProducts, getCategories}) {
 
     useEffect(()=>{        
         getProducts();
         getCategories()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    
+
+    let history = useHistory();
+
     const [values, setValues] = useState({
-        min: '',
-        max: ''
+        categoryId:'',
+        initPrice:'',
+        finalPrice:''
     })
 
     function activeFilter(){
@@ -23,68 +27,65 @@ function ProductList({state, manageProductState, getProductsbyCategory, getProdu
         document.getElementById('filter').classList.toggle('btnFilterActive')
     }
 
-    function handleFilter(name){
-        let value = document.getElementById('category')
-        let selected = value.options[value.selectedIndex].text
-        selected!=='Clear All' ?
-        getProductsbyCategory(selected)
-        :
-        getProducts()
-    }
-
     function valueFilter(e){
-    e.target.value>0&&
-    setValues({
-        ...values,
-        [e.target.name]: e.target.value
-    })
+        let filter = e.target.value
+        if(e.target.id === 'category'){
+            filter= e.target.options[e.target.options.selectedIndex].id
+        }
+        setValues({
+            ...values,
+            [e.target.name]: filter
+        })
     }
 
-    function handleSubmit(e){
-        e.preventDefault()
-        let category = document.getElementById('category')
-        let branch = document.getElementById('branch')
-        category.selectedIndex = category.options[0].value
-        branch.selectedIndex = branch.options[0].value
+    function handleSubmit(){
+        if(values.finalPrice<values.initPrice){
+            values.finalPrice=''
+        }
+        history.push({search:`?category=${values.categoryId}&initPrice=${values.initPrice}&finalPrice=${values.finalPrice}`})
+        getFilteredProductsList(values)
         setValues({
-            min: '',
-            max: ''
+            categoryId: '',
+            initPrice: '',
+            finalPrice: ''
         })
+    }
 
+    function clear(){
+        history.push({search:''})
+        getProducts()
     }
 
     return (
         <React.Fragment>
-            <form action="" onSubmit={handleSubmit}>
                 <div id='sidebar' className='filter'>
                     <span className='filterTittle'>BUSQUEDA</span>
                     <span onClick={activeFilter} id='filter' className='filterBtn'><i className="fas fa-filter"></i></span>
                     <div className='filterOptions'>
-                        <select name='categories' id='category' onChange={handleFilter} defaultValue={'DEFAULT'}>
+                        <select onChange={valueFilter} name='categoryId' id='category' defaultValue={'DEFAULT'}>
                             <option disabled value='DEFAULT'>Categoria</option>
                             {
-                                manageProductState.map(category=><option key={category.id}>{category.name}</option>)
+                                manageProductState.map(category=><option id={category.id} key={category.id}>{category.name}</option>)
                             }
                         </select><br/>
-                        <select name='branch' id='branch' defaultValue={'DEFAULT'}>
+                        {/* <select name='branch' id='branch' defaultValue={'DEFAULT'}>
                             <option disabled value='DEFAULT'>Marca</option>
-                        </select><br/>
+                        </select><br/> */}
                         <span className='priceFilter'>PRECIO $</span>
                         <div className='valuesMM'>
                             <div>
-                            <span>Min $</span><input onChange={valueFilter} type="number" name="min" id="minValue" className='value' value={values.min} />
+                            <span>Min $</span><input onChange={valueFilter} type="number" name="initPrice" id="minValue" className='value' value={values.initPrice} />
                             </div>
                             <div>
-                            <span>Max $</span><input onChange={valueFilter} type="number" name="max" id="maxValue" className='value' value={values.max} />
+                            <span>Max $</span><input onChange={valueFilter} type="number" name="finalPrice" id="maxValue" className='value' value={values.finalPrice} />
                             </div>
                         </div>
-                        <button type='submit' id='clean'>Limpiar filtros <i className="fas fa-broom"></i></button>
-                        <button type='submit' id='search' >Buscar <i className="fas fa-search"></i></button>
+                        <button onClick={clear} id='clean'>Limpiar filtros <i className="fas fa-broom"></i></button>
+                        <button onClick={handleSubmit} type='submit' id='search' >Buscar <i className="fas fa-search"></i></button>
                     </div>
                 </div>
-            </form>
         
-            {state.length>0 ? <ProductsContainer state={state}/> : <h1>Cargando...</h1>}            
+            {state.products ? <ProductsContainer state={state}/> : <h1>Cargando...</h1>}            
         </React.Fragment>
     )
 }
@@ -96,4 +97,4 @@ function MapStateToProps(state){
     }
 }
 
-export default connect(MapStateToProps, {getProducts, getProductsbyCategory, getCategories})(ProductList)
+export default connect(MapStateToProps, {getProducts, getFilteredProductsList, getCategories})(ProductList)

@@ -1,37 +1,52 @@
 import styles  from './ProductsList.module.css';
 import './productList.css'
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom'
-import { addCartProduct } from '../../redux/actions/cartActions';
-import Swal from 'sweetalert2'
+import { useHistory, useLocation } from 'react-router-dom'
+import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux';
+import { getProductsByPage } from '../../redux/actions/userActions';
+import './productList.css'
+import Swal from 'sweetalert2'
+import { addCartProduct } from '../../redux/actions/cartActions';
+import { editItemsAmount } from '../../redux/actions/cartActions';
+import { reloadCartLocalStorage } from '../../redux/actions/cartActions';
 
-
-
-function ProductsContainer(state){
-    
+function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct, editItemsAmount, reloadCartLocalStorage}){
+  
+     let {search} = useLocation();
+        
+    var query = new URLSearchParams(search)
     const history = useHistory();
-    console.log(history)
-    
+
     function handleGoToProducDescription(productId){
         history.push(`/product/${productId}`);
     }
 
-    function addProductCart(item){
-        if(state.cart_state.findIndex(el => el.id === item.id) === -1){
+    async function addProductCart(item){
+        if(cart_state.findIndex(el => el.id === item.id) === -1){
         let detail = item
-        detail.itemsAmount = 1    
+        detail.itemsAmount = 1
+
+        await addCartProduct(detail)
+        reloadCartLocalStorage()
         
-        state.addCartProduct(detail)
-        Swal.fire('Producto agregado al carrito')
-
-        }
         }
 
-    return(<div className={`${styles.container}`}>
+        
+        }
+
+        function changePage({selected}){
+            let category = query.get('category') || ''
+            let initPrice = query.get('initPrice') || ''
+            let finalPrice = query.get('finalPrice') || ''
+            let page = selected+1
+            getProductsByPage(category, initPrice, finalPrice, page)
+        }
+
+    return(<div id='containerProducts' className={`${styles.container}`}>
         <div className={styles.productList}>
             {
-                state.state.map(item=>{return<Link to='#' key={item.id}>
+                state.products.map(item=>{return<Link to='#' key={item.id}>
                     <div className={styles.productContainer}>
                         <div className={styles.title}>
                             <span>{item.name}</span>
@@ -49,6 +64,14 @@ function ProductsContainer(state){
                 </Link>})
             }
         </div>
+        <ReactPaginate
+        previousLabel={<i className="fas fa-chevron-left"></i>}
+        nextLabel={<i className="fas fa-chevron-right"></i>}
+        pageCount={state.totalPage}
+        onPageChange={changePage}
+        activeClassName={'activePaginationBtn'}
+        initialPage={0}
+        />
     </div>)
 }
 
@@ -58,13 +81,14 @@ function mapStateToProps(state) {
       cart_state: state.cart.cartState
     };
   };
-  
+
   function mapDispatchToProps(dispatch) {
     return {
         addCartProduct: (id) => dispatch(addCartProduct(id)),
-        
-
+        getProductsByPage: (category, initPrice, finalPrice, page) => dispatch(getProductsByPage(category, initPrice, finalPrice, page)),
+        editItemsAmount: (amount) => dispatch(editItemsAmount(amount)),
+        reloadCartLocalStorage: () => dispatch(reloadCartLocalStorage())
     };
   };
-  
+
   export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);
