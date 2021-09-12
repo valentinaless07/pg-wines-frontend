@@ -32,12 +32,13 @@
   margin-left: 20%;
   display: flex;
   align-items: center;
-  width: 110px;
-  justify-content: space-between;
+  width: 120px;
+  justify-content: center;
 }
 
 .icons_container > i {
   cursor: pointer;
+  padding: 5px;
 }
 
 .cost {

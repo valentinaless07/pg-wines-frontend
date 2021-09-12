@@ -6,8 +6,10 @@ import { getProductByName, getProductByNameReset } from '../../redux/actions/pro
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom'
+import { addCartProduct } from '../../redux/actions/cartActions';
+import { reloadCartLocalStorage } from '../../redux/actions/cartActions';
 
-const SearchResults = ({ product_detail, getProductByName, getProductByNameReset }) => {
+const SearchResults = ({ product_detail, getProductByName, getProductByNameReset, addCartProduct, cart_state, reloadCartLocalStorage }) => {
     // console.log(getProductDetail);
     const { name } = useParams()
     const history = useHistory();
@@ -24,6 +26,20 @@ const SearchResults = ({ product_detail, getProductByName, getProductByNameReset
     function handleGoToProducDescription(productId) {
         history.push(`/product/${productId}`);
     }
+
+    async function addProductCart(item){
+        
+        if(cart_state?.findIndex(el => el.id === item.id) === -1){
+            let detail = item
+            detail.itemsAmount = 1
+
+        await addCartProduct(detail)
+        reloadCartLocalStorage()
+        
+        }
+
+        
+        }
 
 
     return (
@@ -50,7 +66,7 @@ const SearchResults = ({ product_detail, getProductByName, getProductByNameReset
                                         {item.discount > 5 && <span>{item.discount}% Desc</span>}
                                         {item.discount > 5 ? <span className={styles.desc}>{'$ ' + ((item.cost) * (1 - (item.discount / 100))).toFixed(2)}</span> : <span>$ {item.cost}</span>}
                                     </div>
-                                    <button className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
+                                    <button onClick={() => addProductCart(item)} className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
                                 </div>)
                         })
                         : <div className="notFoundWrapper">
@@ -72,7 +88,8 @@ const SearchResults = ({ product_detail, getProductByName, getProductByNameReset
 
 function mapStateToProps(state) {
     return {
-        product_detail: state.products.product_search
+        product_detail: state.products.product_search,
+        cart_state: state.cart.cartState
     };
 };
 
@@ -80,6 +97,8 @@ function mapDispatchToProps(dispatch) {
     return {
         getProductByName: (product) => dispatch(getProductByName(product)),
         getProductByNameReset: () => dispatch(getProductByNameReset()),
+        addCartProduct: (item) => dispatch(addCartProduct(item)),
+        reloadCartLocalStorage: () => dispatch(reloadCartLocalStorage())
     };
 };
 

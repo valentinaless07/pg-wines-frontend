@@ -13,7 +13,7 @@ import { reloadCartLocalStorage } from '../../redux/actions/cartActions';
 import noFound from '../../assests/images/noFound.png'
 
 function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct, editItemsAmount, reloadCartLocalStorage}){
-  console.log(cart_state);
+  
      let {search} = useLocation();
         console.log(state.products)
     var query = new URLSearchParams(search)
@@ -24,7 +24,7 @@ function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct
     }
 
     async function addProductCart(item){
-        console.log('cartstate', cart_state);
+        
         if(cart_state?.findIndex(el => el.id === item.id) === -1){
             let detail = item
             detail.itemsAmount = 1
