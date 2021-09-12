@@ -44,6 +44,8 @@ function ProductList({state, manageProductState, getFilteredProductsList, getPro
         }
         history.push({search:`?category=${values.categoryId}&initPrice=${values.initPrice}&finalPrice=${values.finalPrice}`})
         getFilteredProductsList(values)
+        let category = document.getElementById('category')
+        category.selectedIndex=category.options[0]
         setValues({
             categoryId: '',
             initPrice: '',
@@ -52,8 +54,16 @@ function ProductList({state, manageProductState, getFilteredProductsList, getPro
     }
 
     function clear(){
+        let category = document.getElementById('category')
+        category.selectedIndex=category.options[0]
+        setValues({
+            categoryId: '',
+            initPrice: '',
+            finalPrice: ''
+        })
         history.push({search:''})
-        getProducts()
+
+            getProducts()
     }
 
     return (
