@@ -66,6 +66,13 @@
   margin-top: 10px;
 }
 
+.labelStock {
+  font-size: 12px;
+  color: #333;
+  display: block;
+  margin-top: 10px;
+}
+
 .cartProductDetail input {
   width: 64px;
   height: 50px;
