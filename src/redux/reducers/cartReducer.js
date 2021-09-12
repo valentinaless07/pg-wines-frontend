@@ -47,7 +47,7 @@ export default function cartReducer (state = initialState, action) {
               return{
                 ...state
               }
-            }
+            }//
             
 
           case "DELETE_CART_PRODUCT":
