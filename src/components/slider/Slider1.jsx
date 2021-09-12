@@ -15,8 +15,6 @@ const Slider1 = ({ data, from = 0, to = 0, width = '100%', getOffers, offersStat
 
     useEffect(() => {
         getOffers();
-        console.log('hola', offers);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [getOffers]);
 
     const handleClickItem = (idx)=> {
@@ -26,9 +24,7 @@ const Slider1 = ({ data, from = 0, to = 0, width = '100%', getOffers, offersStat
             const productId = currentOffer.productId;
             
             history.push(`/product/${productId}`);            
-        }
-        console.log(offers);
-        console.log(`Sono sul ${idx} `);
+        }      
     }
 
     return (
