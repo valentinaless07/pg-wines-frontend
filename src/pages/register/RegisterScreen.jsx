@@ -1,3 +1,4 @@
+// import Swal from 'sweetalert2';
 import validator from 'validator';
 import React, { useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
@@ -26,17 +27,27 @@ const RegisterScreen = ({ authState, uiState, setError, removeError, startRegist
         useRefName.current.select();
     }, []);
 
-    const handleRegister = (event) => {
+    const handleRegister = async(event) => {
         event.preventDefault();
         if (isFormValid()) {
             // console.log('formValues: ', formValues);
-            startRegisterWithEmailAndPassword(name, email, password);
-            // history.push('/home');
+            console.log('1')
+            await startRegisterWithEmailAndPassword(name, email, password);
+            console.log('2')
+            console.log('error: ', authState.error);
+            if(authState.error){
+                console.log('error');               
+                console.log('3');
+
+            }else{
+                console.log('4')
+                return history.replace('/home');
+            }
         }else {
             console.log('Form is not valid');
         }
     }
-
+    
     const isFormValid = () => {
         switch (true) {
             case (name.trim().length === 0):
@@ -68,7 +79,7 @@ const RegisterScreen = ({ authState, uiState, setError, removeError, startRegist
             <div className="register__box-container">
                 <h3 className="register__title">Register</h3>
 
-                <form onSubmit={handleRegister}>
+                <form className="register_form" onSubmit={handleRegister}>
                     {
                         msgError &&
                         (

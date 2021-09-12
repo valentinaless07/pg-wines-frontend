@@ -28,7 +28,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
       }
 
       async function addProductCart(){
-        if(cart_state.findIndex(el => el.id === product_detail.id) === -1){
+        if(cart_state?.findIndex(el => el.id === product_detail.id) === -1){
         let detail = product_detail
         detail.itemsAmount = cantidadItems    
         await addCartProduct(detail)

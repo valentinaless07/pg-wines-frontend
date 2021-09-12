@@ -21,6 +21,7 @@ import LoginScreen from '../pages/login/LoginScreen';
 import PutProduct from '../pages/PutProduct/PutProduct';
 import manageProductInf from '../pages/manageProductInf/ManageProductInf';
 import SearchResults from '../pages/productDetails/SearchResults';
+import OffersManager from '../pages/offersManager/OffersManager';
 import NotFound from '../pages/NotFound/NotFound';
 
 const AppRouter = ({ authState }) => {
@@ -33,15 +34,31 @@ const AppRouter = ({ authState }) => {
         <Switch>
 
           <Route exact path="/login" component={LoginScreen} />
-          <Route exact path="/" component={HomeScreen} />
+          <Route exact path="/home" component={HomeScreen} />
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
           <Route exact path="/vino/:name" component={SearchResults} />
           <Route exact path="/about" component={AboutUs} />
           <Route exact path='/manage' component={manageProductInf} />
-          <Route path="/register" component={RegisterScreen} />
+          <Route exact path="/register" component={RegisterScreen} />
           <Route exact path="/checkout" component={ShippingPay} /> 
-          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/offersManager" component={OffersManager} /> 
 
+          <Route exact path="/cart" component={Cart} />
+          {/* <Route exact path="/notFound" component={NotFound} /> */}
+         
+
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            path='/offersManager'
+            component={OffersManager}
+          />
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            path='/manageProducts'
+            component={ManageProductsScreen}
+          />
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
@@ -73,9 +90,7 @@ const AppRouter = ({ authState }) => {
             component={PutProduct}
           />
 
-
-        <Route component={NotFound} />
-
+          <Redirect to='/home' />
 
         </Switch>
 

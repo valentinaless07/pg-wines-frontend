@@ -28,7 +28,7 @@
     text-align: center;
 }
 
-form {
+.register_form {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -141,9 +141,10 @@ button:hover{
     padding: 5px;
 } */
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
     .register__main {
         background-color: white;
+        align-items: start;
     }
 
     .register__box-container {

@@ -4,6 +4,7 @@ import { getProducts, getFilteredProductsList } from '../../redux/actions/userAc
 import { getCategories } from '../../redux/actions/manageProductsActions';
 import ProductsContainer from './productsContainer';
 import './productList.css'
+import { useHistory } from 'react-router';
 
 function ProductList({state, manageProductState, getFilteredProductsList, getProducts, getCategories}) {
 
@@ -12,10 +13,13 @@ function ProductList({state, manageProductState, getFilteredProductsList, getPro
         getCategories()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    let history = useHistory();
+
     const [values, setValues] = useState({
-        category: '',
-        initialPrice: '',
-        finalPrice: ''
+        categoryId:'',
+        initPrice:'',
+        finalPrice:''
     })
 
     function activeFilter(){
@@ -23,53 +27,45 @@ function ProductList({state, manageProductState, getFilteredProductsList, getPro
         document.getElementById('filter').classList.toggle('btnFilterActive')
     }
 
-    // function handleFilter(name){
-    //     let value = document.getElementById('category')
-    //     let selected = value.options[value.selectedIndex].text
-    //     selected!=='Clear All' ?
-    //     getProductsbyCategory(selected.replace(' ','%20'))
-    //     :
-    //     getProducts()
-    // }
-
     function valueFilter(e){
-        console.log(e.target.value)
-    typeof(e.target.value)==='number' && e.target.value>0&&
-    setValues({
-        ...values,
-        [e.target.name]: e.target.value
-    })
+        let filter = e.target.value
+        if(e.target.id === 'category'){
+            filter= e.target.options[e.target.options.selectedIndex].id
+        }
+        setValues({
+            ...values,
+            [e.target.name]: filter
+        })
     }
 
-    function handleSubmit(e){
-        e.preventDefault()
-        let category = document.getElementById('category')
-        category.selectedIndex = category.options[0].value
-
-        if(values.finalPrice<values.initialPrice){
+    function handleSubmit(){
+        if(values.finalPrice<values.initPrice){
             values.finalPrice=''
         }
-
+        history.push({search:`?category=${values.categoryId}&initPrice=${values.initPrice}&finalPrice=${values.finalPrice}`})
         getFilteredProductsList(values)
         setValues({
-            category: '',
-            initialPrice: '',
+            categoryId: '',
+            initPrice: '',
             finalPrice: ''
         })
+    }
 
+    function clear(){
+        history.push({search:''})
+        getProducts()
     }
 
     return (
         <React.Fragment>
-            <form action="" onSubmit={handleSubmit}>
                 <div id='sidebar' className='filter'>
                     <span className='filterTittle'>BUSQUEDA</span>
                     <span onClick={activeFilter} id='filter' className='filterBtn'><i className="fas fa-filter"></i></span>
                     <div className='filterOptions'>
-                        <select onChange={valueFilter} name='category' id='category' defaultValue={'DEFAULT'}>
+                        <select onChange={valueFilter} name='categoryId' id='category' defaultValue={'DEFAULT'}>
                             <option disabled value='DEFAULT'>Categoria</option>
                             {
-                                manageProductState.map(category=><option key={category.id}>{category.name}</option>)
+                                manageProductState.map(category=><option id={category.id} key={category.id}>{category.name}</option>)
                             }
                         </select><br/>
                         {/* <select name='branch' id='branch' defaultValue={'DEFAULT'}>
@@ -78,17 +74,16 @@ function ProductList({state, manageProductState, getFilteredProductsList, getPro
                         <span className='priceFilter'>PRECIO $</span>
                         <div className='valuesMM'>
                             <div>
-                            <span>Min $</span><input onChange={valueFilter} type="number" name="initialPrice" id="minValue" className='value' value={values.initialPrice} />
+                            <span>Min $</span><input onChange={valueFilter} type="number" name="initPrice" id="minValue" className='value' value={values.initPrice} />
                             </div>
                             <div>
                             <span>Max $</span><input onChange={valueFilter} type="number" name="finalPrice" id="maxValue" className='value' value={values.finalPrice} />
                             </div>
                         </div>
-                        <button type='submit' id='clean'>Limpiar filtros <i className="fas fa-broom"></i></button>
-                        <button type='submit' id='search' >Buscar <i className="fas fa-search"></i></button>
+                        <button onClick={clear} id='clean'>Limpiar filtros <i className="fas fa-broom"></i></button>
+                        <button onClick={handleSubmit} type='submit' id='search' >Buscar <i className="fas fa-search"></i></button>
                     </div>
                 </div>
-            </form>
         
             {state.products ? <ProductsContainer state={state}/> : <h1>Cargando...</h1>}            
         </React.Fragment>

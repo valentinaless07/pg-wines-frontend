@@ -11,15 +11,16 @@ const useForm = ( initialState = {} ) => {
 
 
     const handleInputChange = ({ target }) => {
-
+        console.log('TARGET: ',target);
         setValues({
             ...values,
             [ target.name ]: target.value
         });
+        console.log('VALUES: ', values);
 
     }
 
-    return [ values, handleInputChange, reset ];
+    return [ values, handleInputChange, setValues, reset ];
 
 }
 

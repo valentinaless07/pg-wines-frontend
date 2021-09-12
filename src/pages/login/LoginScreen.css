@@ -16,7 +16,7 @@
     width: 400px;
 }
 
-form {
+.login_form {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -170,16 +170,18 @@ button:hover{
 }
 
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
     .auth__main {
         background-color: white;
+        align-items: start;
     }
 
     .auth__box-container {
         background-color: white;      
         padding: .5em;
         min-width: 300px;
-        width: 400px;
+        width: 400px;    
+
     }
 
     .auth__container-cancel-new-account{

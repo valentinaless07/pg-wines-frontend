@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_CATEGORY, PRODUCT_BY_CATEGORY, PRODUCTS_PAGE } from '../actions/userActions'
+import { GET_PRODUCTS, GET_CATEGORY, PRODUCT_BY_CATEGORY, PRODUCTS_PAGE, PRODUCTS_FILTERED } from '../actions/userActions'
 
 let initialState = {
     products: [],
@@ -24,6 +24,12 @@ const productReducer = (state = initialState, action) => {
         }
         case PRODUCT_BY_CATEGORY:{
             
+            return{
+                ...state,
+                products: action.payload
+            }
+        }
+        case PRODUCTS_FILTERED:{
             return{
                 ...state,
                 products: action.payload
