@@ -37,10 +37,16 @@ export default function cartReducer (state = initialState, action) {
            case "LOCAL_STORAGE_INIT":
             let cartLocalStorage = localStorage.getItem("cart")
             cartLocalStorage = JSON.parse(cartLocalStorage);
-
-            return {
-              ...state,
-              cartState: cartLocalStorage
+            if(cartLocalStorage !== null){
+              return {
+                ...state,
+                cartState: cartLocalStorage
+              }
+            }
+            else{
+              return{
+                ...state
+              }
             }
             
 
