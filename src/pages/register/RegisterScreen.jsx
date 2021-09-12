@@ -22,32 +22,28 @@ const RegisterScreen = ({ authState, uiState, setError, removeError, startRegist
     const [formValues, handleInputChange] = useForm(initialState);
     const { name, email, password, password2 } = formValues;
     const { msgError } = uiState;
-    // console.log('msgError: ', msgError);
+   
     useEffect(() => {
         useRefName.current.select();
     }, []);
 
-    const handleRegister = async(event) => {
+    useEffect(() => {
+
+        if (authState.loggedIn) {
+            return history.replace('/home');
+        }
+
+    }, [authState.loggedIn, history]);
+
+    const handleRegister = async (event) => {
         event.preventDefault();
         if (isFormValid()) {
-            // console.log('formValues: ', formValues);
-            console.log('1')
             await startRegisterWithEmailAndPassword(name, email, password);
-            console.log('2')
-            console.log('error: ', authState.error);
-            if(authState.error){
-                console.log('error');               
-                console.log('3');
-
-            }else{
-                console.log('4')
-                return history.replace('/home');
-            }
-        }else {
+        } else {
             console.log('Form is not valid');
         }
     }
-    
+
     const isFormValid = () => {
         switch (true) {
             case (name.trim().length === 0):
