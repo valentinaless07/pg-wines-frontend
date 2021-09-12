@@ -1,4 +1,3 @@
-import Swal from 'sweetalert2';
 import validator from 'validator';
 import useForm from '../../hooks/useForm';
 import React, { useRef, useEffect } from 'react';

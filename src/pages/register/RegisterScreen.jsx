@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 import validator from 'validator';
 import React, { useRef, useEffect } from 'react';
 import { connect } from 'react-redux';

@@ -2,15 +2,16 @@ import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
-  getAuth,
+  // createUserWithEmailAndPassword,
+  // signInWithEmailAndPassword,
+  // updateProfile,
+  // getAuth,
   signInWithPopup,
 } from "firebase/auth";
 
 import { googleAuthProvider } from "../../firebase/firebaseConfig";
 import { saveStorage } from "../../helpers/helpers";
+import { AUTH_LOGIN, AUTH_LOGIN_SUCCESS, AUTH_LOGIN_ERROR } from '../actions/authActions';
 
 export default function useUser() {
   const dispatch = useDispatch();

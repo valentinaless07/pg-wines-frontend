@@ -11,8 +11,8 @@ const HomeScreen = () => {
   return (
     <React.Fragment>
       <Navbar />
-      <Slider1 data={sliderData} />
-      &nbsp;&nbsp;&nbsp;    
+      {/* <Slider1 data={sliderData} /> */}
+      &nbsp;&nbsp;&nbsp;      
       <Slider1 data={sliderData} from={1} to={5} width={'75%'} />
       {/* <Slider2 /> */}
       &nbsp;&nbsp;

@@ -20,7 +20,7 @@ import RegisterScreen from '../pages/register/RegisterScreen';
 import LoginScreen from '../pages/login/LoginScreen';
 import PutProduct from '../pages/PutProduct/PutProduct';
 import SearchResults from '../pages/productDetails/SearchResults';
-import SliderManager from '../pages/sliderManager/SliderManager';
+import OffersManager from '../pages/offersManager/OffersManager';
 
 const AppRouter = ({ authState }) => {
 
@@ -36,36 +36,36 @@ const AppRouter = ({ authState }) => {
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
           <Route exact path="/vino/:name" component={SearchResults} />
           <Route exact path="/about" component={AboutUs} />
-          <Route  path="/register" component={RegisterScreen} />
+          <Route path="/register" component={RegisterScreen} />
           {/* <Route exact path="/checkout" component={ShippingPay} />  */}
-          <Route exact path="/cart" component={Cart}/>
+          <Route exact path="/cart" component={Cart} />
           {/* <Route exact path="/sliderManager" component={SliderManager} /> */}
 
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
-            path='/sliderManager'
-            component={SliderManager}
-          />       
+            path='/offersManager'
+            component={OffersManager}
+          />
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
             path='/manageProducts'
             component={ManageProductsScreen}
-          />       
+          />
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
             path='/manageProducts'
             component={ManageProductsScreen}
-          />       
+          />
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
             path='/createproduct'
             component={CreateProduct}
           />
-           <PrivateRoute
+          <PrivateRoute
             exact
             isAuthenticated={loggedIn}
             path='/checkout'
@@ -76,16 +76,16 @@ const AppRouter = ({ authState }) => {
             isAuthenticated={loggedIn}
             path='/favorites'
             component={Favorites}
-          />    
-          <PrivateRoute
-          exact
-          isAuthenticated={loggedIn}
-          path='/update/:id'
-          component={PutProduct}
           />
-            
-          <Redirect to='/home' />      
-          {/* <Redirect to='/sliderManager' />       */}
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            path='/update/:id'
+            component={PutProduct}
+          />
+
+          <Redirect to='/home' />
+          <Redirect to='/offersManager' />
 
         </Switch>
 

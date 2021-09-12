@@ -3,7 +3,7 @@ import uiReducer from '../reducers/uiReducer';
 import userReducer from '../reducers/userReducer';
 import productReducer from '../reducers/productReducer';
 import authReducer from '../reducers/authReducer';
-import sliderManagerReducer from '../reducers/sliderManagerReducer';
+import offersManagerReducer from '../reducers/offersManagerReducer';
 import manageProductsReducer from '../reducers/manageProductsReducer';
 import thunk from 'redux-thunk';
 import { restoreSessionAction } from '../actions/authActions';
@@ -11,7 +11,7 @@ import cartReducer from '../reducers/cartReducer';
 
 let rootReducer = combineReducers({
   auth: authReducer,
-  slider: sliderManagerReducer,
+  offers: offersManagerReducer,
   ui: uiReducer,
   user: userReducer,
   products: productReducer,
