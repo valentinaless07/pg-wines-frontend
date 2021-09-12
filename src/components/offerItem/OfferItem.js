@@ -6,14 +6,11 @@ import styles from './OfferItem.module.css';
 
 
 const OfferItem = ({ offer, offersState, authState, deleteOfferById, updateOfferById }) => {
-    // const offers = offersState.offers;
 
     const handleDelete = (id) => {
-        console.log('delete item', id);
         deleteOfferById(id);
     }
     const handleChangeStatus = (id, status) => {
-        console.log('status item', { id, currentStatus: status, changeStatus: !status });
         updateOfferById(id, !status);
     }
 
