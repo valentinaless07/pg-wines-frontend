@@ -30,7 +30,7 @@ const RegisterScreen = ({ authState, uiState, setError, removeError, startRegist
     useEffect(() => {
 
         if (authState.loggedIn) {
-            return history.replace('/home');
+            return history.replace('/');
         }
 
     }, [authState.loggedIn, history]);

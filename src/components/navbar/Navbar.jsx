@@ -27,7 +27,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
   // window.addEventListener("resize", changeScreen);
 
   const handleLogout = () => {
-    history.push('/home');
+    history.push('/');
     logOutAction();
   }
 

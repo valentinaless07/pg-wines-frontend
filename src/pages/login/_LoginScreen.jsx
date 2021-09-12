@@ -13,7 +13,7 @@ const LoginScreen = ({ authState, startGoogleLogin, logOutAction }) => {
 
     const handleLogin = () => {
         startGoogleLogin();
-        history.push('/home');
+        history.push('/');
     }
 
     if (authState.fetching) return <p>Loading...</p>

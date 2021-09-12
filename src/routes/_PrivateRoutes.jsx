@@ -21,7 +21,7 @@ const PrivateRoutes = ({
                     <Route exact path="/productDetails" component={ProductDetailsScreen} />
                     <Route exact path="/manageProducts" component={ManageProductsScreen} />
                     <Route exact path="/product/:shipping" component={ShippingPay} />
-                    <Redirect to="/home" />
+                    <Redirect to="/" />
                 </Switch>
             </div>
             <Footer />
