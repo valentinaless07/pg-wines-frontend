@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styles from './CreateProduct.module.css'
 import { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
@@ -169,8 +169,8 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
                 
                 <div>
                     <label>Categoría:</label>
-                    <select name="categoryId" onChange={e => handleChange(e)}>
-                    <option disabled selected>Selecciona una categoría</option>
+                    <select name="categoryId" onChange={e => handleChange(e)} defaultValue="Selecciona una categoría">
+                    <option disabled>Selecciona una categoría</option>
                         {
                             manageProductState.categories && manageProductState.categories.map(el => {
                                     return <option value={el.id} key={el.id}>{el.name}</option>
@@ -181,8 +181,8 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
                 </div>
                 <div>
                     <label>Marca:</label>
-                    <select name="brandId" onChange={e => handleChange(e)}>
-                        <option disabled selected>Selecciona una marca</option>
+                    <select name="brandId" onChange={e => handleChange(e)} defaultValue="Selecciona una marca">
+                        <option disabled>Selecciona una marca</option>
                         {manageProductState.brands && manageProductState.brands.map(el => {
                             return <option value={el.id} key={el.id}>{el.name}</option>
                         })
@@ -192,8 +192,8 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
                 </div>
                 <div>
                     <label>Packing:</label>
-                    <select name="packingId" onChange={e => handleChange(e)}>
-                        <option disabled selected>Selecciona un packing</option>
+                    <select name="packingId" onChange={e => handleChange(e)} defaultValue="Selecciona un packing">
+                        <option disabled>Selecciona un packing</option>
                         {manageProductState.packing && manageProductState.packing.map(el => {
                             return <option value={el.id} key={el.id}>{el.name}</option>
                         })
@@ -202,7 +202,7 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
                     {errors.packingId && (<p className={styles.error}>{errors.packingId}</p>)}    
                 </div>        
 
-                <button type="submit">Crear Producto</button>
+                <button className={styles.buttonSubmitForm} type="submit">Crear Producto</button>
 
             </form>
             </div>

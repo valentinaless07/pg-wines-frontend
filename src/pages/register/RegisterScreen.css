@@ -70,7 +70,7 @@
     color:white;
 }
 
-button:hover{
+.register__button:hover{
     background-color: var(--button-login-hover);
     border: 1px solid orange;    
     color:black;

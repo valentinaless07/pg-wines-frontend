@@ -106,7 +106,7 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
                         onChange={handleInputChange}
                     />
 
-                    <button
+                    <button                        
                         disabled={authState.fetching}
                         onClick={handleStarLoginWithEmailAndPassword}
                         type="submit"

@@ -137,7 +137,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
           {
             (authState.loggedIn)
               ? <>
-                <span className={styles.login} onClick={() => goTo('offersManager')} >Offertas</span>
+                <span className={styles.login} onClick={() => goTo('offersManager')} >Ofertas</span>
                 <span className={styles.login} onClick={() => goTo('manageProducts')} >Productos</span>
                 <span className={styles.login} onClick={handleLogout} >Salir</span>
                 {getAvatar()}
@@ -199,7 +199,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
             ?
             <>
               <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
-              <li onClick={() => goTo('manageProducts')}>AREA RESERVADA</li>
+              <li onClick={() => goTo('manageProducts')}>GESTION DE PRODUCTOS</li>
               <li onClick={() => goTo('offersManager')}>GESTION DE OFERTAS</li>
               <li onClick={() => goTo('favorites')}>FAVORITOS</li>
               <li onClick={() => goTo('cart')}>CARRITO</li>

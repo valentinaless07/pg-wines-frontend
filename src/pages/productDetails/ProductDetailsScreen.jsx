@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { useState } from 'react';
 import { addCartProduct} from '../../redux/actions/cartActions';
 import { reloadCartLocalStorage } from '../../redux/actions/cartActions';
+import { useHistory } from 'react-router';
 
 const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state, reloadCartLocalStorage}) => {
     // console.log(getProductDetail);
@@ -21,6 +22,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
       }, [id])
 
       const [cantidadItems, setCantidadItems] = useState(1)
+      const history = useHistory()
 
       function selectChange(e) {
           let num = parseInt(e.target.value)
@@ -34,6 +36,9 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
         await addCartProduct(detail)
         reloadCartLocalStorage()
         
+        }
+        else{
+            history.push("/cart")
         }
       }
 
@@ -61,20 +66,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
                     <div className={styles.lineaProduct}></div>
                         <label htmlFor="" className={styles.labelCantidad}>Cantidad:</label>
                         <div className={styles.cartProductDetail}>
-                            <input type="text" id="cantidad" onChange={e => selectChange(e)}  />
-                        {/* <select name="cantidad" id="cantidad" onChange={e => selectChange(e)}>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-
-                        </select> */}
+                            <input type="text" id="cantidad" onChange={e => selectChange(e)}  />    
                         <button onClick={addProductCart} className={styles.addProductButton}>Agregar al carrito</button>
                     </div>
 
