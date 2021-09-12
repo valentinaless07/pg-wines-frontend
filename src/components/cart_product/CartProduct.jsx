@@ -29,11 +29,14 @@ const CartProduct = (props) => {
     }
 
     function res () {
+        if(cantidadItems > 1){
         props.editItemsAmount({id: props.id, amount: cantidadItems - 1})
         props.getTotalPrice()
         let item = props.cartState.find(el => el.id ===props.id).itemsAmount
         setCantidadItems(item)
         props.reloadCartLocalStorage()
+        }
+        
     }
 
     function handleDelete() {
@@ -52,12 +55,13 @@ const CartProduct = (props) => {
             </div>
             <p>Cantidad: {cantidadItems}</p>
             <div className={styles.icons_container}>
+                {!props.isCheckout ?
+                    <i onClick={res} className="fas fa-minus-circle fa-2x"></i>
+                    : ''}
                 {props.isCheckout ? <></> :
                     <i onClick={sum} className="fas fa-plus-circle fa-2x"></i>
                 }
-                {cantidadItems > 1 && !props.isCheckout ?
-                    <i onClick={res} className="fas fa-minus-circle fa-2x"></i>
-                    : ''}
+                
                 {!props.isCheckout ?
 
                     <i onClick={handleDelete} className="fas fa-trash-alt fa-2x"></i>
