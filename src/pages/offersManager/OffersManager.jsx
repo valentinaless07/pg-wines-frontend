@@ -25,8 +25,9 @@ const OffersManager = ({ offersState, getOffers, postOffers, getProducts, produc
     useEffect(() => {
         getOffers();
         getProducts();
+        console.log('PRODUCTOS',productState);
     }, [getOffers, getProducts]);
-
+    
 
     const handleOnChange = (event) => {
         // event.preventDefault();
@@ -137,14 +138,7 @@ const OffersManager = ({ offersState, getOffers, postOffers, getProducts, produc
                         <select name="productId" style={{ width: '231px', height: '25,56px' }} placeholder="Seleccionar producto" id="productId" value={formState.productId} onChange={handleOnChange}>
                             <option>Seleccionar producto</option>
                             {
-                                productState.sort((a, b)=>{
-                                    if(a.id > b.id){
-                                        return 1;
-                                    }else if(a.id < b.id){
-                                        return -1
-                                    }
-                                    return 0;
-                                }).map(product => (
+                                productState.map(product => (
                                     <option key={uniqid()} value={product.id}>{product.name}</option>
                                 ))
                             }
