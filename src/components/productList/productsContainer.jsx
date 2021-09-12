@@ -1,7 +1,7 @@
 import styles  from './ProductsList.module.css';
 import './productList.css'
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux';
 import { getProductsByPage } from '../../redux/actions/userActions';
@@ -11,9 +11,11 @@ import { addCartProduct } from '../../redux/actions/cartActions';
 import { editItemsAmount } from '../../redux/actions/cartActions';
 import { reloadCartLocalStorage } from '../../redux/actions/cartActions';
 
-
 function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct, editItemsAmount, reloadCartLocalStorage}){
-    
+  
+     let {search} = useLocation();
+        
+    var query = new URLSearchParams(search)
     const history = useHistory();
 
     function handleGoToProducDescription(productId){
@@ -34,7 +36,11 @@ function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct
         }
 
         function changePage({selected}){
-            getProductsByPage(selected+1)
+            let category = query.get('category') || ''
+            let initPrice = query.get('initPrice') || ''
+            let finalPrice = query.get('finalPrice') || ''
+            let page = selected+1
+            getProductsByPage(category, initPrice, finalPrice, page)
         }
 
     return(<div id='containerProducts' className={`${styles.container}`}>
@@ -64,6 +70,7 @@ function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct
         pageCount={state.totalPage}
         onPageChange={changePage}
         activeClassName={'activePaginationBtn'}
+        initialPage={0}
         />
     </div>)
 }
@@ -78,11 +85,9 @@ function mapStateToProps(state) {
   function mapDispatchToProps(dispatch) {
     return {
         addCartProduct: (id) => dispatch(addCartProduct(id)),
-        getProductsByPage: (num) => dispatch(getProductsByPage(num)),
+        getProductsByPage: (category, initPrice, finalPrice, page) => dispatch(getProductsByPage(category, initPrice, finalPrice, page)),
         editItemsAmount: (amount) => dispatch(editItemsAmount(amount)),
         reloadCartLocalStorage: () => dispatch(reloadCartLocalStorage())
-
-
     };
   };
 
