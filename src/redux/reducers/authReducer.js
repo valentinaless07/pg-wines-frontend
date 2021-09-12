@@ -1,4 +1,4 @@
-import { AUTH_LOGIN, AUTH_LOGIN_SUCCESS, AUTH_LOGIN_ERROR, AUTH_LOGOUT } from '../actions/authActions';
+import { AUTH_LOGIN, AUTH_LOGIN_SUCCESS, AUTH_LOGIN_ERROR, AUTH_LOGOUT, AUTH_REMOVE_ERROR } from '../actions/authActions';
 
 const initialState = {
     loggedIn: false,
@@ -7,7 +7,7 @@ const initialState = {
     email: null,
     photoURL: null,
     uid: null,
-
+    error: null,
 }
 
 const authReducer = (state = initialState, action) => {
@@ -16,6 +16,7 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 fetching: true,
+                // error: null,
             }
         }
 
@@ -24,6 +25,7 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 fetching: false,
                 loggedIn: true,
+                error: null,
                 ...action.payload
             };
         }
@@ -37,9 +39,16 @@ const authReducer = (state = initialState, action) => {
             }
         }
 
+        case AUTH_REMOVE_ERROR: {
+            return {
+                ...state,
+                error: null,
+            }
+        }
+
         case AUTH_LOGOUT: {
             return { ...initialState }
-        }       
+        }
 
         default:
             return state;

@@ -54,8 +54,8 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
   function getAvatar() {
     if (authState.loggedIn) {
       return (<div className="tooltip bottom">
-         <span class="tiptext">{authState.displayName}</span>
-        <div style={{ fontSize: '2em', color: 'green' }}><i class="far fa-user-circle" with="100px"></i></div>
+         <span className="tiptext">{authState.displayName}</span>
+        <div style={{ fontSize: '2em', color: 'green' }}><i className="far fa-user-circle" with="100px"></i></div>
       </div>);
     }
     return;
@@ -137,7 +137,8 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
           {
             (authState.loggedIn)
               ? <>
-                <span className={styles.login} onClick={() => goTo('manageProducts')} >Area Reservada</span>
+                <span className={styles.login} onClick={() => goTo('offersManager')} >Offertas</span>
+                <span className={styles.login} onClick={() => goTo('manageProducts')} >Productos</span>
                 <span className={styles.login} onClick={handleLogout} >Salir</span>
                 {getAvatar()}
               </>
@@ -199,13 +200,14 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
             <>
               <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
               <li onClick={() => goTo('manageProducts')}>AREA RESERVADA</li>
+              <li onClick={() => goTo('offersManager')}>GESTION DE OFERTAS</li>
               <li onClick={() => goTo('favorites')}>FAVORITOS</li>
               <li onClick={() => goTo('cart')}>CARRITO</li>
               <li onClick={handleLogout}>SALIR</li>
             </>
             :
             <>
-              <li onClick={() => goTo('login2')}>INICIÁ SESIÓN</li>
+              <li onClick={() => goTo('login')}>INICIÁ SESIÓN</li>
               <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
             </>
         }
