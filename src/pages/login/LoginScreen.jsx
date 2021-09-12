@@ -15,8 +15,8 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
     const history = useHistory();
 
     const [formValues, handleInputChange] = useForm({
-        email: 'juancho@gmail.com',
-        password: 'EnUnCampin_&23g'
+        email: '',
+        password: ''
     });
     const { email, password } = formValues;
 
