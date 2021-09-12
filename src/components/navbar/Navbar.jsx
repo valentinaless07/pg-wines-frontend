@@ -135,7 +135,8 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
           {
             (authState.loggedIn)
               ? <>
-                <span className={styles.login} onClick={() => goTo('manageProducts')} >Area Reservada</span>
+                <span className={styles.login} onClick={() => goTo('offersManager')} >Offertas</span>
+                <span className={styles.login} onClick={() => goTo('manageProducts')} >Productos</span>
                 <span className={styles.login} onClick={handleLogout} >Salir</span>
                 {getAvatar()}
               </>
