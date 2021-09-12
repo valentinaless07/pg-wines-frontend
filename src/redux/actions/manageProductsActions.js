@@ -63,9 +63,12 @@ export function getCategories() {
  export function updateProduct (payload) {
     
     return async function () {
+        if(typeof payload.categoryId === "object") {payload.categoryId = payload.categoryId.id}
+        if(typeof payload.brandId === "object") {payload.brandId = payload.brandId.id}
+        if(typeof payload.packingId === "object") {payload.packingId = payload.packingId.id}
         
         const respuesta = await axios.put("https://pg-delsur.herokuapp.com/products/update", payload)
-        console.log(respuesta)
+        
         return respuesta
     }
  }

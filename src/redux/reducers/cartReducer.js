@@ -14,6 +14,7 @@ export default function cartReducer (state = initialState, action) {
             
             
               Swal.fire('Producto agregado al carrito')
+              
             return {
             ...state,
             cartState: state.cartState.concat(action.payload)
@@ -26,7 +27,22 @@ export default function cartReducer (state = initialState, action) {
           Swal.fire({icon: "error", text: "Este producto no tiene suficiente stock"})
           return{...state}
         }
-    
+        
+        case "RELOAD_CART_LOCAL_STORAGE":
+          localStorage.setItem("cart", JSON.stringify(state.cartState))
+          return{
+            ...state
+          }
+
+           case "LOCAL_STORAGE_INIT":
+            let cartLocalStorage = localStorage.getItem("cart")
+            cartLocalStorage = JSON.parse(cartLocalStorage);
+
+            return {
+              ...state,
+              cartState: cartLocalStorage
+            }
+            
 
           case "DELETE_CART_PRODUCT":
             return{

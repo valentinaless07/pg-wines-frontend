@@ -5,8 +5,15 @@ import Slider1 from '../../components/slider/Slider1';
 import Footer from '../../components/footer/Footer';
 import sliderData from '../../data/slider';
 // import styles from './HomeScreen.module.css';
+import { localStorageInit } from '../../redux/actions/cartActions';
+import { connect } from 'react-redux';
+import { useEffect } from 'react';
 
-const HomeScreen = () => {
+const HomeScreen = ({localStorageInit}) => {
+
+  useEffect(() => {
+    localStorageInit()
+} , [localStorageInit]);
 
   return (
     <React.Fragment>
@@ -22,4 +29,11 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+
+const mapDispatchToProps = (dispatch) => {
+  return { 
+    localStorageInit: () => dispatch(localStorageInit())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(HomeScreen);

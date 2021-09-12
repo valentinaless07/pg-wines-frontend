@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { deleteCartProduct, getTotalPrice } from '../../redux/actions/cartActions';
 import { editItemsAmount } from '../../redux/actions/cartActions';
 import { useEffect } from 'react';
-
+import { reloadCartLocalStorage } from '../../redux/actions/cartActions';
 
 
 
@@ -24,6 +24,7 @@ const CartProduct = (props) => {
         props.getTotalPrice()
         let item = props.cartState.find(el => el.id ===props.id).itemsAmount
         setCantidadItems(item)
+        props.reloadCartLocalStorage()
 
     }
 
@@ -32,11 +33,13 @@ const CartProduct = (props) => {
         props.getTotalPrice()
         let item = props.cartState.find(el => el.id ===props.id).itemsAmount
         setCantidadItems(item)
+        props.reloadCartLocalStorage()
     }
 
     function handleDelete() {
         props.deleteCartProduct(props.id)
         props.getTotalPrice()
+        props.reloadCartLocalStorage()
     }
 
     return (
@@ -75,7 +78,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         deleteCartProduct: (id) => dispatch(deleteCartProduct(id)),
         editItemsAmount: (amount) => dispatch(editItemsAmount(amount)),
-        getTotalPrice: () => dispatch(getTotalPrice())
+        getTotalPrice: () => dispatch(getTotalPrice()),
+        reloadCartLocalStorage: () => dispatch(reloadCartLocalStorage())
 
     }
 }
