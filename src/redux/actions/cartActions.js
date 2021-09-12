@@ -1,6 +1,6 @@
 
 export function addCartProduct (payload) {
-    console.log(payload)
+    
     return {
         type: "ADD_CART_PRODUCT",
         payload
@@ -26,5 +26,17 @@ export function editItemsAmount(payload){
 export function getTotalPrice () {
     return {
         type: "GET_TOTAL_PRICE"
+    }
+}
+
+export function reloadCartLocalStorage() {
+    return {
+        type: "RELOAD_CART_LOCAL_STORAGE"
+    }
+}
+
+export function localStorageInit() {
+    return {
+        type: "LOCAL_STORAGE_INIT"
     }
 }

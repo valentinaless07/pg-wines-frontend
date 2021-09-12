@@ -1,22 +1,24 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styles from './CreateProduct.module.css'
 import { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {getCategories, postProductCreated} from '../../redux/actions/manageProductsActions'
 import Swal from 'sweetalert2'
+import { getBrands } from '../../redux/actions/manageProductsActions';
+import { getPacking } from '../../redux/actions/manageProductsActions';
+import { useHistory } from 'react-router';
 
-
-
-
-const CreateProduct = ({ manageProductState, getCategories, postProductCreated}) => {
+const CreateProduct = ({ manageProductState, getCategories, postProductCreated, getBrands, getPacking}) => {
 
 
     useEffect(() => {
         getCategories()
-    } , [getCategories]);
+        getBrands()
+        getPacking()
+    } , [getCategories, getBrands, getPacking]);
 
-    
+    const history = useHistory()
 
     const [newProductData, setNewProductData] = useState({
 
@@ -28,7 +30,9 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
         stock: "0",
         image: ["01_1605539265"],
         categoryId: "",
-        sales: "0"
+        sales: "0",
+        brandId: "",
+        packingId: ""
     })
 
     const [errors, setErrors] = useState({})
@@ -64,9 +68,15 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
             errors.categoryId = "Ingrese una categoría"
         }
 
-        // else if(!input.image1){
-        //     errors.image1 = "Ingrese al menos una imagen"
-        // }
+        else if(!input.brandId){
+            errors.brandId = "Ingrese una marca"
+        }
+
+        else if(!input.packingId){
+            errors.packingId = "Ingrese un packing"
+        }
+
+        
 
         return errors
 
@@ -89,9 +99,12 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
                 stock: "0",
                 image: ["01_1605539265"],
                 categoryId: "",
-                sales: "0"
+                sales: "0",
+                brandId: "",
+                packingId: ""
             })
             Swal.fire('Producto Creado')
+            history.push("/manageProducts")
         }
         else{
             Swal.fire('Completar todos los campos requeridos')
@@ -155,7 +168,7 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
                 </div>
                 
                 <div>
-                    <label>Category:</label>
+                    <label>Categoría:</label>
                     <select name="categoryId" onChange={e => handleChange(e)}>
                     <option disabled selected>Selecciona una categoría</option>
                         {
@@ -165,7 +178,29 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated})
                         }
                     </select>
                     {errors.categoryId && (<p className={styles.error}>{errors.categoryId}</p>)}
-                </div>    
+                </div>
+                <div>
+                    <label>Marca:</label>
+                    <select name="brandId" onChange={e => handleChange(e)}>
+                        <option disabled selected>Selecciona una marca</option>
+                        {manageProductState.brands && manageProductState.brands.map(el => {
+                            return <option value={el.id} key={el.id}>{el.name}</option>
+                        })
+                        }
+                    </select>
+                    {errors.brandId && (<p className={styles.error}>{errors.brandId}</p>)}  
+                </div>
+                <div>
+                    <label>Packing:</label>
+                    <select name="packingId" onChange={e => handleChange(e)}>
+                        <option disabled selected>Selecciona un packing</option>
+                        {manageProductState.packing && manageProductState.packing.map(el => {
+                            return <option value={el.id} key={el.id}>{el.name}</option>
+                        })
+                        }
+                    </select>
+                    {errors.packingId && (<p className={styles.error}>{errors.packingId}</p>)}    
+                </div>        
 
                 <button type="submit">Crear Producto</button>
 
@@ -186,7 +221,9 @@ const mapStateToProps = (state) => {
   const mapDispatchToProps = (dispatch) => {
     return {
       getCategories: () => dispatch(getCategories()),
-      postProductCreated: (newProductData) => dispatch( postProductCreated(newProductData))  
+      postProductCreated: (newProductData) => dispatch( postProductCreated(newProductData)),
+      getBrands: () => dispatch(getBrands()),
+      getPacking: () => dispatch(getPacking())  
     }
   }
 

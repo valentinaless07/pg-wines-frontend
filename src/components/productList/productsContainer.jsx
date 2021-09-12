@@ -8,27 +8,31 @@ import { getProductsByPage } from '../../redux/actions/userActions';
 import './productList.css'
 import Swal from 'sweetalert2'
 import { addCartProduct } from '../../redux/actions/cartActions';
+import { editItemsAmount } from '../../redux/actions/cartActions';
+import { reloadCartLocalStorage } from '../../redux/actions/cartActions';
 
-function ProductsContainer({state, getProductsByPage}){
-
-        let {search} = useLocation();
-        let history = useHistory();
+function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct, editItemsAmount, reloadCartLocalStorage}){
+  
+     let {search} = useLocation();
         
-        var query = new URLSearchParams(search)
+    var query = new URLSearchParams(search)
+    const history = useHistory();
 
     function handleGoToProducDescription(productId){
         history.push(`/product/${productId}`);
     }
 
-    function addProductCart(item){
-        if(state.cart_state.findIndex(el => el.id === item.id) === -1){
+    async function addProductCart(item){
+        if(cart_state.findIndex(el => el.id === item.id) === -1){
         let detail = item
         detail.itemsAmount = 1
 
-        state.addCartProduct(detail)
-        Swal.fire('Producto agregado al carrito')
-
+        await addCartProduct(detail)
+        reloadCartLocalStorage()
+        
         }
+
+        
         }
 
         function changePage({selected}){
@@ -81,9 +85,9 @@ function mapStateToProps(state) {
   function mapDispatchToProps(dispatch) {
     return {
         addCartProduct: (id) => dispatch(addCartProduct(id)),
-        getProductsByPage: (category, initPrice, finalPrice, page) => dispatch(getProductsByPage(category, initPrice, finalPrice, page))
-
-
+        getProductsByPage: (category, initPrice, finalPrice, page) => dispatch(getProductsByPage(category, initPrice, finalPrice, page)),
+        editItemsAmount: (amount) => dispatch(editItemsAmount(amount)),
+        reloadCartLocalStorage: () => dispatch(reloadCartLocalStorage())
     };
   };
 

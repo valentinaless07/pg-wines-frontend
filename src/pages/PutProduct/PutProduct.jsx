@@ -8,20 +8,27 @@ import {getProductDetailReset } from '../../redux/actions/productDetailsActions'
 import { updateProduct } from '../../redux/actions/manageProductsActions';
 import Swal from 'sweetalert2'
 import { getCategories } from '../../redux/actions/manageProductsActions';
-import { getProducts } from '../../redux/actions/manageProductsActions';
+import { getProductsPagination } from '../../redux/actions/manageProductsActions';
+import { getBrands } from '../../redux/actions/manageProductsActions';
+import { getPacking } from '../../redux/actions/manageProductsActions';
 
 
-const PutProduct = ({updateProduct, getProductDetailReset, product_detail, categories, getCategories, getProducts}) => {
+const PutProduct = ({updateProduct, getProductDetailReset, product_detail, manageProductsState, getCategories, getBrands, getPacking}) => {
     
     let history = useHistory()
 
+   
 
     useEffect(() => {
         getCategories()
-        
+        getBrands()
+        getPacking()
     } , []);
 
+       
     const [firstCategory, setFirstCategory] = useState({category: product_detail.category})
+    const [firstBrand, setFirstBrand] = useState({brand: product_detail.brand})
+    const [firstPacking, setFirstPacking] = useState({packing: product_detail.packing})
     const [detailData, setDetailData] = useState(
         {
             id: product_detail.id,
@@ -31,15 +38,15 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, categ
             capacity: product_detail.capacity,
             stock: product_detail.stock,
             discount: product_detail.discount,
-            category: product_detail.category
+            categoryId: product_detail.category,
+            brandId: product_detail.brand,
+            packingId: product_detail.packing
             
         }
     )
     
 
-    if(detailData.name === undefined){
-        history.push('/manageProducts')
-    }
+    
 
 
     useEffect(() => {
@@ -81,12 +88,14 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, categ
         else if(!input.capacity){
             errors.capacity = "Ingrese una capacidad"
         }
+
         
         
 
         return errors
 
     }
+    
 
     function handleSubmit (e) {
         e.preventDefault()
@@ -95,27 +104,13 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, categ
           
         
         if(Object.keys(validateSubmit).length === 0){
-    
-            if(detailData.category === firstCategory.category){
-                let categId = categories.find(el => el.name === firstCategory.category).id
-                setDetailData(
-                    {
-                        ...detailData,
-                        category: categId
-                    }
-                )
-                updateProduct(detailData)
-                Swal.fire('Producto Editado')
-                history.push("/manageProducts")
-                getProducts()
-            }
-            else{
-                updateProduct(detailData)
-                Swal.fire('Producto Editado')
-                history.push("/manageProducts")
-                getProducts()
-            }
             
+
+            
+                updateProduct(detailData)
+                Swal.fire('Producto Editado')
+                // history.push("/manageProducts")
+                
             
         }
         else{
@@ -181,16 +176,38 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, categ
                 
                 <div>
                     <label>Category:</label>
-                    <select name="category" onChange={e => handleChange(e)}>
-                        <option disabled selected>{product_detail.category}</option>
+                    <select name="categoryId" onChange={e => handleChange(e)}>
+                        <option disabled selected>{detailData.categoryId.name}</option>
                         
                         {
-                            categories && categories.map(el => {
+                            manageProductsState.categories && manageProductsState.categories.map(el => {
                                     return <option value={el.id} key={el.id} >{el.name}</option>
                             })
                         }
                     </select>
                     
+                </div>
+                <div>
+                    <label>Marca:</label>
+                    <select name="brandId" onChange={e => handleChange(e)}>
+                        <option disabled selected>{detailData.brandId.name}</option>
+                        {manageProductsState.brands && manageProductsState.brands.map(el => {
+                            return <option value={el.id} key={el.id}>{el.name}</option>
+                        })
+                        }
+                    </select>
+                    {errors.brandId && (<p className={styles.error}>{errors.brandId}</p>)}  
+                </div>
+                <div>
+                    <label>Packing:</label>
+                    <select name="packingId" onChange={e => handleChange(e)}>
+                        <option disabled selected>{detailData.packingId.name}</option>
+                        {manageProductsState.packing && manageProductsState.packing.map(el => {
+                            return <option value={el.id} key={el.id}>{el.name}</option>
+                        })
+                        }
+                    </select>
+                    {errors.packingId && (<p className={styles.error}>{errors.packingId}</p>)}    
                 </div>     
 
                 <button type="submit">Enviar Producto</button>
@@ -208,7 +225,8 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, categ
 const mapStateToProps = (state) => {
     return {
         product_detail: state.products.product_detail,
-        categories: state.manageProducts.categories,
+        manageProductsState: state.manageProducts
+        
     };
   }
   
@@ -217,7 +235,9 @@ const mapStateToProps = (state) => {
         getProductDetailReset: () => dispatch(getProductDetailReset()),
         updateProduct: (detailData) => dispatch(updateProduct(detailData)),
         getCategories: () => dispatch(getCategories()),
-        getProducts: () => dispatch(getProducts()),
+        getProductsPagination: () => dispatch(getProductsPagination()),
+        getBrands: () => dispatch(getBrands()),
+        getPacking: () => dispatch(getPacking())
 
     }
   }

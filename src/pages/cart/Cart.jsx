@@ -5,22 +5,25 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartProduct from '../../components/cart_product/CartProduct';
 import { getTotalPrice } from '../../redux/actions/cartActions';
+import { localStorageInit } from '../../redux/actions/cartActions';
 
 
 
-const Cart = ({cartState, getTotalPrice, totalPrice}) => {
+const Cart = ({cartState, getTotalPrice, totalPrice, localStorageInit}) => {
 
     
     useEffect(() => {
+        localStorageInit()
         getTotalPrice()
-    } , [getTotalPrice]);
+        
+    } , [getTotalPrice, localStorageInit]);
     
     
 
     return (
         <div className={styles.container}>
             
-            <Link to="/home" className={styles.backicon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
+            <Link to="/" className={styles.backicon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
 
             <div className={styles.title}>    
             <h1>Carrito de compras</h1>
@@ -32,7 +35,8 @@ const Cart = ({cartState, getTotalPrice, totalPrice}) => {
                     <div className={styles.cart_items}>
                         
                         {cartState && cartState.map(el => 
-                        <CartProduct image={el.image} name={el.name} cost={el.cost} id={el.id} itemsAmount={el.itemsAmount}/>
+                        <CartProduct image={el.image} name={el.name} cost={el.cost} id={el.id} itemsAmount={el.itemsAmount}
+                         isCheckout={false}/>
                             )}
 
                     </div>
@@ -43,7 +47,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice}) => {
                             <b>${totalPrice}</b>
                             </div>
                             <hr className={styles.hr}></hr>
-                            <button className={styles.buttonSubmit}>CHECKOUT</button>
+                            <Link to='/checkout' className={styles.buttonSubmit}><p>CHECKOUT</p></Link>
                         </div>
                     </div>
                 </div>
@@ -53,7 +57,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice}) => {
         </div>
     );
 }
-
+ 
 const mapStateToProps = (state) => {
     return {
       cartState: state.cart.cartState,
@@ -65,7 +69,8 @@ const mapStateToProps = (state) => {
   const mapDispatchToProps = (dispatch) => {
     return {
       addCartProduct: () => dispatch(addCartProduct()),
-      getTotalPrice: () => dispatch(getTotalPrice())
+      getTotalPrice: () => dispatch(getTotalPrice()),
+      localStorageInit: () => dispatch(localStorageInit())
     }
   }
 

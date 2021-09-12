@@ -4,7 +4,7 @@ export function postProductCreated (payload) {
     
     return async function () {
         
-        const res = await axios.post("https://delsur-api-1.herokuapp.com/product", payload)
+        const res = await axios.post("https://pg-delsur.herokuapp.com/products", payload)
         
 
         return res
@@ -13,7 +13,7 @@ export function postProductCreated (payload) {
 
 export function getCategories() {
     return async function(dispatch) {
-         var json = await axios.get("https://delsur-api-1.herokuapp.com/categories")
+         var json = await axios.get("https://pg-delsur.herokuapp.com/categories")
          
 
          return dispatch({
@@ -23,25 +23,38 @@ export function getCategories() {
     }
  }
 
- export function getProducts () {
+ export function getProductsPagination () {
     return async function(dispatch) {
-        var json = await axios.get("https://delsur-api-1.herokuapp.com/products")
+        var json = await axios.get("https://pg-delsur.herokuapp.com/products?itemsPerPage=20&orderBy=id")
         
 
         return dispatch({
-            type: "GET_PRODUCTS",
+            type: "GET_PRODUCTS_PAGINATION",
             payload: json.data
         })
    }
    
  }
 
+ export const getProductsPage=(page)=>{
+    return async function(dispatch){
+        await axios.get("https://pg-delsur.herokuapp.com/products?itemsPerPage=20&orderBy=id&page="+page)
+        .then(results=>{
+            dispatch({
+                type:"GET_PRODUCTS_PAGE",
+                payload: results.data
+            })
+        })
+    }
+}
+
+
  export function deleteProduct (payload) {
     
     return async function () {
         
         
-        const resp = await axios.delete("https://delsur-api-1.herokuapp.com/product/delete", {data: {id: payload}})
+        const resp = await axios.delete("https://pg-delsur.herokuapp.com/products/delete", {data: {id: payload}})
         
         return resp
     }
@@ -50,9 +63,38 @@ export function getCategories() {
  export function updateProduct (payload) {
     
     return async function () {
+        if(typeof payload.categoryId === "object") {payload.categoryId = payload.categoryId.id}
+        if(typeof payload.brandId === "object") {payload.brandId = payload.brandId.id}
+        if(typeof payload.packingId === "object") {payload.packingId = payload.packingId.id}
         
-        const respuesta = await axios.put("https://delsur-api-1.herokuapp.com/product/update", payload)
+        const respuesta = await axios.put("https://pg-delsur.herokuapp.com/products/update", payload)
         
         return respuesta
+    }
+ }
+
+ export function getBrands() {
+    return async function(dispatch) {
+         var json = await axios.get("https://pg-delsur.herokuapp.com/brands")
+         
+        
+
+         return dispatch({
+             type: "GET_BRANDS",
+             payload: json.data
+         })
+    }
+ }
+
+ export function getPacking() {
+    return async function(dispatch) {
+         var json = await axios.get("https://pg-delsur.herokuapp.com/packing")
+         
+        
+
+         return dispatch({
+             type: "GET_PACKING",
+             payload: json.data
+         })
     }
  }

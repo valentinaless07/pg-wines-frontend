@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import styles from './ShippingPay.module.css';
+import CartProduct from '../../components/cart_product/CartProduct';
+import { getTotalPrice } from '../../redux/actions/cartActions';
+import { connect } from 'react-redux';
 
 
-const ShippingPay = () => {
+const ShippingPay = ({cartState, getTotalPrice, totalPrice}) => {
     return <>
         <div className={styles.bodyshipping}>
             <div className={styles.titlestilos}>
@@ -14,46 +17,10 @@ const ShippingPay = () => {
             <div className={styles.checkoutshipping}>
                 <div className={styles.buydetails}>
                     <div>
-                        <div className={styles.flexboxshopping}>
-                            <div className={styles.margenimg}>
-                                <img src="https://d3ugyf2ht6aenh.cloudfront.net/stores/001/167/197/products/kunuk-1080x10801-0d994dd4544757b23c16140243878594-1024-1024.png" alt="" />
-                            </div>
-                            <div>
-                                <h4>producto</h4>
-                                <h5>{'Tamaño'}</h5>
-                                <p>PRECIO</p>
-                                <label htmlFor="">Cantidad</label>
-                                <select name="" id="">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                </select>
-                                <button>Eliminar</button>
-                                <div className={styles.logistic}>
-                                    <div>
-                                        <h5>Entrega</h5>
-                                    </div>
-                                    <div className={styles.radiobutton}>
-                                        <span>
-                                            <input type="radio"></input>
-                                        </span>
-                                        <p>Entrega prevista:{'fecha'}</p>
-                                        <div className={styles.serviceprice}>
-                                            <h4>Gratis</h4>
-                                        </div>
-                                    </div>
-                                    <div className={styles.radiobutton}>
-                                        <span>
-                                            <input type="radio"></input>
-                                        </span>
-                                        <p>Entrega prevista:{'fecha'}</p>
-                                        <div className={styles.serviceprice}>
-                                            <h4>$300</h4>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                    {cartState && cartState.map(el => 
+                        <CartProduct image={el.image} name={el.name} cost={el.cost} id={el.id}
+                        itemsAmount={el.itemsAmount} isCheckout={true}/>
+                            )}
 
 
                     </div>
@@ -116,10 +83,13 @@ const ShippingPay = () => {
                     <div>
                         <div>
                             <table>
+                            {cartState && cartState.map(el => 
+
                                 <tr>
-                                    <td className={styles.labelenvio}>Articulos(#)</td>
-                                    <td className={styles.labelmount}>$500</td>
+                                    <td className={styles.labelenvio}>{el.name}({el.itemsAmount})</td>
+                                    <td className={styles.labelmount}>${el.cost}</td>
                                 </tr>
+                            )}
                             </table>
                             <table>
                                 <tr>
@@ -132,7 +102,7 @@ const ShippingPay = () => {
                         <table>
                             <tr>
                                 <td className={styles.labeltotaltext}>Total</td>
-                                <td className={styles.labeltotalmount}>$500</td>
+                                <td className={styles.labeltotalmount}>${totalPrice}</td>
                             </tr>
                         </table>
                         <div className={styles.botonconfirmar}>
@@ -155,7 +125,24 @@ const ShippingPay = () => {
     </>
 }
 
-export default ShippingPay;
+
+  
+const mapStateToProps = (state) => {
+    return {
+      cartState: state.cart.cartState,
+      totalPrice: state.cart.totalPrice
+
+    };
+  }
+
+   
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      getTotalPrice: () => dispatch(getTotalPrice())
+    }
+  }
+export default connect(mapStateToProps, mapDispatchToProps)(ShippingPay);
+
 
 
 
