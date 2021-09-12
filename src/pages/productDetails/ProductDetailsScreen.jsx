@@ -61,19 +61,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
                     <div className={styles.lineaProduct}></div>
                         <label htmlFor="" className={styles.labelCantidad}>Cantidad:</label>
                         <div className={styles.cartProductDetail}>
-                        <select name="cantidad" id="cantidad" onChange={e => selectChange(e)}>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-
-                        </select>
+                        <input type="text" id="cantidad" onChange={e => selectChange(e)}  />
                         <button onClick={addProductCart} className={styles.addProductButton}>Agregar al carrito</button>
                     </div>
 
