@@ -78,10 +78,10 @@ export const startRegisterWithEmailAndPassword = (name, email, password) => {
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
-                    console.log(user)
-                    dispatch(
-                        login(user.uid, user.displayName)
-                    )
+                    console.log('ENTRE A LA PROMESA ',user)
+                    // dispatch(
+                    //     login(user.uid, user.displayName)
+                    // )
                     dispatch(
                         {
                             type: AUTH_LOGIN_SUCCESS,
@@ -93,6 +93,7 @@ export const startRegisterWithEmailAndPassword = (name, email, password) => {
                             }
                         }
                     )
+                    console.log('STATE AUTH', getState().auth)
                     saveStorage(getState().auth);
                     // return Swal.fire({
                     //     icon: 'ok',                       
