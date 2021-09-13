@@ -101,8 +101,7 @@ export function getPacking() {
 
 export function getAllProductsSlider() {
     return async function (dispatch) {
-        var json = await axios.get("https://pg-delsur.herokuapp.com/products?itemsPerPage=300");
-        console.log('JSON', json.data.products);
+        var json = await axios.get("https://pg-delsur.herokuapp.com/products?itemsPerPage=300");       
         if (json.data?.products) {
             const products = json.data.products;
            

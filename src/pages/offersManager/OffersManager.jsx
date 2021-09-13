@@ -25,9 +25,8 @@ const OffersManager = ({ offersState, getOffers, postOffers, getAllProductsSlide
     useEffect(() => {
         getOffers();
         getAllProductsSlider();
-        console.log('PRODUCTOS',productState);
     }, [getOffers, getAllProductsSlider]);
-    
+
 
     const handleOnChange = (event) => {
         // event.preventDefault();
@@ -45,7 +44,7 @@ const OffersManager = ({ offersState, getOffers, postOffers, getAllProductsSlide
                 slug: productName
             });
         }
-        
+
         setFormState({
             ...formState,
             [event.target.name]: value,
@@ -98,10 +97,10 @@ const OffersManager = ({ offersState, getOffers, postOffers, getAllProductsSlide
 
     return (
         <div className={styles.container}>
-               
+
             {
                 offersState.fetching &&
-               <div className={styles.spinner_container} >
+                <div className={styles.spinner_container} >
                     <img src={spinner} width="200px" alt="loading..." />
                 </div>
             }
@@ -116,10 +115,10 @@ const OffersManager = ({ offersState, getOffers, postOffers, getAllProductsSlide
                 {
                     (offers.length > 0)
                         ?
-                        (offers.sort((a,b)=>{
-                            if(a.id < b.id){
+                        (offers?.sort((a, b) => {
+                            if (a.id < b.id) {
                                 return 1;
-                            }else if(a.id > b.id){
+                            } else if (a.id > b.id) {
                                 return -1;
                             }
                             return 0;
@@ -132,7 +131,7 @@ const OffersManager = ({ offersState, getOffers, postOffers, getAllProductsSlide
                         )))
                         : <div className={styles.offers_empty}>No hay imagenes cargadas en la base de datos...</div>
                 }
-              
+
             </div>
 
             <div className={styles.form_main_container}>
@@ -145,13 +144,16 @@ const OffersManager = ({ offersState, getOffers, postOffers, getAllProductsSlide
                         <select name="productId" style={{ width: '231px', height: '25,56px' }} placeholder="Seleccionar producto" id="productId" value={formState.productId} onChange={handleOnChange}>
                             <option>Seleccionar producto</option>
                             {
-                                productState.map(product => (
+                                (productState && productState.length > 0) 
+                                ? productState?.map(product => (
                                     <option key={uniqid()} value={product.id}>{product.name}</option>
                                 ))
+                                : <option  value='Product not found'></option>
+                            
                             }
                         </select>
                     </div>
-                    <div>                     
+                    <div>
                         <input type="text" id="fileName" name="fileName" ref={fileName} placeholder="Nombre de la foto" className={styles.file_name_input} />
                         <input
                             value={formState.file}
@@ -165,15 +167,13 @@ const OffersManager = ({ offersState, getOffers, postOffers, getAllProductsSlide
                         <button onClick={handlePhotoUpload} className={styles.buttom}>Cargar Imagen</button>
                         <button
                             onClick={handleSave}
-                            // disabled={errorState.error}
-                            // className={errorState.error ? styles.buttom_disable : styles.buttom} >
                             className={styles.buttom} >
                             Guardar
                         </button>
                     </div>
 
                 </div>
-            </div>          
+            </div>
 
         </div>
     )
@@ -184,7 +184,6 @@ const mapStateToProps = (state) => {
         offersState: state.offers,
         authState: state.auth,
         productState: state.manageProducts.products,
-
     };
 }
 

@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import uniqid from 'uniqid';
 import styles from './ShippingPay.module.css';
 import CartProduct from '../../components/cart_product/CartProduct';
 import { getTotalPrice } from '../../redux/actions/cartActions';
 import { connect } from 'react-redux';
 
 
-const ShippingPay = ({cartState, getTotalPrice, totalPrice}) => {
+const ShippingPay = ({ cartState, getTotalPrice, totalPrice }) => {
     return <>
         <div className={styles.bodyshipping}>
             <div className={styles.titlestilos}>
@@ -17,15 +18,13 @@ const ShippingPay = ({cartState, getTotalPrice, totalPrice}) => {
             <div className={styles.checkoutshipping}>
                 <div className={styles.buydetails}>
                     <div>
-                    {cartState && cartState.map(el => 
-                        <CartProduct image={el.image} name={el.name} cost={el.cost} id={el.id}
-                        itemsAmount={el.itemsAmount} isCheckout={true}/>
-                            )}
-
-
+                        {cartState && cartState.map(el =>
+                            <CartProduct key={uniqid()} image={el.image} name={el.name} cost={el.cost} id={el.id}
+                                itemsAmount={el.itemsAmount} isCheckout={true} />
+                        )}
                     </div>
 
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,320L1440,224L1440,320L0,320Z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fillOpacity="1" d="M0,320L1440,224L1440,320L0,320Z"></path></svg>
 
 
                     <div className={styles.addres}>
@@ -83,27 +82,32 @@ const ShippingPay = ({cartState, getTotalPrice, totalPrice}) => {
                     <div>
                         <div>
                             <table>
-                            {cartState && cartState.map(el => 
-
-                                <tr>
-                                    <td className={styles.labelenvio}>{el.name}({el.itemsAmount})</td>
-                                    <td className={styles.labelmount}>${el.cost}</td>
-                                </tr>
-                            )}
+                                {cartState && cartState.map(el =>
+                                    <tbody key={uniqid()}>
+                                        <tr>
+                                            <td className={styles.labelenvio}>{el.name}({el.itemsAmount})</td>
+                                            <td className={styles.labelmount}>${el.cost}</td>
+                                        </tr>
+                                    </tbody>
+                                )}
                             </table>
                             <table>
-                                <tr>
-                                    <td className={styles.labelenvio}>Envio</td>
-                                    <td className={styles.labelmount}>Gratis</td>
-                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td className={styles.labelenvio}>Envio</td>
+                                        <td className={styles.labelmount}>Gratis</td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                         <div className={styles.lineacheckout}></div>
                         <table>
-                            <tr>
-                                <td className={styles.labeltotaltext}>Total</td>
-                                <td className={styles.labeltotalmount}>${totalPrice}</td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td className={styles.labeltotaltext}>Total</td>
+                                    <td className={styles.labeltotalmount}>${totalPrice}</td>
+                                </tr>
+                            </tbody>
                         </table>
                         <div className={styles.botonconfirmar}>
                             <div>
@@ -114,33 +118,25 @@ const ShippingPay = ({cartState, getTotalPrice, totalPrice}) => {
 
                 </div>
             </div>
-
-
-
-
-
         </div>
-
-
     </>
 }
 
 
-  
+
 const mapStateToProps = (state) => {
     return {
-      cartState: state.cart.cartState,
-      totalPrice: state.cart.totalPrice
-
+        cartState: state.cart.cartState,
+        totalPrice: state.cart.totalPrice
     };
-  }
+}
 
-   
-  const mapDispatchToProps = (dispatch) => {
+
+const mapDispatchToProps = (dispatch) => {
     return {
-      getTotalPrice: () => dispatch(getTotalPrice())
+        getTotalPrice: () => dispatch(getTotalPrice())
     }
-  }
+}
 export default connect(mapStateToProps, mapDispatchToProps)(ShippingPay);
 
 

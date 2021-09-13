@@ -39,8 +39,6 @@ const RegisterScreen = ({ authState, uiState, setError, removeError, startRegist
         event.preventDefault();
         if (isFormValid()) {
             await startRegisterWithEmailAndPassword(name, email, password);
-        } else {
-            console.log('Form is not valid');
         }
     }
 
