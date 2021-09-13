@@ -2,8 +2,7 @@ import React from 'react';
 import {
   HashRouter as Router,
   Switch,
-  Route,
-  Redirect,
+  Route,  
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import HomeScreen from '../pages/home/HomeScreen';
