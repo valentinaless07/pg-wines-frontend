@@ -118,7 +118,7 @@ export const startRegisterWithEmailAndPassword = (name, email, password) => {
 
 
                     default:
-                        console.log(error);
+                        // console.log(error);
                         return Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
@@ -177,7 +177,7 @@ export const startLoginWithEmailAndPassword = (email, password, name) => {
                             text: 'Password errada.',
                         });
                     default:
-                        console.log(error);
+                        // console.log(error);
                         return Swal.fire({
                             icon: 'error',
                             title: 'Oops...',

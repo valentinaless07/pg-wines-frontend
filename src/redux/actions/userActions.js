@@ -46,7 +46,7 @@ export const getFilteredProductsList=({categoryId, initPrice, finalPrice})=>{
     return async function(dispatch){
         await axios.get(`https://pg-delsur.herokuapp.com/products?itemsPerPage=12&page=1&categoryId=${categoryId}&initPrice=${initPrice}&finalPrice=${finalPrice}`)
         .then(results=>{
-            console.log(results)
+            // console.log(results)
             dispatch({
                 type: PRODUCTS_FILTERED,
                 payload: results.data

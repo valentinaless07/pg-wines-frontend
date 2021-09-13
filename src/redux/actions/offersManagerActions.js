@@ -40,7 +40,6 @@ export const postOffers = (file, slug, productId, status) => {
         formData.append('image', file);
         formData.append('slug', slug);
         formData.append('productId', productId);
-        console.log('FORM_DATA',{status, file, slug, productId});
         dispatch({
             type: OFFERS_LOADING
         });
@@ -68,7 +67,6 @@ export const postOffers = (file, slug, productId, status) => {
                 throw await resp.json();
             }
         } catch (error) {           
-            console.log('NO SUBE LA IMAGEN', { error });
             dispatch({
                 type: OFFERS_ERROR,
                 payload: error,
@@ -84,21 +82,20 @@ export const postOffers = (file, slug, productId, status) => {
 
 
 export const updateOfferById = (id, status) => {
-    return async (dispatch, getState) => {
-        let results;
+    return async (dispatch, getState) => {       
         dispatch({
             type: OFFERS_LOADING
         });
         try {
-            results = await axios.put(`https://pg-delsur.herokuapp.com/offers/update`, { id: id, status: status.toString() });
+            await axios.put(`https://pg-delsur.herokuapp.com/offers/update`, { id: id, status: status.toString() });
             await getOffers()(dispatch, getState);
             dispatch({
                 type: OFFERS_UPDATE,
 
             });
         } catch (error) {
-            console.log(error);
-            console.log(results);
+            // console.log(error);
+            // console.log(results);
             dispatch({
                 type: OFFERS_ERROR,
                 payload: error
@@ -113,8 +110,7 @@ export const deleteOfferById = (id) => {
             type: OFFERS_LOADING
         });
         try {
-            let results = await axios.delete(`https://pg-delsur.herokuapp.com/offers/delete`, { data: { id: id } });
-            console.log('RESULTS AXIOS:', results)
+            await axios.delete(`https://pg-delsur.herokuapp.com/offers/delete`, { data: { id: id } });
             dispatch({
                 type: OFFERS_DELETE,
                 payload: id

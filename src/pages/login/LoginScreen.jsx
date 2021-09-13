@@ -41,8 +41,6 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
         event.preventDefault();
         if (isFormValid()) {
             await startLoginWithEmailAndPassword(formValues.email, formValues.password);
-        } else {
-            console.log('Form is not valid');
         }
     }
 
