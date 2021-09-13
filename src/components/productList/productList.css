@@ -148,3 +148,15 @@ select{
     background-color: rgb(223, 223, 223);
     box-shadow: inset 0px 0px 4px 1px gray;
 }
+
+.productListSpinnerContainer{
+    width: 100vw;
+    height: 90vh; 
+    /* position: absolute; */
+    display: flex;
+    justify-content: center;
+}
+
+.productListSpinnerContainer > img {
+    padding-bottom: 200px;
+}
