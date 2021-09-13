@@ -1,10 +1,17 @@
-import React from 'react'
+import React from 'react';
+import aboutXL from '../../assests/images/aboutXL.png';
+import Navbar from '../../components/navbar/Navbar';
+import styles from './AboutUs.module.css';
+
 
 const AboutUs = () => {
     return (
-        <div>
-           <h1>Sobre Nosotros</h1> 
-        </div>
+        <>
+            <Navbar />
+            <div className={styles.container}>
+                <img src={aboutXL} alt="About Us" />               
+            </div>
+        </>
     )
 }
 

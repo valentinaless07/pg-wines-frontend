@@ -1,0 +1,15 @@
+.container {
+    background-color: #232f3e;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.container > img {
+    object-fit: contain;
+    min-width: 300px;
+    max-width: 1300px;
+}
+
