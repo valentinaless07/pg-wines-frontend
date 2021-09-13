@@ -70,7 +70,6 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submitting');
     if (name) {
       history.push(`/vino/${name}`);
       setName({})
@@ -79,7 +78,6 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
 
   const buscarVinos = (e) => {
     dispatch(getProductByName(name));
-    console.log('Vinos', vinos)
   }
 
   function handleGoToProducDescription(productId) {
