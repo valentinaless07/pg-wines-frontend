@@ -21,7 +21,7 @@ const ManageProductsScreen = ({products, getProductsPage, getProductsPagination}
     return (
         <div className={styles.manageProductsContainer}>
         <nav>
-          <div className={styles.backIcon}><NavLink to="/"><i className="fas fa-arrow-circle-left fa-3x"></i></NavLink></div>
+          <div className={styles.backIcon}><NavLink to="/adminArea"><i className="fas fa-arrow-circle-left fa-3x"></i></NavLink></div>
             <ul className={styles.nav}>
                 
                 <div className={styles.createProductIcon}><NavLink to="createproduct"><li>Crear producto</li></NavLink></div>

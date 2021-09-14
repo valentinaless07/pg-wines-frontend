@@ -1,0 +1,42 @@
+.nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav {
+  margin-right: 25px;
+}
+.nav > a {
+  text-decoration: none;
+  color: black;
+}
+
+.backIcon {
+  padding-left: 10%;
+  padding-top: 15px;
+}
+
+.manageProductIcon {
+  margin-top: -80px;
+  margin-right: 45px;
+  font-size: 20px;
+}
+.offersManagerIcon {
+  margin-top: -80px;
+  margin-right: 45px;
+  font-size: 20px;
+}
+
+.nav > li {
+  margin-top: -80px;
+  margin-right: 45px;
+  font-size: 20px;
+}
+.h1_container {
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
