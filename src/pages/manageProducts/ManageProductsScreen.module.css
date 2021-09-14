@@ -48,3 +48,7 @@
   background-color: rgb(223, 223, 223);
   box-shadow: inset 0px 0px 4px 1px gray;
 }
+
+.manageProductsContainer {
+  background-color: #f7f7f7;
+}
