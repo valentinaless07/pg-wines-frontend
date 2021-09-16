@@ -8,6 +8,7 @@ import manageProductsReducer from '../reducers/manageProductsReducer';
 import thunk from 'redux-thunk';
 import { restoreSessionAction } from '../actions/authActions';
 import cartReducer from '../reducers/cartReducer';
+import brandsAndsCategories from '../reducers/brandsAndCategories';
 
 let rootReducer = combineReducers({
   auth: authReducer,
@@ -16,7 +17,8 @@ let rootReducer = combineReducers({
   user: userReducer,
   products: productReducer,
   manageProducts: manageProductsReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  brandsAndsCategories: brandsAndsCategories
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

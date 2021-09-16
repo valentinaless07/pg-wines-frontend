@@ -15,7 +15,6 @@ import noFound from '../../assests/images/noFound.png'
 function ProductsContainer({state, getProductsByPage, cart_state, addCartProduct, editItemsAmount, reloadCartLocalStorage}){
   
      let {search} = useLocation();
-        console.log(state.products)
     var query = new URLSearchParams(search)
     const history = useHistory();
 

@@ -14,8 +14,6 @@ export function postProductCreated(payload) {
 export function getCategories() {
     return async function (dispatch) {
         var json = await axios.get("https://pg-delsur.herokuapp.com/categories")
-
-
         return dispatch({
             type: "GET_CATEGORIES",
             payload: json.data

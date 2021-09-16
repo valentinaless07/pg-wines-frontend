@@ -42,6 +42,10 @@ function ProductList({state, manageProductState, getFilteredProductsList, getPro
         if(values.finalPrice<values.initPrice){
             values.finalPrice=''
         }
+        // let pageSelected = document.getElementsByClassName('activePaginationBtn')[0] || null
+        // if(pageSelected!==null){
+        //     pageSelected.classList.remove('activePaginationBtn')
+        // }
         history.push({search:`?category=${values.categoryId}&initPrice=${values.initPrice}&finalPrice=${values.finalPrice}`})
         getFilteredProductsList(values)
         let category = document.getElementById('category')

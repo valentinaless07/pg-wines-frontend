@@ -19,7 +19,7 @@ import Cart from '../pages/cart/Cart';
 import RegisterScreen from '../pages/register/RegisterScreen';
 import LoginScreen from '../pages/login/LoginScreen';
 import PutProduct from '../pages/PutProduct/PutProduct';
-import manageProductInf from '../pages/manageProductInf/ManageProductInf';
+import ManageProductInf from '../pages/manageProductInf/ManageProductInf';
 import SearchResults from '../pages/productDetails/SearchResults';
 import OffersManager from '../pages/offersManager/OffersManager';
 import NotFound from '../pages/NotFound/NotFound';
@@ -38,7 +38,7 @@ const AppRouter = ({ authState }) => {
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
           <Route exact path="/vino/:name" component={SearchResults} />
           <Route exact path="/about" component={AboutUs} />
-          <Route exact path='/manage' component={manageProductInf} />
+          <Route exact path='/manage' component={ManageProductInf} />
           <Route exact path="/register" component={RegisterScreen} />
           <Route exact path="/checkout" component={ShippingPay} /> 
           <Route exact path="/offersManager" component={OffersManager} /> 
