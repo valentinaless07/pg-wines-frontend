@@ -8,10 +8,9 @@ import { getProductsByPage } from '../../redux/actions/userActions';
 import './productList.css'
 import { addCartProduct } from '../../redux/actions/cartActions';
 import { editItemsAmount } from '../../redux/actions/cartActions';
-import { reloadCartLocalStorage } from '../../redux/actions/cartActions';
 import noFound from '../../assests/images/noFound.png'
 
-function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduct, editItemsAmount, reloadCartLocalStorage }) {
+function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduct, editItemsAmount }) {
 
     let { search } = useLocation();
 
@@ -29,7 +28,7 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
             detail.itemsAmount = 1
 
             await addCartProduct(detail)
-            reloadCartLocalStorage()
+            
 
         }
 
@@ -103,7 +102,7 @@ function mapDispatchToProps(dispatch) {
         addCartProduct: (id) => dispatch(addCartProduct(id)),
         getProductsByPage: (category, initPrice, finalPrice, page) => dispatch(getProductsByPage(category, initPrice, finalPrice, page)),
         editItemsAmount: (amount) => dispatch(editItemsAmount(amount)),
-        reloadCartLocalStorage: () => dispatch(reloadCartLocalStorage())
+        
     };
 };
 

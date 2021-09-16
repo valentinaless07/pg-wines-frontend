@@ -7,9 +7,9 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import { addCartProduct } from '../../redux/actions/cartActions';
-import { reloadCartLocalStorage } from '../../redux/actions/cartActions';
 
-const SearchResults = ({ product_detail, getProductByName, getProductByNameReset, addCartProduct, cart_state, reloadCartLocalStorage }) => {
+
+const SearchResults = ({ product_detail, getProductByName, getProductByNameReset, addCartProduct, cart_state }) => {
     // console.log(getProductDetail);
     const { name } = useParams()
     const history = useHistory();
@@ -34,7 +34,7 @@ const SearchResults = ({ product_detail, getProductByName, getProductByNameReset
             detail.itemsAmount = 1
 
         await addCartProduct(detail)
-        reloadCartLocalStorage()
+
         
         }
 
@@ -102,7 +102,7 @@ function mapDispatchToProps(dispatch) {
         getProductByName: (product) => dispatch(getProductByName(product)),
         getProductByNameReset: () => dispatch(getProductByNameReset()),
         addCartProduct: (item) => dispatch(addCartProduct(item)),
-        reloadCartLocalStorage: () => dispatch(reloadCartLocalStorage())
+        
     };
 };
 
