@@ -2,7 +2,8 @@ import Swal from 'sweetalert2'
 
 const initialState = {
     cartState: [],
-    totalPrice: []
+    totalPrice: [],
+    idCheckout: ""
 }
 
 export default function cartReducer (state = initialState, action) {
@@ -85,7 +86,11 @@ export default function cartReducer (state = initialState, action) {
             totalPrice: [total]
           }  
 
-           
+           case "POST_CHECKOUT": 
+           return {
+             ...state,
+            idCheckout: action.payload.data
+           }
     
         
         default: return state

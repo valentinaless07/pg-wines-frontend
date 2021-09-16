@@ -4,9 +4,27 @@ import styles from './ShippingPay.module.css';
 import CartProduct from '../../components/cart_product/CartProduct';
 import { getTotalPrice } from '../../redux/actions/cartActions';
 import { connect } from 'react-redux';
+import { useEffect } from 'react';
 
 
-const ShippingPay = ({ cartState, getTotalPrice, totalPrice }) => {
+const ShippingPay = ({ cartState, getTotalPrice, totalPrice, idCheckout }) => {
+
+
+
+    useEffect(() => {
+
+        var container_checkout = document.getElementById("checkout_container")
+        var script = document.createElement("script")
+        script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+        script.type = "text/javascript"
+        script.dataset.preferenceId = idCheckout
+        container_checkout && container_checkout.appendChild(script)
+
+         }, [idCheckout]);
+
+    
+
+
     return <>
         <div className={styles.bodyshipping}>
             <div className={styles.titlestilos}>
@@ -110,8 +128,9 @@ const ShippingPay = ({ cartState, getTotalPrice, totalPrice }) => {
                             </tbody>
                         </table>
                         <div className={styles.botonconfirmar}>
-                            <div>
-                                <button>Confirmar y pagar</button>
+                            <div id="checkout_container" className="checkout_container">
+                                
+                                
                             </div>
                         </div>
                     </div>
@@ -127,14 +146,17 @@ const ShippingPay = ({ cartState, getTotalPrice, totalPrice }) => {
 const mapStateToProps = (state) => {
     return {
         cartState: state.cart.cartState,
-        totalPrice: state.cart.totalPrice
+        totalPrice: state.cart.totalPrice,
+        idCheckout: state.cart.idCheckout
+        
     };
 }
 
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getTotalPrice: () => dispatch(getTotalPrice())
+        getTotalPrice: () => dispatch(getTotalPrice()),
+        
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ShippingPay);
