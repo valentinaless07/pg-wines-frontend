@@ -1,0 +1,78 @@
+.titlecontainer{
+    width: 100%;
+}
+
+.titlecontainer h1{
+    width: 100%;
+    text-align: center;
+    color: #3483fa;
+    font-style: italic;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.titlecontainer h3{
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+.picpersonal{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 1px solid red;
+    margin: auto;
+    background: url("https://thumbs.dreamstime.com/z/dise%C3%B1o-de-la-persona-de-avatar-69910098.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.picpersonal img{
+    height: 200px;
+}
+
+.personaldiv{
+    margin: auto;
+    margin-top: 60px;
+}
+
+.wholeteam{
+    width: 100%;
+    display: flex;
+}
+
+.nameperson{
+    text-align: center;
+}
+
+.nameperson h2{
+    font-weight: normal;
+}
+
+.nameperson h3{
+    color: #3483fa;
+    margin-bottom: 30px;
+}
+
+.nameperson p{
+    width: 70%;
+    margin: 0 auto;
+    text-align: justify;
+}
+
+.footericon{
+        font-size: 30px;
+        color:#3483fa;
+        margin: 30px 7px;
+        
+
+}
+
+@media screen and (max-width: 992px){
+    .wholeteam{
+        flex-wrap: wrap;
+    }
+}

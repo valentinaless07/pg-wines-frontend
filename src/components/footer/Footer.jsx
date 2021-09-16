@@ -6,16 +6,19 @@ import { faFacebook, faGithub, faTwitter } from '@fortawesome/free-brands-svg-ic
 const Footer = () => {
     return (
         <>
-            <div className={styles.container}>               
+            <div className={styles.container}>
                 <div className={styles.piedepagina}>
                     <div>
                         <h2>Siguenos</h2>
-                        </div>
+                    </div>
                     <div>
                         <FontAwesomeIcon className={styles.footericon} icon={faFacebook} />
                         <FontAwesomeIcon className={styles.footericon} icon={faTwitter} />
                         <FontAwesomeIcon className={styles.footericon} icon={faGithub} />
                     </div>
+                </div>
+                <div className={styles.conocenos}>
+                    <h2>Conoce nuestro equipo</h2>
                 </div>
                 <div className={styles.contactusinfooter}>
                     <button>Contactanos</button>
