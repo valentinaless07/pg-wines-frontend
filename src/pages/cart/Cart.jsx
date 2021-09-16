@@ -6,17 +6,26 @@ import { Link } from 'react-router-dom';
 import CartProduct from '../../components/cart_product/CartProduct';
 import { getTotalPrice } from '../../redux/actions/cartActions';
 import { localStorageInit } from '../../redux/actions/cartActions';
+import { postCheckout } from '../../redux/actions/cartActions';
+import { useHistory } from 'react-router';
 
 
-
-const Cart = ({cartState, getTotalPrice, totalPrice, localStorageInit}) => {
-
+const Cart = ({cartState, getTotalPrice, totalPrice, localStorageInit, postCheckout, idCheckout}) => {
+    const history = useHistory()
     
     useEffect(() => {
         localStorageInit()
         getTotalPrice()
         
     } , [getTotalPrice, localStorageInit]);
+    
+
+    
+
+    async function handleCheckout () {
+        await postCheckout(cartState)
+        history.push("/checkout")
+    }
     
     
 
@@ -47,7 +56,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice, localStorageInit}) => {
                             <b>${totalPrice}</b>
                             </div>
                             <hr className={styles.hr}></hr>
-                            <Link to='/checkout' className={styles.buttonSubmit}><p>CHECKOUT</p></Link>
+                            <p onClick={handleCheckout} className={styles.buttonSubmit}>CHECKOUT</p>
                         </div>
                     </div>
                 </div>
@@ -61,7 +70,8 @@ const Cart = ({cartState, getTotalPrice, totalPrice, localStorageInit}) => {
 const mapStateToProps = (state) => {
     return {
       cartState: state.cart.cartState,
-      totalPrice: state.cart.totalPrice
+      totalPrice: state.cart.totalPrice,
+      idCheckout: state.cart.idCheckout
 
     };
   }
@@ -70,7 +80,8 @@ const mapStateToProps = (state) => {
     return {
       addCartProduct: () => dispatch(addCartProduct()),
       getTotalPrice: () => dispatch(getTotalPrice()),
-      localStorageInit: () => dispatch(localStorageInit())
+      localStorageInit: () => dispatch(localStorageInit()),
+      postCheckout: (products) => dispatch(postCheckout(products))
     }
   }
 

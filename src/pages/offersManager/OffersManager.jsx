@@ -105,7 +105,7 @@ const OffersManager = ({ offersState, getOffers, postOffers, getAllProductsSlide
                 </div>
             }
 
-            <Link to="/" className={styles.backicon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
+            <Link to="/adminArea" className={styles.backicon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
 
             <div className={styles.title}>
                 <h1>Gestion Offertas</h1>

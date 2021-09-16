@@ -9,6 +9,7 @@ import { getBrands } from '../../redux/actions/manageProductsActions';
 import { getPacking } from '../../redux/actions/manageProductsActions';
 import { useHistory } from 'react-router';
 
+
 const CreateProduct = ({ manageProductState, getCategories, postProductCreated, getBrands, getPacking}) => {
 
 
@@ -28,15 +29,30 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
         capacity: "",
         discount: "0",
         stock: "0",
-        image: ["01_1605539265"],
+        image: [],
         categoryId: "",
         sales: "0",
         brandId: "",
-        packingId: ""
+        packingId: "",
+
     })
 
     const [errors, setErrors] = useState({})
+    
 
+    function handleFileInput (e) {
+        const files = e.target.files;
+        
+        let arrayFiles = [...files]
+        
+        
+        
+        setNewProductData({...newProductData, image: arrayFiles[0]})
+        
+        
+    }
+
+   
 
     function handleChange (e) {
         setNewProductData({
@@ -200,6 +216,11 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
                         }
                     </select>
                     {errors.packingId && (<p className={styles.error}>{errors.packingId}</p>)}    
+                </div>
+                <div>
+                    <label>Imágenes del producto:</label>
+                    <input type="file" multiple onChange={handleFileInput}></input>
+                    
                 </div>        
 
                 <button className={styles.buttonSubmitForm} type="submit">Crear Producto</button>

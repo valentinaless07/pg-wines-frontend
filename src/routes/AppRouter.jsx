@@ -22,10 +22,9 @@ import manageProductInf from '../pages/manageProductInf/ManageProductInf';
 import SearchResults from '../pages/productDetails/SearchResults';
 import OffersManager from '../pages/offersManager/OffersManager';
 import NotFound from '../pages/NotFound/NotFound';
-import MiOrden from '../pages/MisOrdenes/MisOrdenes';
 import DetalleOrden from '../pages/MisOrdenes/DetalleOrden';
 import MisOrdenes from '../pages/MisOrdenes/MisOrdenes';
-
+import AdminArea from '../pages/adminArea/AdminArea';
 
 const AppRouter = ({ authState }) => {
 
@@ -66,8 +65,8 @@ const AppRouter = ({ authState }) => {
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
-            path='/manageProducts'
-            component={ManageProductsScreen}
+            path='/adminArea'
+            component={AdminArea}
           />
           <PrivateRoute
             exact
