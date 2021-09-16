@@ -1,0 +1,37 @@
+.ordeninfo{
+    height: 100vh;
+   
+}
+
+
+
+.ordeninfo h2{
+    text-align: center;
+}
+
+.ordeninfo table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin: auto;
+    box-shadow:
+    0 3.6px 2.4px rgba(0, 0, 0, 0.08),
+    0 10px 6.8px rgba(0, 0, 0, 0.052),
+    0 24.1px 16.3px rgba(0, 0, 0, 0.04),
+    0 80px 54px rgba(0, 0, 0, 0.028)
+  ;
+}
+
+.ordeninfo td, th{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.ordeninfo tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+.ordeninfo a{
+    color:blue ;
+}

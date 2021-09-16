@@ -22,6 +22,10 @@ import manageProductInf from '../pages/manageProductInf/ManageProductInf';
 import SearchResults from '../pages/productDetails/SearchResults';
 import OffersManager from '../pages/offersManager/OffersManager';
 import NotFound from '../pages/NotFound/NotFound';
+import MiOrden from '../pages/MisOrdenes/MisOrdenes';
+import DetalleOrden from '../pages/MisOrdenes/DetalleOrden';
+import MisOrdenes from '../pages/MisOrdenes/MisOrdenes';
+
 
 const AppRouter = ({ authState }) => {
 
@@ -41,6 +45,8 @@ const AppRouter = ({ authState }) => {
           <Route exact path="/register" component={RegisterScreen} />
           <Route exact path="/checkout" component={ShippingPay} />
           <Route exact path="/offersManager" component={OffersManager} />
+          <Route exact path="/misordenes" component={MisOrdenes} />
+          <Route exact path="/detalleorden" component={DetalleOrden} />
 
           <Route exact path="/cart" component={Cart} />
 
