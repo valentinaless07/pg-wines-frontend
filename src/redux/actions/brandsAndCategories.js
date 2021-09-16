@@ -15,13 +15,11 @@ export function getInfo(info) {
 export function createElement(info, element){
     return async function(){
         await axios.post(`https://pg-delsur.herokuapp.com/${info}`, element)
-        console.log(element)
     }
 }
 
 export function deleteElement(info, element){
     return async function(){
-        console.log(`https://pg-delsur.herokuapp.com/${info}/delete`, element)
-        await axios.delete(`https://pg-delsur.herokuapp.com/${info}/delete`, element)
+        await axios.delete(`https://pg-delsur.herokuapp.com/${info}/delete`, {data: {id: element}})
     }
 }

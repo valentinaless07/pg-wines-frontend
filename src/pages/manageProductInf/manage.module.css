@@ -1,0 +1,18 @@
+.btns{
+    display: flex;
+}
+
+.icon{
+    font-size: 50px;
+    display: block;
+    text-align: center;
+}
+
+.btn__Selection{
+    margin: 20px 40px;
+    cursor: pointer;
+}
+
+.active__Selection{
+    color: red;
+}

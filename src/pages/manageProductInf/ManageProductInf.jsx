@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import BrandsAndCategories from '../../components/brands/Brands'
+import styles from './manage.module.css'
 
 export default function ManageProductInf(){
     
@@ -18,17 +19,17 @@ export default function ManageProductInf(){
 
     return(
         <div>
-            <div onClick={()=>handleManage('categories')}>
-                <i className="fas fa-wine-bottle"></i>
-                <span>Agregar nueva categoria</span>
+            <div className={styles.btns}>
+                <div className={`${styles.btn__Selection} ${element.active==='categories' && styles.active__Selection}`} onClick={()=>handleManage('categories')}>
+                    <i className={`fas fa-wine-bottle ${styles.icon}`}></i>
+                    <span>Agregar Categoria</span>
+                </div>
+                <div className={`${styles.btn__Selection} ${element.active==='brands' && styles.active__Selection}`} onClick={()=>handleManage('brands')} >
+                    <i className={`fab fa-penny-arcade ${styles.icon}`}></i>
+                    <span>Agregar Marca</span>
+                </div>
             </div>
-            <div onClick={()=>handleManage('brands')} >
-                <i className="fab fa-penny-arcade"></i>
-                <span>Agregar marca de producto</span>
-            </div>
-            {
-                <BrandsAndCategories element={element.active}/>
-            }
+            <BrandsAndCategories element={element.active}/>
 
         </div>
     )
