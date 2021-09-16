@@ -25,6 +25,7 @@ import NotFound from '../pages/NotFound/NotFound';
 import DetalleOrden from '../pages/MisOrdenes/DetalleOrden';
 import MisOrdenes from '../pages/MisOrdenes/MisOrdenes';
 import AdminArea from '../pages/adminArea/AdminArea';
+import OurTeam from '../pages/ourteam/OurTeam';
 
 const AppRouter = ({ authState }) => {
 
@@ -46,6 +47,7 @@ const AppRouter = ({ authState }) => {
           <Route exact path="/offersManager" component={OffersManager} />
           <Route exact path="/misordenes" component={MisOrdenes} />
           <Route exact path="/detalleorden" component={DetalleOrden} />
+          <Route exact path="/equipo" component={OurTeam} />
 
           <Route exact path="/cart" component={Cart} />
 

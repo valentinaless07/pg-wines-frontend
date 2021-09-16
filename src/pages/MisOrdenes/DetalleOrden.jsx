@@ -8,7 +8,9 @@ import { connect } from 'react-redux';
 const DetalleOrden = () => {
 
     return (
-        <><Navbar /><div className={styles.detalledeordenes}>
+        <>
+        <Navbar />
+        <div className={styles.detalledeordenes}>
             <div className={styles.datesorder}>
                 <ul>
                     <li>
@@ -27,7 +29,9 @@ const DetalleOrden = () => {
                 <p> X Cantidad comprada</p>
                 <p><a href="">Ver detalle de producto</a></p>
             </div>
-        </div><Footer /></>
+        </div>
+        <Footer />
+        </>
     )
 };
 
