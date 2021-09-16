@@ -8,6 +8,8 @@ const PrivateRoute = ({
     component,
     ...rest
 }) => { 
+    console.log(rest.location);
+    localStorage.setItem('lastPathVisited', rest.location.pathname)
     
     if(isAuthenticated){
         return <Route path={path} component={component} {...rest} />

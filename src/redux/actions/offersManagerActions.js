@@ -38,8 +38,12 @@ export const postOffers = (file, slug, productId, status) => {
         const formData = new FormData();
         formData.append('status', status);
         formData.append('image', file);
+        formData.append('categoryId', productId);
+        formData.append('discount', 10);
+        formData.append('from', new Date());
+        formData.append('until', new Date());
         formData.append('slug', slug);
-        formData.append('productId', productId);
+        // formData.append('productId', productId);
         dispatch({
             type: OFFERS_LOADING
         });
@@ -66,7 +70,8 @@ export const postOffers = (file, slug, productId, status) => {
                 });
                 throw await resp.json();
             }
-        } catch (error) {           
+        } catch (error) { 
+            console.log(error);          
             dispatch({
                 type: OFFERS_ERROR,
                 payload: error,
