@@ -9,10 +9,9 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { addCartProduct} from '../../redux/actions/cartActions';
-import { reloadCartLocalStorage } from '../../redux/actions/cartActions';
 import { useHistory } from 'react-router';
 
-const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state, reloadCartLocalStorage}) => {
+const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state}) => {
     // console.log(getProductDetail);
     const { id } = useParams()
     useEffect(() => {
@@ -34,7 +33,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
         let detail = product_detail
         detail.itemsAmount = cantidadItems    
         await addCartProduct(detail)
-        reloadCartLocalStorage()
+        
         
         }
         else{
@@ -93,7 +92,7 @@ function mapStateToProps(state) {
         getProductDetail: (product) => dispatch(getProductDetail(product)),
         getProductDetailReset: () => dispatch(getProductDetailReset()),
         addCartProduct: (id) => dispatch(addCartProduct(id)),
-        reloadCartLocalStorage: () => dispatch(reloadCartLocalStorage())
+        
         
 
     };

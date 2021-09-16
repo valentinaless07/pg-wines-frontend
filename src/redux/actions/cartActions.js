@@ -30,17 +30,8 @@ export function getTotalPrice () {
     }
 }
 
-export function reloadCartLocalStorage() {
-    return {
-        type: "RELOAD_CART_LOCAL_STORAGE"
-    }
-}
 
-export function localStorageInit() {
-    return {
-        type: "LOCAL_STORAGE_INIT"
-    }
-}
+
 
 export function postCheckout(payload) {
     return async function (dispatch){

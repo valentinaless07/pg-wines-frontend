@@ -5,19 +5,19 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartProduct from '../../components/cart_product/CartProduct';
 import { getTotalPrice } from '../../redux/actions/cartActions';
-import { localStorageInit } from '../../redux/actions/cartActions';
+
 import { postCheckout } from '../../redux/actions/cartActions';
 import { useHistory } from 'react-router';
 
 
-const Cart = ({cartState, getTotalPrice, totalPrice, localStorageInit, postCheckout, idCheckout}) => {
+const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout}) => {
     const history = useHistory()
     
     useEffect(() => {
-        localStorageInit()
+        
         getTotalPrice()
         
-    } , [getTotalPrice, localStorageInit]);
+    } , [getTotalPrice]);
     
 
     
@@ -80,7 +80,6 @@ const mapStateToProps = (state) => {
     return {
       addCartProduct: () => dispatch(addCartProduct()),
       getTotalPrice: () => dispatch(getTotalPrice()),
-      localStorageInit: () => dispatch(localStorageInit()),
       postCheckout: (products) => dispatch(postCheckout(products))
     }
   }
