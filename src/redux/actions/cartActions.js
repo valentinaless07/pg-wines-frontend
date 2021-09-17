@@ -35,7 +35,8 @@ export function getTotalPrice () {
 
 export function postCheckout(payload) {
     return async function (dispatch){
-    const res = await axios.post("https://pg-delsur.herokuapp.com/pay", payload)
+    // const res = await axios.post("https://pg-delsur.herokuapp.com/pay", payload)
+    const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/pay`, payload)
         console.log(res)
     return dispatch({
         type: "POST_CHECKOUT",

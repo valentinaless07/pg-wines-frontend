@@ -17,7 +17,8 @@ export const getOffers = () => {
             type: OFFERS_LOADING
         });
         try {
-            results = await axios.get(`https://pg-delsur.herokuapp.com/offers`);
+            // results = await axios.get(`https://pg-delsur.herokuapp.com/offers`);
+            results = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/offers`);
             dispatch({
                 type: OFFERS_GET_ALL,
                 payload: results.data
@@ -34,7 +35,8 @@ export const getOffers = () => {
 
 export const postOffers = (file, slug, productId, status) => {
     return async (dispatch, getState) => {
-        const url = 'https://pg-delsur.herokuapp.com/offers';
+        // const url = 'https://pg-delsur.herokuapp.com/offers';
+        const url = `${process.env.REACT_APP_BACKEND_URL}/offers`;
         const formData = new FormData();
         formData.append('status', status);
         formData.append('image', file);
@@ -87,7 +89,8 @@ export const updateOfferById = (id, status) => {
             type: OFFERS_LOADING
         });
         try {
-            await axios.put(`https://pg-delsur.herokuapp.com/offers/update`, { id: id, status: status.toString() });
+            // await axios.put(`https://pg-delsur.herokuapp.com/offers/update`, { id: id, status: status.toString() });
+            await axios.put(`${process.env.REACT_APP_BACKEND_URL}/offers/update`, { id: id, status: status.toString() });
             await getOffers()(dispatch, getState);
             dispatch({
                 type: OFFERS_UPDATE,
@@ -110,7 +113,8 @@ export const deleteOfferById = (id) => {
             type: OFFERS_LOADING
         });
         try {
-            await axios.delete(`https://pg-delsur.herokuapp.com/offers/delete`, { data: { id: id } });
+            // await axios.delete(`https://pg-delsur.herokuapp.com/offers/delete`, { data: { id: id } });
+            await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/offers/delete`, { data: { id: id } });
             dispatch({
                 type: OFFERS_DELETE,
                 payload: id
