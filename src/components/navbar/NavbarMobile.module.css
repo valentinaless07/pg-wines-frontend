@@ -105,6 +105,21 @@
   display: none;
 }
 
+.autoContainer {
+  display: block;
+  background: lightgray;
+  position: absolute;
+  top: 57px;
+  width: 250px;
+}
+
+.autoContainer button {
+  width: 100%;
+  background-color: white;
+  border: none;
+  text-align: left;
+}
+
 @media (max-width: 700px) {
   .bars_cart_container {
     padding-right: 25px;

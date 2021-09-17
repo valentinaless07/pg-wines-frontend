@@ -172,10 +172,19 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
           className={stylesMobile.searchBar}
           placeholder="Buscar Bebidas..."
           type="search"
+          onChange={handleChange}
         />
-        
     
         <img src={search} alt="" />
+        {(vinos.length > 0 && name && name.length > 2) ?
+        <div className={stylesMobile.autoContainer}>
+         {vinos.map(item => {
+           return (
+             <button className="item-autocomplete" key={item.id} onClick={() => handleGoToProducDescription(item.id)} >{item.name}</button>
+           )
+         })}
+        </div>
+        : ''}
       </div>
 
       <div className={stylesMobile.bars_cart_container}>
@@ -196,10 +205,10 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
             ?
             <>
               <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
-              <li onClick={() => goTo('manageProducts')}>GESTION DE PRODUCTOS</li>
-              <li onClick={() => goTo('offersManager')}>GESTION DE OFERTAS</li>
+              <li onClick={() => goTo('adminArea')}>ADMINISTRACIÓN</li>
+              
               <li onClick={() => goTo('favorites')}>FAVORITOS</li>
-              <li onClick={() => goTo('cart')}>CARRITO</li>
+              <li onClick={() => goTo('cart')}>CARRITO {totalItems() > 0? <span>({totalItems()})</span>: <div></div>} </li>
               <li onClick={handleLogout}>SALIR</li>
             </>
             :
