@@ -33,15 +33,21 @@ export const getOffers = () => {
     }
 }
 
-export const postOffers = (file, slug, productId, status) => {
+export const postOffers = (data, files) => {
+// export const postOffers = (data, file, slug, productId, status) => {
     return async (dispatch, getState) => {
         // const url = 'https://pg-delsur.herokuapp.com/offers';
         const url = `${process.env.REACT_APP_BACKEND_URL}/offers`;
+        console.log({data});
         const formData = new FormData();
-        formData.append('status', status);
-        formData.append('image', file);
-        formData.append('slug', slug);
-        formData.append('productId', productId);
+        formData.append('status', data.status);
+        formData.append('files', [data.image]);
+        formData.append('categoryId', data.categoryId);
+        formData.append('discount', data.discount);
+        formData.append('from', new Date());
+        formData.append('until', new Date());
+        formData.append('slug', data.slug);
+        // formData.append('productId', productId);
         dispatch({
             type: OFFERS_LOADING
         });
@@ -68,7 +74,8 @@ export const postOffers = (file, slug, productId, status) => {
                 });
                 throw await resp.json();
             }
-        } catch (error) {           
+        } catch (error) { 
+            console.log(error);          
             dispatch({
                 type: OFFERS_ERROR,
                 payload: error,
@@ -76,7 +83,7 @@ export const postOffers = (file, slug, productId, status) => {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Error inesperado 2, si el error persiste contactar al administrador del sistema.',
+                text: `Error inesperado 2, si el error persiste contactar al administrador del sistema. ${JSON.stringify(error)}`,
             });
         }
     }
