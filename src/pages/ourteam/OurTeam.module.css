@@ -22,9 +22,8 @@
     height: 150px;
     width: 150px;
     border-radius: 50%;
-    border: 1px solid red;
     margin: auto;
-    background: url("https://thumbs.dreamstime.com/z/dise%C3%B1o-de-la-persona-de-avatar-69910098.jpg");
+    /* background: url("https://scontent-mia3-1.xx.fbcdn.net/v/t1.6435-9/58441492_2712779815406119_8305064258958262272_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=QMJ9tTzcQaAAX_56lfl&_nc_ht=scontent-mia3-1.xx&oh=f374afd70e861d9a45da9d7823952eba&oe=6167C177"); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Footer.module.css';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
@@ -18,7 +19,9 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className={styles.conocenos}>
+                    <Link to="equipo">
                     <h2>Conoce nuestro equipo</h2>
+                    </Link>
                 </div>
                 <div className={styles.contactusinfooter}>
                     <button>Contactanos</button>
