@@ -38,11 +38,11 @@ export const postOffers = (data, files) => {
     return async (dispatch, getState) => {
         // const url = 'https://pg-delsur.herokuapp.com/offers';
         const url = `${process.env.REACT_APP_BACKEND_URL}/offers`;
-        console.log({data});
+        // console.log({data, files});
         const formData = new FormData();
         formData.append('status', data.status);
         formData.append('files', [data.image]);
-        formData.append('categoryId', data.categoryId);
+        formData.append('categoryId', data.categoryId.toString());
         formData.append('discount', data.discount);
         formData.append('from', new Date());
         formData.append('until', new Date());
@@ -56,6 +56,7 @@ export const postOffers = (data, files) => {
             const resp = await fetch(url, {
                 method: 'POST',
                 body: formData,
+                // header: {}//
             });
 
             if (resp.ok) {

@@ -25,8 +25,6 @@ const initialState = {
 
 const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlider, productState, getCategories, categoriesState }) => {
     const [formState, setFormState] = useState(initialState);
-    // let inputImage = useRef(null);
-    // let imageName = useRef(null);
     let fileName = useRef(null);
     let fileInput = useRef(null);
     const now = new Date();
@@ -59,9 +57,10 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
     useEffect(() => {
         
         getOffers();
+        
         getCategories();
     }, [getOffers, getCategories]);
-
+console.log({offersState})
 
 
     const handleOnChange = (event) => {
@@ -108,9 +107,7 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                     [elem.name]: elem.checked
                 })
                 break;
-            case (elem.type === 'file'):
-                console.log('It is a file');
-                console.log('FILES: ',elem.files[0]);
+            case (elem.type === 'file'):               
                 let file = fileInput.current.files[0];
                 if (file) {
                     fileName.current.value = file.name;
@@ -134,7 +131,7 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
     const handleSave = (event) => {
         // let file = fileInput.current.files[0];
         console.log(formState)
-        const { status, slug, image, categoryId, from, until, discount } = formState;
+        const { image, categoryId, until, discount } = formState;
         switch (true) {
             case (discount <= 0):
                 Swal.fire({ icon: 'warning', title: 'Oops...', text: 'Ingresar un descuento para la categoría.', });
@@ -150,61 +147,20 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                 break;
 
             default:
+                console.log({formState, files:formState.image})
                 postOffers(formState, formState.image)
                 break;
         }
 
     }
 
-    // const handleOnClickUploadImage = (event) => {
-    //     // document.getElementById('image').click()
-    //     inputImage.current.click();
-    // }
-    // const handleImageChange = (event) => {
-
-    //     const file = inputImage.current?.files[0];
-    //     console.log('file: ', file)
-    //     // imageName = inputImage.current?.files[0]?.name;
-    //     // console.log('fileName: ', imageName)
-
-
-    //     if (file) {
-    //         imageName.current.value = file.name;
-    //         setFormState({
-    //             ...formState,
-    //             image: file,
-    //             slug: imageName,
-    //         })
-
-    //     }
-    // }
-
-
-    // const handlePhotoUpload = () => {
-    //     fileInput.current.click();
-    // }
-
-    // const handleFileChange = (e) => {
-    //     const file = fileInput.current.files[0];
-    //     console.log('HANDLE_FILE_CHANGE', { file: fileInput.current.files[0], formState })
-
-    //     if (file) {
-    //         fileName.current.value = file.name;
-    //     }
-
-    // }
+    
 
 
     const handlePhotoUpload = () => {
         fileInput.current.click();
     }
-    // const handleFileChange = (e) => {
-    //     const file = fileInput.current.files[0];
-
-    //     if (file) {
-    //         fileName.current.value = file.name;
-    //     }
-    // }
+    
 
     return (
 
@@ -245,9 +201,7 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                                     categoriesState.map(category => (
                                         <option key={uniqid()} value={category.id} > {category.name}</option>
                                     ))
-                                }
-                                {/* <option value='11' >Vinos</option>
-                                <option value='22' >Cervezas</option> */}
+                                }                             
                             </select>
                         </div>
                       
@@ -261,7 +215,7 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                                 type="file"
                                 style={{ display: 'none' }}
                                 onChange={handleOnChange}
-                            // onChange={handleFileChange}
+                            
                             />
                             <button onClick={handlePhotoUpload} className={styles.buttom}>Cargar Imagen</button>
 
