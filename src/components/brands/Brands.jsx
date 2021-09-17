@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { getInfo, createElement, deleteElement } from "../../redux/actions/brandsAndCategories"
+import Swal from "sweetalert2"
 import styles from './brands.module.css'
 
 function BrandsAndCategories({state, element, getInfo, createElement, deleteElement}){
@@ -23,6 +24,15 @@ function BrandsAndCategories({state, element, getInfo, createElement, deleteElem
     function handleCreate(){
         if(search.name!==''){
             createElement(element, search)
+            Swal.fire({
+                title: `${search.name} creado satisfactoriamente`,
+                showClass: {
+                  popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                  popup: 'animate__animated animate__fadeOutUp'
+                }
+              })
         }
         setSearch({
             name:''
@@ -36,8 +46,23 @@ function BrandsAndCategories({state, element, getInfo, createElement, deleteElem
     }
 
     function handleDelete(id){
-        deleteElement(element, id)
-        getInfo(element)
+        Swal.fire({
+            title: '¿Esta Seguro?',
+            text: "no podras deshacer esta acción",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, seguro'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                deleteElement(element, id)
+                getInfo(element)
+              Swal.fire(
+                'Eliminado'
+              )
+            }
+          })
     }
       
     return(
@@ -48,14 +73,20 @@ function BrandsAndCategories({state, element, getInfo, createElement, deleteElem
             <button>{`Crear`}</button>
         </form>
         <div className={styles.infoContainer}>
-            <ul>
                 {
                     state[element].length>0?
-                    state[element].filter(item=>filter(item)).map(item=><li key={item.id}>{item.name}<span onClick={()=>handleDelete(item.id)}><i className="far fa-trash-alt"></i></span></li>)
+                    state[element].filter(item=>filter(item)).map(item=><div className={styles.optionsContainer} key={item.id}>
+                            <div>
+                                <span>{item.name}</span>
+                            </div>
+                            <div>
+                                <span onClick={()=>handleDelete(item.id)}><i className="far fa-trash-alt"></i></span>
+                                <span><i className="fas fa-feather-alt"></i></span>
+                            </div>
+                        </div>)
                     :
                     <h1>Cargando...</h1>
                 }
-            </ul>
         </div>
 
     </div>)
