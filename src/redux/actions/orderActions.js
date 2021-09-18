@@ -5,8 +5,11 @@ export const GET_ORDER_DETAILS = 'GET_ORDER_DETAILS';
     
 
 export const getOrderHistory=()=>{
+    let userData = localStorage.getItem('auth');
+    userData = JSON.parse(userData);
+    console.log('userData', userData);
     return async function(dispatch){
-        await axios.get('https://pg-delsur.herokuapp.com/products/')
+        await axios.get(`https://pg-delsur.herokuapp.com/orders/userOrders/${userData.uid}`)
         .then(results =>{            
             dispatch({
                 type: GET_ORDER_HISTORY,
@@ -16,9 +19,9 @@ export const getOrderHistory=()=>{
     }
 }
 
-export const getOrderDetails=()=>{
+export const getOrderDetails = (id) => {
     return async function(dispatch){
-        await axios.get('https://pg-delsur.herokuapp.com/products/')
+        await axios.get(`https://pg-delsur.herokuapp.com/orders/getOrderById/${id}`)
         .then(results =>{            
             dispatch({
                 type: GET_ORDER_DETAILS,

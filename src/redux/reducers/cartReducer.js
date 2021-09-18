@@ -1,21 +1,24 @@
 import Swal from 'sweetalert2'
 
+
 const initialState = {
-    cartState: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [],
+    cartState: [],
     totalPrice: [],
     idCheckout: ""
 }
+
 
 export default function cartReducer (state = initialState, action) {
 
     switch(action.type){
         case "ADD_CART_PRODUCT":
           
-          if(action.payload.stock - action.payload.itemsAmount >= 0){
+          if(action.payload.stock - action.payload.quantity >= 0){
             
-            
-              Swal.fire('Producto agregado al carrito')
+            if(!JSON.parse(localStorage.getItem("auth"))?.loggedIn){
               localStorage.setItem("cart", JSON.stringify(state.cartState.concat(action.payload)))
+            }
+              Swal.fire('Producto agregado al carrito')
               
             return {
             ...state,
@@ -37,7 +40,11 @@ export default function cartReducer (state = initialState, action) {
 
           case "DELETE_CART_PRODUCT":
             let cartStateDeleted = state.cartState.filter(el => el.id !== action.payload)
-            localStorage.setItem("cart", JSON.stringify(cartStateDeleted))
+
+            if(!JSON.parse(localStorage.getItem("auth"))?.loggedIn){
+              localStorage.setItem("cart", JSON.stringify(cartStateDeleted))
+            }
+            
             return{
               ...state,
               cartState: cartStateDeleted
@@ -49,8 +56,12 @@ export default function cartReducer (state = initialState, action) {
             let product = amount[amount.findIndex(el => el.id === action.payload.id)]
 
             if(product.stock - action.payload.amount >= 0){
-              product.itemsAmount = action.payload.amount
-              localStorage.setItem("cart", JSON.stringify(amount))
+              product.quantity = action.payload.amount
+              
+              if(!JSON.parse(localStorage.getItem("auth"))?.loggedIn){
+                localStorage.setItem("cart", JSON.stringify(amount))
+              }
+              
 
               return {
                 ...state,
@@ -67,7 +78,7 @@ export default function cartReducer (state = initialState, action) {
             
           case "GET_TOTAL_PRICE":
             let total = 0
-            state.cartState.forEach(el => total += el.cost * el.itemsAmount)
+            state.cartState?.forEach(el => total += el.cost * el.quantity)
           return{
             ...state,
             totalPrice: [total]
@@ -78,6 +89,16 @@ export default function cartReducer (state = initialState, action) {
              ...state,
             idCheckout: action.payload.data
            }
+           case "CART_STATE_LOGIN":
+             
+            
+                return {
+                  ...state,
+                  cartState: action.payload
+                }
+
+             
+             
     
         
         default: return state

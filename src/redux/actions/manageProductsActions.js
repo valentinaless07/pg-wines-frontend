@@ -3,6 +3,7 @@ import axios from "axios"
 export function postProductCreated(payload) {
 
     return async function () {
+        console.log(payload)
 
         const res = await axios.post("https://pg-delsur.herokuapp.com/products", payload)
 
@@ -14,8 +15,6 @@ export function postProductCreated(payload) {
 export function getCategories() {
     return async function (dispatch) {
         var json = await axios.get("https://pg-delsur.herokuapp.com/categories")
-
-
         return dispatch({
             type: "GET_CATEGORIES",
             payload: json.data

@@ -10,10 +10,10 @@ import { addCartProduct } from '../../redux/actions/cartActions';
 import { editItemsAmount } from '../../redux/actions/cartActions';
 import noFound from '../../assests/images/noFound.png'
 
+
 function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduct, editItemsAmount }) {
 
     let { search } = useLocation();
-
     var query = new URLSearchParams(search)
     const history = useHistory();
 
@@ -25,7 +25,7 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
 
         if (cart_state?.findIndex(el => el.id === item.id) === -1) {
             let detail = item
-            detail.itemsAmount = 1
+            detail.quantity = 1
 
             await addCartProduct(detail)
             
