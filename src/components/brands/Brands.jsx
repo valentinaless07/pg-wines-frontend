@@ -21,6 +21,7 @@ function BrandsAndCategories({state, element, getInfo, createElement, deleteElem
         })
     }
 
+
     function handleCreate(){
         if(search.name!==''){
             createElement(element, search)
@@ -98,11 +99,11 @@ function BrandsAndCategories({state, element, getInfo, createElement, deleteElem
     }
       
     return(
-    <div>
-        <h1>{element}</h1>
-        <form onSubmit={handleCreate}>
-            <span>Busqueda </span><input onChange={handleRegex} value={search.name} type='text'/>
-            <button>{`Crear`}</button>
+    <div className={styles.admin}>
+        <h1>{element==='categories'? 'Categorias' : 'Marcas'}</h1>
+        <form className={styles.form} onSubmit={handleCreate}>
+            <span>Busqueda </span><input className={styles.inputSearch} placeholder='buscar' onChange={handleRegex} value={search.name} type='text'/>
+            <button className={styles.btnCreate}>{`CREAR`}</button>
         </form>
         <div className={styles.infoContainer}>
                 {
@@ -112,8 +113,8 @@ function BrandsAndCategories({state, element, getInfo, createElement, deleteElem
                                 <span>{item.name}</span>
                             </div>
                             <div>
-                                <span onClick={()=>handleDelete(item.id)}><i className="far fa-trash-alt"></i></span>
-                                <span onClick={()=>handleUpdate(item)}><i className="fas fa-feather-alt"></i></span>
+                                <span className={styles.icon} onClick={()=>handleDelete(item.id)}><i className="far fa-trash-alt"></i></span>
+                                <span className={styles.icon} onClick={()=>handleUpdate(item)}><i className="fas fa-feather-alt"></i></span>
                             </div>
                         </div>)
                     :

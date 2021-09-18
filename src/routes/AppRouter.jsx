@@ -38,7 +38,7 @@ const AppRouter = ({ authState }) => {
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
           <Route exact path="/vino/:name" component={SearchResults} />
           <Route exact path="/about" component={AboutUs} />
-          <Route exact path='/manage' component={ManageProductInf} />
+          {/* <Route exact path='/manage' component={ManageProductInf} /> */}
           <Route exact path="/register" component={RegisterScreen} />
           <Route exact path="/checkout" component={ShippingPay} /> 
           <Route exact path="/offersManager" component={OffersManager} /> 
@@ -46,6 +46,12 @@ const AppRouter = ({ authState }) => {
           <Route exact path="/cart" component={Cart} />
           {/* <Route exact path="/notFound" component={NotFound} /> */}
          
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            path='/manage'
+            component={ManageProductInf}
+          />
 
           <PrivateRoute
             exact

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import BrandsAndCategories from '../../components/brands/Brands'
 import styles from './manage.module.css'
+import { useHistory } from "react-router"
 
 export default function ManageProductInf(){
     
@@ -17,8 +18,15 @@ export default function ManageProductInf(){
         }
     }
 
+    const history = useHistory()
+
+    function back(){
+        history.push('/home')
+    }
+
     return(
-        <div>
+        <div className={styles.manageInfoContainer}>
+            <span onClick={back} className={styles.back}><i className="fas fa-arrow-circle-left"></i></span>
             <div className={styles.btns}>
                 <div className={`${styles.btn__Selection} ${element.active==='categories' && styles.active__Selection}`} onClick={()=>handleManage('categories')}>
                     <i className={`fas fa-wine-bottle ${styles.icon}`}></i>
