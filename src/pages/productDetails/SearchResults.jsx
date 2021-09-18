@@ -31,7 +31,7 @@ const SearchResults = ({ product_detail, getProductByName, getProductByNameReset
         
         if(cart_state?.findIndex(el => el.id === item.id) === -1){
             let detail = item
-            detail.itemsAmount = 1
+            detail.quantity = 1
 
         await addCartProduct(detail)
 

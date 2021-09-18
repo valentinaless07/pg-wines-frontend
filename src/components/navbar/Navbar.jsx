@@ -85,7 +85,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
 }
   function totalItems () {
     let total = 0
-    cartState?.forEach(el => total += el.itemsAmount)
+    cartState?.forEach(el => total += el.quantity)
     if(total > 99){return "99"}
     return total
 }
