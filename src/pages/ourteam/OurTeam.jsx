@@ -4,7 +4,7 @@ import Footer from '../../components/footer/Footer';
 import styles from './OurTeam.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { faFacebook, faGithub, faLinkedin, faTwitter, faWhatsapp, faWhatsappSquare } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 const OurTeam = () => {
     return (
@@ -23,10 +23,10 @@ const OurTeam = () => {
                             <h3>Full Stack Web Developer</h3>
                             <p>Aunque descubri un poco tarde el mundo de la programacion siempre me encanto la tecnoligia y encontrar nuevos retos y algo que requiera de constante aprendisaje es algo que me hace sentir comodo</p>
                             <div>
-                                <a href="https://www.linkedin.com/in/benjamin-caceres/" target="_blank">
+                                <a href="https://www.linkedin.com/in/benjamin-caceres/" target="_blank" rel="noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
                                 </a>
-                                <a href="https://wa.link/a9hfcd" target="_blank">
+                                <a href="https://wa.link/a9hfcd" target="_blank" rel="noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faWhatsapp} />
                                 </a>
                                 <a href="https://github.com/benjamin-caceres" target="_blank">
