@@ -23,3 +23,10 @@ export function deleteElement(info, element){
         await axios.delete(`https://pg-delsur.herokuapp.com/${info}/delete`, {data: {id: element}})
     }
 }
+
+export function updateElement(info, element){
+    return async function(){
+        const prueba =await axios.put(`https://pg-delsur.herokuapp.com/${info}/update`, element)
+        return prueba
+    }
+}

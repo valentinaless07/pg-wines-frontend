@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { connect } from "react-redux"
-import { getInfo, createElement, deleteElement } from "../../redux/actions/brandsAndCategories"
+import { getInfo, createElement, deleteElement, updateElement } from "../../redux/actions/brandsAndCategories"
 import Swal from "sweetalert2"
 import styles from './brands.module.css'
 
-function BrandsAndCategories({state, element, getInfo, createElement, deleteElement}){
+function BrandsAndCategories({state, element, getInfo, createElement, deleteElement, updateElement}){
     
     const [search, setSearch] = useState({
         name: ''
@@ -32,12 +32,14 @@ function BrandsAndCategories({state, element, getInfo, createElement, deleteElem
                 hideClass: {
                   popup: 'animate__animated animate__fadeOutUp'
                 }
+              }).then(()=>{
+                  getInfo(element)
               })
         }
         setSearch({
             name:''
         })
-        getInfo(element)
+        // await getInfo(element)
     }
 
         function filter({name}){
@@ -57,10 +59,40 @@ function BrandsAndCategories({state, element, getInfo, createElement, deleteElem
           }).then((result) => {
             if (result.isConfirmed) {
                 deleteElement(element, id)
+                Swal.fire(
+                    'Eliminado'
+                    ).then(()=>{                        
+                        getInfo(element)
+                    })
+                }
+            })
+    }
+
+    function handleUpdate(item){
+        Swal.fire({
+            title: `Actualizar ${item.name}`,
+            input: 'text',
+            inputAttributes: {
+              autocapitalize: 'off'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Actualizar',
+            showLoaderOnConfirm: true,
+            preConfirm: async (newValue) => {
+                if(newValue!==''){
+                    item.name=newValue
+                    await updateElement(element, item)
+                }else{
+                    Swal.showValidationMessage('El campo no puede estar vacío')
+                }
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+          }).then((result) => {
+            if (result.isConfirmed) {
                 getInfo(element)
-              Swal.fire(
-                'Eliminado'
-              )
+              Swal.fire({
+                title: `Actualización exitosa`,
+              })
             }
           })
     }
@@ -69,7 +101,7 @@ function BrandsAndCategories({state, element, getInfo, createElement, deleteElem
     <div>
         <h1>{element}</h1>
         <form onSubmit={handleCreate}>
-            <span>Buscar: </span><input onChange={handleRegex} value={search.name} type='text'/>
+            <span>Busqueda </span><input onChange={handleRegex} value={search.name} type='text'/>
             <button>{`Crear`}</button>
         </form>
         <div className={styles.infoContainer}>
@@ -81,7 +113,7 @@ function BrandsAndCategories({state, element, getInfo, createElement, deleteElem
                             </div>
                             <div>
                                 <span onClick={()=>handleDelete(item.id)}><i className="far fa-trash-alt"></i></span>
-                                <span><i className="fas fa-feather-alt"></i></span>
+                                <span onClick={()=>handleUpdate(item)}><i className="fas fa-feather-alt"></i></span>
                             </div>
                         </div>)
                     :
@@ -98,4 +130,4 @@ function MapStateToProps(state){
     }
 }
 
-export default connect(MapStateToProps, {getInfo, createElement, deleteElement})(BrandsAndCategories)
+export default connect(MapStateToProps, {getInfo, createElement, deleteElement, updateElement})(BrandsAndCategories)
