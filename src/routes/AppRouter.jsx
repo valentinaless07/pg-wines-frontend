@@ -26,11 +26,15 @@ import DetalleOrden from '../pages/MisOrdenes/DetalleOrden';
 import MisOrdenes from '../pages/MisOrdenes/MisOrdenes';
 import AdminArea from '../pages/adminArea/AdminArea';
 import OurTeam from '../pages/ourteam/OurTeam';
+import { cartStateLogin } from '../redux/actions/cartActions';
 
-const AppRouter = ({ authState }) => {
+const AppRouter = ({ authState, cartStateLogin }) => {
 
   let loggedIn = authState.loggedIn;
-
+  if(loggedIn){
+    localStorage.removeItem("cart")
+    cartStateLogin(authState.uid)
+  }
   return (
     <Router>
       <div>
@@ -118,7 +122,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  return {
+    cartStateLogin: (id) => dispatch(cartStateLogin(id))
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);

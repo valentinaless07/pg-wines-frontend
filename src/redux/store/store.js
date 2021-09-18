@@ -20,7 +20,7 @@ let rootReducer = combineReducers({
   products: productReducer,
   manageProducts: manageProductsReducer,
   cart: cartReducer,
-  brandsAndsCategories: brandsAndsCategories
+  brandsAndsCategories: brandsAndsCategories,
   orders: orderReducer,
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

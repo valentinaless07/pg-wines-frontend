@@ -12,35 +12,35 @@ import { useEffect } from 'react';
 const CartProduct = (props) => {
 
 
-    let amount = props.itemsAmount
+    let amount = props.quantity
     const [cantidadItems, setCantidadItems] = useState(amount)
 
     useEffect(() => {
         props.editItemsAmount({ id: props.id, amount: amount })
     }, [amount, props]);
 
-    function sum (){
-        props.editItemsAmount({id: props.id, amount: cantidadItems + 1})
+    async function sum (){
+        await props.editItemsAmount({id: props.id, amount: cantidadItems + 1})
         props.getTotalPrice()
-        let item = props.cartState.find(el => el.id ===props.id).itemsAmount
+        let item = props.cartState.find(el => el.id ===props.id).quantity
         setCantidadItems(item)
         
 
     }
 
-    function res () {
+    async function res () {
         if(cantidadItems > 1){
-        props.editItemsAmount({id: props.id, amount: cantidadItems - 1})
+        await props.editItemsAmount({id: props.id, amount: cantidadItems - 1})
         props.getTotalPrice()
-        let item = props.cartState.find(el => el.id ===props.id).itemsAmount
+        let item = props.cartState.find(el => el.id ===props.id).quantity
         setCantidadItems(item)
         
         }
         
     }
 
-    function handleDelete() {
-        props.deleteCartProduct(props.id)
+    async function handleDelete() {
+        await props.deleteCartProduct(props.id)
         props.getTotalPrice()
         
     }
