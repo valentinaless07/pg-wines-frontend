@@ -8,21 +8,29 @@ export const OFFERS_GET_ALL = 'OFFERS_GET_ALL';
 export const OFFERS_PUT = 'OFFERS_PUT';
 export const OFFERS_DELETE = 'OFFERS_DELETE';
 export const OFFERS_UPDATE = 'OFFERS_UPDATE';
-
+const url = `${process.env.REACT_APP_BACKEND_URL}`;
 
 export const getOffers = () => {
     return async (dispatch, getState) => {
-        let results;
+        let resp;
         dispatch({
             type: OFFERS_LOADING
         });
         try {
             // results = await axios.get(`https://pg-delsur.herokuapp.com/offers`);
-            results = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/offers`);
-            dispatch({
-                type: OFFERS_GET_ALL,
-                payload: results.data
-            });
+            // console.log('env', process.env.REACT_APP_BACKEND_URL);
+
+            resp = await axios.get(url.concat(`/offers`));
+            console.log('ale----->',resp.data)
+            if (resp.status === 200) {
+                dispatch({
+                    type: OFFERS_GET_ALL,
+                    payload: resp.data
+                });
+            } else {
+                console.log('error interno')
+            }
+
         } catch (error) {
             console.log(error);
             dispatch({
@@ -33,37 +41,38 @@ export const getOffers = () => {
     }
 }
 
-export const postOffers = (data, files) => {
-// export const postOffers = (data, file, slug, productId, status) => {
+export const postOffers = (data) => {
     return async (dispatch, getState) => {
         // const url = 'https://pg-delsur.herokuapp.com/offers';
-        const url = `${process.env.REACT_APP_BACKEND_URL}/offers`;
-        // console.log({data, files});
+        // const url = `${process.env.REACT_APP_BACKEND_URL}/offers`;
         const formData = new FormData();
-        formData.append('status', data.status);
-        formData.append('files', [data.image]);
+        formData.append('status', data.status.toString());
+        formData.append('image', data.image);
         formData.append('categoryId', data.categoryId.toString());
-        formData.append('discount', data.discount);
-        formData.append('from', new Date());
-        formData.append('until', new Date());
-        formData.append('slug', data.slug);
-        // formData.append('productId', productId);
+        formData.append('from', data.from);
+        formData.append('until', data.until);
+        formData.append('discount', data.discount.toString());
+        formData.append('slug', data.slug.toString());       
+
         dispatch({
             type: OFFERS_LOADING
         });
 
         try {
-            const resp = await fetch(url, {
-                method: 'POST',
-                body: formData,
-                // header: {}//
-            });
-
-            if (resp.ok) {
-                const result = await resp.json();
+           
+            let resp = '';
+            resp = await axios.post(url.concat('/offers'), formData);
+            // resp = await axios.post(process.env.REACT_APP_BACKEND_URL, formData);     
+            if (resp.status === 200) {
+                const result = await resp.data;
                 dispatch({
                     type: OFFERS_PUT,
                     payload: result
+                });
+                Swal.fire({
+                    icon: 'success',
+                    title: 'OK',
+                    text: 'Imagen cargada correctamente.',
                 });
 
                 return result;
@@ -73,10 +82,10 @@ export const postOffers = (data, files) => {
                     title: 'Oops...',
                     text: 'Error inesperado 1, si el error persiste contactar al administrador del sistema.',
                 });
-                throw await resp.json();
+                throw await resp;
             }
-        } catch (error) { 
-            console.log(error);          
+        } catch (error) {
+            console.log(error);
             dispatch({
                 type: OFFERS_ERROR,
                 payload: error,
@@ -92,7 +101,7 @@ export const postOffers = (data, files) => {
 
 
 export const updateOfferById = (id, status) => {
-    return async (dispatch, getState) => {       
+    return async (dispatch, getState) => {
         dispatch({
             type: OFFERS_LOADING
         });

@@ -3,70 +3,50 @@ import uniqid from 'uniqid';
 import React, { useState, useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Toggle from 'react-toggle';
-import moment from 'moment';
-import './OffersManager2.css';
-// import spinner from '../../assests/images/spinnerLargeBkTransparent.svg';
-import { getOffers, postOffers, } from '../../redux/actions/offersManagerActions';
+import spinner from '../../assests/images/spinnerLargeBkTransparent.svg';
+import { getOffers, postOffers,  deleteOfferById, updateOfferById } from '../../redux/actions/offersManagerActions';
 import { getAllProductsSlider, getCategories } from '../../redux/actions/manageProductsActions';
+import { dateToString, sumToDate, dateToSpanishString } from '../../helpers/helpers';
 import styles from './OffersManager2.module.css';
-
+import './OffersManager2.css';
 
 const initialState = {
     status: false,
     image: '',
-    categoryId: 1,
-    // productId: 0,
-    discount: 25,
+    categoryId: 0,
+    discount: 10,
     from: '',
     until: '',
     slug: '',
 }
 
 
-const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlider, productState, getCategories, categoriesState }) => {
+const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlider, productState, getCategories, categoriesState,  deleteOfferById, updateOfferById }) => {
+    const offers = offersState.offers;
     const [formState, setFormState] = useState(initialState);
     let fileName = useRef(null);
     let fileInput = useRef(null);
     const now = new Date();
-  
-
-    
-    const dateToString = (date) =>{
-        
-        let result = '';
-        result+= date.getFullYear();
-        if(date.getMonth() <10){
-            result+= '-0' + (date.getMonth() + 1);
-        }else{
-            result+= '-' + (date.getMonth() + 1);
-            
-        }
-        
-        result+= '-' + date.getDate();
-        return result;
-    }
-    
-   useEffect(()=>{
-    setFormState({
-        ...formState,
-        form: now
-    });
-   // eslint-disable-next-line react-hooks/exhaustive-deps
-   },[]);
 
     useEffect(() => {
-        
-        getOffers();
-        
-        getCategories();
-    }, [getOffers, getCategories]);
-console.log({offersState})
+        setFormState({
+            ...formState,
+            from: dateToString(now),
+            until: dateToString(now)
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
+    useEffect(() => {
+        getOffers();
+        getCategories();
+
+    }, [getOffers, getCategories]);
+
+    console.log({ offers: offersState.offers })
 
     const handleOnChange = (event) => {
         const elem = event.target;
-        console.log({ target: elem, name: elem.name, type: elem.type });
-
 
         switch (true) {
             case (elem.type === 'select-one'):
@@ -75,21 +55,19 @@ console.log({offersState})
 
                 setFormState({
                     ...formState,
-                    [elem.name]: elem.value,
+                    [elem.name]: elem.value.toString(),
                 });
                 break;
-            case (elem.type === 'date'): 
-                if(elem.name === 'from'){
-                    console.log('FROM', elem.value);
+            case (elem.type === 'date'):
+                if (elem.name === 'from') {
                     const from = new Date(elem.value);
-                    console.log({from: Date.parse(from), now: Date.parse(now)})
-                    if(Date.parse(from) < Date.parse(now)){
+                    if (Date.parse(from) < Date.parse(now)) {
                         console.log('from tiene que se mayor que hoy')
                     }
-                }                
-                if(elem.name === 'until'){
-                    console.log('UNTIL', elem.value)
-                }                
+                }
+                if (elem.name === 'until') {
+                    // console.log('UNTIL', elem.value)
+                }
                 setFormState({
                     ...formState,
                     [elem.name]: elem.value,
@@ -98,16 +76,16 @@ console.log({offersState})
             case (elem.type === 'number'):
                 setFormState({
                     ...formState,
-                    discount: elem.value
+                    discount: elem.value.toString()
                 })
                 break;
             case (elem.type === 'checkbox'):
                 setFormState({
                     ...formState,
-                    [elem.name]: elem.checked
+                    [elem.name]: elem.checked.toString()
                 })
                 break;
-            case (elem.type === 'file'):               
+            case (elem.type === 'file'):
                 let file = fileInput.current.files[0];
                 if (file) {
                     fileName.current.value = file.name;
@@ -129,8 +107,7 @@ console.log({offersState})
     }
 
     const handleSave = (event) => {
-        // let file = fileInput.current.files[0];
-        console.log(formState)
+        // let file = fileInput.current.files[0];       
         const { image, categoryId, until, discount } = formState;
         switch (true) {
             case (discount <= 0):
@@ -147,23 +124,33 @@ console.log({offersState})
                 break;
 
             default:
-                console.log({formState, files:formState.image})
-                postOffers(formState, formState.image)
+                console.log({ formState, files: formState.image })
+                postOffers(formState)
                 break;
         }
 
     }
 
-    
-
-
     const handlePhotoUpload = () => {
         fileInput.current.click();
     }
-    
+
+    const handleDelete = (id) => {
+        deleteOfferById(id);
+    }
+
+    const handleChangeStatus = (id, status) => {
+        updateOfferById(id, !status);
+    }
+
+    const getCategoryById = (idCategory) => {
+        if (!categoriesState) return;
+        const category = categoriesState?.filter(category => category.id === idCategory);
+        const result = category[0]?.name;
+        return result;
+    }
 
     return (
-
         <div className={styles.flex_main_container}>
             <div className={styles.header_container}>
                 <span>Back</span>
@@ -171,6 +158,12 @@ console.log({offersState})
                 <span>.</span>
             </div>
             <div className={styles.data_container}>
+                {
+                    offersState.fetching &&
+                    <div className={styles.spinner_container} >
+                        <img src={spinner} width="200px" alt="loading..." />
+                    </div>
+                }
                 <div className={styles.sidebar_container}>
                     Sidebar
                     <div className={styles.form}>
@@ -185,12 +178,12 @@ console.log({offersState})
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="from">From</label>
+                            <label htmlFor="from">Inicio</label>
                             <input type="date" id="from" name="from" value={dateToString(now)} min={dateToString(now)} max={dateToString(now)} onChange={handleOnChange} />
                         </div>
                         <div>
-                            <label htmlFor="until">Until</label>
-                            <input type="date" id="until" name="until" value={formState.until} min={dateToString(now)}  onChange={handleOnChange} />
+                            <label htmlFor="until">Fin</label>
+                            <input type="date" id="until" name="until" value={formState.until} min={sumToDate(now, 1)} onChange={handleOnChange} />
                         </div>
 
                         <div>
@@ -201,12 +194,12 @@ console.log({offersState})
                                     categoriesState.map(category => (
                                         <option key={uniqid()} value={category.id} > {category.name}</option>
                                     ))
-                                }                             
+                                }
                             </select>
                         </div>
-                      
-                        <div>                         
-                            <input type="text" id="fileName" name="fileName"  disabled ref={fileName} placeholder="Nombre de la foto" className={styles.file_name_input} />
+
+                        <div>
+                            <input type="text" id="fileName" name="fileName" disabled ref={fileName} placeholder="Nombre de la foto" className={styles.file_name_input} />
                             <input
                                 value={formState.file}
                                 ref={fileInput}
@@ -215,7 +208,7 @@ console.log({offersState})
                                 type="file"
                                 style={{ display: 'none' }}
                                 onChange={handleOnChange}
-                            
+
                             />
                             <button onClick={handlePhotoUpload} className={styles.buttom}>Cargar Imagen</button>
 
@@ -233,10 +226,57 @@ console.log({offersState})
 
                 </div>
                 <div className={styles.info_container}>
-                    Data
+
+                    <div className={styles.card_container}>
+                        {
+                            (offers.length > 0)
+                                ?
+                                (offers?.sort((a, b) => {
+                                    if (a.id < b.id) {
+                                        return 1;
+                                    } else if (a.id > b.id) {
+                                        return -1;
+                                    }
+                                    return 0;
+                                }).map(offer => (
+                                    <div key={uniqid()} className={styles.card}>
+                                        <div>
+                                            <img src={offer.image} alt="" style={{ width: '300px', height: '25,56px' }} />
+                                        </div>
+                                        <div className={styles.card_info}>
+                                            {/* <span>{offer.slug}</span> */}
+                                            {/* <span>{offer.discount}</span>
+                                            <span>{offer.categoryId}</span> */}
+                                            <span>Inicio: {dateToSpanishString(offer.from)}</span>
+                                            <span>Fin: {dateToSpanishString(offer.until)}</span>
+                                        </div>
+                                        <div className={styles.card_info}>
+                                            {/* <span>{offer.slug}</span> */}
+                                            <span>Categoría: {getCategoryById(offer.categoryId)}</span>
+                                            <span>% {offer.discount}</span>
+                                        </div>
+
+                                        <div className={styles.card_status_delete}>
+                                            {
+                                                (offer.status)
+                                                    ? <i onClick={(id) => handleChangeStatus(offer.id, offer.status)} className="fas fa-eye fa-2x" ></i>
+                                                    : <i onClick={(id) => handleChangeStatus(offer.id, offer.status)} className="fas fa-eye-slash fa-2x" ></i>
+                                            }
+                                            <i onClick={(id) => handleDelete(offer.id)} className="fas fa-trash-alt fa-2x" ></i>
+                                        </div>
+
+
+                                    </div>
+
+                                )))
+                                : <div className={styles.offers_empty}>No hay imagenes cargadas en la base de datos...</div>
+                        }
+
+                    </div>
+
                 </div>
             </div>
-        </div>       
+        </div>
     )
 }
 
@@ -256,6 +296,8 @@ const mapDispatchToProps = (dispatch) => {
         // postOffers: (file, slug, productId, status) => dispatch(postOffers(file, slug, productId, status)),
         postOffers: (file, slug, formState) => dispatch(postOffers(file, slug, formState)),
         getAllProductsSlider: () => dispatch(getAllProductsSlider()),
+        deleteOfferById: (id) => dispatch(deleteOfferById(id)),
+        updateOfferById: (id, status) => dispatch(updateOfferById(id, status)),
     }
 }
 
