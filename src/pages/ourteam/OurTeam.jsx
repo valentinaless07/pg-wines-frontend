@@ -4,7 +4,7 @@ import Footer from '../../components/footer/Footer';
 import styles from './OurTeam.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { faFacebook, faGithub, faLinkedin, faTwitter, faWhatsapp, faWhatsappSquare } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 const OurTeam = () => {
     return (
