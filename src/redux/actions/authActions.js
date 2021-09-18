@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Swal from 'sweetalert2';
 import { googleAuthProvider } from '../../firebase/firebaseConfig';
 import { saveStorage } from '../../helpers/helpers';
@@ -59,10 +60,8 @@ export const logOutAction = () => (dispatch, getState) => {
     localStorage.removeItem('auth');
 }
 
-// ------- Login 2
-
 export const startRegisterWithEmailAndPassword = (name, email, password) => {
-    return async(dispatch, getState) => {
+    return async (dispatch, getState) => {
         const auth = getAuth();
         await dispatch({
             type: AUTH_REMOVE_ERROR
@@ -73,38 +72,32 @@ export const startRegisterWithEmailAndPassword = (name, email, password) => {
         await createUserWithEmailAndPassword(auth, email, password)
             .then(async (userCredential) => {
                 const user = userCredential.user;
-                console.log({ userCredential });
-                console.log(user)
+                let register = await axios.post(`https://pg-delsur.herokuapp.com/user/register`, { name: name, email: user.email, password: user.reloadUserInfo.passwordHash });
+                console.log(register)
+
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
-                    console.log(user)
-                    dispatch(
-                        login(user.uid, user.displayName)
-                    )
+
                     dispatch(
                         {
                             type: AUTH_LOGIN_SUCCESS,
                             payload: {
-                                uid: user.uid,
+                                uid: register.data.id,
                                 displayName: user.displayName,
-                                // photoURL: user.photoURL,
+                                photoURL: register.data.photoURL,
                                 email: user.email,
+                                password: register.data.password
                             }
                         }
                     )
                     saveStorage(getState().auth);
-                    // return Swal.fire({
-                    //     icon: 'ok',                       
-                    //     text: 'La cuenta fue creada con suceso',                      
-                    // });
+
                 })
             })
             .catch((error) => {
                 let errorCode = error.code;
                 let errorMessage = error.message;
-                console.log({ errorCode });
-                console.log({ errorMessage });
                 dispatch({
                     type: AUTH_LOGIN_ERROR,
                     payload: errorMessage,
@@ -115,26 +108,23 @@ export const startRegisterWithEmailAndPassword = (name, email, password) => {
                             icon: 'error',
                             title: 'Oops...',
                             text: 'El email ya existe, escribir otro email.',
-                            // text: 'Thrown if the email address is not valid.',
                         });
                     case (errorCode === 'auth/invalid-email'):
                         return Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
                             text: 'El email no es valido.',
-                            // text: 'Thrown if the email address is not valid.',
                         });
                     case (errorCode === 'auth/network-request-failed'):
                         return Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
                             text: 'Conección a Iternet inexistente.',
-                            // text: 'Thrown if the email address is not valid.',
                         });
 
 
                     default:
-                        console.log(error);
+                        // console.log(error);
                         return Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
@@ -153,15 +143,18 @@ export const startLoginWithEmailAndPassword = (email, password, name) => {
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
             .then(async ({ user }) => {
-                // dispatch(login(user.uid, user.displayName));
+                let login = await axios.post(`https://pg-delsur.herokuapp.com/user/login`, { email: user.email, password: user.reloadUserInfo.passwordHash });
+
                 dispatch(
                     {
                         type: AUTH_LOGIN_SUCCESS,
-                        payload: {
-                            uid: user.uid,
-                            displayName: user.displayName,
-                            // photoURL: user.photoURL,
-                            email: user.email,
+                        payload: {                   
+
+                            uid: login.data.id,
+                            displayName: login.data.displayName,
+                            photoURL: login.data.photoURL,
+                            email: login.data.email,
+                            password: login.data.password
                         }
                     }
                 )
@@ -180,24 +173,21 @@ export const startLoginWithEmailAndPassword = (email, password, name) => {
                             icon: 'error',
                             title: 'Oops...',
                             text: 'El email no es valido.',
-                            // text: 'Thrown if the email address is not valid.',
                         });
                     case (errorCode === 'auth/user-not-found'):
                         return Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
                             text: 'No existe ningún usuario con este email.',
-                            // text: 'Thrown if there is no user corresponding to the given email.',
                         });
                     case (errorCode === 'auth/wrong-password'):
                         return Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
                             text: 'Password errada.',
-                            // text: 'Wrong password.',
                         });
                     default:
-                        console.log(error);
+                        // console.log(error);
                         return Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
@@ -207,8 +197,3 @@ export const startLoginWithEmailAndPassword = (email, password, name) => {
             });
     }
 }
-
-const login = (uid, displayName) => ({
-    type: AUTH_LOGIN,
-    payload: { uid, displayName }
-});

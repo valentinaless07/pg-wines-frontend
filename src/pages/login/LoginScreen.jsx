@@ -15,48 +15,47 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
     const history = useHistory();
 
     const [formValues, handleInputChange] = useForm({
-        email: 'juancho@gmail.com',
-        password: 'EnUnCampin_&23g'
+        email: '',
+        password: ''
     });
     const { email, password } = formValues;
 
     useEffect(() => {
         useRefEmail.current.select();
-    }, []);    
+    }, []); 
+    
+    useEffect(() => {
+        if (authState.loggedIn) {           
+            return history.replace('/');
+        }
+
+    }, [authState.loggedIn, history]);
+
+
 
     const handleLoginWithGoogle = (event) => {
         startGoogleLogin();
-        history.replace('/home');
     }
 
-    const handleStarLoginWithEmailAndPassword = (event) => {
+    const handleStarLoginWithEmailAndPassword = async(event) => {
         event.preventDefault();
-        console.log(formValues);
         if (isFormValid()) {
-            console.log('is form valid ok')
-            startLoginWithEmailAndPassword(formValues.email, formValues.password);
-            history.replace('/home');
-        } else {
-            console.log('Form is not valid');
+            await startLoginWithEmailAndPassword(formValues.email, formValues.password);
         }
     }
 
     const isFormValid = () => {
         switch (true) {
             case (validator.isEmpty(email)):
-                console.log('El email es requerido');
                 setError('El email es requerido');
                 return false;
             case (!validator.isEmail(email)):
-                console.log('Ingresar un email valido');
                 setError('Ingresar un email valido');
                 return false;
             case (!password):
-                console.log('La password es requerida');
                 setError('La password es requerida');
                 return false;
             case (password.length < 8):
-                console.log('La password debe tener minimo 8 caracteres');
                 setError('La password debe tener minimo 8 caracteres');
                 return false;
             default:
@@ -106,7 +105,7 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
                         onChange={handleInputChange}
                     />
 
-                    <button
+                    <button                        
                         disabled={authState.fetching}
                         onClick={handleStarLoginWithEmailAndPassword}
                         type="submit"
@@ -139,7 +138,7 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
 
                         <Link
                             id="cancel"
-                            to="/home"
+                            to="/"
                             className="link"
                         >
                             Cancel

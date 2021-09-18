@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { deleteCartProduct, getTotalPrice } from '../../redux/actions/cartActions';
 import { editItemsAmount } from '../../redux/actions/cartActions';
 import { useEffect } from 'react';
-import { reloadCartLocalStorage } from '../../redux/actions/cartActions';
+
 
 
 
@@ -24,22 +24,25 @@ const CartProduct = (props) => {
         props.getTotalPrice()
         let item = props.cartState.find(el => el.id ===props.id).itemsAmount
         setCantidadItems(item)
-        props.reloadCartLocalStorage()
+        
 
     }
 
     function res () {
+        if(cantidadItems > 1){
         props.editItemsAmount({id: props.id, amount: cantidadItems - 1})
         props.getTotalPrice()
         let item = props.cartState.find(el => el.id ===props.id).itemsAmount
         setCantidadItems(item)
-        props.reloadCartLocalStorage()
+        
+        }
+        
     }
 
     function handleDelete() {
         props.deleteCartProduct(props.id)
         props.getTotalPrice()
-        props.reloadCartLocalStorage()
+        
     }
 
     return (
@@ -52,12 +55,13 @@ const CartProduct = (props) => {
             </div>
             <p>Cantidad: {cantidadItems}</p>
             <div className={styles.icons_container}>
+                {!props.isCheckout ?
+                    <i onClick={res} className="fas fa-minus-circle fa-2x"></i>
+                    : ''}
                 {props.isCheckout ? <></> :
                     <i onClick={sum} className="fas fa-plus-circle fa-2x"></i>
                 }
-                {cantidadItems > 1 && !props.isCheckout ?
-                    <i onClick={res} className="fas fa-minus-circle fa-2x"></i>
-                    : ''}
+                
                 {!props.isCheckout ?
 
                     <i onClick={handleDelete} className="fas fa-trash-alt fa-2x"></i>
@@ -79,7 +83,7 @@ const mapDispatchToProps = (dispatch) => {
         deleteCartProduct: (id) => dispatch(deleteCartProduct(id)),
         editItemsAmount: (amount) => dispatch(editItemsAmount(amount)),
         getTotalPrice: () => dispatch(getTotalPrice()),
-        reloadCartLocalStorage: () => dispatch(reloadCartLocalStorage())
+        
 
     }
 }

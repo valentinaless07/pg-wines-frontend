@@ -9,9 +9,9 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 import { addCartProduct} from '../../redux/actions/cartActions';
-import { reloadCartLocalStorage } from '../../redux/actions/cartActions';
+import { useHistory } from 'react-router';
 
-const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state, reloadCartLocalStorage}) => {
+const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state}) => {
     // console.log(getProductDetail);
     const { id } = useParams()
     useEffect(() => {
@@ -21,6 +21,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
       }, [id])
 
       const [cantidadItems, setCantidadItems] = useState(1)
+      const history = useHistory()
 
       function selectChange(e) {
           let num = parseInt(e.target.value)
@@ -32,8 +33,11 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
         let detail = product_detail
         detail.itemsAmount = cantidadItems    
         await addCartProduct(detail)
-        reloadCartLocalStorage()
         
+        
+        }
+        else{
+            history.push("/cart")
         }
       }
 
@@ -58,23 +62,15 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
                         {product_detail.description}
                           <p>${product_detail.cost}</p>
                     </div>
+                    
                     <div className={styles.lineaProduct}></div>
                         <label htmlFor="" className={styles.labelCantidad}>Cantidad:</label>
                         <div className={styles.cartProductDetail}>
-                        <select name="cantidad" id="cantidad" onChange={e => selectChange(e)}>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-
-                        </select>
+                            <input type="text" id="cantidad" onChange={e => selectChange(e)}  />    
                         <button onClick={addProductCart} className={styles.addProductButton}>Agregar al carrito</button>
+                    </div>
+                    <div>
+                    <label htmlFor="" className={styles.labelStock}>Stock Disponible:{product_detail.stock}</label>
                     </div>
 
                 </div>
@@ -96,7 +92,7 @@ function mapStateToProps(state) {
         getProductDetail: (product) => dispatch(getProductDetail(product)),
         getProductDetailReset: () => dispatch(getProductDetailReset()),
         addCartProduct: (id) => dispatch(addCartProduct(id)),
-        reloadCartLocalStorage: () => dispatch(reloadCartLocalStorage())
+        
         
 
     };

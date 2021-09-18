@@ -5,7 +5,7 @@ import styles from './OffersManager.module.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getOffers, postOffers, } from '../../redux/actions/offersManagerActions';
-import { getProducts } from '../../redux/actions/manageProductsActions';
+import { getAllProductsSlider } from '../../redux/actions/manageProductsActions';
 import OfferItem from '../../components/offerItem/OfferItem';
 import spinner from '../../assests/images/spinnerLargeBkTransparent.svg';
 
@@ -16,7 +16,7 @@ const initialState = {
 }
 
 
-const OffersManager = ({ offersState, getOffers, postOffers, getProducts, productState, }) => {
+const OffersManager = ({ offersState, getOffers, postOffers, getAllProductsSlider, productState, }) => {
     const [formState, setFormState] = useState(initialState);
     const offers = offersState.offers;
     let fileInput = useRef(null);
@@ -24,10 +24,9 @@ const OffersManager = ({ offersState, getOffers, postOffers, getProducts, produc
 
     useEffect(() => {
         getOffers();
-        getProducts();
-        console.log('PRODUCTOS',productState);
-    }, [getOffers, getProducts]);
-    
+        getAllProductsSlider();
+    }, [getOffers, getAllProductsSlider]);
+
 
     const handleOnChange = (event) => {
         // event.preventDefault();
@@ -45,7 +44,7 @@ const OffersManager = ({ offersState, getOffers, postOffers, getProducts, produc
                 slug: productName
             });
         }
-        
+
         setFormState({
             ...formState,
             [event.target.name]: value,
@@ -98,15 +97,15 @@ const OffersManager = ({ offersState, getOffers, postOffers, getProducts, produc
 
     return (
         <div className={styles.container}>
-               
+
             {
                 offersState.fetching &&
-               <div className={styles.spinner_container} >
+                <div className={styles.spinner_container} >
                     <img src={spinner} width="200px" alt="loading..." />
                 </div>
             }
 
-            <Link to="/home" className={styles.backicon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
+            <Link to="/adminArea" className={styles.backicon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
 
             <div className={styles.title}>
                 <h1>Gestion Offertas</h1>
@@ -116,7 +115,14 @@ const OffersManager = ({ offersState, getOffers, postOffers, getProducts, produc
                 {
                     (offers.length > 0)
                         ?
-                        (offers.map(offer => (
+                        (offers?.sort((a, b) => {
+                            if (a.id < b.id) {
+                                return 1;
+                            } else if (a.id > b.id) {
+                                return -1;
+                            }
+                            return 0;
+                        }).map(offer => (
                             <div key={uniqid()} className={styles.cart_items_container}>
                                 <div className={styles.cart_items}>
                                     <OfferItem offer={offer} />
@@ -125,7 +131,7 @@ const OffersManager = ({ offersState, getOffers, postOffers, getProducts, produc
                         )))
                         : <div className={styles.offers_empty}>No hay imagenes cargadas en la base de datos...</div>
                 }
-              
+
             </div>
 
             <div className={styles.form_main_container}>
@@ -138,13 +144,16 @@ const OffersManager = ({ offersState, getOffers, postOffers, getProducts, produc
                         <select name="productId" style={{ width: '231px', height: '25,56px' }} placeholder="Seleccionar producto" id="productId" value={formState.productId} onChange={handleOnChange}>
                             <option>Seleccionar producto</option>
                             {
-                                productState.map(product => (
+                                (productState && productState.length > 0) 
+                                ? productState?.map(product => (
                                     <option key={uniqid()} value={product.id}>{product.name}</option>
                                 ))
+                                : <option  value='Product not found'></option>
+                            
                             }
                         </select>
                     </div>
-                    <div>                     
+                    <div>
                         <input type="text" id="fileName" name="fileName" ref={fileName} placeholder="Nombre de la foto" className={styles.file_name_input} />
                         <input
                             value={formState.file}
@@ -158,15 +167,13 @@ const OffersManager = ({ offersState, getOffers, postOffers, getProducts, produc
                         <button onClick={handlePhotoUpload} className={styles.buttom}>Cargar Imagen</button>
                         <button
                             onClick={handleSave}
-                            // disabled={errorState.error}
-                            // className={errorState.error ? styles.buttom_disable : styles.buttom} >
                             className={styles.buttom} >
                             Guardar
                         </button>
                     </div>
 
                 </div>
-            </div>          
+            </div>
 
         </div>
     )
@@ -177,7 +184,6 @@ const mapStateToProps = (state) => {
         offersState: state.offers,
         authState: state.auth,
         productState: state.manageProducts.products,
-
     };
 }
 
@@ -185,7 +191,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getOffers: () => dispatch(getOffers()),
         postOffers: (file, slug, productId, status) => dispatch(postOffers(file, slug, productId, status)),
-        getProducts: () => dispatch(getProducts()),
+        getAllProductsSlider: () => dispatch(getAllProductsSlider()),
     }
 }
 

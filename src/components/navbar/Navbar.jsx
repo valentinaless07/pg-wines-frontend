@@ -27,7 +27,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
   // window.addEventListener("resize", changeScreen);
 
   const handleLogout = () => {
-    history.push('/home');
+    history.push('/');
     logOutAction();
   }
 
@@ -70,7 +70,6 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submitting');
     if (name) {
       history.push(`/vino/${name}`);
       setName({})
@@ -79,7 +78,6 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
 
   const buscarVinos = (e) => {
     dispatch(getProductByName(name));
-    console.log('Vinos', vinos)
   }
 
   function handleGoToProducDescription(productId) {
@@ -137,8 +135,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
           {
             (authState.loggedIn)
               ? <>
-                <span className={styles.login} onClick={() => goTo('offersManager')} >Offertas</span>
-                <span className={styles.login} onClick={() => goTo('manageProducts')} >Productos</span>
+                <span className={styles.login} onClick={() => goTo('adminArea')} >Administración</span>
                 <span className={styles.login} onClick={handleLogout} >Salir</span>
                 {getAvatar()}
               </>
@@ -175,10 +172,19 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
           className={stylesMobile.searchBar}
           placeholder="Buscar Bebidas..."
           type="search"
+          onChange={handleChange}
         />
-        
     
         <img src={search} alt="" />
+        {(vinos.length > 0 && name && name.length > 2) ?
+        <div className={stylesMobile.autoContainer}>
+         {vinos.map(item => {
+           return (
+             <button className="item-autocomplete" key={item.id} onClick={() => handleGoToProducDescription(item.id)} >{item.name}</button>
+           )
+         })}
+        </div>
+        : ''}
       </div>
 
       <div className={stylesMobile.bars_cart_container}>
@@ -199,10 +205,10 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
             ?
             <>
               <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
-              <li onClick={() => goTo('manageProducts')}>AREA RESERVADA</li>
-              <li onClick={() => goTo('offersManager')}>GESTION DE OFERTAS</li>
+              <li onClick={() => goTo('adminArea')}>ADMINISTRACIÓN</li>
+              
               <li onClick={() => goTo('favorites')}>FAVORITOS</li>
-              <li onClick={() => goTo('cart')}>CARRITO</li>
+              <li onClick={() => goTo('cart')}>CARRITO {totalItems() > 0? <span>({totalItems()})</span>: <div></div>} </li>
               <li onClick={handleLogout}>SALIR</li>
             </>
             :

@@ -34,7 +34,11 @@ export default function manageProductsReducer (state = initialState, action) {
                 ...state,
                 packing: action.payload
             }
-
+        case "GET_ALL_PRODUCTS_SLIDER":
+            return{
+                ...state,
+                products: action.payload
+            }
         
         default: return state
     }

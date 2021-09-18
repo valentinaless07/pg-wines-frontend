@@ -2,7 +2,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    background-color: var(--primary);
+    background-color:#232f3e;
     justify-content: center;
     margin: 0px;
     padding: 0px;
@@ -58,7 +58,7 @@
     color:white;
 }
 
-button:hover{
+.auth__button:hover{
     background-color: var(--button-login-hover);
     border: 1px solid orange;    
     color:black;

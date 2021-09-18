@@ -1,0 +1,68 @@
+.datesorder{
+    width: 70%;
+    margin: 0px auto;
+    padding: 20px;
+
+}
+
+.datesorder ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.orderno{
+    display: block;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.orderdate{
+    color: #999999;
+    margin-top: 5px;
+    font-size: 20px;
+    font-weight: bolder;
+    
+}
+
+.totalprice{
+    display: block;
+    text-align: left;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.amountorder{
+    margin-top: 5px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.detalleitem{
+    display: flex;
+    justify-content: space-evenly;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.detalleitem img{
+    height: 150px;
+}
+
+.detalleitem p{
+    margin-top: 40px;
+}
+
+.detalleitem a{
+    color: blue;
+}
+
+.detalledeordenes{
+    background: white;
+    height: 100vh;
+}

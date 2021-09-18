@@ -2,8 +2,7 @@ import React from 'react';
 import {
   HashRouter as Router,
   Switch,
-  Route,
-  Redirect,
+  Route,  
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import HomeScreen from '../pages/home/HomeScreen';
@@ -23,6 +22,10 @@ import ManageProductInf from '../pages/manageProductInf/ManageProductInf';
 import SearchResults from '../pages/productDetails/SearchResults';
 import OffersManager from '../pages/offersManager/OffersManager';
 import NotFound from '../pages/NotFound/NotFound';
+import DetalleOrden from '../pages/MisOrdenes/DetalleOrden';
+import MisOrdenes from '../pages/MisOrdenes/MisOrdenes';
+import AdminArea from '../pages/adminArea/AdminArea';
+import OurTeam from '../pages/ourteam/OurTeam';
 
 const AppRouter = ({ authState }) => {
 
@@ -34,14 +37,17 @@ const AppRouter = ({ authState }) => {
         <Switch>
 
           <Route exact path="/login" component={LoginScreen} />
-          <Route exact path="/home" component={HomeScreen} />
+          <Route exact path="/" component={HomeScreen} />
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
           <Route exact path="/vino/:name" component={SearchResults} />
           <Route exact path="/about" component={AboutUs} />
           {/* <Route exact path='/manage' component={ManageProductInf} /> */}
           <Route exact path="/register" component={RegisterScreen} />
-          <Route exact path="/checkout" component={ShippingPay} /> 
-          <Route exact path="/offersManager" component={OffersManager} /> 
+          <Route exact path="/checkout" component={ShippingPay} />
+          <Route exact path="/offersManager" component={OffersManager} />
+          <Route exact path="/misordenes" component={MisOrdenes} />
+          <Route exact path="/detalleorden" component={DetalleOrden} />
+          <Route exact path="/equipo" component={OurTeam} />
 
           <Route exact path="/cart" component={Cart} />
           {/* <Route exact path="/notFound" component={NotFound} /> */}
@@ -68,8 +74,8 @@ const AppRouter = ({ authState }) => {
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
-            path='/manageProducts'
-            component={ManageProductsScreen}
+            path='/adminArea'
+            component={AdminArea}
           />
           <PrivateRoute
             exact
@@ -96,7 +102,7 @@ const AppRouter = ({ authState }) => {
             component={PutProduct}
           />
 
-          <Redirect to='/home' />
+          <Route component={NotFound} />
 
         </Switch>
 

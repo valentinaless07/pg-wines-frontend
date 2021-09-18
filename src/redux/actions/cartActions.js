@@ -1,3 +1,4 @@
+import axios from "axios"
 
 export function addCartProduct (payload) {
     
@@ -29,14 +30,16 @@ export function getTotalPrice () {
     }
 }
 
-export function reloadCartLocalStorage() {
-    return {
-        type: "RELOAD_CART_LOCAL_STORAGE"
-    }
-}
 
-export function localStorageInit() {
-    return {
-        type: "LOCAL_STORAGE_INIT"
+
+
+export function postCheckout(payload) {
+    return async function (dispatch){
+    const res = await axios.post("https://pg-delsur.herokuapp.com/pay", payload)
+        console.log(res)
+    return dispatch({
+        type: "POST_CHECKOUT",
+        payload: res
+    })
     }
 }

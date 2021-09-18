@@ -1,8 +1,9 @@
 .container {
     background:#232f3e;
-    height: 200px;
+    height: 100px;
     display: flex;
-    
+    border-top: 1px white solid;
+
 }
  
 
@@ -18,9 +19,20 @@
 
 .piedepagina h2{
     color: #fff;
+    width: 100%;
+    
+}
+
+.conocenos{
+    margin-top: 25px;
+}
+
+.conocenos h2{
+    color: #fff;
     font-weight: bold;
     width: 100%;
     text-align: center;
+    margin-top: 10px;
 }
 
 .footericon{
@@ -74,6 +86,11 @@
         display: inline;
     }
 
+    .conocenos{
+        width: 100%;
+        text-align: center;
+    }
+
     .contactusinfooter{
         text-align: center;
         margin-top: 30px;
@@ -81,5 +98,8 @@
 
     .container{
         display: block;
+        height: auto;
     }
+
+    
 }

@@ -3,7 +3,6 @@ import styles from './PutProduct.module.css'
 import { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import {getProductDetailReset } from '../../redux/actions/productDetailsActions';
 import { updateProduct } from '../../redux/actions/manageProductsActions';
 import Swal from 'sweetalert2'
@@ -15,7 +14,7 @@ import { getPacking } from '../../redux/actions/manageProductsActions';
 
 const PutProduct = ({updateProduct, getProductDetailReset, product_detail, manageProductsState, getCategories, getBrands, getPacking}) => {
     
-    let history = useHistory()
+    
 
    
 
@@ -23,12 +22,10 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, manag
         getCategories()
         getBrands()
         getPacking()
-    } , []);
+    } , [getCategories, getBrands, getPacking]);
 
        
-    const [firstCategory, setFirstCategory] = useState({category: product_detail.category})
-    const [firstBrand, setFirstBrand] = useState({brand: product_detail.brand})
-    const [firstPacking, setFirstPacking] = useState({packing: product_detail.packing})
+    
     const [detailData, setDetailData] = useState(
         {
             id: product_detail.id,
@@ -176,8 +173,8 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, manag
                 
                 <div>
                     <label>Category:</label>
-                    <select name="categoryId" onChange={e => handleChange(e)}>
-                        <option disabled selected>{detailData.categoryId.name}</option>
+                    <select name="categoryId" onChange={e => handleChange(e)} defaultValue={detailData.categoryId.name}>
+                        <option disabled>{detailData.categoryId.name}</option>
                         
                         {
                             manageProductsState.categories && manageProductsState.categories.map(el => {
@@ -189,8 +186,8 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, manag
                 </div>
                 <div>
                     <label>Marca:</label>
-                    <select name="brandId" onChange={e => handleChange(e)}>
-                        <option disabled selected>{detailData.brandId.name}</option>
+                    <select name="brandId" onChange={e => handleChange(e)} defaultValue={detailData.brandId.name}>
+                        <option disabled>{detailData.brandId.name}</option>
                         {manageProductsState.brands && manageProductsState.brands.map(el => {
                             return <option value={el.id} key={el.id}>{el.name}</option>
                         })
@@ -200,8 +197,8 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, manag
                 </div>
                 <div>
                     <label>Packing:</label>
-                    <select name="packingId" onChange={e => handleChange(e)}>
-                        <option disabled selected>{detailData.packingId.name}</option>
+                    <select name="packingId" onChange={e => handleChange(e)} defaultValue={detailData.packingId.name}>
+                        <option disabled>{detailData.packingId.name}</option>
                         {manageProductsState.packing && manageProductsState.packing.map(el => {
                             return <option value={el.id} key={el.id}>{el.name}</option>
                         })

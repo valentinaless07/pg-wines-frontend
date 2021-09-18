@@ -1,0 +1,42 @@
+.nav {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav > a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav > span {
+  font-size: 20px;
+  margin-top: -45px;
+  margin-right: 45px;
+}
+
+.backIcon {
+  padding-left: 10%;
+  padding-top: 15px;
+}
+
+.manageProductIcon {
+  margin-top: -45px;
+  margin-right: 45px;
+  font-size: 20px;
+}
+.offersManagerIcon {
+  margin-top: -45px;
+  margin-right: 45px;
+  font-size: 20px;
+}
+
+.nav > li {
+  margin-top: -45px;
+  margin-right: 45px;
+  font-size: 20px;
+}
+.pointer {
+  cursor: pointer;
+}

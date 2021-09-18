@@ -1,19 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap");
+
 .nav {
   list-style: none;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
 }
 .nav > a {
   text-decoration: none;
   color: black;
+}
+
+.backIcon {
+  padding-left: 10%;
+  padding-top: 15px;
+}
+.createProductIcon {
+  margin-top: -80px;
+  margin-right: 45px;
+  font-size: 20px;
 }
 .productsList {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding-top: 25px;
+  padding-top: 45px;
   padding-bottom: 30px;
 }
 
@@ -38,4 +49,28 @@
 .activePaginationBtn {
   background-color: rgb(223, 223, 223);
   box-shadow: inset 0px 0px 4px 1px gray;
+}
+
+.manageProductsContainer {
+  background-color: #f7f7f7;
+}
+
+.h1_buttonCreate {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.h1_container {
+  width: 60%;
+  display: flex;
+  justify-content: end;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+}
+.createProduct_container {
+  width: 35%;
+  display: flex;
+  justify-content: end;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 18px;
 }

@@ -1,0 +1,77 @@
+.titlecontainer{
+    width: 100%;
+}
+
+.titlecontainer h1{
+    width: 100%;
+    text-align: center;
+    color: #3483fa;
+    font-style: italic;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.titlecontainer h3{
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+.picpersonal{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin: auto;
+    /* background: url("https://scontent-mia3-1.xx.fbcdn.net/v/t1.6435-9/58441492_2712779815406119_8305064258958262272_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=QMJ9tTzcQaAAX_56lfl&_nc_ht=scontent-mia3-1.xx&oh=f374afd70e861d9a45da9d7823952eba&oe=6167C177"); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.picpersonal img{
+    height: 200px;
+}
+
+.personaldiv{
+    margin: auto;
+    margin-top: 60px;
+}
+
+.wholeteam{
+    width: 100%;
+    display: flex;
+}
+
+.nameperson{
+    text-align: center;
+}
+
+.nameperson h2{
+    font-weight: normal;
+}
+
+.nameperson h3{
+    color: #3483fa;
+    margin-bottom: 30px;
+}
+
+.nameperson p{
+    width: 70%;
+    margin: 0 auto;
+    text-align: justify;
+}
+
+.footericon{
+        font-size: 30px;
+        color:#3483fa;
+        margin: 30px 7px;
+        
+
+}
+
+@media screen and (max-width: 992px){
+    .wholeteam{
+        flex-wrap: wrap;
+    }
+}

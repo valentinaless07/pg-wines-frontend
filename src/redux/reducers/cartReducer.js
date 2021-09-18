@@ -1,8 +1,9 @@
 import Swal from 'sweetalert2'
 
 const initialState = {
-    cartState: [],
-    totalPrice: []
+    cartState: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [],
+    totalPrice: [],
+    idCheckout: ""
 }
 
 export default function cartReducer (state = initialState, action) {
@@ -14,6 +15,7 @@ export default function cartReducer (state = initialState, action) {
             
             
               Swal.fire('Producto agregado al carrito')
+              localStorage.setItem("cart", JSON.stringify(state.cartState.concat(action.payload)))
               
             return {
             ...state,
@@ -28,26 +30,17 @@ export default function cartReducer (state = initialState, action) {
           return{...state}
         }
         
-        case "RELOAD_CART_LOCAL_STORAGE":
-          localStorage.setItem("cart", JSON.stringify(state.cartState))
-          return{
-            ...state
-          }
+        
 
-           case "LOCAL_STORAGE_INIT":
-            let cartLocalStorage = localStorage.getItem("cart")
-            cartLocalStorage = JSON.parse(cartLocalStorage);
-
-            return {
-              ...state,
-              cartState: cartLocalStorage
-            }
+           
             
 
           case "DELETE_CART_PRODUCT":
+            let cartStateDeleted = state.cartState.filter(el => el.id !== action.payload)
+            localStorage.setItem("cart", JSON.stringify(cartStateDeleted))
             return{
               ...state,
-              cartState: state.cartState.filter(el => el.id !== action.payload)
+              cartState: cartStateDeleted
             }
 
           case "EDIT_ITEMS_AMOUNT":
@@ -57,6 +50,7 @@ export default function cartReducer (state = initialState, action) {
 
             if(product.stock - action.payload.amount >= 0){
               product.itemsAmount = action.payload.amount
+              localStorage.setItem("cart", JSON.stringify(amount))
 
               return {
                 ...state,
@@ -79,7 +73,11 @@ export default function cartReducer (state = initialState, action) {
             totalPrice: [total]
           }  
 
-           
+           case "POST_CHECKOUT": 
+           return {
+             ...state,
+            idCheckout: action.payload.data
+           }
     
         
         default: return state
