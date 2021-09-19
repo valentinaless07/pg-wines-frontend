@@ -16,7 +16,7 @@ const DetalleOrden = ({ getOrderDetails, orders_details }) => {
     }, [id])
 
     const formatDate = (date) => {
-        var dateN= new Date(date);
+        var dateN = new Date(date);
         var formattedDate = format(dateN, "MMMM do, yyyy H:mma");
         return formattedDate;
     }
@@ -37,31 +37,36 @@ const DetalleOrden = ({ getOrderDetails, orders_details }) => {
             <div className={styles.detalledeordenes}>
                 <div className={styles.datesorder}>
                     {orders_details.length > 0 ?
-                    <ul>
-                        <li>
-                            <p className={styles.totalprice}>Total de orden</p>
-                            <p className={styles.amountorder}>$ {sumTotal(orders_details[0]?.products)}</p>
-                        </li>
-                        <li>
-                            <p className={styles.orderno}>Orden no. {orders_details[0]?.id}</p>
-                            <p className={styles.orderdate}>Fecha: {formatDate(orders_details[0]?.date)}</p>
-                        </li>
-                    </ul>
-                    : <></>}
+                        <ul>
+                            <li>
+                                <p className={styles.totalprice}>Total de orden</p>
+                                <p className={styles.amountorder}>$ {sumTotal(orders_details[0]?.products)}</p>
+                            </li>
+                            <li>
+                                <p className={styles.orderno}>Orden no. {orders_details[0]?.id}</p>
+                                <p className={styles.orderdate}>Fecha: {formatDate(orders_details[0]?.date)}</p>
+                            </li>
+                        </ul>
+                        : <></>}
                 </div>
-                {
-                    orders_details[0]?.products.map(p => {
-                        return (
-                            <div className={styles.detalleitem} key={p.id}>
-                            <img src={p.image[0]} alt="" />
-                            <p>{p.name}</p>
-                            <p> ${p.cost}</p>
-                            <p><Link to={`/product/${p.id}`}>Ver detalle de producto</Link></p>
-                        </div>
-                        )
-                    })
-                }
-               
+                <div className={styles.detalleitem}>
+                    <table>
+
+                        {
+                            orders_details[0]?.products.map(p => {
+                                return (
+                                    <tr key={p.id}>
+                                        <td><img src={p.image[0]} alt="" /></td>
+                                        <td>{p.name}</td>
+                                        <td>${p.cost}</td>
+                                        <td><Link to={`/product/${p.id}`}>Ver detalle de producto</Link></td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </table >
+                </div>
+
             </div>
             <Footer />
         </>
