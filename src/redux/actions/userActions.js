@@ -30,18 +30,6 @@ export const getProductsByPage=(categoryId, initPrice, finalPrice, page)=>{
     }
 }
 
-// export const getProductsbyCategory=(categoryName)=>{
-//     return async function(dispatch){
-//         await axios.get('https://delsur-api-1.herokuapp.com/products?category='+categoryName)
-//         .then(results =>{
-//             dispatch({
-//                 type: PRODUCT_BY_CATEGORY,
-//                 payload: results.data
-//             })
-//         })
-//     }
-// }
-
 export const getFilteredProductsList=({categoryId, initPrice, finalPrice})=>{
     // console.log(categoryId, initPrice, finalPrice)
     return async function(dispatch){

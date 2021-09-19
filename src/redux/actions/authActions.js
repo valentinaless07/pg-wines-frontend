@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Swal from 'sweetalert2';
 import { googleAuthProvider } from '../../firebase/firebaseConfig';
 import { saveStorage } from '../../helpers/helpers';
@@ -64,7 +65,7 @@ export const logOutAction = () => (dispatch, getState) => {
 }
 
 export const startRegisterWithEmailAndPassword = (name, email, password) => {
-    return async(dispatch, getState) => {
+    return async (dispatch, getState) => {
         const auth = getAuth();
         await dispatch({
             type: AUTH_REMOVE_ERROR
@@ -74,28 +75,48 @@ export const startRegisterWithEmailAndPassword = (name, email, password) => {
         });
         await createUserWithEmailAndPassword(auth, email, password)
             .then(async (userCredential) => {
-                const user = userCredential.user;              
+                const user = userCredential.user;
+                let register = await axios.post(`https://pg-delsur.herokuapp.com/user/register`, { name: name, email: user.email, password: user.reloadUserInfo.passwordHash });
+                
+                if(localStorage.getItem("cart")){
+                let localStorageState =  JSON.parse(localStorage.getItem("cart"))
+                
+                    
+                console.log(localStorageState)
+                localStorageState.forEach(el =>
+                        
+                        axios.post("https://pg-delsur.herokuapp.com/carts/addCartItem/"+register.data.id, {id: el.id, quantity: el.quantity})
+                        
+                        
+                    )
+                
+                localStorage.removeItem("cart")
+                }
+
+
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
-                    
+
                     dispatch(
                         {
                             type: AUTH_LOGIN_SUCCESS,
                             payload: {
-                                uid: user.uid,
+                                uid: register.data.id,
                                 displayName: user.displayName,
-                                // photoURL: user.photoURL,
+                                photoURL: register.data.photoURL,
                                 email: user.email,
+                                password: register.data.password
                             }
                         }
                     )
-                    saveStorage(getState().auth);                  
+                    saveStorage(getState().auth);
+
                 })
             })
             .catch((error) => {
                 let errorCode = error.code;
-                let errorMessage = error.message;             
+                let errorMessage = error.message;
                 dispatch({
                     type: AUTH_LOGIN_ERROR,
                     payload: errorMessage,
@@ -141,14 +162,18 @@ export const startLoginWithEmailAndPassword = (email, password, name) => {
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
             .then(async ({ user }) => {
+                let login = await axios.post(`https://pg-delsur.herokuapp.com/user/login`, { email: user.email, password: user.reloadUserInfo.passwordHash });
+
                 dispatch(
                     {
                         type: AUTH_LOGIN_SUCCESS,
-                        payload: {
-                            uid: user.uid,
-                            displayName: user.displayName,
-                            // photoURL: user.photoURL,
-                            email: user.email,
+                        payload: {                   
+
+                            uid: login.data.id,
+                            displayName: login.data.displayName,
+                            photoURL: login.data.photoURL,
+                            email: login.data.email,
+                            password: login.data.password
                         }
                     }
                 )

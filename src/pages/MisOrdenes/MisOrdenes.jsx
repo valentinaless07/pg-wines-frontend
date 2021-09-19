@@ -4,8 +4,13 @@ import Footer from '../../components/footer/Footer';
 import styles from './MisOrdenes.module.css';
 import { getOrderHistory } from '../../redux/actions/orderActions';
 import { connect } from 'react-redux';
+import { format } from "date-fns";
+import { Link } from 'react-router-dom';
 
-const MisOrdenes = () => {
+const MisOrdenes = ({ orders, getOrderHistory }) => {
+    useEffect(() => {
+        getOrderHistory()
+    }, [])
     return (
         <React.Fragment>
             <Navbar />
@@ -17,30 +22,26 @@ const MisOrdenes = () => {
                             <th>Numero de orden</th>
                             <th>Fecha de compra</th>
                             <th>Estatus</th>
-                            <th>Total</th>
                             <th>Detalle de la orden</th>
                         </tr>
-                        <tr>
-                            <td>345</td>
-                            <td>24-09-21</td>
-                            <td>Procesando</td>
-                            <td>$1200</td>
-                            <td><a href="">Ver</a></td>
-                        </tr>
-                        <tr>
-                            <td>345</td>
-                            <td>24-09-21</td>
-                            <td>Procesando</td>
-                            <td>$1200</td>
-                            <td><a href="">Ver</a></td>
-                        </tr>
-                        <tr>
-                            <td>345</td>
-                            <td>24-09-21</td>
-                            <td>Procesando</td>
-                            <td>$1200</td>
-                            <td><a href="">Ver</a></td>
-                        </tr>
+                        {orders.length > 0 ?
+                            orders.map(item => {
+                                var date = new Date(item.date);
+
+                                var formattedDate = format(date, "MMMM do, yyyy H:mma");
+
+                                return (
+                                    <tr key={item.id}>
+                                        <td>{item.id}</td>
+                                        <td>{formattedDate}</td>
+                                        <td>{item.status}</td>
+                                        <td><Link to={`/order/${item.id}`}>Ver</Link></td>
+                                    </tr>
+                                )
+                            })
+
+                            : <></>}
+
                     </table>
                 </div>
 
@@ -59,8 +60,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         getOrderHistory: () => dispatch(getOrderHistory()),
-        
-       
+
+
 
     };
 };

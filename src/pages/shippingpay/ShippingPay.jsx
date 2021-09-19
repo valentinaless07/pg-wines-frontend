@@ -37,8 +37,16 @@ const ShippingPay = ({ cartState, getTotalPrice, totalPrice, idCheckout }) => {
                 <div className={styles.buydetails}>
                     <div>
                         {cartState && cartState.map(el =>
-                            <CartProduct key={uniqid()} image={el.image} name={el.name} cost={el.cost} id={el.id}
-                                itemsAmount={el.itemsAmount} isCheckout={true} />
+                        <div className={styles.cart_product}>
+                        <div className={styles.img_container}>
+                            <img src={el.image} alt="" />
+                        </div>
+                        <div className={styles.name_price_product}>
+                            <p>{el.name}</p><p className={styles.cost}>Precio: ${el.cost}</p>
+                        </div>
+                        <p>Cantidad: {el.quantity}</p>
+                        </div>
+                            
                         )}
                     </div>
 
@@ -103,7 +111,7 @@ const ShippingPay = ({ cartState, getTotalPrice, totalPrice, idCheckout }) => {
                                 {cartState && cartState.map(el =>
                                     <tbody key={uniqid()}>
                                         <tr>
-                                            <td className={styles.labelenvio}>{el.name}({el.itemsAmount})</td>
+                                            <td className={styles.labelenvio}>{el.name}({el.quantity})</td>
                                             <td className={styles.labelmount}>${el.cost}</td>
                                         </tr>
                                     </tbody>

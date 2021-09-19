@@ -4,7 +4,7 @@ import Footer from '../../components/footer/Footer';
 import styles from './OurTeam.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { faFacebook, faGithub, faLinkedin, faTwitter, faWhatsapp, faWhatsappSquare } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 const OurTeam = () => {
     return (
@@ -23,13 +23,13 @@ const OurTeam = () => {
                             <h3>Full Stack Web Developer</h3>
                             <p>Aunque descubri un poco tarde el mundo de la programacion siempre me encanto la tecnoligia y encontrar nuevos retos y algo que requiera de constante aprendisaje es algo que me hace sentir comodo</p>
                             <div>
-                                <a href="https://www.linkedin.com/in/benjamin-caceres/" target="_blank">
+                                <a href="https://www.linkedin.com/in/benjamin-caceres/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
                                 </a>
-                                <a href="https://wa.link/a9hfcd" target="_blank">
+                                <a href="https://wa.link/a9hfcd" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faWhatsapp} />
                                 </a>
-                                <a href="https://github.com/benjamin-caceres" target="_blank">
+                                <a href="https://github.com/benjamin-caceres" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faGithub} />
                                 </a>
                             </div>
@@ -42,13 +42,13 @@ const OurTeam = () => {
                             <h3>Full Stack Web Developer</h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
                             <div>
-                                <a href="https://www.linkedin.com/in/cristian-quevedo/" target="_blank">
+                                <a href="https://www.linkedin.com/in/cristian-quevedo/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
                                 </a>
-                                <a href="https://wa.link/a9hfcd" target="_blank">
+                                <a href="https://wa.link/a9hfcd" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faWhatsapp} />
                                 </a>
-                                <a href="https://github.com/xerxes97" target="_blank">
+                                <a href="https://github.com/xerxes97" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faGithub} />
                                 </a>
                             </div>
@@ -61,13 +61,13 @@ const OurTeam = () => {
                             <h3>Full Stack Web Developer</h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
                             <div>
-                                <a href="https://www.linkedin.com/in/valentin-alessandrini-zapata/" target="_blank">
+                                <a href="https://www.linkedin.com/in/valentin-alessandrini-zapata/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
                                 </a>
-                                <a href="https://wa.link/a9hfcd" target="_blank">
+                                <a href="https://wa.link/a9hfcd" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faWhatsapp} />
                                 </a>
-                                <a href="https://github.com/valentinaless07" target="_blank">
+                                <a href="https://github.com/valentinaless07" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faGithub} />
                                 </a>
                             </div>
@@ -83,13 +83,13 @@ const OurTeam = () => {
                             <h3>Full Stack Web Developer</h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
                             <div>
-                                <a href="#" target="_blank">
+                                <a href="#" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
                                 </a>
-                                <a href="https://wa.link/a9hfcd" target="_blank">
+                                <a href="https://wa.link/a9hfcd" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faWhatsapp} />
                                 </a>
-                                <a href="https://github.com/abadalejandro" target="_blank">
+                                <a href="https://github.com/abadalejandro" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faGithub} />
                                 </a>
                             </div>
@@ -102,13 +102,13 @@ const OurTeam = () => {
                             <h3>Full Stack Web Developer</h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
                             <div>
-                                <a href="https://www.linkedin.com/in/alexmarinmendez/" target="_blank">
+                                <a href="https://www.linkedin.com/in/alexmarinmendez/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
                                 </a>
-                                <a href="https://wa.link/a9hfcd" target="_blank">
+                                <a href="https://wa.link/a9hfcd" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faWhatsapp} />
                                 </a>
-                                <a href="https://github.com/alexmarinmendez" target="_blank">
+                                <a href="https://github.com/alexmarinmendez" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faGithub} />
                                 </a>
                             </div>
@@ -121,13 +121,13 @@ const OurTeam = () => {
                             <h3>Full Stack Web Developer</h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
                             <div>
-                                <a href="https://www.linkedin.com/in/gaspar-almada/" target="_blank">
+                                <a href="https://www.linkedin.com/in/gaspar-almada/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
                                 </a>
-                                <a href="https://wa.link/a9hfcd" target="_blank">
+                                <a href="https://wa.link/a9hfcd" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faWhatsapp} />
                                 </a>
-                                <a href="https://github.com/almadagaspar" target="_blank">
+                                <a href="https://github.com/almadagaspar" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faGithub} />
                                 </a>
                             </div>
@@ -143,13 +143,13 @@ const OurTeam = () => {
                             <h3>Full Stack Web Developer</h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
                             <div>
-                                <a href="https://www.linkedin.com/in/emilianoduartes/" target="_blank">
+                                <a href="https://www.linkedin.com/in/emilianoduartes/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
                                 </a>
-                                <a href="https://wa.link/a9hfcd" target="_blank">
+                                <a href="https://wa.link/a9hfcd" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faWhatsapp} />
                                 </a>
-                                <a href="https://github.com/emilianoduartes" target="_blank">
+                                <a href="https://github.com/emilianoduartes" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faGithub} />
                                 </a>
                             </div>
@@ -162,13 +162,13 @@ const OurTeam = () => {
                             <h3>Full Stack Web Developer</h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
                             <div>
-                                <a href="https://www.linkedin.com/in/gustavo-riera-fullstackdev/" target="_blank">
+                                <a href="https://www.linkedin.com/in/gustavo-riera-fullstackdev/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
                                 </a>
-                                <a href="https://wa.link/a9hfcd" target="_blank">
+                                <a href="https://wa.link/a9hfcd" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faWhatsapp} />
                                 </a>
-                                <a href="https://github.com/Gustavitory" target="_blank">
+                                <a href="https://github.com/Gustavitory" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faGithub} />
                                 </a>
                             </div>

@@ -47,7 +47,7 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
         
         
         
-        setNewProductData({...newProductData, image: arrayFiles[0]})
+        setNewProductData({...newProductData, image: arrayFiles})
         
         
     }

@@ -18,7 +18,7 @@ import Cart from '../pages/cart/Cart';
 import RegisterScreen from '../pages/register/RegisterScreen';
 import LoginScreen from '../pages/login/LoginScreen';
 import PutProduct from '../pages/PutProduct/PutProduct';
-import manageProductInf from '../pages/manageProductInf/ManageProductInf';
+import ManageProductInf from '../pages/manageProductInf/ManageProductInf';
 import SearchResults from '../pages/productDetails/SearchResults';
 import OffersManager from '../pages/offersManager/OffersManager';
 import NotFound from '../pages/NotFound/NotFound';
@@ -26,11 +26,15 @@ import DetalleOrden from '../pages/MisOrdenes/DetalleOrden';
 import MisOrdenes from '../pages/MisOrdenes/MisOrdenes';
 import AdminArea from '../pages/adminArea/AdminArea';
 import OurTeam from '../pages/ourteam/OurTeam';
+import { cartStateLogin } from '../redux/actions/cartActions';
 
-const AppRouter = ({ authState }) => {
+const AppRouter = ({ authState, cartStateLogin }) => {
 
   let loggedIn = authState.loggedIn;
-
+  if(loggedIn){
+    localStorage.removeItem("cart")
+    cartStateLogin(authState.uid)
+  }
   return (
     <Router>
       <div>
@@ -41,16 +45,23 @@ const AppRouter = ({ authState }) => {
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
           <Route exact path="/vino/:name" component={SearchResults} />
           <Route exact path="/about" component={AboutUs} />
-          <Route exact path='/manage' component={manageProductInf} />
+          {/* <Route exact path='/manage' component={ManageProductInf} /> */}
           <Route exact path="/register" component={RegisterScreen} />
           <Route exact path="/checkout" component={ShippingPay} />
           {/* <Route exact path="/offersManager" component={OffersManager} /> */}
           <Route exact path="/misordenes" component={MisOrdenes} />
-          <Route exact path="/detalleorden" component={DetalleOrden} />
+          <Route exact path="/order/:id" component={DetalleOrden} />
           <Route exact path="/equipo" component={OurTeam} />
 
           <Route exact path="/cart" component={Cart} />
-
+          {/* <Route exact path="/notFound" component={NotFound} /> */}
+         
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            path='/manage'
+            component={ManageProductInf}
+          />
 
           <PrivateRoute
             exact
@@ -111,7 +122,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  return {
+    cartStateLogin: (id) => dispatch(cartStateLogin(id))
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);
