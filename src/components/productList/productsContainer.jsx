@@ -51,8 +51,7 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
         <div className={styles.productList}>
             {
                 state.products.length > 0 ? state.products.map(item => {
-                    return <Link to='#' key={item.id}>
-                        <div className={styles.productContainer}>
+                    return <div key={item.id} className={styles.productContainer}>
                             <div className={styles.title}>
                                 <span>{item.name}</span>
                                 <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
@@ -61,8 +60,8 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
                                 <img onClick={() => handleGoToProducDescription(item.id)} className={styles.img} src={item.image} alt='' />
                             </div>
                             <div className={styles.price}>
-                                {item.discount > 5 && <span>{item.discount}% Desc</span>}
-                                {item.discount > 5 ? <span className={styles.desc}>{'$ ' + ((item.cost) * (1 - (item.discount / 100))).toFixed(2)}</span> : <span>$ {item.cost}</span>}
+                                {item.discount > 0 && <span>{item.discount}% Desc</span>}
+                                {item.discount > 0 ? <span className={styles.desc}>{'$ ' + ((item.cost) * (1 - (item.discount / 100))).toFixed(2)}</span> : <span>$ {item.cost}</span>}
                             </div>
                             {item.stock === 0 ?
                                 <button className={`${styles.bnt} ${styles.btnBuy} ${styles.noStock}`}>Sin Stock</button>
@@ -70,7 +69,6 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
                                 <button onClick={() => addProductCart(item)} className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
                             }
                         </div>
-                    </Link>
                 })
                     :
                     <div >
