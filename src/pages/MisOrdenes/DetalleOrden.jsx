@@ -54,9 +54,11 @@ const DetalleOrden = ({ getOrderDetails, orders_details }) => {
 
                         {
                             orders_details[0]?.products.map(p => {
+                                console.log(orders_details)
                                 return (
                                     <tr key={p.id}>
                                         <td><img src={p.image[0]} alt="" /></td>
+                                        <td>{p.quantity}</td>
                                         <td>{p.name}</td>
                                         <td>${p.cost}</td>
                                         <td><Link to={`/product/${p.id}`}>Ver detalle de producto</Link></td>
