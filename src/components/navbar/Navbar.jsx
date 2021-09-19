@@ -29,6 +29,8 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
   const handleLogout = () => {
     history.push('/');
     logOutAction();
+    history.go(0)
+
   }
 
   const [screenSize, setScreenSize] = useState(window.innerWidth);
@@ -215,6 +217,8 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
             <>
               <li onClick={() => goTo('login')}>INICIÁ SESIÓN</li>
               <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
+              <li onClick={() => goTo('cart')}>CARRITO {totalItems() > 0? <span>({totalItems()})</span>: <div></div>} </li>
+              <li onClick={() => goTo('favorites')}>FAVORITOS</li>
             </>
         }
 
