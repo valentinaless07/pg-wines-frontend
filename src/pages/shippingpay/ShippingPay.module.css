@@ -1,137 +1,133 @@
-.bodyshipping{
+.bodyshipping {
   background: #f7f7f7;
   padding-bottom: 40px;
-  
 }
 
-.titlestilos{
-    display: flex;
-    justify-content: center;
+.titlestilos {
+  display: flex;
+  justify-content: center;
 }
 
-.buydetails{
+.buydetails {
   background: #fff;
   width: 70%;
   margin-left: 100px;
   margin-top: 40px;
 }
 
-.revisararticulo h4{
+.revisararticulo h4 {
   display: flex;
   justify-content: center;
   padding-top: 20px;
 }
 
-.flexboxshopping{
+.flexboxshopping {
   display: flex;
   justify-content: space-evenly;
 }
 
-.margenimg{
+.margenimg {
   margin: auto;
 }
 
-.flexboxshopping img{
+.flexboxshopping img {
   height: 250px;
 }
 
-.flexboxshopping h4{
+.flexboxshopping h4 {
   font-size: 20px;
   font-style: italic;
 }
 
-.flexboxshopping p{
+.flexboxshopping p {
   font-size: 15px;
   margin-bottom: 20px;
   font-weight: bolder;
-  font-style:italic ;
+  font-style: italic;
 }
 
-.flexboxshopping label{
+.flexboxshopping label {
   margin-right: 8px;
 }
 
-.flexboxshopping select{
+.flexboxshopping select {
   height: 40px;
   padding: 0 32px 0 16px;
 }
 
-.flexboxshopping button{
+.flexboxshopping button {
   border: none;
   background: no-repeat;
   text-decoration: underline;
   color: blue;
 }
 
-.radiobutton{
+.radiobutton {
   display: flex;
   flex-wrap: wrap;
 }
 
-.radiobutton span{
+.radiobutton span {
   padding-right: 1rem;
 }
 
-.radiobutton input{
+.radiobutton input {
   height: 20px;
   width: 20px;
-  
 }
 
-.radiobutton p{
+.radiobutton p {
   font-size: 14px;
-  color:#767676;
+  color: #767676;
   margin-top: 4px;
   margin-bottom: 0;
 }
 
-.serviceprice{
-  width: 100%; 
+.serviceprice {
+  width: 100%;
 }
 
-.serviceprice h4{
+.serviceprice h4 {
   margin-top: 0;
   margin-left: 42px;
   font-size: 15px;
 }
 
-.addres{
+.addres {
   background: #fff;
   margin-top: 40px;
-  
-  
 }
 
-.addres h2{
-    padding-top: 20px;
-    padding-bottom: 10px;
-    padding-left: 30px;
+.addres h2 {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 30px;
 }
 
-.lineaddres{
+.lineaddres {
   width: 100%;
   height: 1px;
-  background:#f7f7f7;
+  background: #f7f7f7;
 }
 
-.pais{
+.pais {
   width: 50%;
 }
 
-.pais p{
+.pais p {
   font-size: 15px;
   margin-bottom: 20px;
   font-weight: bolder;
-  font-style:italic ;
+  font-style: italic;
   padding-left: 40px;
   color: #767676;
   margin-top: 20px;
 }
 
-.pais select{
+.pais select {
   height: 1.8125rem;
   font-weight: 700;
-  width: 84%!important;
+  width: 84% !important;
   background-color: transparent;
   border: 0;
   padding-left: 0;
@@ -139,14 +135,14 @@
   margin-left: 40px;
 }
 
-.datospersonales div{
+.datospersonales div {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
-.datospersonales input{
+.datospersonales input {
   width: 42%;
   margin: 15px 10px;
   height: 1.8125rem;
@@ -155,14 +151,14 @@
   border-bottom: 1px solid #4e4e4e;
 }
 
-.direccionenvio div{
+.direccionenvio div {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
-.direccionenvio input{
+.direccionenvio input {
   width: 42%;
   margin: 15px 10px;
   height: 1.8125rem;
@@ -171,16 +167,16 @@
   border-bottom: 1px solid #4e4e4e;
 }
 
-.ciudadestado div{
+.ciudadestado div {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
-.ciudadestado input{
+.ciudadestado input {
   width: 27%;
-  margin-top:10px;
+  margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
   height: 1.8125rem;
@@ -189,14 +185,14 @@
   border-bottom: 1px solid #4e4e4e;
 }
 
-.correoelectronico div{
+.correoelectronico div {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
-.correoelectronico input{
+.correoelectronico input {
   width: 42%;
   margin: 15px 10px;
   height: 1.8125rem;
@@ -205,14 +201,14 @@
   border-bottom: 1px solid #4e4e4e;
 }
 
-.numerotelefono div{
+.numerotelefono div {
   width: 100%;
   display: flex;
   margin-top: 10px;
   margin-left: 25px;
 }
 
-.numerotelefono input{
+.numerotelefono input {
   width: 42%;
   margin: 15px 10px;
   height: 1.8125rem;
@@ -221,8 +217,7 @@
   border-bottom: 1px solid #4e4e4e;
 }
 
-
-.botonlisto button{
+.botonlisto button {
   margin-top: 20px;
   background-color: #3483fa;
   color: #fff;
@@ -234,41 +229,39 @@
   margin-bottom: 30px;
 }
 
-.checkoutshipping{
+.checkoutshipping {
   display: flex;
-  width:100%;
+  width: 100%;
 }
 
-.confirmpay{
+.confirmpay {
   background: #fff;
   width: 30%;
   margin-left: 50px;
   margin-top: 40px;
   margin-right: 100px;
   margin-bottom: 70px;
-  
-  
 }
 
-.confirmpay table{
+.confirmpay table {
   width: 100%;
 }
 
-.labelenvio{
+.labelenvio {
   text-align: left;
   padding-left: 15px;
   padding-top: 15px;
   font-weight: bold;
 }
 
-.labelmount{
+.labelmount {
   text-align: right;
-  padding-right:15px;
+  padding-right: 15px;
   padding-top: 15px;
   font-weight: bold;
 }
 
-.lineacheckout{
+.lineacheckout {
   border-top: 1px solid #767676;
   height: 2px;
   max-width: 250px;
@@ -276,7 +269,7 @@
   margin: 50px auto 0 auto;
 }
 
-.labeltotaltext{
+.labeltotaltext {
   text-align: left;
   padding-left: 15px;
   padding-top: 15px;
@@ -284,15 +277,45 @@
   color: #3483fa;
 }
 
-.labeltotalmount{
+.labeltotalmount {
   text-align: right;
-  padding-right:15px;
+  padding-right: 15px;
   padding-top: 15px;
   font-weight: bolder;
   color: #3483fa;
 }
 
-.botonconfirmar button{
+.cart_product {
+  margin-top: 30px;
+  height: 100px;
+  width: 98%;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.img_container {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img_container > img {
+  width: auto;
+  height: auto;
+  max-width: 75px;
+  max-height: 75px;
+}
+
+.name_price_product {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 45%;
+}
+
+.botonconfirmar button {
   margin-top: 20px;
   background-color: #3483fa;
   color: #fff;
@@ -304,34 +327,32 @@
   margin-top: 40px;
 }
 
-@media screen and (max-width: 992px){
-
-  .flexboxshopping{
+@media screen and (max-width: 992px) {
+  .flexboxshopping {
     display: flex !important;
     justify-content: space-evenly !important;
     flex-wrap: wrap !important;
   }
 
-  .confirmpay{
+  .confirmpay {
     width: 100%;
   }
 
-  .confirmpay button{
+  .confirmpay button {
     margin: 0;
   }
 
-  .addres{
+  .addres {
     width: 100%;
     display: table-cell;
   }
 
-  .checkoutshipping{
+  .checkoutshipping {
     flex-wrap: wrap;
   }
 
-  .buydetails{
+  .buydetails {
     width: 100%;
     margin-left: 0;
   }
 }
-
