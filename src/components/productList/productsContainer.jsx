@@ -1,6 +1,5 @@
 import styles from './ProductsList.module.css';
 import './productList.css'
-import { Link } from 'react-router-dom';
 import { useHistory, useLocation } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux';
@@ -9,7 +8,7 @@ import './productList.css'
 import { addCartProduct } from '../../redux/actions/cartActions';
 import { editItemsAmount } from '../../redux/actions/cartActions';
 import noFound from '../../assests/images/noFound.png'
-
+import ScrollUp from '../scrollUp/ScrollUp';
 
 function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduct, editItemsAmount }) {
 
@@ -29,7 +28,6 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
 
             await addCartProduct(detail)
             
-
         }
 
         else {
@@ -48,11 +46,19 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
     }
 
     return (<div id='containerProducts' className={`${styles.container}`}>
+        <ScrollUp />
+        <ReactPaginate
+            previousLabel={<i className="fas fa-chevron-left"></i>}
+            nextLabel={<i className="fas fa-chevron-right"></i>}
+            pageCount={state.totalPage}
+            onPageChange={changePage}
+            activeClassName={'activePaginationBtn'}
+            initialPage={0}
+        />
         <div className={styles.productList}>
             {
                 state.products.length > 0 ? state.products.map(item => {
-                    return <Link to='#' key={item.id}>
-                        <div className={styles.productContainer}>
+                    return <div key={item.id} className={styles.productContainer}>
                             <div className={styles.title}>
                                 <span>{item.name}</span>
                                 <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
@@ -61,8 +67,8 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
                                 <img onClick={() => handleGoToProducDescription(item.id)} className={styles.img} src={item.image} alt='' />
                             </div>
                             <div className={styles.price}>
-                                {item.discount > 5 && <span>{item.discount}% Desc</span>}
-                                {item.discount > 5 ? <span className={styles.desc}>{'$ ' + ((item.cost) * (1 - (item.discount / 100))).toFixed(2)}</span> : <span>$ {item.cost}</span>}
+                                {item.discount > 0 && <span>{item.discount}% Desc</span>}
+                                {item.discount > 0 ? <span className={styles.desc}>{'$ ' + ((item.cost) * (1 - (item.discount / 100))).toFixed(2)}</span> : <span>$ {item.cost}</span>}
                             </div>
                             {item.stock === 0 ?
                                 <button className={`${styles.bnt} ${styles.btnBuy} ${styles.noStock}`}>Sin Stock</button>
@@ -70,7 +76,6 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
                                 <button onClick={() => addProductCart(item)} className={`${styles.bnt} ${styles.btnBuy}`}><i className="fas fa-shopping-cart"></i> COMPRAR</button>
                             }
                         </div>
-                    </Link>
                 })
                     :
                     <div >

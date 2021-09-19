@@ -160,3 +160,13 @@ select{
 .productListSpinnerContainer > img {
     padding-bottom: 200px;
 }
+
+@media (max-width: 650px) {
+    #containerProducts ul li{
+        display: none;
+    }
+
+    #containerProducts ul li:last-child, #containerProducts ul li:first-child{
+        display: block;
+    }
+}
