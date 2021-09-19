@@ -1,6 +1,5 @@
 import styles from './ProductsList.module.css';
 import './productList.css'
-import { Link } from 'react-router-dom';
 import { useHistory, useLocation } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux';
@@ -9,7 +8,7 @@ import './productList.css'
 import { addCartProduct } from '../../redux/actions/cartActions';
 import { editItemsAmount } from '../../redux/actions/cartActions';
 import noFound from '../../assests/images/noFound.png'
-
+import ScrollUp from '../scrollUp/ScrollUp';
 
 function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduct, editItemsAmount }) {
 
@@ -29,7 +28,6 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
 
             await addCartProduct(detail)
             
-
         }
 
         else {
@@ -48,6 +46,15 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
     }
 
     return (<div id='containerProducts' className={`${styles.container}`}>
+        <ScrollUp />
+        <ReactPaginate
+            previousLabel={<i className="fas fa-chevron-left"></i>}
+            nextLabel={<i className="fas fa-chevron-right"></i>}
+            pageCount={state.totalPage}
+            onPageChange={changePage}
+            activeClassName={'activePaginationBtn'}
+            initialPage={0}
+        />
         <div className={styles.productList}>
             {
                 state.products.length > 0 ? state.products.map(item => {
