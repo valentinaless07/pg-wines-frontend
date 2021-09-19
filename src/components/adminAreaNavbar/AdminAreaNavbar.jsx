@@ -10,7 +10,7 @@ const AdminAreaNavbar = () => {
   const history = useHistory()
     
     return (
-        <nav>
+        <nav className={styles.navbar}>
           <div className={styles.backIcon}><div className={styles.pointer}><i onClick={() => location.pathname === "/adminArea" ? history.push("/") : history.push("/adminArea")} className="fas fa-arrow-circle-left fa-3x"></i></div></div>
             <div className={styles.nav}>
                 

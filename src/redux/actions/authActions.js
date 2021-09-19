@@ -17,6 +17,10 @@ export const startGoogleLogin = () => {
         const auth = getAuth();
         signInWithPopup(auth, googleAuthProvider)
             .then(({ user }) => {
+                // Verify if user exists in our db.
+                // If it's true, take aditional data and put it in local storage and redux state.
+                // If it's false, create a new user in our db.
+
                 dispatch(
                     {
                         type: AUTH_LOGIN_SUCCESS,
@@ -77,11 +81,13 @@ export const startRegisterWithEmailAndPassword = (name, email, password) => {
                 if(localStorage.getItem("cart")){
                 let localStorageState =  JSON.parse(localStorage.getItem("cart"))
                 
-                localStorageState.forEach(el =>
-                     
-                        axios.post("https://pg-delsur.herokuapp.com/carts/addCartItem/"+register.data.id, {id: el.id, quantity: el.quantity})
-                        .then(res => console.log(res))
                     
+                console.log(localStorageState)
+                localStorageState.forEach(el =>
+                        
+                        axios.post("https://pg-delsur.herokuapp.com/carts/addCartItem/"+register.data.id, {id: el.id, quantity: el.quantity})
+                        
+                        
                     )
                 
                 localStorage.removeItem("cart")

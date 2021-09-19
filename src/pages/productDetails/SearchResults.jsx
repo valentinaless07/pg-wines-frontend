@@ -39,7 +39,7 @@ const SearchResults = ({ product_detail, getProductByName, getProductByNameReset
         }
 
         else{
-            history.push("/cart")
+             history.push("/cart")
         }
 
         

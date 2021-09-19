@@ -1,36 +1,74 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import styles from './DetalleOrden.module.css';
 import { getOrderDetails } from '../../redux/actions/orderActions';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
+import { format } from "date-fns";
 
-const DetalleOrden = () => {
+const DetalleOrden = ({ getOrderDetails, orders_details }) => {
+
+    const { id } = useParams()
+    useEffect(() => {
+        getOrderDetails(id);
+    }, [id])
+
+    const formatDate = (date) => {
+        var dateN = new Date(date);
+        var formattedDate = format(dateN, "MMMM do, yyyy H:mma");
+        return formattedDate;
+    }
+
+    const sumTotal = (products) => {
+        let t = 0;
+        for (let index = 0; index < products.length; index++) {
+            const element = products[index];
+            t += element.cost;
+        }
+
+        return t;
+    }
 
     return (
         <>
-        <Navbar />
-        <div className={styles.detalledeordenes}>
-            <div className={styles.datesorder}>
-                <ul>
-                    <li>
-                        <p className={styles.totalprice}>Total de orden</p>
-                        <p className={styles.amountorder}>Monto</p>
-                    </li>
-                    <li>
-                        <p className={styles.orderno}>Orden no.</p>
-                        <p className={styles.orderdate}>Fecha</p>
-                    </li>
-                </ul>
+            <Navbar />
+            <div className={styles.detalledeordenes}>
+                <div className={styles.datesorder}>
+                    {orders_details.length > 0 ?
+                        <ul>
+                            <li>
+                                <p className={styles.totalprice}>Total de orden</p>
+                                <p className={styles.amountorder}>$ {sumTotal(orders_details[0]?.products)}</p>
+                            </li>
+                            <li>
+                                <p className={styles.orderno}>Orden no. {orders_details[0]?.id}</p>
+                                <p className={styles.orderdate}>Fecha: {formatDate(orders_details[0]?.date)}</p>
+                            </li>
+                        </ul>
+                        : <></>}
+                </div>
+                <div className={styles.detalleitem}>
+                    <table>
+
+                        {
+                            orders_details[0]?.products.map(p => {
+                                return (
+                                    <tr key={p.id}>
+                                        <td><img src={p.image[0]} alt="" /></td>
+                                        <td>{p.name}</td>
+                                        <td>${p.cost}</td>
+                                        <td><Link to={`/product/${p.id}`}>Ver detalle de producto</Link></td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </table >
+                </div>
+
             </div>
-            <div className={styles.detalleitem}>
-                <img src="https://www.fullescabio.com/productos/1630611865/01_1630611865.jpg" alt="" />
-                <p>Nombre del producto</p>
-                <p> X Cantidad comprada</p>
-                <p><a href="">Ver detalle de producto</a></p>
-            </div>
-        </div>
-        <Footer />
+            <Footer />
         </>
     )
 };
@@ -43,9 +81,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getOrderDetails: () => dispatch(getOrderDetails()),
-        
-       
+        getOrderDetails: (id) => dispatch(getOrderDetails(id)),
+
+
 
     };
 };
