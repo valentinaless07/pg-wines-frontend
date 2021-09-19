@@ -20,8 +20,7 @@ import LoginScreen from '../pages/login/LoginScreen';
 import PutProduct from '../pages/PutProduct/PutProduct';
 import manageProductInf from '../pages/manageProductInf/ManageProductInf';
 import SearchResults from '../pages/productDetails/SearchResults';
-// import OffersManager from '../pages/offersManager/OffersManager';
-import OffersManager from '../pages/offersManager/OffersManager2';
+import OffersManager from '../pages/offersManager/OffersManager';
 import NotFound from '../pages/NotFound/NotFound';
 import DetalleOrden from '../pages/MisOrdenes/DetalleOrden';
 import MisOrdenes from '../pages/MisOrdenes/MisOrdenes';
@@ -46,7 +45,6 @@ const AppRouter = ({ authState }) => {
           <Route exact path="/register" component={RegisterScreen} />
           <Route exact path="/checkout" component={ShippingPay} />
           {/* <Route exact path="/offersManager" component={OffersManager} /> */}
-          <Route exact path="/offersManager" component={OffersManager} />
           <Route exact path="/misordenes" component={MisOrdenes} />
           <Route exact path="/detalleorden" component={DetalleOrden} />
           <Route exact path="/equipo" component={OurTeam} />

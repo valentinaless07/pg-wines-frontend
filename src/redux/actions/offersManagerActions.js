@@ -8,7 +8,9 @@ export const OFFERS_GET_ALL = 'OFFERS_GET_ALL';
 export const OFFERS_PUT = 'OFFERS_PUT';
 export const OFFERS_DELETE = 'OFFERS_DELETE';
 export const OFFERS_UPDATE = 'OFFERS_UPDATE';
-const url = `${process.env.REACT_APP_BACKEND_URL}`;
+// const url = `${process.env.REACT_APP_BACKEND_URL}`;
+const url = 'https://pg-delsur.herokuapp.com';
+// const url = 'http://localhost:3001';
 
 export const getOffers = () => {
     return async (dispatch, getState) => {
@@ -16,12 +18,8 @@ export const getOffers = () => {
         dispatch({
             type: OFFERS_LOADING
         });
-        try {
-            // results = await axios.get(`https://pg-delsur.herokuapp.com/offers`);
-            // console.log('env', process.env.REACT_APP_BACKEND_URL);
-
+        try {           
             resp = await axios.get(url.concat(`/offers`));
-            console.log('ale----->',resp.data)
             if (resp.status === 200) {
                 dispatch({
                     type: OFFERS_GET_ALL,
@@ -42,9 +40,7 @@ export const getOffers = () => {
 }
 
 export const postOffers = (data) => {
-    return async (dispatch, getState) => {
-        // const url = 'https://pg-delsur.herokuapp.com/offers';
-        // const url = `${process.env.REACT_APP_BACKEND_URL}/offers`;
+    return async (dispatch, getState) => {      
         const formData = new FormData();
         formData.append('status', data.status.toString());
         formData.append('image', data.image);
@@ -62,7 +58,6 @@ export const postOffers = (data) => {
            
             let resp = '';
             resp = await axios.post(url.concat('/offers'), formData);
-            // resp = await axios.post(process.env.REACT_APP_BACKEND_URL, formData);     
             if (resp.status === 200) {
                 const result = await resp.data;
                 dispatch({
@@ -106,16 +101,13 @@ export const updateOfferById = (id, status) => {
             type: OFFERS_LOADING
         });
         try {
-            // await axios.put(`https://pg-delsur.herokuapp.com/offers/update`, { id: id, status: status.toString() });
-            await axios.put(`${process.env.REACT_APP_BACKEND_URL}/offers/update`, { id: id, status: status.toString() });
+            await axios.put(url.concat('/offers/update'), { id: id, status: status.toString() });
             await getOffers()(dispatch, getState);
             dispatch({
                 type: OFFERS_UPDATE,
-
             });
+           
         } catch (error) {
-            // console.log(error);
-            // console.log(results);
             dispatch({
                 type: OFFERS_ERROR,
                 payload: error
@@ -130,11 +122,15 @@ export const deleteOfferById = (id) => {
             type: OFFERS_LOADING
         });
         try {
-            // await axios.delete(`https://pg-delsur.herokuapp.com/offers/delete`, { data: { id: id } });
-            await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/offers/delete`, { data: { id: id } });
+            await axios.delete(url.concat('/offers/delete'), { data: { id: id } });
             dispatch({
                 type: OFFERS_DELETE,
                 payload: id
+            });
+            Swal.fire({
+                icon: 'success',
+                title: 'OK',
+                text: 'Oferta eliminada correctamente.',
             });
         } catch (error) {
             console.log(error);
