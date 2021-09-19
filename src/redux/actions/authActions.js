@@ -17,6 +17,10 @@ export const startGoogleLogin = () => {
         const auth = getAuth();
         signInWithPopup(auth, googleAuthProvider)
             .then(({ user }) => {
+                // Verify if user exists in our db.
+                // If it's true, take aditional data and put it in local storage and redux state.
+                // If it's false, create a new user in our db.
+
                 dispatch(
                     {
                         type: AUTH_LOGIN_SUCCESS,

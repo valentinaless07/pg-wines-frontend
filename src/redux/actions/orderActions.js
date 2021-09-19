@@ -10,6 +10,7 @@ export const getOrderHistory=()=>{
     console.log('userData', userData);
     return async function(dispatch){
         await axios.get(`https://pg-delsur.herokuapp.com/orders/userOrders/${userData.uid}`)
+
         .then(results =>{            
             dispatch({
                 type: GET_ORDER_HISTORY,
@@ -22,6 +23,7 @@ export const getOrderHistory=()=>{
 export const getOrderDetails = (id) => {
     return async function(dispatch){
         await axios.get(`https://pg-delsur.herokuapp.com/orders/getOrderById/${id}`)
+
         .then(results =>{            
             dispatch({
                 type: GET_ORDER_DETAILS,

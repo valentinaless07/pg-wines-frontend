@@ -48,7 +48,7 @@ const AppRouter = ({ authState, cartStateLogin }) => {
           {/* <Route exact path='/manage' component={ManageProductInf} /> */}
           <Route exact path="/register" component={RegisterScreen} />
           <Route exact path="/checkout" component={ShippingPay} />
-          <Route exact path="/offersManager" component={OffersManager} />
+          {/* <Route exact path="/offersManager" component={OffersManager} /> */}
           <Route exact path="/misordenes" component={MisOrdenes} />
           <Route exact path="/order/:id" component={DetalleOrden} />
           <Route exact path="/equipo" component={OurTeam} />
