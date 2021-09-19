@@ -5,6 +5,13 @@
   justify-content: center;
 }
 
+.navbar {
+  background-color: #232f3e;
+  color: white;
+  height: 80px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
 .nav > a {
   text-decoration: none;
   color: black;
@@ -31,7 +38,12 @@
   margin-right: 45px;
   font-size: 20px;
 }
-
+.offersManagerIcon > a {
+  color: white;
+}
+.manageProductIcon > a {
+  color: white;
+}
 .nav > li {
   margin-top: -45px;
   margin-right: 45px;
