@@ -119,7 +119,7 @@ const OurTeam = () => {
                         <div className={styles.nameperson}>
                             <h2>Gaspar Almada</h2>
                             <h3>Full Stack Web Developer</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
+                            <p>Con varios años de experiencia en la industria de la animación y diseño 3D, he iniciando un nuevo camino profesional al adquirir mis primeras experiencias en el desafiante y apasionante mundo del desarrollo IT. Actualmente me encuentro buscando formar parte de un equipo creador de soluciones tecnológicas, para aportar mis capacidades y crecer profesionalmente.</p>
                             <div>
                                 <a href="https://www.linkedin.com/in/gaspar-almada/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
