@@ -128,6 +128,12 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
         
     }
 
+    // var bodyFormData = new FormData();
+    // for (const property in newProductData) {
+    //     bodyFormData.append(property, newProductData[property])
+    //   }
+      
+    // postProductCreated(bodyFormData)
 
     return (
         <div className={styles.createProduct}>
@@ -141,15 +147,15 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
             <div className={styles.container_form}>
             <form className={styles.form} onSubmit={e => handleSubmit(e)}>
 
-                <div>
+                <div className={styles.nameContainer}>
                     <label>Nombre:</label>
-                    <input value={newProductData.name} onChange={e => handleChange(e)} name="name" type="text"/>
+                    <input className={styles.input_name} value={newProductData.name} onChange={e => handleChange(e)} name="name" type="text"/>
                     {errors.name && (<p className={styles.error}>{errors.name}</p>)}
                 </div>
 
                 <div>
                     <label>Descripción:</label>
-                    <input value={newProductData.description} onChange={e => handleChange(e)} name="description" type="text"/>
+                    <input className={styles.input_description} value={newProductData.description} onChange={e => handleChange(e)} name="description" type="text"/>
                 </div>
 
                 <div>

@@ -11,8 +11,6 @@ import { dateToString, sumToDate, dateToSpanishString } from '../../helpers/help
 import AdminAreaNavbar from "../../components/adminAreaNavbar/AdminAreaNavbar"
 import styles from './OffersManager.module.css';
 import './OffersManager.css';
-// import AdminAreaNavbar from '../../components/adminAreaNavbar/AdminAreaNavbar';
-
 
 const initialState = {
     status: false,
