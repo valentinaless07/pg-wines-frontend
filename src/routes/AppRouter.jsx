@@ -2,7 +2,7 @@ import React from 'react';
 import {
   HashRouter as Router,
   Switch,
-  Route,  
+  Route,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import HomeScreen from '../pages/home/HomeScreen';
@@ -34,8 +34,9 @@ import OrderFeedback from '../pages/OrderFeedback/OrderFeedback';
 
 const AppRouter = ({ authState, cartStateLogin }) => {
 
-  let loggedIn = authState.loggedIn;
-  if(loggedIn){
+  let { loggedIn, admin, active } = authState;
+
+  if (loggedIn) {
     localStorage.removeItem("cart")
     cartStateLogin(authState.uid)
   }
@@ -62,66 +63,76 @@ const AppRouter = ({ authState, cartStateLogin }) => {
 
           <Route exact path="/cart" component={Cart} />
           {/* <Route exact path="/notFound" component={NotFound} /> */}
-         
+             
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
-            path='/brands'
-            component={Brands}
-          />
-
-          <PrivateRoute
-            exact
-            isAuthenticated={loggedIn}
+            isAdmin={admin}
+            isActive={active}
             path='/categories'
             component={Brands}
           />
-
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
+            isAdmin={admin}
+            isActive={active}
             path='/offersManager'
             component={OffersManager}
           />
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
+            isAdmin={admin}
+            isActive={active}
             path='/usersManager'
             component={UsersManager}
           />
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
+            isAdmin={admin}
+            isActive={active}
             path='/manageProducts'
             component={ManageProductsScreen}
           />
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
+            isAdmin={admin}
+            isActive={active}
             path='/adminArea'
             component={AdminArea}
           />
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
+            isAdmin={admin}
+            isActive={active}
             path='/createproduct'
             component={CreateProduct}
           />
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
+            isAdmin={admin}
+            isActive={active}
             path='/checkout'
             component={ShippingPay}
           />
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
+            isAdmin={true}
+            isActive={active}
             path='/favorites'
             component={Favorites}
           />
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
+            isAdmin={admin}
+            isActive={active}
             path='/update/:id'
             component={PutProduct}
           />

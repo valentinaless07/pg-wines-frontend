@@ -56,7 +56,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
   function getAvatar() {
     if (authState.loggedIn) {
       return (<div className="tooltip bottom">
-         <span className="tiptext">{authState.displayName}</span>
+        <span className="tiptext">{authState.displayName}</span>
         <div style={{ fontSize: '2em', color: 'green' }}><i className="far fa-user-circle" with="100px"></i></div>
       </div>);
     }
@@ -84,13 +84,70 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
 
   function handleGoToProducDescription(productId) {
     history.push(`/product/${productId}`);
-}
-  function totalItems () {
+  }
+  function totalItems() {
     let total = 0
     cartState?.forEach(el => total += el.quantity)
-    if(total > 99){return "99"}
+    if (total > 99) { return "99" }
     return total
-}
+  }
+
+  function renderAdministrationOptionOfMenu() {
+     if(authState.loggedIn  && authState.active && authState.admin){
+         return  <>
+                <span className={styles.login} onClick={() => goTo('adminArea')} >Administración</span>
+                <span className={styles.login} onClick={handleLogout} >Salir</span>
+                {getAvatar()}
+              </>
+     }else if(authState.loggedIn && authState.active && !authState.admin){
+         return  <>
+                <span className={styles.login} onClick={handleLogout} >Salir</span>
+                {getAvatar()}
+              </>
+     }else if(!authState.loggedIn){
+          return <NavLink to="/login" className={styles.login}>
+                  <span>Iniciá Sesión</span>
+                </NavLink>
+     }
+  }
+
+  function renderFavoritesOptionOfMenu() {
+     if(authState.loggedIn  && authState.active && authState.admin){
+         return  <>
+                  <img src={favorite} alt="" onClick={() => goTo('favorites')} />
+                 </>
+     }else if(authState.loggedIn && authState.active && !authState.admin){
+         return  <>
+                  <img src={favorite} alt="" onClick={() => goTo('favorites')} />
+                </>
+     }
+  }
+
+  function renderHanburgerMenu() {
+    if (authState.loggedIn && authState.active && authState.admin) {
+      return <>
+        <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
+        <li onClick={() => goTo('adminArea')}>ADMINISTRACIÓN</li>
+        <li onClick={() => goTo('favorites')}>FAVORITOS</li>
+        <li onClick={() => goTo('cart')}>CARRITO {totalItems() > 0 ? <span>({totalItems()})</span> : <div></div>} </li>
+        <li onClick={handleLogout}>SALIR</li>
+      </>
+    } else if (authState.loggedIn && authState.active && !authState.admin) {
+      return <>
+        <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
+        <li onClick={() => goTo('favorites')}>FAVORITOS</li>
+        <li onClick={() => goTo('cart')}>CARRITO {totalItems() > 0 ? <span>({totalItems()})</span> : <div></div>} </li>
+        <li onClick={handleLogout}>SALIR</li>
+      </>
+    } else if (!authState.loggedIn) {
+      return <>
+        <li onClick={() => goTo('login')}>INICIÁ SESIÓN</li>
+        <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
+        <li onClick={() => goTo('cart')}>CARRITO {totalItems() > 0 ? <span>({totalItems()})</span> : <div></div>} </li>
+      </>
+    }
+  }
+
 
   return screenSize > 1100 ? (
     // NAVBAR CON WIDTH MAYOR A 1000
@@ -113,28 +170,28 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
             type="search"
             onChange={handleChange}
           />
-         
+
           <button type="submit">
             <img src={search} alt="" />
           </button>
 
         </form>
         {(vinos.length > 0 && name && name.length > 2) ?
-        <div className={styles.autoContainer}>
-         {vinos.map(item => {
-           return (
-             <button className="item-autocomplete" key={item.id} onClick={() => handleGoToProducDescription(item.id)} >{item.name}</button>
-           )
-         })}
-        </div>
-        : ''}
+          <div className={styles.autoContainer}>
+            {vinos.map(item => {
+              return (
+                <button className="item-autocomplete" key={item.id} onClick={() => handleGoToProducDescription(item.id)} >{item.name}</button>
+              )
+            })}
+          </div>
+          : ''}
 
         {/* <NavLink to="/manageProducts" className={styles.about_container}>
                   <span>Area Reservada</span>
                 </NavLink> */}
 
         <div className={styles.cart_login}>
-          {
+          {/* {
             (authState.loggedIn)
               ? <>
                 <span className={styles.login} onClick={() => goTo('adminArea')} >Administración</span>
@@ -144,16 +201,18 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
               : <NavLink to="/login" className={styles.login}>
                 <span >Iniciá Sesión</span>
               </NavLink>
-          }
+          } */}
+          {renderAdministrationOptionOfMenu()}
 
           <div className={styles.cart_favorite}>
-          <img src={favorite} alt="" onClick={() => goTo('favorites')} />
+            {/* <img src={favorite} alt="" onClick={() => goTo('favorites')} /> */}
+            {renderFavoritesOptionOfMenu()}
             <div className={styles.cart_container}>
-            <img src={cart} alt="" onClick={() => goTo('cart')} />
-            {totalItems() > 0 ?
-             <span>{totalItems()}</span>
-            :<div></div>
-            }
+              <img src={cart} alt="" onClick={() => goTo('cart')} />
+              {totalItems() > 0 ?
+                <span>{totalItems()}</span>
+                : <div></div>
+              }
             </div>
 
           </div>
@@ -176,17 +235,17 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
           type="search"
           onChange={handleChange}
         />
-    
+
         <img src={search} alt="" />
         {(vinos.length > 0 && name && name.length > 2) ?
-        <div className={stylesMobile.autoContainer}>
-         {vinos.map(item => {
-           return (
-             <button className="item-autocomplete" key={item.id} onClick={() => handleGoToProducDescription(item.id)} >{item.name}</button>
-           )
-         })}
-        </div>
-        : ''}
+          <div className={stylesMobile.autoContainer}>
+            {vinos.map(item => {
+              return (
+                <button className="item-autocomplete" key={item.id} onClick={() => handleGoToProducDescription(item.id)} >{item.name}</button>
+              )
+            })}
+          </div>
+          : ''}
       </div>
 
       <div className={stylesMobile.bars_cart_container}>
@@ -200,28 +259,8 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
             ? stylesMobile.nav_menu_active
             : stylesMobile.nav_menu_disabled
         }
-      >
-
-        {
-          (authState.loggedIn)
-            ?
-            <>
-              <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
-              <li onClick={() => goTo('adminArea')}>ADMINISTRACIÓN</li>
-              
-              <li onClick={() => goTo('favorites')}>FAVORITOS</li>
-              <li onClick={() => goTo('cart')}>CARRITO {totalItems() > 0? <span>({totalItems()})</span>: <div></div>} </li>
-              <li onClick={handleLogout}>SALIR</li>
-            </>
-            :
-            <>
-              <li onClick={() => goTo('login')}>INICIÁ SESIÓN</li>
-              <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
-              <li onClick={() => goTo('cart')}>CARRITO {totalItems() > 0? <span>({totalItems()})</span>: <div></div>} </li>
-              <li onClick={() => goTo('favorites')}>FAVORITOS</li>
-            </>
-        }
-
+      >      
+        {renderHanburgerMenu()}
       </ul>
     </nav>
   );

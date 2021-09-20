@@ -12,7 +12,6 @@ import AdminAreaNavbar from "../../components/adminAreaNavbar/AdminAreaNavbar"
 import styles from './OffersManager.module.css';
 import './OffersManager.css';
 
-
 const initialState = {
     status: false,
     image: '',
@@ -145,13 +144,13 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
         <div className={styles.flex_main_container}>
             <AdminAreaNavbar />
 
-            <div className={styles.header_container}>
+            {/* <div className={styles.header_container}>
                
                 <div className={styles.title}>
                     <h1>Gestión de Ofertas</h1>
                 </div>
               
-            </div>
+            </div> */}
             <div className={styles.data_container}>
                 {
                     offersState.fetching &&
