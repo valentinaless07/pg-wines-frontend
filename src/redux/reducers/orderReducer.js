@@ -1,4 +1,4 @@
-import { GET_ORDER_HISTORY, GET_ORDER_DETAILS } from "../actions/orderActions";
+import { GET_ORDER_HISTORY, GET_ORDER_DETAILS, UPDATE_ORDER } from "../actions/orderActions";
 
 let initialState = {
     orders: [],
@@ -17,6 +17,13 @@ const orderReducer = (state = initialState, action) => {
             return {
                 ...state,
                 orders_details:action.payload
+            }
+        }
+        case UPDATE_ORDER:{
+            return {
+                ...state,
+                orders_details:action.payload
+
             }
         }
             
