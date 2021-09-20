@@ -44,7 +44,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout}) 
                     <div className={styles.cart_items}>
                         
                         {cartState && cartState.map(el => 
-                        <CartProduct image={el.image} name={el.name} cost={el.cost} id={el.id} key={el.id} quantity={el.quantity}
+                        <CartProduct image={el.image || el.photo} name={el.name} cost={el.cost} id={el.id} key={el.id} quantity={el.quantity}
                          isCheckout={false}/>
                             )}
 
