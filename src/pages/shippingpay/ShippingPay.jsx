@@ -12,7 +12,7 @@ const ShippingPay = ({ cartState, getTotalPrice, totalPrice, idCheckout }) => {
 
 
     useEffect(() => {
-
+        getTotalPrice()
         var container_checkout = document.getElementById("checkout_container")
         var script = document.createElement("script")
         script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"

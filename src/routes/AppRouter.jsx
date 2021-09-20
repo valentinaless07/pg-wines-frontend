@@ -28,17 +28,18 @@ import GestionDetalleDeOrdenes from '../pages/MisOrdenes/GestionDetalleDeOrdenes
 import AdminArea from '../pages/adminArea/AdminArea';
 import OurTeam from '../pages/ourteam/OurTeam';
 import UsersManager from '../pages/usersManager/UsersManager';
-import { cartStateLogin } from '../redux/actions/cartActions';
+import { cartStateLogin, getTotalPrice } from '../redux/actions/cartActions';
 import Brands from '../components/brands/Brands';
 import OrderFeedback from '../pages/OrderFeedback/OrderFeedback';
 
-const AppRouter = ({ authState, cartStateLogin }) => {
+const AppRouter = ({ authState, cartStateLogin, getTotalPrice }) => {
 
   let { loggedIn, admin, active } = authState;
 
   if (loggedIn) {
     localStorage.removeItem("cart")
     cartStateLogin(authState.uid)
+    .then(() => getTotalPrice())
   }
   return (
     <Router>
@@ -154,7 +155,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    cartStateLogin: (id) => dispatch(cartStateLogin(id))
+    cartStateLogin: (id) => dispatch(cartStateLogin(id)),
+    getTotalPrice: () => dispatch(getTotalPrice())
   }
 }
 
