@@ -1,54 +1,61 @@
-.nav {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.navbar {
+.navbar{
   background-color: #232f3e;
   color: white;
-  height: 80px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.nav > a {
-  text-decoration: none;
-  color: black;
-}
-
-.nav > span {
+.options__container{
+  width: 95%;
+  margin: auto;
+  display: flex;
   font-size: 20px;
-  margin-top: -45px;
-  margin-right: 45px;
+  height: 50px;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.backIcon {
-  padding-left: 10%;
-  padding-top: 15px;
-}
-
-.manageProductIcon {
-  margin-top: -45px;
-  margin-right: 45px;
-  font-size: 20px;
-}
-.offersManagerIcon {
-  margin-top: -45px;
-  margin-right: 45px;
-  font-size: 20px;
-}
-.offersManagerIcon > a {
+.navItem{
+  text-align: center;
   color: white;
+  text-transform: uppercase;
 }
-.manageProductIcon > a {
-  color: white;
+
+.navbar a{
+  width: 22%;
+  transition: all 0.3s;
 }
-.nav > li {
-  margin-top: -45px;
-  margin-right: 45px;
-  font-size: 20px;
-}
-.pointer {
+
+.backIcon{
+  width: 10%;
   cursor: pointer;
+}
+
+.navbar a:hover{
+  font-size: 25px;
+}
+
+.active{
+  font-size: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #3e4c5d;
+  background: #3e4c5d;
+}
+
+@media (max-width: 500px){
+
+  .navbar{
+    width: 50px;
+    position: absolute;
+    top: 0px;
+  }
+
+  .options__container{
+    font-size: 15px;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: flex-start;
+  }
+
+  .active{
+    font-size: 20px;
+  }
 }

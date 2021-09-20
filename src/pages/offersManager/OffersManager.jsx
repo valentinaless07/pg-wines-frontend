@@ -10,6 +10,8 @@ import { getAllProductsSlider, getCategories } from '../../redux/actions/manageP
 import { dateToString, sumToDate, dateToSpanishString } from '../../helpers/helpers';
 import styles from './OffersManager.module.css';
 import './OffersManager.css';
+import AdminAreaNavbar from '../../components/adminAreaNavbar/AdminAreaNavbar';
+
 
 const initialState = {
     status: false,
@@ -141,8 +143,8 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
 
     return (
         <div className={styles.flex_main_container}>
+            <AdminAreaNavbar/>
             <div className={styles.header_container}>
-            <Link to="/adminArea" className={styles.backicon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
                     
             <div className={styles.title}>
                 <h1>Gestión de Ofertas</h1>
