@@ -17,7 +17,7 @@ function BrandsAndCategories({state, getInfo, createElement, deleteElement, upda
     
     useEffect(()=>{
         getInfo(element)
-    },[search.name, element])
+    },[search.name, element, getInfo])
     
     function handleRegex(e){
         setSearch({
