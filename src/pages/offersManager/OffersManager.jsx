@@ -13,7 +13,6 @@ import styles from './OffersManager.module.css';
 import './OffersManager.css';
 
 
-
 const initialState = {
     status: false,
     image: '',
