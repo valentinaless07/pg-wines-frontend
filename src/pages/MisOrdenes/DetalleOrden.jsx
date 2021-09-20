@@ -13,7 +13,7 @@ const DetalleOrden = ({ getOrderDetails, orders_details }) => {
     const { id } = useParams()
     useEffect(() => {
         getOrderDetails(id);
-    }, [id])
+    }, [id, getOrderDetails])
 
     const formatDate = (date) => {
         var dateN = new Date(date);

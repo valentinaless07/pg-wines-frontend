@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 const GestionDeOrdenes = ({ orders, getOrderHistory }) => {
   useEffect(() => {
     getOrderHistory()
-  }, [])
+  }, [getOrderHistory])
   return (
     <React.Fragment>
       <Navbar />
