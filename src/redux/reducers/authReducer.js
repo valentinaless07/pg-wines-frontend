@@ -3,11 +3,14 @@ import { AUTH_LOGIN, AUTH_LOGIN_SUCCESS, AUTH_LOGIN_ERROR, AUTH_LOGOUT, AUTH_REM
 const initialState = {
     loggedIn: false,
     fetching: false,
-    displayName: null,
-    email: null,
-    photoURL: null,
-    uid: null,
     error: null,
+    uid: null,
+    displayName: null,
+    photoURL: null,
+    email: null,
+    active: false,
+    admin: false,
+    birthDate: null,
 }
 
 const authReducer = (state = initialState, action) => {
