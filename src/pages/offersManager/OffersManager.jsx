@@ -232,15 +232,11 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                                         <div>
                                             <img src={offer.image} alt="" style={{ width: '300px', height: '25,56px' }} />
                                         </div>
-                                        <div className={styles.card_info}>
-                                            {/* <span>{offer.slug}</span> */}
-                                            {/* <span>{offer.discount}</span>
-                                            <span>{offer.categoryId}</span> */}
+                                        <div className={styles.card_info}>                                         
                                             <span>Inicio: {dateToSpanishString(offer.from)}</span>
                                             <span>Fin: {dateToSpanishString(offer.until)}</span>
                                         </div>
-                                        <div className={styles.card_info}>
-                                            {/* <span>{offer.slug}</span> */}
+                                        <div className={styles.card_info}>                                          
                                             <span>Categoría: {getCategoryById(offer.categoryId)}</span>
                                             <span>% {offer.discount}</span>
                                         </div>

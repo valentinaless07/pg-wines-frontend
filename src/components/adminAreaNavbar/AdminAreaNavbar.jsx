@@ -16,6 +16,7 @@ const AdminAreaNavbar = () => {
                 
                 <div className={styles.manageProductIcon}><NavLink to="/manageProducts"><span>Productos</span></NavLink></div>
                 <div className={styles.offersManagerIcon}><NavLink to="/offersManager"><span>Ofertas</span></NavLink></div>
+                <div className={styles.offersManagerIcon}><NavLink to="/usersManager"><span>Users</span></NavLink></div>
                 <span>Marcas</span>
                 <span>Packing</span>
                 <span>Categorías</span>
