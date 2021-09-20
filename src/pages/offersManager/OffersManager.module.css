@@ -15,20 +15,20 @@
     /* line-height: 70px; */
     padding-top: 1em;
     padding-bottom: 1em;
+    text-align: center;
 }
 
-.header_container:nth-child(1) {
+/* .header_container:nth-child(1) {
     order: 0;
     flex: 1 1 10%;
     align-self: auto;
-    /* border: 1px green solid; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-left: 2em;
     margin-right: 2em;
     margin-bottom: 2em;
-}
+} */
 
 .data_container:nth-child(2) {
     order: 0;

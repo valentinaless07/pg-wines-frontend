@@ -8,6 +8,7 @@ import spinner from '../../assests/images/spinnerLargeBkTransparent.svg';
 import { getOffers, postOffers, deleteOfferById, updateOfferById } from '../../redux/actions/offersManagerActions';
 import { getAllProductsSlider, getCategories } from '../../redux/actions/manageProductsActions';
 import { dateToString, sumToDate, dateToSpanishString } from '../../helpers/helpers';
+import AdminAreaNavbar from "../../components/adminAreaNavbar/AdminAreaNavbar"
 import styles from './OffersManager.module.css';
 import './OffersManager.css';
 import AdminAreaNavbar from '../../components/adminAreaNavbar/AdminAreaNavbar';
@@ -85,7 +86,7 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
             case (elem.type === 'file'):
                 let file = fileInput.current.files[0];
                 if (file) fileName.current.value = file.name;
-                
+
                 setFormState((oldState) => {
                     return {
                         ...oldState,
@@ -100,13 +101,13 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
         }
     }
 
-    const handleSave = (event) => {         
+    const handleSave = (event) => {
         const { image, categoryId, discount } = formState;
 
         switch (true) {
             case (discount <= 0):
                 Swal.fire({ icon: 'warning', title: 'Oops...', text: 'Ingresar un descuento para la categoría.', });
-                break;    
+                break;
 
             case (categoryId <= 0):
                 Swal.fire({ icon: 'warning', title: 'Oops...', text: 'Seleccionar una categoría.', });
@@ -143,13 +144,14 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
 
     return (
         <div className={styles.flex_main_container}>
-            <AdminAreaNavbar/>
+            <AdminAreaNavbar />
+
             <div className={styles.header_container}>
-                    
-            <div className={styles.title}>
-                <h1>Gestión de Ofertas</h1>
-            </div>
-                <span></span>
+               
+                <div className={styles.title}>
+                    <h1>Gestión de Ofertas</h1>
+                </div>
+              
             </div>
             <div className={styles.data_container}>
                 {
@@ -158,7 +160,7 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                         <img src={spinner} width="200px" alt="loading..." />
                     </div>
                 }
-                <div className={styles.sidebar_container}>                    
+                <div className={styles.sidebar_container}>
                     <div className={styles.form}>
                         <div id="status_descuento_container" className={styles.status_descuento_container}>
                             <div>
@@ -235,14 +237,10 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                                             <img src={offer.image} alt="" style={{ width: '300px', height: '25,56px' }} />
                                         </div>
                                         <div className={styles.card_info}>
-                                            {/* <span>{offer.slug}</span> */}
-                                            {/* <span>{offer.discount}</span>
-                                            <span>{offer.categoryId}</span> */}
                                             <span>Inicio: {dateToSpanishString(offer.from)}</span>
                                             <span>Fin: {dateToSpanishString(offer.until)}</span>
                                         </div>
                                         <div className={styles.card_info}>
-                                            {/* <span>{offer.slug}</span> */}
                                             <span>Categoría: {getCategoryById(offer.categoryId)}</span>
                                             <span>% {offer.discount}</span>
                                         </div>

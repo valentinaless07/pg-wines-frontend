@@ -26,6 +26,7 @@ import DetalleOrden from '../pages/MisOrdenes/DetalleOrden';
 import MisOrdenes from '../pages/MisOrdenes/MisOrdenes';
 import AdminArea from '../pages/adminArea/AdminArea';
 import OurTeam from '../pages/ourteam/OurTeam';
+import UsersManager from '../pages/usersManager/UsersManager';
 import { cartStateLogin } from '../redux/actions/cartActions';
 
 const AppRouter = ({ authState, cartStateLogin }) => {
@@ -75,6 +76,12 @@ const AppRouter = ({ authState, cartStateLogin }) => {
             isAuthenticated={loggedIn}
             path='/offersManager'
             component={OffersManager}
+          />
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            path='/usersManager'
+            component={UsersManager}
           />
           <PrivateRoute
             exact
