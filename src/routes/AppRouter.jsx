@@ -30,6 +30,7 @@ import OurTeam from '../pages/ourteam/OurTeam';
 import UsersManager from '../pages/usersManager/UsersManager';
 import { cartStateLogin } from '../redux/actions/cartActions';
 import Brands from '../components/brands/Brands';
+import OrderFeedback from '../pages/OrderFeedback/OrderFeedback';
 
 const AppRouter = ({ authState, cartStateLogin }) => {
 
@@ -57,6 +58,7 @@ const AppRouter = ({ authState, cartStateLogin }) => {
           <Route exact path="/order/:id" component={DetalleOrden} />
           <Route exact path="/gestionorder/:id" component={GestionDetalleDeOrdenes} />
           <Route exact path="/equipo" component={OurTeam} />
+          <Route exact path= "/feedback" component={OrderFeedback} />
 
           <Route exact path="/cart" component={Cart} />
           {/* <Route exact path="/notFound" component={NotFound} /> */}
