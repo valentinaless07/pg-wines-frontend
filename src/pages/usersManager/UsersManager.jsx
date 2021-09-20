@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import React, { useState, useRef, useEffect } from 'react';
 import { getUsers, updateUserById } from '../../redux/actions/usersManagerActions';
+import AdminAreaNavbar from "../../components/adminAreaNavbar/AdminAreaNavbar"
 import styles from './UsersManager.module.css';
 
 
@@ -28,17 +29,18 @@ const UsersManager = ({ getUsers, usersState, updateUserById }) => {
 
     const handleChangeAdmin = (id, admin) => {
         console.log({ id, admin })
-        updateUserById({id, admin})
+        updateUserById({ id, admin })
     }
 
     const handleChangeActiveUser = (id, active) => {
-        console.log({id, active})
-        updateUserById({id, active})
+        console.log({ id, active })
+        updateUserById({ id, active })
     }
 
     return (
 
         <div className={styles.main_container} >
+            <AdminAreaNavbar />
             {/* {
             usersState.fetching &&
                 <div className={styles.spinner_container} >
@@ -79,16 +81,16 @@ const UsersManager = ({ getUsers, usersState, updateUserById }) => {
                                     </td>
                                     <td className={styles.user_active}>
                                         {
-                                            (user.active)                                                
+                                            (user.active)
                                                 // ? <div className={styles.user_active_true}></div>
                                                 // : <div className={styles.user_active_false}></div>
-                                                
+
                                                 ? <i onClick={(id) => handleChangeActiveUser(user.id, user.active)} className={`fas fa-circle fa-2x`} ></i>
                                                 : <i onClick={(id) => handleChangeActiveUser(user.id, user.active)} className={`fas fa-circle fa-2x`} ></i>
                                         }
 
                                     </td>
-                                   
+
                                 </tr>
                             ))
                         }
