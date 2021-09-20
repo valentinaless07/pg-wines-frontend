@@ -16,6 +16,25 @@ const OurTeam = () => {
                     <h3>Full Stack Web Developers - Cohorte Ft15a</h3>
                 </div>
                 <div className={styles.wholeteam}>
+                <div className={styles.personaldiv}>
+                    <div className={styles.picpersonal} style={{ backgroundImage: "url(" + "https://media-exp1.licdn.com/dms/image/C4E03AQETcKCzxV2E5g/profile-displayphoto-shrink_800_800/0/1627913246904?e=1637193600&v=beta&t=2TB0DVH3cCqtJ3ruSwSNgKZsZh9IIuoR-b29htQ7ooU" + ")" }}></div>
+                        <div className={styles.nameperson}>
+                            <h2>Valentin Alessandrini </h2>
+                            <h3>Full Stack Web Developer</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
+                            <div>
+                                <a href="https://www.linkedin.com/in/valentin-alessandrini-zapata/" target="_blank" rel="noopener noreferrer">
+                                    <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
+                                </a>
+                                <a href="https://wa.link/a9hfcd" target="_blank" rel="noopener noreferrer">
+                                    <FontAwesomeIcon className={styles.footericon} icon={faWhatsapp} />
+                                </a>
+                                <a href="https://github.com/valentinaless07" target="_blank" rel="noopener noreferrer">
+                                    <FontAwesomeIcon className={styles.footericon} icon={faGithub} />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div className={styles.personaldiv}>
                         <div className={styles.picpersonal} style={{ backgroundImage: "url(" + "https://scontent.fmga3-1.fna.fbcdn.net/v/t1.6435-9/119025870_3909033542447401_4722914994352697087_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=cYzCpjBYOo4AX-GR7tW&_nc_ht=scontent.fmga3-1.fna&oh=d4a03cbdaa002c585b39487748a3fc8a&oe=616867F0" + ")" }}></div>
                         <div className={styles.nameperson}>
@@ -54,25 +73,7 @@ const OurTeam = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.personaldiv}>
-                    <div className={styles.picpersonal} style={{ backgroundImage: "url(" + "https://media-exp1.licdn.com/dms/image/C4E03AQETcKCzxV2E5g/profile-displayphoto-shrink_800_800/0/1627913246904?e=1637193600&v=beta&t=2TB0DVH3cCqtJ3ruSwSNgKZsZh9IIuoR-b29htQ7ooU" + ")" }}></div>
-                        <div className={styles.nameperson}>
-                            <h2>Valentin Alessandrini </h2>
-                            <h3>Full Stack Web Developer</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
-                            <div>
-                                <a href="https://www.linkedin.com/in/valentin-alessandrini-zapata/" target="_blank" rel="noopener noreferrer">
-                                    <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
-                                </a>
-                                <a href="https://wa.link/a9hfcd" target="_blank" rel="noopener noreferrer">
-                                    <FontAwesomeIcon className={styles.footericon} icon={faWhatsapp} />
-                                </a>
-                                <a href="https://github.com/valentinaless07" target="_blank" rel="noopener noreferrer">
-                                    <FontAwesomeIcon className={styles.footericon} icon={faGithub} />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                  
 
                 </div>
                 <div className={styles.wholeteam}>
