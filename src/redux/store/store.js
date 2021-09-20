@@ -10,6 +10,7 @@ import { restoreSessionAction } from '../actions/authActions';
 import cartReducer from '../reducers/cartReducer';
 import brandsAndsCategories from '../reducers/brandsAndCategories';
 import orderReducer from '../reducers/orderReducer';
+import usersManager from '../reducers/usersManagerReducer';
 
 
 let rootReducer = combineReducers({
@@ -22,6 +23,7 @@ let rootReducer = combineReducers({
   cart: cartReducer,
   brandsAndsCategories: brandsAndsCategories,
   orders: orderReducer,
+  usersManager: usersManager,
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
