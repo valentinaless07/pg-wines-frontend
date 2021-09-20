@@ -40,7 +40,7 @@ const OurTeam = () => {
                         <div className={styles.nameperson}>
                             <h2>Benjamín Cáceres</h2>
                             <h3>Full Stack Web Developer</h3>
-                            <p>Aunque descubri un poco tarde el mundo de la programacion siempre me encanto la tecnologia y encontrar nuevos retos y algo que requiera de constante aprendizaje es algo que me hace sentir comodo</p>
+                            <p>Aunque descubri un poco tarde el mundo de la programacion siempre me encanto la tecnologia y encontrar nuevos retos y algo que requiera de constante aprendizaje es algo que me hace sentir comodo.</p>
                             <div>
                                 <a href="https://www.linkedin.com/in/benjamin-caceres/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
