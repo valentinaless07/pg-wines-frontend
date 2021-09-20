@@ -60,7 +60,14 @@ const AppRouter = ({ authState, cartStateLogin }) => {
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
-            path='/manage'
+            path='/brands'
+            component={ManageProductInf}
+          />
+
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            path='/categories'
             component={ManageProductInf}
           />
 

@@ -3,17 +3,21 @@ import { connect } from "react-redux"
 import { getInfo, createElement, deleteElement, updateElement } from "../../redux/actions/brandsAndCategories"
 import Swal from "sweetalert2"
 import styles from './brands.module.css'
+import { useLocation } from "react-router"
 
-function BrandsAndCategories({state, element, getInfo, createElement, deleteElement, updateElement}){
+function BrandsAndCategories({state, getInfo, createElement, deleteElement, updateElement}){
     
+    const element = useLocation().search.split('=').slice(-1)[0]
+
     const [search, setSearch] = useState({
         name: ''
     })
-
+    
+    
     useEffect(()=>{
         getInfo(element)
     },[search.name, element])
-
+    
     function handleRegex(e){
         setSearch({
             ...search,
@@ -40,7 +44,6 @@ function BrandsAndCategories({state, element, getInfo, createElement, deleteElem
         setSearch({
             name:''
         })
-        // await getInfo(element)
     }
 
         function filter({name}){

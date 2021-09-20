@@ -6,14 +6,16 @@ import AdminAreaNavbar from '../../components/adminAreaNavbar/AdminAreaNavbar';
 
 const AdminArea = ({authState}) => {
 
-  
+  console.log(authState)
 
     return (
         <div className={styles.adminArea}>
             <AdminAreaNavbar/>
-        <div className={styles.h1_container}>
-            <h1>Bienvenido Administrador, <br/>{authState.displayName}.</h1>
-        </div>
+            <div className={styles.admin_container}>
+                <h1>Bienvenido Administrador</h1>
+                <img className={styles.admin__photo} src={authState.photoURL} alt="" />
+                <h1>{authState.displayName || 'UserAdmin'}</h1>
+            </div>
         </div>
     );
 }
