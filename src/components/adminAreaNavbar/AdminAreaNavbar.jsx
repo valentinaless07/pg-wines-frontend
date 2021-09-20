@@ -18,6 +18,7 @@ const AdminAreaNavbar = () => {
                 <div className={styles.offersManagerIcon}><NavLink to="/offersManager"><span>Ofertas</span></NavLink></div>
                 <div className={styles.offersManagerIcon}><NavLink to="/usersManager"><span>Users</span></NavLink></div>
                 <div className={styles.offersManagerIcon}><NavLink to='/manage'><span>Marcas y Categorias</span></NavLink></div>
+                <div className={styles.offersManagerIcon}><NavLink to='/gestionordenes'><span>Ordenes</span></NavLink></div>
 
                  {/* <div className={styles.offersManagerIcon}><NavLink to='/packing'><span>Packing</span></NavLink></div> */}
                 

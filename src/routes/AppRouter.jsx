@@ -24,6 +24,7 @@ import OffersManager from '../pages/offersManager/OffersManager';
 import NotFound from '../pages/NotFound/NotFound';
 import DetalleOrden from '../pages/MisOrdenes/DetalleOrden';
 import MisOrdenes from '../pages/MisOrdenes/MisOrdenes';
+import GestionDeOrdenes from '../pages/MisOrdenes/GestionDeOrdenes';
 import AdminArea from '../pages/adminArea/AdminArea';
 import OurTeam from '../pages/ourteam/OurTeam';
 import UsersManager from '../pages/usersManager/UsersManager';
@@ -51,6 +52,7 @@ const AppRouter = ({ authState, cartStateLogin }) => {
           <Route exact path="/checkout" component={ShippingPay} />
           {/* <Route exact path="/offersManager" component={OffersManager} /> */}
           <Route exact path="/misordenes" component={MisOrdenes} />
+          <Route exact path="/gestionordenes" component={GestionDeOrdenes} />
           <Route exact path="/order/:id" component={DetalleOrden} />
           <Route exact path="/equipo" component={OurTeam} />
 
