@@ -18,7 +18,6 @@ import Cart from '../pages/cart/Cart';
 import RegisterScreen from '../pages/register/RegisterScreen';
 import LoginScreen from '../pages/login/LoginScreen';
 import PutProduct from '../pages/PutProduct/PutProduct';
-import ManageProductInf from '../pages/manageProductInf/ManageProductInf';
 import SearchResults from '../pages/productDetails/SearchResults';
 import OffersManager from '../pages/offersManager/OffersManager';
 import NotFound from '../pages/NotFound/NotFound';
@@ -30,6 +29,7 @@ import AdminArea from '../pages/adminArea/AdminArea';
 import OurTeam from '../pages/ourteam/OurTeam';
 import UsersManager from '../pages/usersManager/UsersManager';
 import { cartStateLogin } from '../redux/actions/cartActions';
+import Brands from '../components/brands/Brands';
 
 const AppRouter = ({ authState, cartStateLogin }) => {
 
@@ -64,8 +64,15 @@ const AppRouter = ({ authState, cartStateLogin }) => {
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
-            path='/manage'
-            component={ManageProductInf}
+            path='/brands'
+            component={Brands}
+          />
+
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            path='/categories'
+            component={Brands}
           />
 
           <PrivateRoute

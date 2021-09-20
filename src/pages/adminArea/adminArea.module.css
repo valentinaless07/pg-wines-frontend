@@ -1,7 +1,21 @@
-.h1_container {
-  height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
+.admin_container {
+  width: 50%;
+  margin: auto;
+  display: block;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.admin__photo{
+  width: 100%;
+  max-width: 320px;
+  padding: 20px 0px;
+  border-radius: 100%;
+}
+
+@media(max-width: 450px){
+  .admin_container{
+    margin-top: 10px;
+    width: 90%;
+  }
 }

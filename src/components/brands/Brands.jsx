@@ -1,19 +1,24 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { getInfo, createElement, deleteElement, updateElement } from "../../redux/actions/brandsAndCategories"
 import Swal from "sweetalert2"
 import styles from './brands.module.css'
+import { useLocation } from "react-router"
+import AdminAreaNavbar from "../adminAreaNavbar/AdminAreaNavbar"
 
-function BrandsAndCategories({state, element, getInfo, createElement, deleteElement, updateElement}){
+function BrandsAndCategories({state, getInfo, createElement, deleteElement, updateElement}){
     
+    const element = useLocation().search.split('=').slice(-1)[0]
+
     const [search, setSearch] = useState({
         name: ''
     })
-
+    
+    
     useEffect(()=>{
         getInfo(element)
     },[search.name, element])
-
+    
     function handleRegex(e){
         setSearch({
             ...search,
@@ -40,7 +45,6 @@ function BrandsAndCategories({state, element, getInfo, createElement, deleteElem
         setSearch({
             name:''
         })
-        // await getInfo(element)
     }
 
         function filter({name}){
@@ -99,7 +103,10 @@ function BrandsAndCategories({state, element, getInfo, createElement, deleteElem
     }
       
     return(
-    <div className={styles.admin}>
+    <React.Fragment>
+            <AdminAreaNavbar/>
+        <div className={styles.admin}>
+
         <h1>{element==='categories'? 'Categorias' : 'Marcas'}</h1>
         <form className={styles.form} onSubmit={handleCreate}>
             <span>Busqueda </span><input className={styles.inputSearch} placeholder='buscar' onChange={handleRegex} value={search.name} type='text'/>
@@ -122,7 +129,8 @@ function BrandsAndCategories({state, element, getInfo, createElement, deleteElem
                 }
         </div>
 
-    </div>)
+    </div>
+    </React.Fragment>)
 }
 
 function MapStateToProps(state){
