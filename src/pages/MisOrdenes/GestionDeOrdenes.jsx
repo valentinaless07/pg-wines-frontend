@@ -46,7 +46,7 @@ const GestionDeOrdenes = ({ orders, getOrderHistory }) => {
                     <td>{item.id}</td>
                     <td>{formattedDate}</td>
                     <td>{item.status}</td>
-                    <td><Link to={`/order/${item.id}`}>Ver</Link></td>
+                    <td><Link to={`/gestionorder/${item.id}`}>Ver</Link></td>
                   </tr>
                 )
               })
