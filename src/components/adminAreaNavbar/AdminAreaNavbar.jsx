@@ -10,7 +10,7 @@ const AdminAreaNavbar = () => {
   const history = useHistory()
     
     return (
-        <nav>
+        <nav className={styles.navbar}>
           <div className={styles.backIcon}><div className={styles.pointer}><i onClick={() => location.pathname === "/adminArea" ? history.push("/") : history.push("/adminArea")} className="fas fa-arrow-circle-left fa-3x"></i></div></div>
             <div className={styles.nav}>
                 
@@ -18,8 +18,9 @@ const AdminAreaNavbar = () => {
                 <div className={styles.offersManagerIcon}><NavLink to="/offersManager"><span>Ofertas</span></NavLink></div>
                 <div className={styles.offersManagerIcon}><NavLink to="/usersManager"><span>Users</span></NavLink></div>
                 <span>Marcas</span>
+                <NavLink to='/manage'><span>Marcas y Categorias</span></NavLink>
+
                 <span>Packing</span>
-                <span>Categorías</span>
                 
             </div>
         </nav>

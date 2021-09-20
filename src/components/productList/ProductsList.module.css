@@ -12,7 +12,8 @@
 }
 
 .productContainer{
-    width: 250px;
+    width: 23%;
+    min-width: 250px;
     margin-top: 25px;
     animation-name: banish;
     animation-duration: 1s;
