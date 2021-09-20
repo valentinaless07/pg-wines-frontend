@@ -142,7 +142,7 @@ const OurTeam = () => {
                         <div className={styles.nameperson}>
                             <h2>Emiliano Duartes</h2>
                             <h3>Full Stack Web Developer</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
+                            <p>Me defino como una persona emprendedora, comunicativa y positiva. Durante los últimos años colaboré activamente con equipos de desarrollo en empresas con modelos de negocios digitales. Esto me generó curiosidad por aprender a programar e interés en esa dinámica de trabajo. Así fue que inicié mi camino participando del bootcamp de Henry.</p>
                             <div>
                                 <a href="https://www.linkedin.com/in/emilianoduartes/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
