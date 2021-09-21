@@ -1,8 +1,10 @@
-import { GET_ORDER_HISTORY, GET_ORDER_DETAILS, UPDATE_ORDER } from "../actions/orderActions";
+import { GET_ORDER_HISTORY, GET_ORDER_DETAILS, UPDATE_ORDER, GET_ALL_ORDERS } from "../actions/orderActions";
 
 let initialState = {
     orders: [],
     orders_details: [],
+    orders_update: [],
+    all_orders: [],
 }
 
 const orderReducer = (state = initialState, action) => {
@@ -22,7 +24,14 @@ const orderReducer = (state = initialState, action) => {
         case UPDATE_ORDER:{
             return {
                 ...state,
-                orders_details:action.payload
+                orders_update:action.payload
+
+            }
+        }
+        case GET_ALL_ORDERS:{
+            return {
+                ...state,
+               all_orders:action.payload
 
             }
         }
