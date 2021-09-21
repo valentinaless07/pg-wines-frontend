@@ -327,6 +327,11 @@
   margin-top: 40px;
 }
 
+.botonconfirmar {
+  display: flex;
+  justify-content: center;
+}
+
 @media screen and (max-width: 992px) {
   .flexboxshopping {
     display: flex !important;
