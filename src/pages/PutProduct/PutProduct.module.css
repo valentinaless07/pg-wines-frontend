@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 90vh;
+  height: 155vh;
   margin-top: -40px;
 }
 
@@ -31,4 +31,56 @@
 }
 .backIcon > i {
   margin-top: 15px;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-family: inherit;
+}
+
+.input_text {
+  height: 30px;
+  margin-left: 8px;
+  outline: none;
+  width: 25vw;
+  border-radius: 5px;
+  border: 2px solid rgb(219, 219, 219);
+  padding-left: 10px;
+}
+.input_text:focus {
+  border: 2px solid rgb(35, 34, 102);
+}
+
+.select {
+  cursor: pointer;
+  margin-top: 0px;
+  height: 35px;
+  width: 26vw;
+  border: 2px solid rgb(219, 219, 219);
+  border-radius: 5px;
+  font-family: inherit;
+}
+
+.select_container {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-family: inherit;
+}
+
+.buttonSubmitForm {
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid rgb(219, 219, 219);
+  outline: none;
+  background-color: white;
+  padding: 5px;
+  font-family: inherit;
+  margin-top: 10px;
 }

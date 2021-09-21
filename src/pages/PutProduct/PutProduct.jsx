@@ -129,51 +129,43 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, manag
             <div className={styles.container_form}>
             <form className={styles.form} onSubmit={e => handleSubmit(e)}>
 
-                <div>
+                <div className={styles.inputContainer}>
                     <label>Nombre:</label>
-                    <input value={detailData.name || ""} onChange={e => handleChange(e)} name="name" type="text"/>
+                    <input className={styles.input_text} value={detailData.name || ""} onChange={e => handleChange(e)} name="name" type="text"/>
+                </div>
                     {errors.name && (<p className={styles.error}>{errors.name}</p>)}
-                </div>
 
-                <div>
+                <div className={styles.inputContainer}> 
                     <label>Descripción:</label>
-                    <input value={detailData.description || ""} onChange={e => handleChange(e)} name="description" type="text"/>
+                    <input className={styles.input_text} value={detailData.description || ""} onChange={e => handleChange(e)} name="description" type="text"/>
                 </div>
 
-                <div>
+                <div className={styles.inputContainer}>
                     <label>Precio:</label>
-                    <input value={detailData.cost || ""} onChange={e => handleChange(e)} name="cost" type="number"/>
+                    <input className={styles.input_text} value={detailData.cost || ""} onChange={e => handleChange(e)} name="cost" type="number"/>
+                </div>
                     {errors.cost && (<p className={styles.error}>{errors.cost}</p>)}
-                </div>
 
-                <div>
+                <div className={styles.inputContainer}>
                     <label>Capacidad (ml):</label>
-                    <input value={detailData.capacity || ""} onChange={e => handleChange(e)} name="capacity" type="number"/>
+                    <input className={styles.input_text} value={detailData.capacity || ""} onChange={e => handleChange(e)} name="capacity" type="number"/>
+                </div>
                     {errors.capacity && (<p className={styles.error}>{errors.capacity}</p>)}
-                </div>
 
-                <div>
+                <div className={styles.inputContainer}>
                     <label>Stock:</label>
-                    <input value={detailData.stock || ""} onChange={e => handleChange(e)} name="stock" type="number"/>
+                    <input className={styles.input_text} value={detailData.stock || ""} onChange={e => handleChange(e)} name="stock" type="number"/>
                 </div>
 
-                 {/* <div>
-                    <label>Imágenes:</label>
-                    <input onChange={e => handleChange(e)} name="image1" type="text" placeholder="Imágen 1"/>
-                    <input onChange={e => handleChange(e)} name="image2" type="text" placeholder="Imágen 2 (Opcional)"/>
-                    <input onChange={e => handleChange(e)} name="image3" type="text" placeholder="Imágen 3 (Opcional)"/>
-                    <input onChange={e => handleChange(e)} name="image4" type="text" placeholder="Imágen 4 (Opcional)"/>
-                    {errors.image1 && (<p className={styles.error}>{errors.image1}</p>)}
-                </div>  */}
 
-                <div>
+                <div className={styles.inputContainer}>
                     <label>Descuento:</label>
-                    <input value={detailData.discount || ""} onChange={e => handleChange(e)} name="discount" type="number"/>
+                    <input className={styles.input_text} value={detailData.discount || ""} onChange={e => handleChange(e)} name="discount" type="number"/>
                 </div>
                 
-                <div>
+                <div className={styles.select_container}>
                     <label>Category:</label>
-                    <select name="categoryId" onChange={e => handleChange(e)} defaultValue={detailData.categoryId.name}>
+                    <select className={styles.select} name="categoryId" onChange={e => handleChange(e)} defaultValue={detailData.categoryId.name}>
                         <option disabled>{detailData.categoryId.name}</option>
                         
                         {
@@ -184,30 +176,30 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, manag
                     </select>
                     
                 </div>
-                <div>
+                <div className={styles.select_container}>
                     <label>Marca:</label>
-                    <select name="brandId" onChange={e => handleChange(e)} defaultValue={detailData.brandId.name}>
+                    <select className={styles.select} name="brandId" onChange={e => handleChange(e)} defaultValue={detailData.brandId.name}>
                         <option disabled>{detailData.brandId.name}</option>
                         {manageProductsState.brands && manageProductsState.brands.map(el => {
                             return <option value={el.id} key={el.id}>{el.name}</option>
                         })
                         }
                     </select>
-                    {errors.brandId && (<p className={styles.error}>{errors.brandId}</p>)}  
                 </div>
-                <div>
+                    {errors.brandId && (<p className={styles.error}>{errors.brandId}</p>)}  
+                <div className={styles.select_container}>
                     <label>Packing:</label>
-                    <select name="packingId" onChange={e => handleChange(e)} defaultValue={detailData.packingId.name}>
+                    <select className={styles.select} name="packingId" onChange={e => handleChange(e)} defaultValue={detailData.packingId.name}>
                         <option disabled>{detailData.packingId.name}</option>
                         {manageProductsState.packing && manageProductsState.packing.map(el => {
                             return <option value={el.id} key={el.id}>{el.name}</option>
                         })
                         }
                     </select>
-                    {errors.packingId && (<p className={styles.error}>{errors.packingId}</p>)}    
                 </div>     
+                    {errors.packingId && (<p className={styles.error}>{errors.packingId}</p>)}    
 
-                <button type="submit">Enviar Producto</button>
+                <button className={styles.buttonSubmitForm} type="submit">Enviar Producto</button>
 
             </form>
             </div>

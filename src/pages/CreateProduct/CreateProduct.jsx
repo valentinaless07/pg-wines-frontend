@@ -100,12 +100,25 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
 
     function handleSubmit (e) {
         e.preventDefault()
+
         
         let validateSubmit = validate(newProductData)
         
         if(Object.keys(validateSubmit).length === 0){
             
-            postProductCreated(newProductData)
+            var bodyFormData = new FormData();
+            for (const property in newProductData) {
+                if(property !== "image"){
+                bodyFormData.append(property, newProductData[property])
+                }
+                else{
+                    for (let i = 0; i < newProductData[property].length; i++) {
+                        
+                        bodyFormData.append('image', newProductData[property][i]);                      
+                    }
+                }
+              }
+              postProductCreated(bodyFormData)
             setNewProductData({
                 name: "",
                 description: "",
@@ -113,7 +126,7 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
                 capacity: "",
                 discount: "0",
                 stock: "0",
-                image: ["01_1605539265"],
+                image: [],
                 categoryId: "",
                 sales: "0",
                 brandId: "",
@@ -128,12 +141,7 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
         
     }
 
-    // var bodyFormData = new FormData();
-    // for (const property in newProductData) {
-    //     bodyFormData.append(property, newProductData[property])
-    //   }
-      
-    // postProductCreated(bodyFormData)
+    
 
     return (
         <div className={styles.createProduct}>
@@ -147,51 +155,44 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
             <div className={styles.container_form}>
             <form className={styles.form} onSubmit={e => handleSubmit(e)}>
 
-                <div className={styles.nameContainer}>
+                <div className={styles.inputContainer}>
                     <label>Nombre:</label>
-                    <input className={styles.input_name} value={newProductData.name} onChange={e => handleChange(e)} name="name" type="text"/>
+                    <input className={styles.input_text} value={newProductData.name} onChange={e => handleChange(e)} name="name" type="text"/>
+                </div>    
                     {errors.name && (<p className={styles.error}>{errors.name}</p>)}
-                </div>
+                
 
-                <div>
+                <div className={styles.inputContainer}>
                     <label>Descripción:</label>
-                    <input className={styles.input_description} value={newProductData.description} onChange={e => handleChange(e)} name="description" type="text"/>
+                    <input className={styles.input_text} value={newProductData.description} onChange={e => handleChange(e)} name="description" type="text"/>
                 </div>
 
-                <div>
+                <div className={styles.inputContainer}>
                     <label>Precio:</label>
-                    <input value={newProductData.cost} onChange={e => handleChange(e)} name="cost" type="number"/>
+                    <input className={styles.input_text} value={newProductData.cost} onChange={e => handleChange(e)} name="cost" type="number"/>
+                </div>
                     {errors.cost && (<p className={styles.error}>{errors.cost}</p>)}
-                </div>
 
-                <div>
+                <div className={styles.inputContainer}>
                     <label>Capacidad (ml):</label>
-                    <input value={newProductData.capacity} onChange={e => handleChange(e)} name="capacity" type="number"/>
+                    <input className={styles.input_text} value={newProductData.capacity} onChange={e => handleChange(e)} name="capacity" type="number"/>
+                </div>
                     {errors.capacity && (<p className={styles.error}>{errors.capacity}</p>)}
-                </div>
 
-                <div>
+                <div className={styles.inputContainer}>
                     <label>Stock:</label>
-                    <input value={newProductData.stock} onChange={e => handleChange(e)} name="stock" type="number"/>
+                    <input className={styles.input_text} value={newProductData.stock} onChange={e => handleChange(e)} name="stock" type="number"/>
                 </div>
 
-                 {/* <div>
-                    <label>Imágenes:</label>
-                    <input onChange={e => handleChange(e)} name="image1" type="text" placeholder="Imágen 1"/>
-                    <input onChange={e => handleChange(e)} name="image2" type="text" placeholder="Imágen 2 (Opcional)"/>
-                    <input onChange={e => handleChange(e)} name="image3" type="text" placeholder="Imágen 3 (Opcional)"/>
-                    <input onChange={e => handleChange(e)} name="image4" type="text" placeholder="Imágen 4 (Opcional)"/>
-                    {errors.image1 && (<p className={styles.error}>{errors.image1}</p>)}
-                </div>  */}
 
-                <div>
+                <div className={styles.inputContainer}>
                     <label>Descuento:</label>
-                    <input value={newProductData.discount} onChange={e => handleChange(e)} name="discount" type="number"/>
+                    <input className={styles.input_text} value={newProductData.discount} onChange={e => handleChange(e)} name="discount" type="number"/>
                 </div>
                 
-                <div>
+                <div className={styles.select_container}>
                     <label>Categoría:</label>
-                    <select name="categoryId" onChange={e => handleChange(e)} defaultValue="Selecciona una categoría">
+                    <select className={styles.select} name="categoryId" onChange={e => handleChange(e)} defaultValue="Selecciona una categoría">
                     <option disabled>Selecciona una categoría</option>
                         {
                             manageProductState.categories && manageProductState.categories.map(el => {
@@ -199,33 +200,33 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
                             })
                         }
                     </select>
-                    {errors.categoryId && (<p className={styles.error}>{errors.categoryId}</p>)}
                 </div>
-                <div>
+                    {errors.categoryId && (<p className={styles.error}>{errors.categoryId}</p>)}
+                <div className={styles.select_container}>
                     <label>Marca:</label>
-                    <select name="brandId" onChange={e => handleChange(e)} defaultValue="Selecciona una marca">
+                    <select className={styles.select} name="brandId" onChange={e => handleChange(e)} defaultValue="Selecciona una marca">
                         <option disabled>Selecciona una marca</option>
                         {manageProductState.brands && manageProductState.brands.map(el => {
                             return <option value={el.id} key={el.id}>{el.name}</option>
                         })
                         }
                     </select>
-                    {errors.brandId && (<p className={styles.error}>{errors.brandId}</p>)}  
                 </div>
-                <div>
+                    {errors.brandId && (<p className={styles.error}>{errors.brandId}</p>)}  
+                <div className={styles.select_container}>
                     <label>Packing:</label>
-                    <select name="packingId" onChange={e => handleChange(e)} defaultValue="Selecciona un packing">
+                    <select className={styles.select} name="packingId" onChange={e => handleChange(e)} defaultValue="Selecciona un packing">
                         <option disabled>Selecciona un packing</option>
                         {manageProductState.packing && manageProductState.packing.map(el => {
                             return <option value={el.id} key={el.id}>{el.name}</option>
                         })
                         }
                     </select>
-                    {errors.packingId && (<p className={styles.error}>{errors.packingId}</p>)}    
                 </div>
-                <div>
+                    {errors.packingId && (<p className={styles.error}>{errors.packingId}</p>)}    
+                <div className={styles.images_container}>
                     <label>Imágenes del producto:</label>
-                    <input type="file" multiple onChange={handleFileInput}></input>
+                    <input className={styles.inputImage} type="file" multiple onChange={handleFileInput}></input>
                     
                 </div>        
 
