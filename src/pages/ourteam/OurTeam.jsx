@@ -82,12 +82,12 @@ const OurTeam = () => {
                         <div className={styles.nameperson}>
                             <h2>Alejandro Abad</h2>
                             <h3>Full Stack Web Developer</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
+                            <p>Apasionado de la programación desde muy chico y con experiencia en la parte técnica, gracias a Henry pude cristalizar mi sueño y convertirme en FullStack Developer.</p>
                             <div>
-                                <a href="#" target="_blank" rel="noopener noreferrer">
+                                <a href="linkedin.com/in/alejandro-abad-761ba0212" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
                                 </a>
-                                <a href="https://wa.link/a9hfcd" target="_blank" rel="noopener noreferrer">
+                                <a href="linkedin.com/in/alejandro-abad-761ba0212" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faWhatsapp} />
                                 </a>
                                 <a href="https://github.com/abadalejandro" target="_blank" rel="noopener noreferrer">

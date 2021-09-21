@@ -7,6 +7,7 @@ export const saveStorage = (auth) => {
 }
 
 export const dateToSpanishString = (date) => {
+    if(!date) return;
     if(typeof date === 'string'){
         date = new Date(date);
     }
@@ -23,6 +24,7 @@ export const dateToSpanishString = (date) => {
 }
 
 export const dateToString = (date) => {
+    if(!date) return;
     if(typeof date === 'string'){
         date = new Date(date);
     }
@@ -41,5 +43,11 @@ export const dateToString = (date) => {
 export const sumToDate = (date, days) => {
     date.setDate(date.getDate() + 1);        
     return dateToString(date);   
+}
+
+export const sortAlphabeticAsc = (a,b) => {
+    if(a.name > b.name) return 1;
+    if(a.name < b.name) return -1;
+    return 0;
 }
 

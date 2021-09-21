@@ -21,10 +21,21 @@ const initialState = {
     slug: '',
 }
 
+const initialDaysState = {
+    monday: 'true',
+    tuesday: 'true',
+    wednesday: 'true',
+    thursday: 'true',
+    friday: 'true',
+    saturday: 'true',
+    sunday: 'true',
+}
+
 
 const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlider, productState, getCategories, categoriesState, deleteOfferById, updateOfferById }) => {
     const offers = offersState.offers;
     const [formState, setFormState] = useState(initialState);
+    const [daysState, setDaysState] = useState(initialDaysState);
     let fileName = useRef(null);
     let fileInput = useRef(null);
     const now = new Date();
@@ -141,7 +152,7 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
 
     return (
         <div className={styles.flex_main_container}>
-            <AdminAreaNavbar/>
+            <AdminAreaNavbar />
 
             {/* <div className={styles.header_container}>
                
@@ -176,6 +187,39 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                         <div>
                             <label htmlFor="until">Fin</label>
                             <input type="date" id="until" name="until" value={formState.until} min={sumToDate(now, 1)} onChange={handleOnChange} />
+                        </div>
+                        <div>
+                            <span>Días</span>
+                        </div>
+                        <div className={styles.days_container}>
+                            <div className={styles.day}>
+                                <input type="checkbox" id="monday" name="monday" />
+                                <label htmlFor="monday">L</label>
+                            </div>
+                            <div className={styles.day}>
+                                <input type="checkbox" id="tuesday" name="tuesday" />
+                                <label htmlFor="tuesday">M</label>
+                            </div>
+                            <div className={styles.day}>
+                                <input type="checkbox" id="wednesday" name="wednesday" />
+                                <label htmlFor="wednesday">M</label>
+                            </div>
+                            <div className={styles.day}>
+                                <input type="checkbox" id="thursday" name="thursday" />
+                                <label htmlFor="thursday">J</label>
+                            </div>
+                            <div className={styles.day}>
+                                <input type="checkbox" id="friday" name="friday" />
+                                <label htmlFor="friday">V</label>
+                            </div>
+                            <div className={styles.day}>
+                                <input type="checkbox" id="saturday" name="saturday" />
+                                <label htmlFor="saturday">S</label>
+                            </div>
+                            <div className={styles.day}>
+                                <input type="checkbox" id="sanday" name="sanday" />
+                                <label htmlFor="sanday">D</label>
+                            </div>
                         </div>
 
                         <div>
@@ -241,7 +285,6 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                                             <span>Categoría: {getCategoryById(offer.categoryId)}</span>
                                             <span>% {offer.discount}</span>
                                         </div>
-
                                         <div className={styles.card_status_delete}>
                                             {
                                                 (offer.status)

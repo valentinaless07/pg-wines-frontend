@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import AdminAreaNavbar from '../../components/adminAreaNavbar/AdminAreaNavbar';
 
 
-const AdminArea = ({authState}) => {
-
-  console.log(authState)
+const AdminArea = ({authState}) => { 
 
     return (
         <div className={styles.adminArea}>
