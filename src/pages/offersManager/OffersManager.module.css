@@ -7,7 +7,6 @@
     justify-content: flex-start;
     align-content: flex-start;
     align-items: stretch;
-    /* border: 10px red solid; */
     height: 100vh;
    
 }
@@ -37,7 +36,6 @@
     align-self: auto;
     margin-left: .8em;
     padding-top: 4em;
-    /* border: 1px blue solid; */
 }
 
 .data_container {
@@ -47,7 +45,6 @@
     justify-content: flex-start;
     align-content: flex-start;
     align-items: stretch;
-    /* border: 10px blue solid; */
     height: 100vh;
 }
 
@@ -57,8 +54,8 @@
     flex: 2 1 auto;
     align-self: auto;
     border: 1px grey solid;
-    border-radius: 8px;
-    /* max-width: 250px; */
+    border-radius: 8px;    
+    max-width: max-content;
 }
 
 .form > div {
@@ -72,24 +69,23 @@
 .form > div select {
     font-size: 1.2rem;
     border-radius: 4px;
-    /* border: 1px solid black; */
-    width: 231px;
+    margin-top: 0;
+    border: 1px solid grey;
+    height: 1.7em;
 }
 
 [type="date"] {
-    border: 2px green solid;
+    border: 2px grey solid;
     font-size: 1.2rem;
     border-radius: 4px;
-    /* border: 1px solid black; */
-    width: 231px;   
+    width: 231px; 
 }
 
 .sidebar_container label {
-    /* margin-bottom: .5em; */
+    margin-bottom: .5em;
 }
 
 .status_descuento_container {
-    /* border: 5px yellow solid !important; */
     display: flex !important;
     flex-direction: row !important;
     justify-content: space-between;
@@ -113,7 +109,6 @@
     order: 0;
     flex: 11 1 auto;
     align-self: stretch;
-    /* border: 10px greenyellow solid; */
 }
 
 .spinner_container {
@@ -128,20 +123,19 @@
     cursor: pointer;
 }
 
-.title {
-    /* display: flex;
+/* .title {
+    display: flex;
     align-items: center;
     width: 100%;
     justify-content: center;
-    margin-top: -40px; */
-}
+    margin-top: -40px;
+} */
 
 .card_container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    /* padding-top: 1em;   */
 }
 
 .card {
@@ -149,8 +143,12 @@
     margin-right: 0.5em;
     margin-bottom: 2em;
     flex: 0 1 25%;
-    /* border: 1px solid grey; */
     box-shadow: 5px 10px 8px #888888;
+    transition: transform .2s;
+}
+
+.card:hover {
+    transform: scale(1.1); 
 }
 
 .card_info {
@@ -205,11 +203,13 @@
         margin-left: 0;
         margin-right: 0;
     }
-    .sidebar_container {
-        /* max-width: 320px; */
-        /* margin: auto; */
-        /* padding-left: .5em;
-        padding-right: .5em; */
-
+    .sidebar_container {        
+        margin: auto;
+        padding-left: 1.15em;
+        padding-right: 1.15em;
+        margin-bottom: 1em;
+    }
+    .data_container:nth-child(2) {
+        padding-top: 1em;        
     }
 }
