@@ -1,5 +1,4 @@
 .admin{
-    margin-left: 50px;
     width: 100%;
 }
 
@@ -10,7 +9,7 @@
     height: calc(100vh - 150px);
     overflow: auto;
     width: 70%;
-    min-width: 350px;
+    min-width: 320px;
     max-width: 700px;
 }
 
@@ -74,4 +73,16 @@
   
 .infoContainer::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+@media (max-width: 500px){
+
+.infoContainer{
+    height: calc(100vh - 220px);}
+}
+
+.btnCreate{
+    background-color: #C0D1D2;
+    width: 150px;
+    margin-top: 10px;
 }
