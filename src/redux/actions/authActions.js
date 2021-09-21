@@ -99,12 +99,7 @@ export const startRegisterWithEmailAndPassword = (name, email, password) => {
                     dispatch(
                         {
                             type: AUTH_LOGIN_SUCCESS,
-                            payload: {
-                                // uid: register.data.id,
-                                // displayName: user.displayName,
-                                // photoURL: register.data.photoURL,
-                                // email: user.email,
-                                // password: register.data.password
+                            payload: {                                
                                 uid: register.data.id,
                                 displayName: register.data.name,
                                 photoURL: register.data.photoURL,
@@ -169,7 +164,19 @@ export const startLoginWithEmailAndPassword = (email, password, name) => {
         signInWithEmailAndPassword(auth, email, password)
             .then(async ({ user }) => {
                 let login = await axios.post(`https://pg-delsur.herokuapp.com/user/login`, { email: user.email, password: user.reloadUserInfo.passwordHash });
-                
+                if(login && !login?.data.active) {
+                    console.log('it is disabled')
+                    dispatch({
+                        type: AUTH_LOGIN_ERROR,
+                        payload: 'El usuario no existe',
+                    });
+                    return Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No existe ningún usuario con este email.',
+                    });
+                }
+                console.log('login:', login)
                 dispatch(
                     {
                         type: AUTH_LOGIN_SUCCESS,
