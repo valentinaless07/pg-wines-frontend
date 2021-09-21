@@ -1,0 +1,116 @@
+.datesorder{
+    width: 70%;
+    margin: 0px auto;
+    padding: 20px;
+
+}
+
+.datesorder ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.orderno{
+    display: block;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.orderdate{
+    color: #999999;
+    margin-top: 5px;
+    font-size: 20px;
+    font-weight: bolder;
+    
+}
+
+.totalprice{
+    display: block;
+    text-align: left;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.amountorder{
+    margin-top: 5px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.detalleitem{
+    display: flex;
+    justify-content: space-evenly;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.detalleitem table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin: auto;
+    box-shadow:
+    0 3.6px 2.4px rgba(0, 0, 0, 0.08),
+    0 10px 6.8px rgba(0, 0, 0, 0.052),
+    0 24.1px 16.3px rgba(0, 0, 0, 0.04),
+    0 80px 54px rgba(0, 0, 0, 0.028);
+    margin-top: 20px;
+    border: 1px solid #232f3e;
+}
+
+.detalleitem table, link{
+    text-align: center;
+}
+
+.detalleitem img{
+    height: 150px;
+}
+
+.detalleitem p{
+    margin-top: 40px;
+}
+
+.detalleitem a{
+    color: blue;
+}
+
+.detalledeordenes{
+    background: white;
+    height: 100vh;
+}
+
+.selectestado{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 25px;
+    margin-top: 30px;
+}
+
+
+.selectestado h4{
+    margin: 10px;
+}
+
+.selectestado select{
+    width: 20%;
+    margin: 0;
+    padding: 5px 10px;
+}
+
+.customselectestado{
+    background-color: #232f3e;
+    color: #fff;
+    border: 1px solid transparent;
+    
+}
+
+.customselectestado select {
+    display: none; 
+  }

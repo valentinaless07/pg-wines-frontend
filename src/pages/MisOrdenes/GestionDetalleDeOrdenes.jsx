@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
-import styles from './DetalleOrden.module.css';
+import styles from './GestionDetalleDeOrdenes.module.css';
 import { getOrderDetails } from '../../redux/actions/orderActions';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { format } from "date-fns";
 
-const DetalleOrden = ({ getOrderDetails, orders_details }) => {
+const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details }) => {
 
     const { id } = useParams()
     useEffect(() => {
         getOrderDetails(id);
-    }, [id, getOrderDetails])
+    }, [id])
 
     const formatDate = (date) => {
         var dateN = new Date(date);
@@ -49,12 +49,24 @@ const DetalleOrden = ({ getOrderDetails, orders_details }) => {
                         </ul>
                         : <></>}
                 </div>
+                
+                <div className={styles.selectestado}>
+                    <h4>Cambiar su estado de: <span>estado</span>  A</h4>
+                    <select className={styles.customselectestado} name="" id="">
+                        <option value="">Todas</option>
+                        <option value="">Creadas</option>
+                        <option value="">Procesando</option>
+                        <option value="">Canceladas</option>
+                        <option value="">Completas</option>
+                    </select>
+                </div>
+               
                 <div className={styles.detalleitem}>
                     <table>
 
                         {
                             orders_details[0]?.products.map(p => {
-                                console.log(orders_details)
+                                // console.log(orders_details)
                                 return (
                                     <tr key={p.id}>
                                         <td><img src={p.image[0]} alt="" /></td>
@@ -68,6 +80,7 @@ const DetalleOrden = ({ getOrderDetails, orders_details }) => {
                         }
                     </table >
                 </div>
+               
 
             </div>
             <Footer />
@@ -90,4 +103,4 @@ function mapDispatchToProps(dispatch) {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetalleOrden);
+export default connect(mapStateToProps, mapDispatchToProps)(GestionDetalleDeOrdenes);

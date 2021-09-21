@@ -9,6 +9,7 @@
     align-items: stretch;
     /* border: 10px red solid; */
     height: 100vh;
+   
 }
 .header_container {
     height: 70px;
@@ -35,6 +36,7 @@
     flex: 10 1 auto;
     align-self: auto;
     margin-left: .8em;
+    padding-top: 4em;
     /* border: 1px blue solid; */
 }
 
@@ -145,9 +147,10 @@
 .card {
     max-width: 300px;
     margin-right: 0.5em;
-    margin-bottom: 0.7em;
+    margin-bottom: 2em;
     flex: 0 1 25%;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
+    box-shadow: 5px 10px 8px #888888;
 }
 
 .card_info {
@@ -168,7 +171,7 @@
     display: flex;
     justify-content: space-around;
     padding-top: 0.3em;
-    padding-bottom: 0.3em;
+    padding-bottom: 0.9em;
 }
 
 .card_status_delete > i {
@@ -177,7 +180,7 @@
     font-weight: 400 !important;
 }
 
-[type="text"] {
+.file_name_input > [type="text"] {
      text-align: center;
      margin-bottom: 1em;
      padding: .8em;

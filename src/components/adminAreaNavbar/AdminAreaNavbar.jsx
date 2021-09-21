@@ -18,7 +18,6 @@ const AdminAreaNavbar = () => {
             <NavLink className={styles.navItem} activeClassName={styles.active} to="/manageProducts"><span>{screenSize>500 ? 'Productos': <i className="fas fa-percent"></i>}</span></NavLink>
             <NavLink className={styles.navItem} activeClassName={styles.active} to='/brands?element=brands'><span>{screenSize>500 ? 'Marcas': <i className={`fas fa-wine-bottle ${styles.icon}`}></i>}</span></NavLink>
             <NavLink className={styles.navItem} activeClassName={styles.active} to='/categories?element=categories'><span>{screenSize>500 ? 'Categorias': <i className={`fab fa-penny-arcade ${styles.icon}`}></i>}</span></NavLink>
-            {/* <span>Packing</span> */}
           </div>                
         </nav>
     );

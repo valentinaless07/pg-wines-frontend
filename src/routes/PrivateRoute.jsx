@@ -4,16 +4,17 @@ import PropTypes from 'prop-types';
 
 const PrivateRoute = ({
     isAuthenticated,
+    isAdmin,
+    isActive,
     path,
     component,
     ...rest
 }) => { 
     console.log(rest.location);
     localStorage.setItem('lastPathVisited', rest.location.pathname)
-    
-    if(isAuthenticated){
-        return <Route path={path} component={component} {...rest} />
-        
+   
+    if(isAuthenticated && isAdmin && isActive){
+        return <Route path={path} component={component} {...rest} />        
     }else{
         return <Redirect to="/login" {...rest} />
     }

@@ -80,9 +80,7 @@ export const startRegisterWithEmailAndPassword = (name, email, password) => {
                 
                 if(localStorage.getItem("cart")){
                 let localStorageState =  JSON.parse(localStorage.getItem("cart"))
-                
-                    
-                console.log(localStorageState)
+                               
                 localStorageState.forEach(el =>
                         
                         axios.post("https://pg-delsur.herokuapp.com/carts/addCartItem/"+register.data.id, {id: el.id, quantity: el.quantity})
@@ -97,16 +95,24 @@ export const startRegisterWithEmailAndPassword = (name, email, password) => {
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
-
+                    
                     dispatch(
                         {
                             type: AUTH_LOGIN_SUCCESS,
                             payload: {
+                                // uid: register.data.id,
+                                // displayName: user.displayName,
+                                // photoURL: register.data.photoURL,
+                                // email: user.email,
+                                // password: register.data.password
                                 uid: register.data.id,
-                                displayName: user.displayName,
+                                displayName: register.data.name,
                                 photoURL: register.data.photoURL,
-                                email: user.email,
-                                password: register.data.password
+                                email: register.data.email,
+                                password: register.data.password,
+                                active: register.data.active,
+                                admin: register.data.admin,
+                                birthDate: register.data.birthDate,
                             }
                         }
                     )
@@ -163,17 +169,19 @@ export const startLoginWithEmailAndPassword = (email, password, name) => {
         signInWithEmailAndPassword(auth, email, password)
             .then(async ({ user }) => {
                 let login = await axios.post(`https://pg-delsur.herokuapp.com/user/login`, { email: user.email, password: user.reloadUserInfo.passwordHash });
-
+                
                 dispatch(
                     {
                         type: AUTH_LOGIN_SUCCESS,
-                        payload: {                   
-
+                        payload: {          
                             uid: login.data.id,
-                            displayName: login.data.displayName,
+                            displayName: login.data.name,
                             photoURL: login.data.photoURL,
                             email: login.data.email,
-                            password: login.data.password
+                            password: login.data.password,
+                            active: login.data.active,
+                            admin: login.data.admin,
+                            birthDate: login.data.birthDate,
                         }
                     }
                 )
