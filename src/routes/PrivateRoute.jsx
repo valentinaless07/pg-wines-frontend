@@ -10,7 +10,7 @@ const PrivateRoute = ({
     component,
     ...rest
 }) => { 
-    console.log(rest.location);
+    // console.log(rest.location);
     localStorage.setItem('lastPathVisited', rest.location.pathname)
    
     if(isAuthenticated && isAdmin && isActive){
