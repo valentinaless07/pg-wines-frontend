@@ -18,7 +18,8 @@ const Slider1 = ({ data, from = 0, to = 0, width = '100%', getOffers, offersStat
     }, [getOffers]);
 
     const handleClickItem = (idx)=> {
-        if(offers){            
+        if(offers){    
+            console.log(offers)        
             const visiblesOffers = offers.filter(offer=>offer.status === true);
             const currentOffer = visiblesOffers[idx];
             const productId = currentOffer.productId;
