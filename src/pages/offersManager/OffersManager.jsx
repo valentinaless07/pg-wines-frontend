@@ -2,7 +2,6 @@ import Swal from 'sweetalert2';
 import uniqid from 'uniqid';
 import React, { useState, useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Toggle from 'react-toggle';
 import spinner from '../../assests/images/spinnerLargeBkTransparent.svg';
 import { getOffers, postOffers, deleteOfferById, updateOfferById } from '../../redux/actions/offersManagerActions';
@@ -11,8 +10,6 @@ import { dateToString, sumToDate, dateToSpanishString } from '../../helpers/help
 import AdminAreaNavbar from "../../components/adminAreaNavbar/AdminAreaNavbar"
 import styles from './OffersManager.module.css';
 import './OffersManager.css';
-import AdminAreaNavbar from '../../components/adminAreaNavbar/AdminAreaNavbar';
-
 
 const initialState = {
     status: false,
@@ -144,7 +141,7 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
 
     return (
         <div className={styles.flex_main_container}>
-            <AdminAreaNavbar />
+            <AdminAreaNavbar/>
 
             <div className={styles.header_container}>
                

@@ -43,19 +43,22 @@
 @media (max-width: 500px){
 
   .navbar{
-    width: 50px;
-    position: absolute;
-    top: 0px;
+    bottom: 0px;
+    position: fixed;
   }
 
   .options__container{
     font-size: 15px;
-    flex-direction: column;
-    height: 100vh;
+    flex-direction: row;
+    height: 50px;
+    width: 100vw;
     justify-content: flex-start;
   }
-
   .active{
     font-size: 20px;
+  }
+  .backIcon{
+    font-size: 25px;
+    margin-left: 5px;
   }
 }
