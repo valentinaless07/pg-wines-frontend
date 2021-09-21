@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartProduct from '../../components/cart_product/CartProduct';
 import { getTotalPrice } from '../../redux/actions/cartActions';
-
+import axios from "axios"
 import { postCheckout } from '../../redux/actions/cartActions';
 import { useHistory } from 'react-router';
 
 
-const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout}) => {
+const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, authState}) => {
     const history = useHistory()
     
     useEffect(() => {
@@ -23,7 +23,10 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout}) 
     
 
     async function handleCheckout () {
-        await postCheckout(cartState)
+        
+        let id = authState.uid
+        console.log(id)
+        await postCheckout({product: cartState, orderId: id})
         history.push("/checkout")
     }
     
@@ -71,7 +74,8 @@ const mapStateToProps = (state) => {
     return {
       cartState: state.cart.cartState,
       totalPrice: state.cart.totalPrice,
-      idCheckout: state.cart.idCheckout
+      idCheckout: state.cart.idCheckout,
+      authState: state.auth,
 
     };
   }
