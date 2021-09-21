@@ -2,6 +2,7 @@ import axios from 'axios'
 export const GET_ORDER_HISTORY = 'GET_ORDER_HISTORY';
 export const GET_ORDER_DETAILS = 'GET_ORDER_DETAILS';
 export const UPDATE_ORDER = 'UPDATE_ORDER';
+export const GET_ALL_ORDERS = 'GET_ALL_ORDERS';
 
     
 
@@ -41,10 +42,23 @@ export const updateOrder = (id) => {
         .then(results =>{
             dispatch({
                 type: UPDATE_ORDER,
-                payload: results.date
+                payload: results.data
             })
         })
     }
 }
+
+export const getAllOrders = () => {
+    return async function(dispatch) {
+        await axios.get(`https://pg-delsur.herokuapp.com/orders`)
+        .then(results =>{
+            dispatch({
+                type: GET_ALL_ORDERS,
+                payload: results.data
+            })
+        })
+    }
+}
+
 
 
