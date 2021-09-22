@@ -12,6 +12,9 @@ export const AUTH_REMOVE_ERROR = 'AUTH_REMOVE_ERROR';
 
 export const startGoogleLogin = () => {
     return async (dispatch, getState) => {
+        await dispatch({
+            type: AUTH_REMOVE_ERROR
+        });
         dispatch({
             type: AUTH_LOGIN
         });
@@ -21,7 +24,7 @@ export const startGoogleLogin = () => {
         let dbLogin;
         try {
             googleLogin = await signInWithPopup(auth, googleAuthProvider);
-            console.log(googleLogin.user.email, googleLogin.user.displayName)
+            // console.log(googleLogin.user.email, googleLogin.user.displayName)
             dbLogin = await axios.post(`https://pg-delsur.herokuapp.com/user/login`, { email: googleLogin.user.email, name:googleLogin.user.displayName, password: googleLogin.user.uid });
             if(dbLogin && !dbLogin?.data.active) {
                 dispatch({
@@ -54,12 +57,9 @@ export const startGoogleLogin = () => {
             }
             
         } catch (error) {
-            console.log({gerror: error, status: error.response.status, error: error.response.data.error})
             if(error.response.status === 404){
                 if(error.response.data.error === 'User not found'){
-                    console.log('USER NOT FOUND');
                     let register = await axios.post(`https://pg-delsur.herokuapp.com/user/register`, {  name:googleLogin.user.displayName, email: googleLogin.user.email, password: googleLogin.user.uid });
-                    console.log('REGISTER', register)
                     dispatch(
                         {
                             type: AUTH_LOGIN_SUCCESS,
@@ -78,7 +78,12 @@ export const startGoogleLogin = () => {
                     saveStorage(getState().auth);
                 }
                 if(error.response.data.error === 'Password is not valid'){
-                    console.log('Password is not valid')
+                    console.log('Password is not valid');
+                    return Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'La password no es válida.',
+                    });
                 }
             }
         }
