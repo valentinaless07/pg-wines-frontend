@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartProduct from '../../components/cart_product/CartProduct';
 import { getTotalPrice } from '../../redux/actions/cartActions';
+
+
 import { postCheckout } from '../../redux/actions/cartActions';
 import { useHistory } from 'react-router';
 
