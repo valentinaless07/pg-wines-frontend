@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import ProductsList from '../../components/productList/ProductsList';
-import Slider1 from '../../components/slider/Slider1';
+import Slider from '../../components/slider/Slider';
 import Footer from '../../components/footer/Footer';
 
 const HomeScreen = () => { 
@@ -10,7 +10,7 @@ const HomeScreen = () => {
     <React.Fragment>
       <Navbar />
        &nbsp;&nbsp;&nbsp;      
-      <Slider1  width={'75%'} />    
+      <Slider width={'75%'} />    
       &nbsp;&nbsp;
       <ProductsList />
       <Footer />
