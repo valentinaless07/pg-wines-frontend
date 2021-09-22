@@ -101,6 +101,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
               </>
      }else if(authState.loggedIn && authState.active && !authState.admin){
          return  <>
+                <span className={styles.login} onClick={() => goTo('misordenes')} >Ordenes</span>
                 <span className={styles.login} onClick={handleLogout} >Salir</span>
                 {getAvatar()}
               </>
@@ -134,6 +135,7 @@ const Navbar = ({ authState, logOutAction, cartState }) => {
       </>
     } else if (authState.loggedIn && authState.active && !authState.admin) {
       return <>
+        <li onClick={() => goTo('misordenes')}>ORDENES</li>
         <li onClick={() => goTo('about')}>SOBRE NOSOTROS</li>
         <li onClick={() => goTo('favorites')}>FAVORITOS</li>
         <li onClick={() => goTo('cart')}>CARRITO {totalItems() > 0 ? <span>({totalItems()})</span> : <div></div>} </li>
