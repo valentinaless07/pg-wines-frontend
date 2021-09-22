@@ -26,7 +26,7 @@
     /* background: url("https://scontent-mia3-1.xx.fbcdn.net/v/t1.6435-9/58441492_2712779815406119_8305064258958262272_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=174925&_nc_ohc=QMJ9tTzcQaAAX_56lfl&_nc_ht=scontent-mia3-1.xx&oh=f374afd70e861d9a45da9d7823952eba&oe=6167C177"); */
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
 }
 
 .picpersonal img{
@@ -36,6 +36,7 @@
 .personaldiv{
     margin: auto;
     margin-top: 60px;
+    width: 33%;
 }
 
 .wholeteam{
@@ -60,6 +61,7 @@
     width: 70%;
     margin: 0 auto;
     text-align: justify;
+    height: 160px;
 }
 
 .footericon{
@@ -73,5 +75,9 @@
 @media screen and (max-width: 992px){
     .wholeteam{
         flex-wrap: wrap;
+    }
+
+    .personaldiv{
+        width: 100%;
     }
 }
