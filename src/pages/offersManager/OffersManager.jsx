@@ -7,7 +7,7 @@ import spinner from '../../assests/images/spinnerLargeBkTransparent.svg';
 import { getOffers, postOffers, deleteOfferById, updateOfferById } from '../../redux/actions/offersManagerActions';
 import { getAllProductsSlider, getCategories } from '../../redux/actions/manageProductsActions';
 import { dateToString, sumToDate, dateToSpanishString } from '../../helpers/helpers';
-import AdminAreaNavbar from "../../components/adminAreaNavbar/AdminAreaNavbar"
+import AdminAreaNavbar from "../../components/adminAreaNavbar/AdminAreaNavbar";
 import styles from './OffersManager.module.css';
 import './OffersManager.css';
 
@@ -19,16 +19,17 @@ const initialState = {
     from: '',
     until: '',
     slug: '',
+    offerDays: []
 }
 
 const initialDaysState = {
-    monday: 'true',
-    tuesday: 'true',
-    wednesday: 'true',
-    thursday: 'true',
-    friday: 'true',
-    saturday: 'true',
-    sunday: 'true',
+    lun: true,
+    mar: true,
+    mie: true,
+    jue: true,
+    vie: true,
+    sab: true,
+    dom: true,
 }
 
 
@@ -36,6 +37,7 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
     const offers = offersState.offers;
     const [formState, setFormState] = useState(initialState);
     const [daysState, setDaysState] = useState(initialDaysState);
+
     let fileName = useRef(null);
     let fileInput = useRef(null);
     const now = new Date();
@@ -61,9 +63,7 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
 
         switch (true) {
             case (elem.type === 'select-one'):
-                // const name = event.target.options[event.target.selectedIndex].text;
-                // const value = event.target.options[event.target.selectedIndex].value;
-
+               
                 setFormState({
                     ...formState,
                     [elem.name]: elem.value.toString(),
@@ -109,12 +109,26 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
         }
     }
 
-    const handleSave = (event) => {
+    const getDaysToWeek = () => {
+        const daysToSend = [];
+        for(let day in daysState){
+            if(daysState[day]){
+                daysToSend.push(day);
+            }
+        }
+      return daysToSend;
+    }
+
+    const handleSave = (event) => {  
+        const offerDays = getDaysToWeek();      
         const { image, categoryId, discount } = formState;
 
         switch (true) {
             case (discount <= 0):
                 Swal.fire({ icon: 'warning', title: 'Oops...', text: 'Ingresar un descuento para la categoría.', });
+                break;
+            case (offerDays.length <= 0):
+                Swal.fire({ icon: 'warning', title: 'Oops...', text: 'Seleccionar almenos un día de la semana en la que la oferta estara activa.', });
                 break;
 
             case (categoryId <= 0):
@@ -125,10 +139,12 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                 Swal.fire({ icon: 'warning', title: 'Oops...', text: 'Cargar una imagen.', });
                 break;
 
-            default:
-                postOffers(formState)
+            default:              
+                postOffers(formState, offerDays);  
                 break;
         }
+        
+       
     }
 
     const handlePhotoUpload = () => {
@@ -149,6 +165,18 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
         const result = category[0]?.name;
         return result;
     }
+
+    const handleOnChangeDayCheckbox =  (event) => {
+        // console.log('CHECKBOX', event.target)
+        setDaysState(
+            {
+                ...daysState,
+                [event.target.name]: event.target.checked
+            }
+        )
+        console.log(daysState)
+    }
+  
 
     return (
         <div className={styles.flex_main_container}>
@@ -182,7 +210,7 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                         </div>
                         <div>
                             <label htmlFor="from">Inicio</label>
-                            <input type="date" id="from" name="from" value={dateToString(now)} min={dateToString(now)} max={dateToString(now)} onChange={handleOnChange} />
+                            <input type="date" id="from" name="from" value={dateToString(now)} min={dateToString(now)}  onChange={handleOnChange} />
                         </div>
                         <div>
                             <label htmlFor="until">Fin</label>
@@ -190,39 +218,37 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                         </div>
                         <div>
                             <span>Días</span>
-                        </div>
+                        </div>                    
                         <div className={styles.days_container}>
                             <div className={styles.day}>
-                                <input type="checkbox" id="monday" name="monday" />
-                                <label htmlFor="monday">L</label>
+                                <input type="checkbox" id="lun" name="lun" value={daysState.lun} checked={daysState.lun} onChange={handleOnChangeDayCheckbox} />
+                                <label htmlFor="lun">L</label>
                             </div>
                             <div className={styles.day}>
-                                <input type="checkbox" id="tuesday" name="tuesday" />
-                                <label htmlFor="tuesday">M</label>
+                                <input type="checkbox" id="mar" name="mar" value={daysState.mar} checked={daysState.mar}  onChange={handleOnChangeDayCheckbox} />
+                                <label htmlFor="mar">M</label>
                             </div>
                             <div className={styles.day}>
-                                <input type="checkbox" id="wednesday" name="wednesday" />
-                                <label htmlFor="wednesday">M</label>
+                                <input type="checkbox" id="mie" name="mie" value={daysState.mie} checked={daysState.mie}  onChange={handleOnChangeDayCheckbox} />
+                                <label htmlFor="mie">M</label>
                             </div>
                             <div className={styles.day}>
-                                <input type="checkbox" id="thursday" name="thursday" />
-                                <label htmlFor="thursday">J</label>
+                                <input type="checkbox" id="jue" name="jue" value={daysState.jue} checked={daysState.jue} onChange={handleOnChangeDayCheckbox} />
+                                <label htmlFor="jue">J</label>
                             </div>
                             <div className={styles.day}>
-                                <input type="checkbox" id="friday" name="friday" />
-                                <label htmlFor="friday">V</label>
+                                <input type="checkbox" id="vie" name="vie" value={daysState.vie} checked={daysState.vie} onChange={handleOnChangeDayCheckbox} />
+                                <label htmlFor="vie">V</label>
                             </div>
                             <div className={styles.day}>
-                                <input type="checkbox" id="saturday" name="saturday" />
-                                <label htmlFor="saturday">S</label>
-                            </div>
+                                <input type="checkbox" id="sab" name="sab" value={daysState.sab} checked={daysState.sab} onChange={handleOnChangeDayCheckbox} />
+                                <label htmlFor="sab">S</label>
+                            </div> 
                             <div className={styles.day}>
-                                <input type="checkbox" id="sanday" name="sanday" />
-                                <label htmlFor="sanday">D</label>
+                                <input type="checkbox" id="dom" name="dom" value={daysState.dom} checked={daysState.dom} onChange={handleOnChangeDayCheckbox} />
+                                <label htmlFor="dom">D</label>
                             </div>
-                        </div>
-
-                        <div>
+                        </div>                         <div>
                             <label htmlFor="categoryId">Categoría</label>
                             <select name="categoryId" style={{ width: '231px', height: '25,56px' }} placeholder="Seleccionar categoria" id="categoryId" value={formState.categoryId} onChange={handleOnChange}>
                                 <option>Seleccionar categoría</option>
@@ -322,7 +348,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getOffers: () => dispatch(getOffers()),
         getCategories: () => dispatch(getCategories()),
-        // postOffers: (file, slug, productId, status) => dispatch(postOffers(file, slug, productId, status)),
         postOffers: (file, slug, formState) => dispatch(postOffers(file, slug, formState)),
         getAllProductsSlider: () => dispatch(getAllProductsSlider()),
         deleteOfferById: (id) => dispatch(deleteOfferById(id)),

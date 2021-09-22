@@ -39,8 +39,8 @@ export const getOffers = () => {
     }
 }
 
-export const postOffers = (data) => {
-    return async (dispatch, getState) => {      
+export const postOffers = (data, offerDays) => {
+    return async (dispatch, getState) => { 
         const formData = new FormData();
         formData.append('status', data.status.toString());
         formData.append('image', data.image);
@@ -48,7 +48,9 @@ export const postOffers = (data) => {
         formData.append('from', data.from);
         formData.append('until', data.until);
         formData.append('discount', data.discount.toString());
-        formData.append('slug', data.slug.toString());       
+        formData.append('slug', data.slug.toString()); 
+        formData.append('offerDays', offerDays); 
+
 
         dispatch({
             type: OFFERS_LOADING
@@ -75,20 +77,19 @@ export const postOffers = (data) => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Error inesperado 1, si el error persiste contactar al administrador del sistema.',
+                    text: 'Error inesperado, si el error persiste contactar al administrador del sistema.',
                 });
                 throw await resp;
             }
         } catch (error) {
-            console.log(error);
             dispatch({
                 type: OFFERS_ERROR,
-                payload: error,
+                payload: error.response.data.error,
             });
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: `Error inesperado 2, si el error persiste contactar al administrador del sistema. ${JSON.stringify(error)}`,
+                text: error.response.data.error,
             });
         }
     }

@@ -1,5 +1,5 @@
 import uniqid from 'uniqid';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import { connect } from 'react-redux';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -9,40 +9,49 @@ import main_image from '../../assests/images/slider_1.png'
 import './Slider.css';
 
 
-const Slider = ({width = '100%', getOffers, offersState, getFilteredProductsList }) => {
-   
+const Slider = ({ width = '100%', getOffers, offersState, getFilteredProductsList }) => {
+
     const offers = offersState.offers;
     const [carouselIsVisible, setCarouselIsVisible] = useState(true);
 
     const [values, setValues] = useState({
         categoryId: '',
         initPrice: '',
-        finalPrice: ''
+        finalPrice: '',
     });
-     
+
 
     useEffect(() => {
         getOffers();
     }, [getOffers]);
 
+
+
     const handleClickItem = (idx) => {
-        if (offers && idx > 0) {            
+        if (offers && idx > 0) {
+
             const visiblesOffers = offers.filter(offer => offer.status === true);
             const currentOffer = visiblesOffers[idx - 1];
             const categoryId = currentOffer.categoryId;
-            setCarouselIsVisible(false);
-           
-            setValues((oldValues) => {
-                return {
-                    ...oldValues,
-                    categoryId: categoryId
-                }
-            })
-            console.log(values);
 
-            getFilteredProductsList(values);                    
+            setValues({
+                ...values,
+                categoryId: categoryId
+            });
+
+            console.log(values);
+            setCarouselIsVisible(false);
+
+
+
         }
     }
+
+
+
+
+
+
 
     return (
         (carouselIsVisible) &&
