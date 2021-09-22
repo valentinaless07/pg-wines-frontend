@@ -7,9 +7,10 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import { addCartProduct } from '../../redux/actions/cartActions';
+import { deleteUserFavorite, getUserFavorites, postUserFavorite } from '../../redux/actions/manageProductsActions';
+import Swal from 'sweetalert2'
 
-
-const SearchResults = ({ product_detail, getProductByName, getProductByNameReset, addCartProduct, cart_state }) => {
+const SearchResults = ({ product_detail, getProductByName, getProductByNameReset, addCartProduct, cart_state, postUserFavorite, authState, stateFavorites, getUserFavorites, deleteUserFavorite }) => {
     // console.log(getProductDetail);
     const { name } = useParams()
     const history = useHistory();
@@ -45,6 +46,36 @@ const SearchResults = ({ product_detail, getProductByName, getProductByNameReset
         
         }
 
+        function isFavorite (id) {
+        
+            let favorite = stateFavorites.filter(el => el.id === id)
+            
+            if(favorite.length > 0){
+                return true
+            }
+            return false
+        }
+        async function addFavorite (id) {
+            if(isFavorite(id) === false){
+                if(authState.uid === null){
+                    Swal.fire('Debes ingresar para agregar a favoritos')
+                }
+            let data = {userId: authState.uid, idProduct: id}
+            await postUserFavorite(data)
+            await getUserFavorites(authState.uid)
+            isFavorite(id)
+            Swal.fire('Producto agregado a favoritos!')
+            }
+          else{
+            await deleteUserFavorite({userId: authState.uid, idProduct: id})
+            await getUserFavorites(authState.uid)
+            isFavorite(id)
+            await Swal.fire('Producto eliminado de favoritos!')
+          }
+          
+    
+        }
+
 
     return (
         <React.Fragment>
@@ -61,10 +92,10 @@ const SearchResults = ({ product_detail, getProductByName, getProductByNameReset
                                 <div className={styles.productContainer} key={item.id}>
                                     <div className={styles.title}>
                                         <span>{item.name}</span>
-                                        <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
+                                        <button onClick={() => addFavorite(item.id)} className={`${styles.bnt} ${styles.bntFav} ${isFavorite(item.id) ? styles.favoriteActive : ""}`}><i className="fas fa-heart"></i></button>
                                     </div>
                                     <div className={styles.imgContainer} onClick={() => handleGoToProducDescription(item.id)} >
-                                        <img className={styles.img} src={item.image} alt='' />
+                                        <img className={styles.img} src={item.image[0]} alt='' />
                                     </div>
                                     <div className={styles.price}>
                                         {item.discount > 5 && <span>{item.discount}% Desc</span>}
@@ -93,7 +124,10 @@ const SearchResults = ({ product_detail, getProductByName, getProductByNameReset
 function mapStateToProps(state) {
     return {
         product_detail: state.products.product_search,
-        cart_state: state.cart.cartState
+        cart_state: state.cart.cartState,
+        authState: state.auth,
+        stateFavorites: state.manageProducts.favorites
+    
     };
 };
 
@@ -102,6 +136,9 @@ function mapDispatchToProps(dispatch) {
         getProductByName: (product) => dispatch(getProductByName(product)),
         getProductByNameReset: () => dispatch(getProductByNameReset()),
         addCartProduct: (item) => dispatch(addCartProduct(item)),
+        postUserFavorite: (data) => dispatch(postUserFavorite(data)),
+        getUserFavorites: (userId) => dispatch(getUserFavorites(userId)),
+        deleteUserFavorite: (datos) => dispatch(deleteUserFavorite(datos))
         
     };
 };

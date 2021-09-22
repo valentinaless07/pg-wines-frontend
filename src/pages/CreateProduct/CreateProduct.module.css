@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 130vh;
+  height: 165vh;
   margin-top: -40px;
 }
 
@@ -11,28 +11,62 @@
   display: flex;
   align-items: flex-start;
 }
-.input_name {
-  height: 3px;
-  margin-left: 2vw;
+.inputContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-family: inherit;
+}
+
+.input_text {
+  height: 30px;
+  margin-left: 8px;
   outline: none;
-  width: 20vw;
+  width: 25vw;
   border-radius: 5px;
   border: 2px solid rgb(219, 219, 219);
+  padding-left: 10px;
 }
-.input_name:focus {
+.input_text:focus {
   border: 2px solid rgb(35, 34, 102);
 }
 
-.input_description {
-  height: 3px;
-  margin-left: 10px;
+.select {
+  cursor: pointer;
+  margin-top: 0px;
+  height: 35px;
+  width: 26vw;
+  border: 2px solid rgb(219, 219, 219);
+  border-radius: 5px;
+  font-family: inherit;
 }
+
+.select_container {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-family: inherit;
+}
+
+.images_container {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-family: inherit;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .error {
   color: red;
@@ -50,4 +84,11 @@
 
 .buttonSubmitForm {
   cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid rgb(219, 219, 219);
+  outline: none;
+  background-color: white;
+  padding: 5px;
+  font-family: inherit;
+  margin-top: 10px;
 }

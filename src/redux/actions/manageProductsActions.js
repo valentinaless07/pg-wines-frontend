@@ -108,3 +108,56 @@ export function getAllProductsSlider() {
     }
 
 }
+
+export function getUserFavorites (userId) {
+    return async function (dispatch) {
+        var favs = await axios.get("https://pg-delsur.herokuapp.com/products/favs/"+ userId)
+        
+        return dispatch({
+            type: "GET_USER_FAVORITES",
+            payload: favs.data.products
+        })
+    }
+}
+
+export function postUserFavorite (payload) {
+    return async function () {
+        
+        var postFav = await axios.post("https://pg-delsur.herokuapp.com/products/addFav/"+ payload.userId, {idProduct: payload.idProduct})
+        
+        return postFav
+}
+}
+
+export function deleteUserFavorite (payload) {
+    return async function () {
+        
+        var deleteFav = await axios.delete("https://pg-delsur.herokuapp.com/products/quitFav/"+ payload.userId, {data: {idProduct: payload.idProduct}})
+        
+        return deleteFav
+    }
+}
+
+export function createPacking (payload) {
+    return async function () {
+        var newpacking = await axios.post("https://pg-delsur.herokuapp.com/packing", {name: payload})
+
+        return newpacking
+    }
+}
+
+export function deletePacking (payload) {
+    return async function () {
+        var deletePack = await axios.delete("https://pg-delsur.herokuapp.com/packing/delete", {data: {id: payload}})
+
+        return deletePack
+    }
+}
+
+export function updatePacking (payload) {
+    return async function () {
+        var updatePack = await axios.put("https://pg-delsur.herokuapp.com/packing/update", {id: payload.id, name: payload.name})
+
+        return updatePack
+    }
+}

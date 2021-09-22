@@ -2,15 +2,22 @@ import React, { useEffect } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import styles from './GestionDeOrdenes.module.css';
-import { getOrderHistory } from '../../redux/actions/orderActions';
 import { connect } from 'react-redux';
 import { format } from "date-fns";
 import { Link } from 'react-router-dom';
+import { filterOrders, getAllOrders } from '../../redux/actions/orderActions';
 
-const GestionDeOrdenes = ({ orders, getOrderHistory }) => {
+const GestionDeOrdenes = ({ all_orders, getAllOrders, filterOrders }) => {
   useEffect(() => {
-    getOrderHistory()
-  }, [getOrderHistory])
+       getAllOrders().then(res => {
+        filterOrders('All');
+       });
+  }, [])
+
+  const handleChange = (e) => {
+    filterOrders(e.target.value);
+	}
+
   return (
     <React.Fragment>
       <Navbar />
@@ -19,24 +26,25 @@ const GestionDeOrdenes = ({ orders, getOrderHistory }) => {
           <h2>Historial de ordenes</h2>
           <div className={styles.selectorders}>
             <h4>Filtrar ordenes segun estado</h4>
-            <select className={styles.customselect} name="" id="">
-              <option value="">Todas</option>
-              <option value="">Creadas</option>
-              <option value="">Procesando</option>
-              <option value="">Canceladas</option>
-              <option value="">Completas</option>
+            <select className={styles.customselect} onChange={handleChange}>
+              <option value="All">Todas</option>
+              <option value="processing">Procesando</option>
+              <option value="approved">Aprobadas</option>
+              <option value="cancelled">Canceladas</option>
             </select>
           </div>
-
+          
+          <div className={styles.tableContainer}>
           <table>
+            <tbody>
             <tr>
               <th>Numero de orden</th>
               <th>Fecha de compra</th>
               <th>Estatus</th>
               <th>Detalle de la orden</th>
             </tr>
-            {orders.length > 0 ?
-              orders.map(item => {
+            {all_orders?.length > 0 ?
+              all_orders?.map(item => {
                 var date = new Date(item.date);
 
                 var formattedDate = format(date, "MMMM do, yyyy H:mma");
@@ -52,8 +60,9 @@ const GestionDeOrdenes = ({ orders, getOrderHistory }) => {
               })
 
               : <></>}
-
+        </tbody>
           </table>
+          </div>
         </div>
 
       </div>
@@ -64,13 +73,15 @@ const GestionDeOrdenes = ({ orders, getOrderHistory }) => {
 
 function mapStateToProps(state) {
   return {
-    orders: state.orders.orders,
+    initial_orders: state.orders.all_orders,
+    all_orders: state.orders.filtered_orders,
   };
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    getOrderHistory: () => dispatch(getOrderHistory()),
+    getAllOrders: () => dispatch(getAllOrders()),
+    filterOrders: (by) => dispatch(filterOrders(by)),
 
 
 

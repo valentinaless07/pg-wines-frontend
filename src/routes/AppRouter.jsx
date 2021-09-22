@@ -27,12 +27,15 @@ import GestionDeOrdenes from '../pages/MisOrdenes/GestionDeOrdenes';
 import GestionDetalleDeOrdenes from '../pages/MisOrdenes/GestionDetalleDeOrdenes';
 import AdminArea from '../pages/adminArea/AdminArea';
 import OurTeam from '../pages/ourteam/OurTeam';
-import UsersManager from '../pages/usersManager/UsersManager';
+// import UsersManager from '../pages/usersManager/UsersManager';
+import UsersManager from '../components/usersManager/UsersManager';
 import { cartStateLogin, getTotalPrice } from '../redux/actions/cartActions';
 import Brands from '../components/brands/Brands';
 import OrderFeedback from '../pages/OrderFeedback/OrderFeedback';
+import { getUserFavorites } from '../redux/actions/manageProductsActions';
+import Packing from '../pages/Packing/Packing';
 
-const AppRouter = ({ authState, cartStateLogin, getTotalPrice }) => {
+const AppRouter = ({ authState, cartStateLogin, getTotalPrice, getUserFavorites }) => {
 
   let { loggedIn, admin, active } = authState;
 
@@ -40,6 +43,8 @@ const AppRouter = ({ authState, cartStateLogin, getTotalPrice }) => {
     localStorage.removeItem("cart")
     cartStateLogin(authState.uid)
     .then(() => getTotalPrice())
+    getUserFavorites(authState.uid)
+
   }
   return (
     <Router>
@@ -56,9 +61,7 @@ const AppRouter = ({ authState, cartStateLogin, getTotalPrice }) => {
           <Route exact path="/checkout" component={ShippingPay} />
           {/* <Route exact path="/offersManager" component={OffersManager} /> */}
           <Route exact path="/misordenes" component={MisOrdenes} />
-          <Route exact path="/gestionordenes" component={GestionDeOrdenes} />
           <Route exact path="/order/:id" component={DetalleOrden} />
-          <Route exact path="/gestionorder/:id" component={GestionDetalleDeOrdenes} />
           <Route exact path="/equipo" component={OurTeam} />
           <Route exact path= "/feedback" component={OrderFeedback} />
 
@@ -72,6 +75,22 @@ const AppRouter = ({ authState, cartStateLogin, getTotalPrice }) => {
             isActive={active}
             path='/categories'
             component={Brands}
+          />
+           <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            isAdmin={admin}
+            isActive={active}
+            path='/gestionordenes'
+            component={GestionDeOrdenes}
+          />
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            isAdmin={admin}
+            isActive={active}
+            path='/gestionorder/:id'
+            component={GestionDetalleDeOrdenes}
           />
           <PrivateRoute
             exact
@@ -137,6 +156,14 @@ const AppRouter = ({ authState, cartStateLogin, getTotalPrice }) => {
             path='/update/:id'
             component={PutProduct}
           />
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            isAdmin={admin}
+            isActive={active}
+            path='/packing'
+            component={Packing}
+          />
 
           <Route component={NotFound} />
 
@@ -156,7 +183,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     cartStateLogin: (id) => dispatch(cartStateLogin(id)),
-    getTotalPrice: () => dispatch(getTotalPrice())
+    getTotalPrice: () => dispatch(getTotalPrice()),
+    getUserFavorites: (id) => dispatch(getUserFavorites(id))
   }
 }
 
