@@ -33,6 +33,7 @@ import { cartStateLogin, getTotalPrice } from '../redux/actions/cartActions';
 import Brands from '../components/brands/Brands';
 import OrderFeedback from '../pages/OrderFeedback/OrderFeedback';
 import { getUserFavorites } from '../redux/actions/manageProductsActions';
+import Packing from '../pages/Packing/Packing';
 
 const AppRouter = ({ authState, cartStateLogin, getTotalPrice, getUserFavorites }) => {
 
@@ -154,6 +155,14 @@ const AppRouter = ({ authState, cartStateLogin, getTotalPrice, getUserFavorites 
             isActive={active}
             path='/update/:id'
             component={PutProduct}
+          />
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            isAdmin={admin}
+            isActive={active}
+            path='/packing'
+            component={Packing}
           />
 
           <Route component={NotFound} />

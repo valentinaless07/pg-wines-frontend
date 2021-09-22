@@ -62,6 +62,9 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
     }
     async function addFavorite (id) {
         if(isFavorite(id) === false){
+            if(authState.uid === null){
+                Swal.fire('Debes ingresar para agregar a favoritos')
+            }
         let data = {userId: authState.uid, idProduct: id}
         await postUserFavorite(data)
         await getUserFavorites(authState.uid)
@@ -91,13 +94,14 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
         <div className={styles.productList}>
             {
                 state.products.length > 0 ? state.products.map(item => {
+                    
                     return <div key={item.id} className={styles.productContainer}>
                             <div className={styles.title}>
                                 <span>{item.name}</span>
                                 <button onClick={() => addFavorite(item.id)} className={`${styles.bnt} ${styles.bntFav} ${isFavorite(item.id) ? styles.favoriteActive : ""}`}><i className="fas fa-heart"></i></button>
                             </div>
                             <div className={styles.imgContainer}>
-                                <img onClick={() => handleGoToProducDescription(item.id)} className={styles.img} src={item.image} alt='' />
+                                <img onClick={() => handleGoToProducDescription(item.id)} className={styles.img} src={item.image[0]} alt='' />
                             </div>
                             <div className={styles.price}>
                                 {item.discount > 0 && <span>{item.discount}% Desc</span>}
