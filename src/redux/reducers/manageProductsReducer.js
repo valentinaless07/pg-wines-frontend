@@ -2,7 +2,8 @@ const initialState = {
     categories: [],
     products: [],
     brands: [],
-    packing: []
+    packing: [],
+    favorites: []
 }
 
 export default function manageProductsReducer (state = initialState, action) {
@@ -38,6 +39,11 @@ export default function manageProductsReducer (state = initialState, action) {
             return{
                 ...state,
                 products: action.payload
+            }
+        case "GET_USER_FAVORITES":
+            return {
+                ...state,
+                favorites: action.payload
             }
         
         default: return state

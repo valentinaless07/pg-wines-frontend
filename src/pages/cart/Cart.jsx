@@ -8,7 +8,7 @@ import { getTotalPrice } from '../../redux/actions/cartActions';
 import axios from "axios"
 import { postCheckout } from '../../redux/actions/cartActions';
 import { useHistory } from 'react-router';
-import axios from 'axios';
+
 
 
 const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, authState}) => {

@@ -1,135 +1,145 @@
 .container {
-    width: 90%;
-    margin: auto;
+  width: 90%;
+  margin: auto;
 }
 
-.productList{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    text-align: center;
+.productList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-align: center;
 }
 
-.productContainer{
-    width: 23%;
-    min-width: 250px;
-    margin-top: 25px;
-    animation-name: banish;
-    animation-duration: 1s;
-    background-color: #ffffff;
-    border: 1px solid rgb(192, 191, 191);
-    border-radius: 5px;
-    padding: 10px 0px;
-    box-shadow: 5px 10px 8px #888888;
-    transition: transform .4s; 
+.productContainer {
+  width: 23%;
+  min-width: 250px;
+  margin-top: 25px;
+  animation-name: banish;
+  animation-duration: 1s;
+  background-color: #ffffff;
+  border: 1px solid rgb(192, 191, 191);
+  border-radius: 5px;
+  padding: 10px 0px;
+  box-shadow: 5px 10px 8px #888888;
+  transition: transform 0.4s;
 }
 
 .productContainer:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
-.img{
-    max-width: 200px;
-    max-height: 200px;
-    display: block;
-    margin: auto;
-    padding: 15px 0px;
+.img {
+  max-width: 200px;
+  max-height: 200px;
+  display: block;
+  margin: auto;
+  padding: 15px 0px;
 }
 
-.title{
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px 10px;
+.title {
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
 }
 
-.price{
-    display: flex;
-    justify-content: space-around;
+.price {
+  display: flex;
+  justify-content: space-around;
 }
 
-.desc{
-    color: green;
-    font-weight: 500;
+.desc {
+  color: green;
+  font-weight: 500;
 }
 
-.btnBuy{
-    display: block;
-    margin: auto;
-    margin-top: 15px;
-    font-size: 15px !important;
-    padding: 10px;
-    border-radius: 5px ;
-    transition: 0.3s;
+.btnBuy {
+  display: block;
+  margin: auto;
+  margin-top: 15px;
+  font-size: 15px !important;
+  padding: 10px;
+  border-radius: 5px;
+  transition: 0.3s;
 }
 
-.btnBuy:hover{
-    background-color: #3483fa;
-    color: white;
+.btnBuy:hover {
+  background-color: #3483fa;
+  color: white;
 }
 
-.bnt{
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
-    font-size: 20px;
+.bnt {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 20px;
 }
 
-.bntFav:hover{
-    color: red;
-    font-size: 25px;
+.bntFav:hover {
+  color: red;
+  font-size: 25px;
 }
 
-.pagination{
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    margin: 50px 0px;
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 50px 0px;
 }
 
-.pagItem{
-    font-size: 20px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    margin: 0px 10px;
-    cursor: pointer;
+.pagItem {
+  font-size: 20px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin: 0px 10px;
+  cursor: pointer;
 }
 
-.active{
-    /* border: 2px solid #73737c; */
-    /* box-shadow: inset 0 0 0 2px #73737c;
+.active {
+  /* border: 2px solid #73737c; */
+  /* box-shadow: inset 0 0 0 2px #73737c;
     border-radius: 5px; */
-    animation-name: btn;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
+  animation-name: btn;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 }
 
-
-
-.imgContainer{
-    width: 100%;
-    height: 230px;
-    cursor: pointer;
+.favoriteActive {
+  color: red;
 }
 
-@keyframes banish{
-    0%{opacity: 0;}
-    100%{opacity: 1;}
+.imgContainer {
+  width: 100%;
+  height: 230px;
+  cursor: pointer;
 }
 
-@keyframes btn{
-    0%{box-shadow: inset 0 0 0 0px #73737c;}
-    100%{box-shadow: inset 0 0 0 2px #73737c;}
+@keyframes banish {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-.noFound{
-    height: 500px;
+@keyframes btn {
+  0% {
+    box-shadow: inset 0 0 0 0px #73737c;
+  }
+  100% {
+    box-shadow: inset 0 0 0 2px #73737c;
+  }
 }
 
-.noStock{
-    background-color: #D5DBDB !important;
-    color: #7F8C8D;
+.noFound {
+  height: 500px;
+}
+
+.noStock {
+  background-color: #d5dbdb !important;
+  color: #7f8c8d;
 }

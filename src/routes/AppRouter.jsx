@@ -32,8 +32,9 @@ import UsersManager from '../components/usersManager/UsersManager';
 import { cartStateLogin, getTotalPrice } from '../redux/actions/cartActions';
 import Brands from '../components/brands/Brands';
 import OrderFeedback from '../pages/OrderFeedback/OrderFeedback';
+import { getUserFavorites } from '../redux/actions/manageProductsActions';
 
-const AppRouter = ({ authState, cartStateLogin, getTotalPrice }) => {
+const AppRouter = ({ authState, cartStateLogin, getTotalPrice, getUserFavorites }) => {
 
   let { loggedIn, admin, active } = authState;
 
@@ -41,6 +42,8 @@ const AppRouter = ({ authState, cartStateLogin, getTotalPrice }) => {
     localStorage.removeItem("cart")
     cartStateLogin(authState.uid)
     .then(() => getTotalPrice())
+    getUserFavorites(authState.uid)
+
   }
   return (
     <Router>
@@ -171,7 +174,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     cartStateLogin: (id) => dispatch(cartStateLogin(id)),
-    getTotalPrice: () => dispatch(getTotalPrice())
+    getTotalPrice: () => dispatch(getTotalPrice()),
+    getUserFavorites: (id) => dispatch(getUserFavorites(id))
   }
 }
 
