@@ -161,7 +161,7 @@ const OurTeam = () => {
                         <div className={styles.nameperson}>
                             <h2>Gustavo Riera</h2>
                             <h3>Full Stack Web Developer</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
+                            <p>Siempre me sentí atraído al mundo tecnológico, la idea de crear cosas increíbles desde un lienzo en blanco es el verdadero arte, creo firmemente que todos podemos hacer cualquier cosa si nos dedicamos, esforzamos y persistimos. El único camino que conozco es el de la senda del esfuerzo.</p>
                             <div>
                                 <a href="https://www.linkedin.com/in/gustavo-riera-fullstackdev/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
