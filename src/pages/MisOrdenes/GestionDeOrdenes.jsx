@@ -26,7 +26,8 @@ const GestionDeOrdenes = ({ all_orders, getAllOrders }) => {
               <option value="">Completas</option>
             </select>
           </div>
-
+          
+          <div className={styles.tableContainer}>
           <table>
             <tbody>
             <tr>
@@ -54,6 +55,7 @@ const GestionDeOrdenes = ({ all_orders, getAllOrders }) => {
               : <></>}
         </tbody>
           </table>
+          </div>
         </div>
 
       </div>
