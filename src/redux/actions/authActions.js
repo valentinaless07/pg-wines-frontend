@@ -9,40 +9,85 @@ export const AUTH_LOGIN_ERROR = 'AUTH_LOGIN_ERROR';
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 export const AUTH_REMOVE_ERROR = 'AUTH_REMOVE_ERROR';
 
+
 export const startGoogleLogin = () => {
-    return (dispatch, getState) => {
+    return async (dispatch, getState) => {
         dispatch({
             type: AUTH_LOGIN
         });
         const auth = getAuth();
-        signInWithPopup(auth, googleAuthProvider)
-            .then(({ user }) => {
-                // Verify if user exists in our db.
-                // If it's true, take aditional data and put it in local storage and redux state.
-                // If it's false, create a new user in our db.
-
+        let googleLogin;
+   
+        let dbLogin;
+        try {
+            googleLogin = await signInWithPopup(auth, googleAuthProvider);
+            console.log(googleLogin.user.email, googleLogin.user.displayName)
+            dbLogin = await axios.post(`https://pg-delsur.herokuapp.com/user/login`, { email: googleLogin.user.email, name:googleLogin.user.displayName, password: googleLogin.user.uid });
+            if(dbLogin && !dbLogin?.data.active) {
+                dispatch({
+                    type: AUTH_LOGIN_ERROR,
+                    payload: 'El usuario no existe',
+                });
+                return Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'No existe ningún usuario con este email.',
+                });
+            }
+            if(dbLogin.status === 200){
                 dispatch(
                     {
                         type: AUTH_LOGIN_SUCCESS,
                         payload: {
-                            uid: user.uid,
-                            displayName: user.displayName,
-                            photoURL: user.photoURL,
-                            email: user.email,
+                            uid: dbLogin.data.id,
+                            displayName: dbLogin.data.name,
+                            photoURL: dbLogin.data.photoURL,
+                            email: dbLogin.data.email,
+                            password: dbLogin.data.password,
+                            active: dbLogin.data.active,
+                            admin: dbLogin.data.admin,
+                            birthDate: dbLogin.data.birthDate,
                         }
                     }
                 )
                 saveStorage(getState().auth);
-            }).catch(err => {
-                console.log(err);
-                dispatch({
-                    type: AUTH_LOGIN_ERROR,
-                    payload: err.message
-                })
-            })
+            }
+            
+        } catch (error) {
+            console.log({gerror: error, status: error.response.status, error: error.response.data.error})
+            if(error.response.status === 404){
+                if(error.response.data.error === 'User not found'){
+                    console.log('USER NOT FOUND');
+                    let register = await axios.post(`https://pg-delsur.herokuapp.com/user/register`, {  name:googleLogin.user.displayName, email: googleLogin.user.email, password: googleLogin.user.uid });
+                    console.log('REGISTER', register)
+                    dispatch(
+                        {
+                            type: AUTH_LOGIN_SUCCESS,
+                            payload: {
+                                uid: register.data.id,
+                                displayName: register.data.name,
+                                photoURL: register.data.photoURL,
+                                email: register.data.email,
+                                password: register.data.password,
+                                active: register.data.active,
+                                admin: register.data.admin,
+                                birthDate: register.data.birthDate,
+                            }
+                        }
+                    )
+                    saveStorage(getState().auth);
+                }
+                if(error.response.data.error === 'Password is not valid'){
+                    console.log('Password is not valid')
+                }
+            }
+        }
+        
 
     }
 }
+
+
 
 export const restoreSessionAction = () => (dispatch, getState) => {
     let auth = localStorage.getItem('auth');
