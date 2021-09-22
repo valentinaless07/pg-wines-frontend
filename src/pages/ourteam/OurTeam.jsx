@@ -3,6 +3,8 @@ import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import styles from './OurTeam.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import AlexMarin from '../../Static/AlexMarin.jpeg';
+import ChristianQuevedo from '../../Static/ChristianQuevedo.jpeg';
 
 import { faGithub, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
@@ -55,16 +57,16 @@ const OurTeam = () => {
                         </div>
                     </div>
                     <div className={styles.personaldiv}>
-                        <div className={styles.picpersonal} style={{ backgroundImage: "url(" + "https://media-exp1.licdn.com/dms/image/D4E35AQE072W_V_4DRw/profile-framedphoto-shrink_800_800/0/1630095212138?e=1631934000&v=beta&t=XeBA0oZS3lNeZWFL7fI77kKck0Zfo_lMF3glSLqTasQ" + ")" }}></div>
+                        <div className={styles.picpersonal} style={{ backgroundImage: `url(${ChristianQuevedo})`}}></div>
                         <div className={styles.nameperson}>
                             <h2>Christian Quevedo</h2>
                             <h3>Full Stack Web Developer</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
+                            <p>La programación es como un videojuego en el que susbes de nivel y cada uno es mas dificil que el anterior, ¿a quien no le gusta un buen juego? a mi me fascina, aprender, practicar, asimilar y repetir, por eso lo considero mi mundo</p>
                             <div>
                                 <a href="https://www.linkedin.com/in/cristian-quevedo/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
                                 </a>
-                                <a href="https://wa.link/a9hfcd" target="_blank" rel="noopener noreferrer">
+                                <a href="https://wa.link/fitsg3" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faWhatsapp} />
                                 </a>
                                 <a href="https://github.com/xerxes97" target="_blank" rel="noopener noreferrer">
@@ -97,11 +99,11 @@ const OurTeam = () => {
                         </div>
                     </div>
                     <div className={styles.personaldiv}>
-                    <div className={styles.picpersonal} style={{ backgroundImage: "url(" + "https://media-exp1.licdn.com/dms/image/D4E35AQHYWWTwi-jusg/profile-framedphoto-shrink_800_800/0/1630493754020?e=1631934000&v=beta&t=tXwo-MKgfPG4SlLg8Ouo-nWebHJOwn-4H2OknqTx4ro" + ")" }}></div>
+                    <div className={styles.picpersonal} style={{ backgroundImage: `url(${AlexMarin})` }}></div>
                         <div className={styles.nameperson}>
                             <h2>Alex Marin</h2>
                             <h3>Full Stack Web Developer</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
+                            <p>Apasionado por la tecnología. Orientado a la solución de problemas.</p>
                             <div>
                                 <a href="https://www.linkedin.com/in/alexmarinmendez/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
