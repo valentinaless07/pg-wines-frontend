@@ -9,8 +9,12 @@ import { addCartProduct } from '../../redux/actions/cartActions';
 import { editItemsAmount } from '../../redux/actions/cartActions';
 import noFound from '../../assests/images/noFound.png'
 import ScrollUp from '../scrollUp/ScrollUp';
+import { deleteUserFavorite, postUserFavorite } from '../../redux/actions/manageProductsActions';
+import { getUserFavorites } from '../../redux/actions/manageProductsActions';
+import Swal from 'sweetalert2'
 
-function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduct, editItemsAmount }) {
+
+function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduct, editItemsAmount, postUserFavorite, authState, stateFavorites, getUserFavorites, deleteUserFavorite }) {
 
     let { search } = useLocation();
     var query = new URLSearchParams(search)
@@ -45,6 +49,35 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
         getProductsByPage(category, initPrice, finalPrice, page)
     }
 
+    
+
+    function isFavorite (id) {
+        
+        let favorite = stateFavorites.filter(el => el.id === id)
+        
+        if(favorite.length > 0){
+            return true
+        }
+        return false
+    }
+    async function addFavorite (id) {
+        if(isFavorite(id) === false){
+        let data = {userId: authState.uid, idProduct: id}
+        await postUserFavorite(data)
+        await getUserFavorites(authState.uid)
+        isFavorite(id)
+        Swal.fire('Producto agregado a favoritos!')
+        }
+      else{
+        await deleteUserFavorite({userId: authState.uid, idProduct: id})
+        await getUserFavorites(authState.uid)
+        isFavorite(id)
+        await Swal.fire('Producto eliminado de favoritos!')
+      }
+      
+
+    }
+
     return (<div id='containerProducts' className={`${styles.container}`}>
         <ScrollUp />
         <ReactPaginate
@@ -61,7 +94,7 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
                     return <div key={item.id} className={styles.productContainer}>
                             <div className={styles.title}>
                                 <span>{item.name}</span>
-                                <button className={`${styles.bnt} ${styles.bntFav}`}><i className="fas fa-heart"></i></button>
+                                <button onClick={() => addFavorite(item.id)} className={`${styles.bnt} ${styles.bntFav} ${isFavorite(item.id) ? styles.favoriteActive : ""}`}><i className="fas fa-heart"></i></button>
                             </div>
                             <div className={styles.imgContainer}>
                                 <img onClick={() => handleGoToProducDescription(item.id)} className={styles.img} src={item.image} alt='' />
@@ -98,7 +131,9 @@ function ProductsContainer({ state, getProductsByPage, cart_state, addCartProduc
 function mapStateToProps(state) {
     return {
         product_detail: state.user.product_detail,
-        cart_state: state.cart.cartState
+        cart_state: state.cart.cartState,
+        authState: state.auth,
+        stateFavorites: state.manageProducts.favorites
     };
 };
 
@@ -107,6 +142,9 @@ function mapDispatchToProps(dispatch) {
         addCartProduct: (id) => dispatch(addCartProduct(id)),
         getProductsByPage: (category, initPrice, finalPrice, page) => dispatch(getProductsByPage(category, initPrice, finalPrice, page)),
         editItemsAmount: (amount) => dispatch(editItemsAmount(amount)),
+        postUserFavorite: (data) => dispatch(postUserFavorite(data)),
+        getUserFavorites: (userId) => dispatch(getUserFavorites(userId)),
+        deleteUserFavorite: (datos) => dispatch(deleteUserFavorite(datos))
         
     };
 };

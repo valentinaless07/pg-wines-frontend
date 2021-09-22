@@ -1,0 +1,70 @@
+.h1_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  font-family: inherit;
+}
+.h1_container > h1 {
+  font-family: sans-serif;
+}
+
+.name_container {
+  width: 230px;
+}
+
+.name {
+  max-width: 220px;
+}
+
+.products_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.img_container > img {
+  max-width: 80px;
+  max-height: 90px;
+}
+.img_container {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+}
+
+.product_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 40px;
+  border: 1px solid gray;
+  width: 85%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 40px;
+  margin-bottom: 35px;
+}
+.icon_container > i {
+  cursor: pointer;
+  display: inline-block;
+  color: #be0d0d;
+  transition: 0.2s;
+}
+.icon_container > i:hover {
+  color: #990000;
+}
+
+.icon_container {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  background-color: white;
+  min-height: 87.5vh;
+  height: auto;
+}
