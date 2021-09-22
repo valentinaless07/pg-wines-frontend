@@ -45,7 +45,8 @@ const Favorites = ({getUserFavorites, authState, stateFavorites, deleteUserFavor
                     
                     <p onClick={() => history.push(`/product/${el.id}`)} className={styles.buyButton}>Comprar Producto</p>
                     <div className={styles.icon_container}>
-                    <i onClick={() => deleteFavorite(el.id)} className="fas fa-heart fa-3x"></i>
+                    <i onClick={() => deleteFavorite(el.id)} className="far fa-trash-alt fa-3x"></i>
+                   
                     </div>
                     
 

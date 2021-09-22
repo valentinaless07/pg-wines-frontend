@@ -39,7 +39,7 @@ const ShippingPay = ({ cartState, getTotalPrice, totalPrice, idCheckout }) => {
                         {cartState && cartState.map(el =>
                         <div className={styles.cart_product}>
                         <div className={styles.img_container}>
-                            <img src={el.image || el.photo} alt="" />
+                            <img src={el.image || el.photo[0]} alt="" />
                         </div>
                         <div className={styles.name_price_product}>
                             <p>{el.name}</p><p className={styles.cost}>Precio: ${el.cost}</p>

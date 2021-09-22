@@ -54,15 +54,16 @@
   padding-bottom: 10px;
   border-radius: 40px;
   margin-bottom: 35px;
+  background-color: white;
 }
 .icon_container > i {
   cursor: pointer;
   display: inline-block;
-  color: #be0d0d;
+  color: #000000;
   transition: 0.2s;
 }
 .icon_container > i:hover {
-  color: #990000;
+  color: #383838;
 }
 
 .icon_container {
@@ -71,7 +72,7 @@
 }
 
 .container {
-  background-color: white;
+  background-color: #f7f7f7;
   min-height: 87.5vh;
   height: auto;
 }
