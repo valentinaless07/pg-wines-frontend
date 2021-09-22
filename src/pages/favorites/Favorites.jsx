@@ -40,13 +40,14 @@ const Favorites = ({getUserFavorites, authState, stateFavorites, deleteUserFavor
                     <img src={el.image[0]} alt="" />
                     </div>
                     <div className={styles.name_container}> 
-                    <h5 className={styles.name}>{el.name}</h5>
+                    <h5 className={styles.name}>{el.name} </h5><p>(${el.cost})</p>
                     </div>
-                    <p>${el.cost}</p>
+                    
+                    <p onClick={() => history.push(`/product/${el.id}`)} className={styles.buyButton}>Comprar Producto</p>
                     <div className={styles.icon_container}>
                     <i onClick={() => deleteFavorite(el.id)} className="fas fa-heart fa-3x"></i>
                     </div>
-                    <p onClick={() => history.push(`/product/${el.id}`)} className={styles.buyButton}>Comprar Producto</p>
+                    
 
                   </div>)
                   
