@@ -10,6 +10,9 @@ import { connect } from 'react-redux';
 import { useState } from 'react';
 import { addCartProduct} from '../../redux/actions/cartActions';
 import { useHistory } from 'react-router';
+import Comments from '../../components/comments/Comments';
+
+
 
 const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state}) => {
     // console.log(getProductDetail);
@@ -19,6 +22,13 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
         return () => { getProductDetailReset() }
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [id])
+
+      const prueba =[{
+          id: 1,
+          points: 4,
+          review: 'esto es un texto muy largo'
+      }]
+
 
       const [cantidadItems, setCantidadItems] = useState(1)
       const history = useHistory()
@@ -72,9 +82,9 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
                     <div>
                     <label htmlFor="" className={styles.labelStock}>Stock Disponible:{product_detail.stock}</label>
                     </div>
-
                 </div>
             </div>
+                <Comments newComment={true} comments={prueba} idProduct={id}/>
             <Footer />
         </React.Fragment>
     );

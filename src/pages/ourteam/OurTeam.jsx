@@ -59,12 +59,12 @@ const OurTeam = () => {
                         <div className={styles.nameperson}>
                             <h2>Christian Quevedo</h2>
                             <h3>Full Stack Web Developer</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
+                            <p>La programación es como un videojuego en el que susbes de nivel y cada uno es mas dificil que el anterior, ¿a quien no le gusta un buen juego? a mi me fascina, aprender, practicar, asimilar y repetir, por eso lo considero mi mundo 😆</p>
                             <div>
                                 <a href="https://www.linkedin.com/in/cristian-quevedo/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
                                 </a>
-                                <a href="https://wa.link/a9hfcd" target="_blank" rel="noopener noreferrer">
+                                <a href="https://wa.link/fitsg3" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faWhatsapp} />
                                 </a>
                                 <a href="https://github.com/xerxes97" target="_blank" rel="noopener noreferrer">
