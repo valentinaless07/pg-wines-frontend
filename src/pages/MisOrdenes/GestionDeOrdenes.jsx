@@ -5,12 +5,26 @@ import styles from './GestionDeOrdenes.module.css';
 import { connect } from 'react-redux';
 import { format } from "date-fns";
 import { Link } from 'react-router-dom';
-import { getAllOrders } from '../../redux/actions/orderActions';
+import { filterOrders, getAllOrders } from '../../redux/actions/orderActions';
 
-const GestionDeOrdenes = ({ all_orders, getAllOrders }) => {
+const GestionDeOrdenes = ({ all_orders, getAllOrders, filterOrders }) => {
   useEffect(() => {
-    getAllOrders()
+       getAllOrders().then(res => {
+        filterOrders('All');
+
+       });
+       return () => {
+
+       };
+       setTimeout(() => {
+       }, 3000);
+
   }, [])
+
+  const handleChange = (e) => {
+    filterOrders(e.target.value);
+	}
+
   return (
     <React.Fragment>
       <Navbar />
@@ -19,14 +33,15 @@ const GestionDeOrdenes = ({ all_orders, getAllOrders }) => {
           <h2>Historial de ordenes</h2>
           <div className={styles.selectorders}>
             <h4>Filtrar ordenes segun estado</h4>
-            <select className={styles.customselect} name="" id="">
-              <option value="">Creadas</option>
-              <option value="">Procesando</option>
-              <option value="">Canceladas</option>
-              <option value="">Completas</option>
+            <select className={styles.customselect} onChange={handleChange}>
+              <option value="All">Todas</option>
+              <option value="processing">Procesando</option>
+              <option value="approved">Aprobadas</option>
+              <option value="cancelled">Canceladas</option>
             </select>
           </div>
-
+          
+          <div className={styles.tableContainer}>
           <table>
             <tbody>
             <tr>
@@ -54,6 +69,7 @@ const GestionDeOrdenes = ({ all_orders, getAllOrders }) => {
               : <></>}
         </tbody>
           </table>
+          </div>
         </div>
 
       </div>
@@ -64,13 +80,15 @@ const GestionDeOrdenes = ({ all_orders, getAllOrders }) => {
 
 function mapStateToProps(state) {
   return {
-    all_orders: state.orders.all_orders,
+    initial_orders: state.orders.all_orders,
+    all_orders: state.orders.filtered_orders,
   };
 };
 
 function mapDispatchToProps(dispatch) {
   return {
     getAllOrders: () => dispatch(getAllOrders()),
+    filterOrders: (by) => dispatch(filterOrders(by)),
 
 
 

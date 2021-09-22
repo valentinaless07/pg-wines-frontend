@@ -41,6 +41,8 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
         }
       }
 
+      
+
     return (
         <React.Fragment>
             <Navbar />
@@ -72,6 +74,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
                     <div>
                     <label htmlFor="" className={styles.labelStock}>Stock Disponible:{product_detail.stock}</label>
                     </div>
+                    
 
                 </div>
             </div>

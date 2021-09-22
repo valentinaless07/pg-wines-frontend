@@ -21,7 +21,7 @@ const OurTeam = () => {
                         <div className={styles.nameperson}>
                             <h2>Valentin Alessandrini </h2>
                             <h3>Full Stack Web Developer</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae voluptates quae doloribus veritatis beatae numquam officiis magni necessitatibus excepturi minima consequatur, nostrum velit saepe eum impedit incidunt illum debitis maxime.</p>
+                            <p>Me encontré con este mundo de forma inesperada y me sorprendió. Al momento de iniciar el bootcamp no tenia grandes conocimientos en la programación y logré llegar a ser Full Stack Developer, algo que nunca me imaginé.</p>
                             <div>
                                 <a href="https://www.linkedin.com/in/valentin-alessandrini-zapata/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />

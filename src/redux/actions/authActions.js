@@ -227,6 +227,9 @@ export const startLoginWithEmailAndPassword = (email, password, name) => {
                     });
                 }
                 console.log('login:', login)
+
+                
+
                 dispatch(
                     {
                         type: AUTH_LOGIN_SUCCESS,
