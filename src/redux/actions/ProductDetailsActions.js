@@ -35,7 +35,15 @@ export const getProductDetail=(id)=>{
     return async function(dispatch){
         await axios.get('https://pg-delsur.herokuapp.com/products/'+id)
         // await axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/`+id)
-        .then(results =>{            
+        .then(results =>{  
+            let suma=0
+            let contar=0
+            results.data.reviews.forEach(element => {
+                contar++;
+                suma+=parseInt(element.rating)
+                return suma/contar
+            });
+            results.data.rating = suma;
             dispatch({
                 type: GET_PRODUCT_BY_ID,
                 payload: results.data

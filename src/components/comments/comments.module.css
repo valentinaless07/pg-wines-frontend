@@ -1,6 +1,6 @@
 .comments__Container{
     width: 90%;
-    margin: auto;
+    margin: 70px auto 30px;
     display: block;
 }
 
@@ -23,7 +23,7 @@
     display: flex;
     align-items: center;
     width: 95%;
-    margin: auto;
+    margin: 0px auto 10px;
 }
 
 .optBtn{
@@ -37,11 +37,12 @@
     height: 45px;
     width: 45px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .textArea{
     width: 95% !important;
-    margin: auto !important;
+    margin: 10px auto !important;
     display: block;
     resize: none;
     height: 100px !important;
@@ -63,4 +64,8 @@
 
 .cup__Container{
     margin-left: 20px;
+}
+
+.optBtn:hover{
+    transform: scale(1.3);
 }

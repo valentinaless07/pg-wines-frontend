@@ -14,27 +14,28 @@ import Comments from '../../components/comments/Comments';
 import { Carousel } from 'react-responsive-carousel';
 import uniqid from 'uniqid';
 
-const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state}) => {
-    // console.log(getProductDetail);
+const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state, authState}) => {
+    // console.log(product_detail);
     const { id } = useParams()
     const [productId, setProductId] = useState()
+    const [cantidadItems, setCantidadItems] = useState(1)
+    const [visible, setVisible] = useState(false)
+    const history = useHistory()
+
+    function enableEdit(){
+      let user = history.location.search.split('=').slice(-1)[0].slice(1)
+      if(user === authState.uid){
+            setVisible(true)
+      }
+    }
+
     useEffect(() => {
         getProductDetail(id)
         setProductId(id)
+        enableEdit()
         return () => { getProductDetailReset() }
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [id])
-
-      console.log(productId)
-
-      const prueba =[{
-          id: 1,
-          points: 4,
-          review: 'esto es un texto muy largo'
-      }]
-
-      const [cantidadItems, setCantidadItems] = useState(1)
-      const history = useHistory()
 
       function selectChange(e) {
           let num = parseInt(e.target.value)
@@ -53,8 +54,6 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
             history.push("/cart")
         }
       }
-
-      
 
     return (
         <React.Fragment>
@@ -75,11 +74,11 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
                 </div>
                 <div className={styles.detailProduct}>
                     <h1>{product_detail.name}</h1>
-                    <FontAwesomeIcon className={styles.detailProductIcon} icon={faWineGlass} />
-                    <FontAwesomeIcon className={styles.detailProductIcon} icon={faWineGlass} />
-                    <FontAwesomeIcon className={styles.detailProductIcon} icon={faWineGlass} />
-                    <FontAwesomeIcon className={styles.detailProductIcon} icon={faWineGlass} />
-                    <FontAwesomeIcon className={styles.detailProductIcon} icon={faWineGlass} />
+                    <FontAwesomeIcon className={`${styles.detailProductIcon} ${product_detail.rating>=1 && styles.star}`} icon={faWineGlass} />
+                    <FontAwesomeIcon className={`${styles.detailProductIcon} ${product_detail.rating>=2 && styles.star}`} icon={faWineGlass} />
+                    <FontAwesomeIcon className={`${styles.detailProductIcon} ${product_detail.rating>=3 && styles.star}`} icon={faWineGlass} />
+                    <FontAwesomeIcon className={`${styles.detailProductIcon} ${product_detail.rating>=4 && styles.star}`} icon={faWineGlass} />
+                    <FontAwesomeIcon className={`${styles.detailProductIcon} ${product_detail.rating>=5 && styles.star}`} icon={faWineGlass} />
                     <br />
                     <br />
                     <hr />
@@ -100,7 +99,7 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
 
                 </div>
             </div>
-                {product_detail.reviews && <Comments idUser={'313c2407-b38f-438b-8732-8f0b8689c501'} newComment={true} comments={product_detail.reviews} idProduct={productId}/>}
+                {product_detail.reviews && <Comments idUser={authState.uid} newComment={visible} comments={product_detail.reviews} idProduct={productId}/>}
             <Footer />
         </React.Fragment>
     );
@@ -109,7 +108,8 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
 function mapStateToProps(state) {
     return {
       product_detail: state.products.product_detail,
-      cart_state: state.cart.cartState
+      cart_state: state.cart.cartState,
+      authState: state.auth
     };
   };
   
