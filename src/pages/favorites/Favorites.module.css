@@ -11,6 +11,10 @@
 
 .name_container {
   width: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .name {
@@ -29,12 +33,12 @@
 }
 
 .img_container > img {
-  max-width: 80px;
-  max-height: 90px;
+  max-width: 100px;
+  max-height: 100px;
 }
 .img_container {
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   display: flex;
   justify-content: center;
 }

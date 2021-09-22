@@ -137,3 +137,27 @@ export function deleteUserFavorite (payload) {
         return deleteFav
     }
 }
+
+export function createPacking (payload) {
+    return async function () {
+        var newpacking = await axios.post("https://pg-delsur.herokuapp.com/packing", {name: payload})
+
+        return newpacking
+    }
+}
+
+export function deletePacking (payload) {
+    return async function () {
+        var deletePack = await axios.delete("https://pg-delsur.herokuapp.com/packing/delete", {data: {id: payload}})
+
+        return deletePack
+    }
+}
+
+export function updatePacking (payload) {
+    return async function () {
+        var updatePack = await axios.put("https://pg-delsur.herokuapp.com/packing/update", {id: payload.id, name: payload.name})
+
+        return updatePack
+    }
+}
