@@ -10,6 +10,8 @@ import { connect } from 'react-redux';
 import { useState } from 'react';
 import { addCartProduct} from '../../redux/actions/cartActions';
 import { useHistory } from 'react-router';
+import { Carousel } from 'react-responsive-carousel';
+import uniqid from 'uniqid';
 
 const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state}) => {
     // console.log(getProductDetail);
@@ -48,7 +50,17 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
             <Navbar />
             <div className={styles.container}>
                 <div className={styles.mainImage}>
-                    <img src={product_detail.image} alt="gin" />
+                <Carousel  width="400px" showThumbs={false} >
+                {
+                   
+                    product_detail.image && product_detail.image.map(el => (
+                        <div key={uniqid()} className={styles.imagen_container}>
+                            <img src={el} alt="producto" className={styles.imagenSlider} />
+                        </div>
+                    ))
+                }
+            </Carousel>
+                    
                 </div>
                 <div className={styles.detailProduct}>
                     <h1>{product_detail.name}</h1>

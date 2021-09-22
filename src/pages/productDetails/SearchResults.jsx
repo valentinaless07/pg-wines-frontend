@@ -57,6 +57,9 @@ const SearchResults = ({ product_detail, getProductByName, getProductByNameReset
         }
         async function addFavorite (id) {
             if(isFavorite(id) === false){
+                if(authState.uid === null){
+                    Swal.fire('Debes ingresar para agregar a favoritos')
+                }
             let data = {userId: authState.uid, idProduct: id}
             await postUserFavorite(data)
             await getUserFavorites(authState.uid)
@@ -92,7 +95,7 @@ const SearchResults = ({ product_detail, getProductByName, getProductByNameReset
                                         <button onClick={() => addFavorite(item.id)} className={`${styles.bnt} ${styles.bntFav} ${isFavorite(item.id) ? styles.favoriteActive : ""}`}><i className="fas fa-heart"></i></button>
                                     </div>
                                     <div className={styles.imgContainer} onClick={() => handleGoToProducDescription(item.id)} >
-                                        <img className={styles.img} src={item.image} alt='' />
+                                        <img className={styles.img} src={item.image[0]} alt='' />
                                     </div>
                                     <div className={styles.price}>
                                         {item.discount > 5 && <span>{item.discount}% Desc</span>}

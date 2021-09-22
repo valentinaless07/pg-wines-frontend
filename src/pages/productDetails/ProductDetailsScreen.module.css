@@ -2,9 +2,8 @@
   display: flex;
   justify-content: center;
   /* border: 2px solid red; */
-  box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.34);
-  -webkit-box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.34);
-  -moz-box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.34);
+  margin-top: 5px;
+  margin-bottom: 25px;
 }
 
 .mainImage img {
@@ -78,7 +77,7 @@
   height: 50px;
   line-height: 50px;
   background: #fff;
-  cursor: pointer;
+  cursor: text;
   padding: 0 10px;
   font-size: 14px;
   text-align: center;
@@ -97,6 +96,19 @@
 
 .description p {
   font-size: 25px;
+}
+
+.mainImage {
+  padding-right: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.imagen_container > img {
+  min-height: 350px;
+  min-width: 350px;
+  width: 400px;
+  max-height: 450px;
 }
 
 .addProductButton {
