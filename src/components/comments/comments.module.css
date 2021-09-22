@@ -1,0 +1,66 @@
+.comments__Container{
+    width: 90%;
+    margin: auto;
+    display: block;
+}
+
+.form{
+    width: 100%;
+    position: relative;
+    margin-top: 20px;
+    padding: 20px 0px 30px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px -3px rgba(0,0,0,0.8);
+}
+
+.userImage{
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 100%;
+}
+
+.infoUser{
+    display: flex;
+    align-items: center;
+    width: 95%;
+    margin: auto;
+}
+
+.optBtn{
+    position: absolute;
+    bottom: -25px;
+    right: 20px;
+    font-size: 25px;
+    border: none;
+    border-radius: 100%;
+    background-color: royalblue;
+    height: 45px;
+    width: 45px;
+    cursor: pointer;
+}
+
+.textArea{
+    width: 95% !important;
+    margin: auto !important;
+    display: block;
+    resize: none;
+    height: 100px !important;
+    background-color: transparent;
+    border: 5px 5px 20px -3px rgba(182, 178, 178, 0.8);
+    border-radius: 5px;
+    outline: none;
+}
+
+.glass{
+    font-size: 25px;
+    margin: 0px 3px;
+    cursor: pointer;
+}
+
+.left{
+    right: 90px;
+}
+
+.cup__Container{
+    margin-left: 20px;
+}

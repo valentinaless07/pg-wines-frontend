@@ -10,17 +10,28 @@ import { connect } from 'react-redux';
 import { useState } from 'react';
 import { addCartProduct} from '../../redux/actions/cartActions';
 import { useHistory } from 'react-router';
+import Comments from '../../components/comments/Comments';
 import { Carousel } from 'react-responsive-carousel';
 import uniqid from 'uniqid';
 
 const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDetailReset, addCartProduct, cart_state}) => {
     // console.log(getProductDetail);
     const { id } = useParams()
+    const [productId, setProductId] = useState()
     useEffect(() => {
         getProductDetail(id)
+        setProductId(id)
         return () => { getProductDetailReset() }
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [id])
+
+      console.log(productId)
+
+      const prueba =[{
+          id: 1,
+          points: 4,
+          review: 'esto es un texto muy largo'
+      }]
 
       const [cantidadItems, setCantidadItems] = useState(1)
       const history = useHistory()
@@ -86,10 +97,10 @@ const ProductDetailsScreen = ({ product_detail, getProductDetail, getProductDeta
                     <div>
                     <label htmlFor="" className={styles.labelStock}>Stock Disponible:{product_detail.stock}</label>
                     </div>
-                    
 
                 </div>
             </div>
+                {product_detail.reviews && <Comments idUser={'313c2407-b38f-438b-8732-8f0b8689c501'} newComment={true} comments={product_detail.reviews} idProduct={productId}/>}
             <Footer />
         </React.Fragment>
     );
