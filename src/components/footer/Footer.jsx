@@ -24,7 +24,7 @@ const Footer = () => {
                     </Link>
                 </div>
                 <div className={styles.contactusinfooter}>
-                    <button>Contactanos</button>
+                    <h2>Escribinimos a <br /> bodegasdelsur@gmail.com</h2>
                 </div>
             </div>
             <div className={styles.copyright}>

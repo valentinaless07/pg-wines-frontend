@@ -11,14 +11,7 @@ const GestionDeOrdenes = ({ all_orders, getAllOrders, filterOrders }) => {
   useEffect(() => {
        getAllOrders().then(res => {
         filterOrders('All');
-
        });
-       return () => {
-
-       };
-       setTimeout(() => {
-       }, 3000);
-
   }, [])
 
   const handleChange = (e) => {
