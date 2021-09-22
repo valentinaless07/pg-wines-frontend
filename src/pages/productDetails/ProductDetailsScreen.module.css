@@ -20,10 +20,13 @@
 }
 
 .detailProductIcon {
-  color: #f8a41d;
   margin-top: 20px;
   font-size: 25px;
   margin-right: 5px;
+}
+
+.star{
+  color: #f8a41d;
 }
 
 .detailProduct p {

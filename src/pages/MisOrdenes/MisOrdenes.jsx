@@ -35,7 +35,7 @@ const MisOrdenes = ({ orders, getOrderHistory }) => {
                                         <td>{item.id}</td>
                                         <td>{formattedDate}</td>
                                         <td>{item.status}</td>
-                                        <td><Link to={`/order/${item.id}`}>Ver</Link></td>
+                                        <td><Link to={`/order/${item.id}?ou=${item.userId}`}>Ver</Link></td>
                                     </tr>
                                 )
                             })

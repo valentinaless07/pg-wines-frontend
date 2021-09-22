@@ -4,7 +4,7 @@ import Footer from '../../components/footer/Footer';
 import styles from './DetalleOrden.module.css';
 import { getOrderDetails } from '../../redux/actions/orderActions';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { format } from "date-fns";
 
@@ -14,6 +14,8 @@ const DetalleOrden = ({ getOrderDetails, orders_details }) => {
     useEffect(() => {
         getOrderDetails(id);
     }, [id, getOrderDetails])
+
+    const url = useLocation().search.split('=').slice(-1)[0]
 
     const formatDate = (date) => {
         var dateN = new Date(date);
@@ -61,7 +63,7 @@ const DetalleOrden = ({ getOrderDetails, orders_details }) => {
                                         <td>{p.quantity}</td>
                                         <td>{p.name}</td>
                                         <td>${p.cost}</td>
-                                        <td><Link to={`/product/${p.id}`}>Ver detalle de producto</Link></td>
+                                        <td><Link to={`/product/${p.id}?ou=1${url}`}>Ver detalle de producto</Link></td>
                                     </tr>
                                 )
                             })

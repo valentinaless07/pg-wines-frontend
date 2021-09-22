@@ -3,14 +3,18 @@ import styles from './comments.module.css'
 import './comments.css'
 import { connect } from "react-redux"
 import { postCommnets } from "../../redux/actions/comments"
+import { useHistory } from "react-router"
+import uniqid from 'uniqid';
 
 function Comments({idUser, idProduct, authState, newComment, comments, postCommnets}){
-    console.log(comments)
+
     const[comment, setComment] = useState({
         comment: '',
         rating: 0,
         idProd:''
     })
+
+    let history = useHistory();
 
     useEffect(()=>{
         setComment({
@@ -55,12 +59,15 @@ function Comments({idUser, idProduct, authState, newComment, comments, postCommn
     }
 
     function handleSubmit(e){
-        setComment({
-            ...comment,
-            idProd: idProduct
-        })
-        postCommnets(idUser, comment)
-        clean()
+        if(comment.comment!==''){
+            setComment({
+                ...comment,
+                idProd: idProduct
+            })
+            postCommnets(idUser, comment)
+            clean()
+            history.push(`/product/${idProduct}`)
+        }
     }
     
     return(<div className={styles.comments__Container}>
@@ -68,7 +75,7 @@ function Comments({idUser, idProduct, authState, newComment, comments, postCommn
             newComment && <form className={styles.form} onSubmit={handleSubmit}>
                 <div className={styles.infoUser}>
                     <img className={styles.userImage} src={authState.photoURL} alt="userPhoto" />
-                    <span>{authState.displayName || 'Error'}</span>
+                    {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}<span>{authState.displayName.toUpperCase() || 'Error'}</span>
                 </div>
                 <div className={styles.cup__Container}>
                     <span className={styles.glass}><i id='1' onClick={paint} className="fas fa-wine-glass"></i></span>
@@ -84,16 +91,18 @@ function Comments({idUser, idProduct, authState, newComment, comments, postCommn
             }
             <div>
                 {
-                    comments.length>0 && comments.map(box=><div id='commentsRatio' key={box.id}>
+                    comments.length>0 && comments.map(box=><div className={styles.form} id='commentsRatio' key={uniqid()}>
                     {/* comments.length>0 && comments.map(box=><div key={box.id}> */}
-                        <div>
+                        <div className={styles.cup__Container}>
                             <span className={styles.glass}><i className={`fas fa-wine-glass ${box.rating>=1 && 'star'}`}></i></span>
                             <span className={styles.glass}><i className={`fas fa-wine-glass ${box.rating>=2 && 'star'}`}></i></span>
                             <span className={styles.glass}><i className={`fas fa-wine-glass ${box.rating>=3 && 'star'}`}></i></span>
                             <span className={styles.glass}><i className={`fas fa-wine-glass ${box.rating>=4 && 'star'}`}></i></span>
                             <span className={styles.glass}><i className={`fas fa-wine-glass ${box.rating>=5 && 'star'}`}></i></span>
                         </div>
+                        <div className={styles.cup__Container}>
                             <p>{box.comment}</p>
+                        </div>
                     </div>)
                 }
             </div>
