@@ -1,13 +1,23 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styles from './comments.module.css'
 import './comments.css'
 import { connect } from "react-redux"
+import { postCommnets } from "../../redux/actions/comments"
 
-function Comments({authState, newComment, comments}){
-    
+function Comments({idUser, idProduct, authState, newComment, comments, postCommnets}){
+    console.log(comments)
     const[comment, setComment] = useState({
-        comment: ''
+        comment: '',
+        rating: 0,
+        idProd:''
     })
+
+    useEffect(()=>{
+        setComment({
+            ...comment,
+            idProd: idProduct
+        })
+    },[idProduct])
 
     function handleChange(e){
         setComment({
@@ -16,10 +26,7 @@ function Comments({authState, newComment, comments}){
         })
     }
 
-    function handleSubmit(e){
-        e.preventDefault()
-    }
-
+    
     function paint(e){
         for (let i = 1; i <= 5; i++) {
             let prueba = document.getElementById(i)
@@ -28,9 +35,34 @@ function Comments({authState, newComment, comments}){
         for (let i = 1; i <= e.target.id; i++) {
             let prueba = document.getElementById(i)
             prueba.classList.add('star')            
-        }               
+        }
+        setComment({
+            ...comment,
+            rating: e.target.id
+        })
+    }
+    
+    function clean(){
+        for (let i = 1; i <= 5; i++) {
+            let prueba = document.getElementById(i)
+            prueba.classList.remove('star')            
+        }
+        setComment({
+            ...comment,
+            rating: 0,
+            comment:''
+        })
     }
 
+    function handleSubmit(e){
+        setComment({
+            ...comment,
+            idProd: idProduct
+        })
+        postCommnets(idUser, comment)
+        clean()
+    }
+    
     return(<div className={styles.comments__Container}>
             {
             newComment && <form className={styles.form} onSubmit={handleSubmit}>
@@ -46,7 +78,7 @@ function Comments({authState, newComment, comments}){
                     <span className={styles.glass}><i id='5' onClick={paint} className="fas fa-wine-glass"></i></span>
                 </div>
                 <textarea className={styles.textArea} onChange={handleChange} value={comment.comment} placeholder='Deja tu comentario aqui...' name="comment" id="comment"></textarea>
-                <button className={`${styles.optBtn} ${styles.left}`}><i className="fas fa-times"></i></button>
+                <button onClick={clean} className={`${styles.optBtn} ${styles.left}`}><i className="fas fa-times"></i></button>
                 <button className={styles.optBtn} type='submit'><i className="far fa-save"></i></button>
             </form>
             }
@@ -55,13 +87,13 @@ function Comments({authState, newComment, comments}){
                     comments.length>0 && comments.map(box=><div id='commentsRatio' key={box.id}>
                     {/* comments.length>0 && comments.map(box=><div key={box.id}> */}
                         <div>
-                            <span className={styles.glass}><i className={`fas fa-wine-glass ${box.points>=1 && 'star'}`}></i></span>
-                            <span className={styles.glass}><i className={`fas fa-wine-glass ${box.points>=2 && 'star'}`}></i></span>
-                            <span className={styles.glass}><i className={`fas fa-wine-glass ${box.points>=3 && 'star'}`}></i></span>
-                            <span className={styles.glass}><i className={`fas fa-wine-glass ${box.points>=4 && 'star'}`}></i></span>
-                            <span className={styles.glass}><i className={`fas fa-wine-glass ${box.points>=5 && 'star'}`}></i></span>
+                            <span className={styles.glass}><i className={`fas fa-wine-glass ${box.rating>=1 && 'star'}`}></i></span>
+                            <span className={styles.glass}><i className={`fas fa-wine-glass ${box.rating>=2 && 'star'}`}></i></span>
+                            <span className={styles.glass}><i className={`fas fa-wine-glass ${box.rating>=3 && 'star'}`}></i></span>
+                            <span className={styles.glass}><i className={`fas fa-wine-glass ${box.rating>=4 && 'star'}`}></i></span>
+                            <span className={styles.glass}><i className={`fas fa-wine-glass ${box.rating>=5 && 'star'}`}></i></span>
                         </div>
-                            <p>{box.review}</p>
+                            <p>{box.comment}</p>
                     </div>)
                 }
             </div>
@@ -74,4 +106,4 @@ const mapStateToProps = (state) => {
     };
 }
 
-export default connect(mapStateToProps, null)(Comments);
+export default connect(mapStateToProps, {postCommnets})(Comments);
