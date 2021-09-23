@@ -12,7 +12,7 @@ const GestionDeOrdenes = ({ all_orders, getAllOrders, filterOrders }) => {
        getAllOrders().then(res => {
         filterOrders('All');
        });
-  }, [])
+  }, [filterOrders, getAllOrders])
 
   const handleChange = (e) => {
     filterOrders(e.target.value);

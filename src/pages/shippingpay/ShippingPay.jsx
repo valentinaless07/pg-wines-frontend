@@ -32,7 +32,7 @@ const ShippingPay = ({ cartState, getTotalPrice, totalPrice, idCheckout, authSta
         script.dataset.preferenceId = idCheckout
         container_checkout && container_checkout.appendChild(script)
 
-         }, [idCheckout]);
+         }, [idCheckout, getTotalPrice]);
 
          
 
@@ -77,7 +77,7 @@ const ShippingPay = ({ cartState, getTotalPrice, totalPrice, idCheckout, authSta
         
             if(Object.keys(validateSubmit).length === 0){
                 if(modificaciones){
-                    let res = axios.post("https://pg-delsur.herokuapp.com/address/"+authState.uid, shippingData)
+                    axios.post("https://pg-delsur.herokuapp.com/address/"+authState.uid, shippingData)
                 
                     history.push("/payconfirmation")
                 }

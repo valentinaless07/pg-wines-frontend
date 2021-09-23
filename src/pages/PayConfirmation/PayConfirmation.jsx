@@ -1,11 +1,9 @@
 import React from 'react';
 import uniqid from 'uniqid';
 import styles from './PayConfirmation.module.css';
-import CartProduct from '../../components/cart_product/CartProduct';
 import { getTotalPrice } from '../../redux/actions/cartActions';
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
-import { useState } from 'react';
 import { useHistory } from 'react-router';
 
 const PayConfirmation = ({ cartState, getTotalPrice, totalPrice, idCheckout }) => {
@@ -24,7 +22,7 @@ const PayConfirmation = ({ cartState, getTotalPrice, totalPrice, idCheckout }) =
         script.dataset.preferenceId = idCheckout
         container_checkout && container_checkout.appendChild(script)
 
-         }, [idCheckout]);
+         }, [idCheckout, getTotalPrice, history]);
 
          console.log(cartState)
 
