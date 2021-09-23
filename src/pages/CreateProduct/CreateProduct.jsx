@@ -27,7 +27,6 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
         description: "",
         cost: "",
         capacity: "",
-        discount: "0",
         stock: "0",
         image: [],
         categoryId: "",
@@ -124,7 +123,6 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
                 description: "",
                 cost: "",
                 capacity: "",
-                discount: "0",
                 stock: "0",
                 image: [],
                 categoryId: "",
@@ -184,11 +182,6 @@ const CreateProduct = ({ manageProductState, getCategories, postProductCreated, 
                     <input className={styles.input_text} value={newProductData.stock} onChange={e => handleChange(e)} name="stock" type="number"/>
                 </div>
 
-
-                <div className={styles.inputContainer}>
-                    <label>Descuento:</label>
-                    <input className={styles.input_text} value={newProductData.discount} onChange={e => handleChange(e)} name="discount" type="number"/>
-                </div>
                 
                 <div className={styles.select_container}>
                     <label>Categoría:</label>

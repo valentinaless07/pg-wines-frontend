@@ -34,7 +34,6 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, manag
             cost: product_detail.cost,
             capacity: product_detail.capacity,
             stock: product_detail.stock,
-            discount: product_detail.discount,
             categoryId: product_detail.category,
             brandId: product_detail.brand,
             packingId: product_detail.packing
@@ -157,11 +156,6 @@ const PutProduct = ({updateProduct, getProductDetailReset, product_detail, manag
                     <input className={styles.input_text} value={detailData.stock || ""} onChange={e => handleChange(e)} name="stock" type="number"/>
                 </div>
 
-
-                <div className={styles.inputContainer}>
-                    <label>Descuento:</label>
-                    <input className={styles.input_text} value={detailData.discount || ""} onChange={e => handleChange(e)} name="discount" type="number"/>
-                </div>
                 
                 <div className={styles.select_container}>
                     <label>Category:</label>

@@ -3,11 +3,13 @@ import axios from "axios"
 export function addCartProduct (payload) {
     return async function (dispatch) {
     
+        if(payload.stock - payload.quantity >= 0){
     let auth = JSON.parse(localStorage.getItem("auth"))
             if(auth?.loggedIn){
               await axios.post("https://pg-delsur.herokuapp.com/carts/addCartItem/"+auth.uid, {id: payload.id, quantity: payload.quantity})
               
             }
+        }
 
     return dispatch ({
         type: "ADD_CART_PRODUCT",
