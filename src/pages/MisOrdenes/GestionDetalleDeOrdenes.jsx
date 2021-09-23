@@ -70,9 +70,25 @@ const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details, updateOrder,
                             <h4>Cambiar su estado de: <span>{orders_details[0]?.status}</span>  A</h4>
                             <select className={styles.customselectestado} onChange={updateStatus}>
                                 <option value="" selected>Seleccionar...</option>
-                                <option value="approved">Aprobada</option>
-                                <option value="pending">Procesando</option>
-                                <option value="cancelled">Cancelada</option>
+                                {
+                                    orders_details[0]?.status === 'cart' ?
+                                
+                                <><option value="pending">Procesando</option><option value="cancelled">Cancelada</option></>
+
+                                : 
+                                <></>
+
+
+                                }
+
+                                {
+                                orders_details[0]?.status === 'pending' ?
+                                
+                                <><option value="approved">Aprobada</option><option value="cancelled">Cancelada</option></>
+
+                                : 
+                                    <></>
+                                }
                             </select>
                         </>
                         : <div className={styles.shippingboton}>
