@@ -56,7 +56,7 @@ const AppRouter = ({ authState, cartStateLogin, getTotalPrice, getUserFavorites 
           <Route exact path="/login" component={LoginScreen} />
           <Route exact path="/" component={HomeScreen} />
           <Route exact path="/register" component={RegisterScreen} />
-          <Route exact path="/reset-passowrd" component={ResetPasswordScreen} />
+          <Route exact path="/reset-password/:userId/:token" component={ResetPasswordScreen} />
           <Route exact path="/forgotpassword" component={ForgotPasswordScreen} />
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
           <Route exact path="/vino/:name" component={SearchResults} />
