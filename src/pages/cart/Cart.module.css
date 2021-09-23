@@ -1,156 +1,102 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap");
 
-.backicon > i {
-  text-decoration: none;
-  color: black;
-  padding-left: 120px;
-  padding-top: 30px;
+:root{
+  --font: "Nunito Sans", sans-serif;
+  --backTitel: #d0d0d0;
 }
 
-.container {
-  background-color: #f7f7f7;
+.container{
+  background-color: white;
+  height: 100vh;
 }
 
-.backicon {
-  cursor: pointer;
-}
-
-.title {
+.header{
+  background-color: var(--backTitel);
   display: flex;
+  height: 80px;
   align-items: center;
-  width: 100%;
-  justify-content: center;
-  margin-top: -40px;
+  text-align: center;
 }
 
-.cart_container {
-  height: 20vh;
-  background-color: rgb(255, 255, 255);
-  height: 65vh;
-  overflow-y: scroll;
-  width: 100%;
+.back{
+  width: 10%;
+  outline: none;
+  font-size: 35px;
+}
+
+.title{
+  width: 90%;
+}
+
+.cart_items_container{
+  display: flex;
+}
+
+.cart_items{
+  width: 80%;
+}
+
+.total_products{
   margin-top: 50px;
-}
-
-.cart_items_container {
-  height: auto;
-  display: flex;
-}
-
-.cart_items {
-  width: 70%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding-bottom: 30px;
-}
-
-.total_products {
-  width: 30%;
-  display: flex;
-  justify-content: center;
-}
-
-.total_container {
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  height: 250px;
-  margin-top: 70px;
-  position: fixed;
-  width: 250px;
+  width: 20%;
   text-align: center;
+  height: 170px;
+  min-width: 150px;
 }
 
-.hr {
-  margin-left: 10%;
-  margin-right: 10%;
-  border-color: rgba(0, 0, 0, 0.125);
-  margin-top: 20px;
+.hr{
+  width: 50%;
+  min-width: 110px;
 }
 
-.buttonSubmit {
-  background-color: #1a1a1a;
+.buttonSubmit{
+  font-family: var(--font);
+  background-color: #000000;
   color: white;
-  margin-top: 45px;
-  width: 115px;
-  height: 50px;
-  font-family: "Nunito Sans", sans-serif;
-  cursor: pointer;
-  line-height: 1.5rem;
   font-weight: 600;
-  font-size: 0.875rem;
-  vertical-align: middle;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border: 0 solid transparent;
-  text-align: center;
-  border-radius: 2px;
+  width: 100px;
+  margin: auto;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 3px;
 }
 
-.carritoVacio {
-  display: flex;
-  justify-content: center;
-  font-family: "Nunito Sans", sans-serif;
-  padding-top: 25px;
+.total{
+  display: block;
+  margin: 20px 0px;
 }
 
-.cost {
-  font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+@media (max-width: 600px){
+  .total_products{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--backTitel);
+  }
 
-@media (max-width: 970px) {
-  .total_container {
-    width: 210px;
+  .hr{
+    display: none;
   }
-  .total_products {
-    width: 25%;
-  }
-  .cart_items {
-    width: 75%;
-  }
-}
 
-@media (max-width: 900px) {
-  .total_container {
-    width: 190px;
+  .total{
+    margin: 0px;
   }
-}
 
-@media (max-width: 850px) {
-  .buttonSubmit {
-    font-size: 0.8rem;
+  .header{
+    font-size: 13px;
   }
-}
 
-@media (max-width: 800px) {
-  .total_container {
-    width: 170px;
+  .back{
+    margin-left: 10px;
   }
-}
 
-@media (max-width: 720px) {
-  .total_container {
-    width: 130px;
-  }
-  .buttonSubmit {
-    font-size: 0.7rem;
-    width: 100px;
-    height: 45px;
-  }
-}
-
-@media (max-width: 650px) {
-  .total_container {
-    width: 110px;
-  }
-  .cost {
-    font-size: 18px;
-  }
-  .buttonSubmit {
-    width: 85px;
+  .cart_items{
+    width: 100%;
   }
 }

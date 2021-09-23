@@ -44,6 +44,7 @@
 .icons_container > i {
   cursor: pointer;
   padding: 5px;
+  font-size: 30px;
 }
 
 .cost {
@@ -111,11 +112,40 @@
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 600px) {
   .name_price_product {
     font-size: 14px;
   }
   .cart_product > p {
     font-size: 14px;
   }
+
+  .cart_product{
+    position: relative;
+    width: 97%;
+  }
+
+  .icons_container > i{
+    position: absolute;
+    bottom: -20px;
+    font-size: 27px;
+  }
+
+  .icons_container{
+    width: 0px;
+    margin: 0px;
+  }
+
+  .icons_container >i:nth-child(1){
+    right: 85px;
+  }
+
+  .icons_container >i:nth-child(2){
+    right: 50px;
+  }
+
+  .icons_container >i:nth-child(3){
+    right: 15px;
+  }
+
 }
