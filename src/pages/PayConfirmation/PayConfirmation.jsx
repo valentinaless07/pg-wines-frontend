@@ -15,6 +15,7 @@ const PayConfirmation = ({ cartState, getTotalPrice, totalPrice, idCheckout }) =
 
     useEffect(() => {
         idCheckout.length < 1 ? history.push("/cart") :
+        window.scrollTo(0, 0)
         getTotalPrice()
         var container_checkout = document.getElementById("checkout_container")
         var script = document.createElement("script")

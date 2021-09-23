@@ -120,7 +120,7 @@
   margin-bottom: 20px;
   font-weight: bolder;
   font-style: italic;
-  padding-left: 40px;
+  padding-left: 60px;
   color: #767676;
   margin-top: 20px;
 }
@@ -133,13 +133,13 @@
   border: 0;
   padding-left: 0;
   border-bottom: 1px solid #4e4e4e;
-  margin-left: 40px;
+  margin-left: 60px;
 }
 
 .direccionenvio div {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin-top: 30px;
 }
 
@@ -160,7 +160,7 @@
 }
 
 .ciudadestado input {
-  width: 27%;
+  width: 42%;
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
