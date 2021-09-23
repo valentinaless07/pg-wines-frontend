@@ -44,6 +44,10 @@ export const sumToDate = (date, days) => {
     date.setDate(date.getDate() + 1);        
     return dateToString(date);   
 }
+export const restToDate = (date, days) => {
+    date.setDate(date.getDate() - 1);        
+    return dateToString(date);   
+}
 
 export const sortAlphabeticAsc = (a,b) => {
     if(a.name > b.name) return 1;

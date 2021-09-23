@@ -6,7 +6,7 @@ import Toggle from 'react-toggle';
 import spinner from '../../assests/images/spinnerLargeBkTransparent.svg';
 import { getOffers, postOffers, deleteOfferById, updateOfferById } from '../../redux/actions/offersManagerActions';
 import { getAllProductsSlider, getCategories } from '../../redux/actions/manageProductsActions';
-import { dateToString, sumToDate, dateToSpanishString } from '../../helpers/helpers';
+import { dateToString, sumToDate, restToDate, dateToSpanishString } from '../../helpers/helpers';
 import AdminAreaNavbar from "../../components/adminAreaNavbar/AdminAreaNavbar";
 import styles from './OffersManager.module.css';
 import './OffersManagerToggle.css';
@@ -63,13 +63,13 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
 
         switch (true) {
             case (elem.type === 'select-one'):
-               
+
                 setFormState({
                     ...formState,
                     [elem.name]: elem.value.toString(),
                 });
                 break;
-            case (elem.type === 'date'):
+            case (elem.type === 'date'):  
                 setFormState({
                     ...formState,
                     [elem.name]: elem.value,
@@ -107,21 +107,23 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
             default:
                 break;
         }
+
+        // console.log('formset: ', formState)
     }
 
     const getDaysToWeek = () => {
         const daysToSend = [];
-        for(let day in daysState){
-            if(daysState[day]){
+        for (let day in daysState) {
+            if (daysState[day]) {
                 daysToSend.push(day);
             }
         }
-      return daysToSend;
+        return daysToSend;
     }
 
-    const handleSave = (event) => {  
-        const offerDays = getDaysToWeek();      
-        const { image, categoryId, discount } = formState;
+    const handleSave = (event) => {
+        const offerDays = getDaysToWeek();
+        const { image, categoryId, discount, from, until } = formState;
 
         switch (true) {
             case (discount <= 0):
@@ -130,7 +132,12 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
             case (offerDays.length <= 0):
                 Swal.fire({ icon: 'warning', title: 'Oops...', text: 'Seleccionar almenos un día de la semana en la que la oferta estara activa.', });
                 break;
-
+            // case (new Date(from) < new Date()):               
+            //     Swal.fire({ icon: 'warning', title: 'Oops...', text: 'La fecha de inicio no puede ser inferior a hoy', });
+            //     break;
+            case (new Date(from) > new Date(until)):
+                Swal.fire({ icon: 'warning', title: 'Oops...', text: 'La fecha fin debe ser posterior a la fecha de inicio.', });
+                break;
             case (categoryId <= 0):
                 Swal.fire({ icon: 'warning', title: 'Oops...', text: 'Seleccionar una categoría.', });
                 break;
@@ -139,12 +146,12 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                 Swal.fire({ icon: 'warning', title: 'Oops...', text: 'Cargar una imagen.', });
                 break;
 
-            default:              
-                postOffers(formState, offerDays);  
+            default:
+                postOffers(formState, offerDays);
                 break;
         }
-        
-       
+
+
     }
 
     const handlePhotoUpload = () => {
@@ -166,16 +173,16 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
         return result;
     }
 
-    const handleOnChangeDayCheckbox =  (event) => {
+    const handleOnChangeDayCheckbox = (event) => {
         setDaysState(
             {
                 ...daysState,
                 [event.target.name]: event.target.checked
             }
         )
-        console.log(daysState)
+        // console.log(daysState)
     }
-  
+
 
     return (
         <div className={styles.flex_main_container}>
@@ -209,7 +216,7 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                         </div>
                         <div>
                             <label htmlFor="from">Inicio</label>
-                            <input type="date" id="from" name="from" value={dateToString(now)} min={dateToString(now)}  onChange={handleOnChange} />
+                            <input type="date" id="from" name="from" value={formState.from} min={restToDate(now, 1)} onChange={handleOnChange} />
                         </div>
                         <div>
                             <label htmlFor="until">Fin</label>
@@ -217,18 +224,18 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                         </div>
                         <div>
                             <span>Días</span>
-                        </div>                    
+                        </div>
                         <div className={styles.days_container}>
                             <div className={styles.day}>
                                 <input type="checkbox" id="lun" name="lun" value={daysState.lun} checked={daysState.lun} onChange={handleOnChangeDayCheckbox} />
                                 <label htmlFor="lun">L</label>
                             </div>
                             <div className={styles.day}>
-                                <input type="checkbox" id="mar" name="mar" value={daysState.mar} checked={daysState.mar}  onChange={handleOnChangeDayCheckbox} />
+                                <input type="checkbox" id="mar" name="mar" value={daysState.mar} checked={daysState.mar} onChange={handleOnChangeDayCheckbox} />
                                 <label htmlFor="mar">M</label>
                             </div>
                             <div className={styles.day}>
-                                <input type="checkbox" id="mie" name="mie" value={daysState.mie} checked={daysState.mie}  onChange={handleOnChangeDayCheckbox} />
+                                <input type="checkbox" id="mie" name="mie" value={daysState.mie} checked={daysState.mie} onChange={handleOnChangeDayCheckbox} />
                                 <label htmlFor="mie">M</label>
                             </div>
                             <div className={styles.day}>
@@ -242,7 +249,7 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
                             <div className={styles.day}>
                                 <input type="checkbox" id="sab" name="sab" value={daysState.sab} checked={daysState.sab} onChange={handleOnChangeDayCheckbox} />
                                 <label htmlFor="sab">S</label>
-                            </div> 
+                            </div>
                             <div className={styles.day}>
                                 <input type="checkbox" id="dom" name="dom" value={daysState.dom} checked={daysState.dom} onChange={handleOnChangeDayCheckbox} />
                                 <label htmlFor="dom">D</label>
