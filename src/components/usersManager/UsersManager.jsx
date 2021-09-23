@@ -23,18 +23,18 @@ const initialState = {
 function UsersManager({ usersState, getInfo, getUsers, updateUserById }) {
     const searchRef = useRef();
     let element = useLocation().search.split('=').slice(-1)[0];
-   
-    const [search, setSearch] = useState(initialState);
 
+    const [search, setSearch] = useState(initialState);
+    console.log(usersState.fetching)
     useEffect(() => {
         searchRef.current.select();
     }, []);
 
-    useEffect(() => {     
+    useEffect(() => {
         getUsers()
     }, [search.name, getUsers]);
 
-   
+
     function handleRegex(e) {
         setSearch({
             ...search,
@@ -69,13 +69,11 @@ function UsersManager({ usersState, getInfo, getUsers, updateUserById }) {
     }
 
     function handleUpdateAdminStatus(id, admin) {
-        console.log('change admin status')
         admin = !admin;
         updateUserById({ id, admin: admin.toString() });
         searchRef.current.select();
     }
     function handleUpdateActiveStatus(id, active) {
-        console.log('change active status')
         active = !active;
         updateUserById({ id, active: active.toString() });
         searchRef.current.select();
@@ -135,6 +133,12 @@ function UsersManager({ usersState, getInfo, getUsers, updateUserById }) {
         <React.Fragment>
             <AdminAreaNavbar />
             <div className={styles.admin}>
+                {
+                    usersState.fetching &&
+                    <div className={styles.spinner_container} >
+                        <img src={spinner} width="200px" alt="loading..." />
+                    </div>
+                }
                 {/* <h1>{element === 'categories' ? 'Categorias' : 'Marcas'}</h1> */}
                 <form className={styles.form} onSubmit={handleCreate}>
                     <span>Busqueda</span>
@@ -165,11 +169,7 @@ function UsersManager({ usersState, getInfo, getUsers, updateUserById }) {
                 </div>
                 <div className={styles.infoContainer}>
                     {
-                        (usersState.fetching)
-                            ? <div className={styles.spinner_container} >
-                                <img src={spinner} width="200px" alt="loading..." />
-                            </div>
-                            : usersState.filter(user => filter(user)).sort(sortAlphabeticAsc).map(user =>
+                        usersState.users.filter(user => filter(user)).sort(sortAlphabeticAsc).map(user =>
                                 <div className={styles.optionsContainer} key={user.id}>
                                     <div className={styles.name_item}>
                                         <span>{user.name}</span>
@@ -212,7 +212,9 @@ function UsersManager({ usersState, getInfo, getUsers, updateUserById }) {
 function MapStateToProps(state) {
     return {
         // state: state.brandsAndsCategories,
-        usersState: state.usersManager.users,
+        usersState: state.usersManager,
+        
+
     }
 }
 

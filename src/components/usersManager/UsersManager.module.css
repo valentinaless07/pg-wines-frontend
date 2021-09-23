@@ -3,7 +3,6 @@
 }
 
 .form {
-    /* margin: 20px 0px 25px 0px; */
     margin-top: 4em;
     margin-bottom: 4em;
     display: flex;
@@ -24,7 +23,7 @@
     height: 65vh;
 }
 .titleContainer {
-    background-color: lightgray;
+    background-color: #dddddd;
     width: 90%;
     min-width: 320px;
     max-width: 1000px;
@@ -43,41 +42,33 @@
     padding: 5px 20px;
     transition: all 0.5s;
     cursor: default;
+    border-bottom: solid grey .1px;
 }
 
 .optionsContainer:hover {
-    background-color: #c0d1d2;
+    background-color: lightgrey;
     padding-left: 35px;
 }
 
-.name_item {
-    /* border: 1px red solid; */
+.name_item {   
     width: 10em;
 }
 .email_item {
-    /* border: 1px red solid; */
-    width: 12em;
+    width: 17em;
 }
 .photo_url_item {
-    /* border: 1px red solid; */
     width: 2em;
     text-align: center;
 }
 .photo_url_item > img {
-    /* border: 1px red solid; */
     width: 2em;
     border-radius: 50px;
-    /* padding-left: .5em; */
-    /* padding-right: .5em; */
 }
 .birdth_date_item {
-    /* border: 1px red solid; */
-    /* margin-left: 1em; */
     text-align: center;
     width: 7em;
 }
 .phone_item {
-    /* border: 1px red solid; */
     text-align: center;
     width: 7em;
 }
@@ -136,7 +127,7 @@
 .spinner_container {
     width: 100%;
     height: 100%;
-    /* position: absolute;    */
+    position: absolute;   
     display: flex;
     justify-content: center;
     align-items: center;
