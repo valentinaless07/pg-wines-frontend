@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Navbar from '../../components/navbar/Navbar';
+import AdminNavbar from "../../components/adminAreaNavbar/AdminAreaNavbar"
 import Footer from '../../components/footer/Footer';
 import styles from './GestionDeOrdenes.module.css';
 import { connect } from 'react-redux';
@@ -20,7 +20,7 @@ const GestionDeOrdenes = ({ all_orders, getAllOrders, filterOrders }) => {
 
   return (
     <React.Fragment>
-      <Navbar />
+      <AdminNavbar />
       <div className={styles.ordeninfo}>
         <div>
           <h2>Historial de ordenes</h2>
