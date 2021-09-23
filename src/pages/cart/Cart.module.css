@@ -1,16 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap");
 
-:root{
+:root {
   --font: "Nunito Sans", sans-serif;
   --backTitel: #d0d0d0;
 }
 
-.container{
+.container {
   background-color: white;
   height: 100vh;
 }
 
-.header{
+.header {
   background-color: var(--backTitel);
   display: flex;
   height: 80px;
@@ -18,25 +18,28 @@
   text-align: center;
 }
 
-.back{
+.back {
   width: 10%;
   outline: none;
   font-size: 35px;
 }
 
-.title{
+.title {
   width: 90%;
 }
+.title > h1 {
+  padding-right: 140px;
+}
 
-.cart_items_container{
+.cart_items_container {
   display: flex;
 }
 
-.cart_items{
+.cart_items {
   width: 80%;
 }
 
-.total_products{
+.total_products {
   margin-top: 50px;
   width: 20%;
   text-align: center;
@@ -44,12 +47,12 @@
   min-width: 150px;
 }
 
-.hr{
+.hr {
   width: 50%;
   min-width: 110px;
 }
 
-.buttonSubmit{
+.buttonSubmit {
   font-family: var(--font);
   background-color: #000000;
   color: white;
@@ -61,13 +64,18 @@
   border-radius: 3px;
 }
 
-.total{
+.total {
   display: block;
   margin: 20px 0px;
 }
 
-@media (max-width: 600px){
-  .total_products{
+@media (max-width: 920px) {
+  .title > h1 {
+    padding-right: 0px;
+  }
+}
+@media (max-width: 600px) {
+  .total_products {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -80,23 +88,23 @@
     background-color: var(--backTitel);
   }
 
-  .hr{
+  .hr {
     display: none;
   }
 
-  .total{
+  .total {
     margin: 0px;
   }
 
-  .header{
+  .header {
     font-size: 13px;
   }
 
-  .back{
+  .back {
     margin-left: 10px;
   }
 
-  .cart_items{
+  .cart_items {
     width: 100%;
   }
 }
