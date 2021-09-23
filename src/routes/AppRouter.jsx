@@ -33,6 +33,8 @@ import { cartStateLogin, getTotalPrice } from '../redux/actions/cartActions';
 import Brands from '../components/brands/Brands';
 import OrderFeedback from '../pages/OrderFeedback/OrderFeedback';
 import { getUserFavorites } from '../redux/actions/manageProductsActions';
+import ForgotPasswordScreen from '../pages/forgotPassword/ForgotPasswordScreen';
+import ResetPasswordScreen from '../pages/resetPassword/ResetPasswordScreen';
 import Packing from '../pages/Packing/Packing';
 import PayConfirmation from '../pages/PayConfirmation/PayConfirmation';
 
@@ -54,11 +56,13 @@ const AppRouter = ({ authState, cartStateLogin, getTotalPrice, getUserFavorites 
 
           <Route exact path="/login" component={LoginScreen} />
           <Route exact path="/" component={HomeScreen} />
+          <Route exact path="/register" component={RegisterScreen} />
+          <Route exact path="/reset-password/:userId/:token" component={ResetPasswordScreen} />
+          <Route exact path="/forgotpassword" component={ForgotPasswordScreen} />
           <Route exact path="/product/:id" component={ProductDetailsScreen} />
           <Route exact path="/vino/:name" component={SearchResults} />
           <Route exact path="/about" component={AboutUs} />
           {/* <Route exact path='/manage' component={ManageProductInf} /> */}
-          <Route exact path="/register" component={RegisterScreen} />
           <Route exact path="/checkout" component={ShippingPay} />
           {/* <Route exact path="/offersManager" component={OffersManager} /> */}
           <Route exact path="/misordenes" component={MisOrdenes} />

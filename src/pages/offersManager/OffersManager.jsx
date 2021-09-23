@@ -9,7 +9,7 @@ import { getAllProductsSlider, getCategories } from '../../redux/actions/manageP
 import { dateToString, sumToDate, dateToSpanishString } from '../../helpers/helpers';
 import AdminAreaNavbar from "../../components/adminAreaNavbar/AdminAreaNavbar";
 import styles from './OffersManager.module.css';
-import './OffersManager.css';
+import './OffersManagerToggle.css';
 
 const initialState = {
     status: false,
@@ -167,7 +167,6 @@ const OffersManager2 = ({ offersState, getOffers, postOffers, getAllProductsSlid
     }
 
     const handleOnChangeDayCheckbox =  (event) => {
-        // console.log('CHECKBOX', event.target)
         setDaysState(
             {
                 ...daysState,

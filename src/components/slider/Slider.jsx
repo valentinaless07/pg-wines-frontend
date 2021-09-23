@@ -1,5 +1,5 @@
 import uniqid from 'uniqid';
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import { connect } from 'react-redux';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';

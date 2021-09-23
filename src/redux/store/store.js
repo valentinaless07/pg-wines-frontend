@@ -11,10 +11,12 @@ import cartReducer from '../reducers/cartReducer';
 import brandsAndsCategories from '../reducers/brandsAndCategories';
 import orderReducer from '../reducers/orderReducer';
 import usersManager from '../reducers/usersManagerReducer';
+import forgotPasswordReducer from '../reducers/forgotPasswordReducer';
 
 
 let rootReducer = combineReducers({
   auth: authReducer,
+  forgotPassword: forgotPasswordReducer,
   offers: offersManagerReducer,
   ui: uiReducer,
   user: userReducer,
