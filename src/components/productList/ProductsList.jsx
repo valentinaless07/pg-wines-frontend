@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import { getProducts, getFilteredProductsList } from '../../redux/actions/userActions';
 import { getCategories } from '../../redux/actions/manageProductsActions';
@@ -7,14 +7,30 @@ import './productList.css'
 import { useHistory } from 'react-router';
 import spinner from '../../assests/images/spinnerLargeBkTransparent.svg';
 
+function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+  }
 
 function ProductList({ state, manageProductState, getFilteredProductsList, getProducts, getCategories }) {
+
+    // const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+    //Get dimensions of window width-height
 
     useEffect(() => {
         getProducts();
         getCategories()
+        // function handleResize() {
+        //     setWindowDimensions(getWindowDimensions());
+        //   }
+        //   window.addEventListener('resize', handleResize);
+        //   return () => window.removeEventListener('resize', handleResize);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
 
     let history = useHistory();
 

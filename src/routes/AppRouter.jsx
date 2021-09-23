@@ -82,6 +82,16 @@ const AppRouter = ({ authState, cartStateLogin, getTotalPrice, getUserFavorites 
             path='/categories'
             component={Brands}
           />
+
+          <PrivateRoute
+            exact
+            isAuthenticated={loggedIn}
+            isAdmin={admin}
+            isActive={active}
+            path='/brands'
+            component={Brands}
+          />
+
            <PrivateRoute
             exact
             isAuthenticated={loggedIn}
