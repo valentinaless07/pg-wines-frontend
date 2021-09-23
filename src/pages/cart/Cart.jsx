@@ -61,6 +61,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, a
                             )}
 
                     </div>
+                    <div className={styles.total_container}>
                     <div className={styles.total_products}>
                         <div className={styles.cost}>
                             <p>Total</p>
@@ -70,6 +71,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, a
                             <hr className={styles.hr}></hr>
                             <p onClick={handleCheckout} className={styles.buttonSubmit}>COMPRAR</p>
                         </div>
+                    </div>
                     </div>
                 </div>
                : <div className={styles.carritoVacio}>El carrito de compras está vacío.</div> }
