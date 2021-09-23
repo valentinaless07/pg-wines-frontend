@@ -63,6 +63,8 @@ const AppRouter = ({ authState, cartStateLogin, getTotalPrice, getUserFavorites 
           {/* <Route exact path="/offersManager" component={OffersManager} /> */}
           <Route exact path="/misordenes" component={MisOrdenes} />
           <Route exact path="/order/:id" component={DetalleOrden} />
+          <Route exact path="/gestionordenes" component={GestionDeOrdenes} />
+          <Route exact path="/gestionorder/:id" component={GestionDetalleDeOrdenes} />
           <Route exact path="/equipo" component={OurTeam} />
           <Route exact path= "/feedback" component={OrderFeedback} />
 
@@ -78,22 +80,22 @@ const AppRouter = ({ authState, cartStateLogin, getTotalPrice, getUserFavorites 
             path='/categories'
             component={Brands}
           />
-           <PrivateRoute
+           {/* <PrivateRoute
             exact
             isAuthenticated={loggedIn}
             isAdmin={admin}
             isActive={active}
             path='/gestionordenes'
             component={GestionDeOrdenes}
-          />
-          <PrivateRoute
+          /> */}
+          {/* <PrivateRoute
             exact
             isAuthenticated={loggedIn}
             isAdmin={admin}
             isActive={active}
             path='/gestionorder/:id'
             component={GestionDetalleDeOrdenes}
-          />
+          /> */}
           <PrivateRoute
             exact
             isAuthenticated={loggedIn}
