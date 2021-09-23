@@ -42,19 +42,18 @@ export const getUsers = () => {
 
 // payload => {id:xxx, fieldName: xxx}
 export const updateUserById = (payload) => {
-    console.log('call me ', payload)
     return async (dispatch, getState) => {
         dispatch({
             type: USERS_MANAGER_LOADING
         });
       
         try {
-            const user = await axios.put(url.concat('/user'), payload);
-            console.log(user);
-            await getUsers()(dispatch, getState);
+            await axios.put(url.concat('/user'), payload);
+            await getUsers()(dispatch, getState);           
             dispatch({
                 type: USERS_MANAGER_UPDATE,
             });
+       
            
         } catch (error) {
             console.log(error)
