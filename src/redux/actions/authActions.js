@@ -38,6 +38,28 @@ export const startGoogleLogin = () => {
                 });
             }
             if(dbLogin.status === 200){
+                if(localStorage.getItem("cart")){
+                    
+                    let localStorageState =  JSON.parse(localStorage.getItem("cart"))
+                    
+                    let localState = []
+                    localStorageState.forEach(el =>{
+                        localState.push({
+                            id: el.id,
+                            quantity: el.quantity
+                        })
+                    })
+                                   
+                    
+                            
+                    axios.post("https://pg-delsur.herokuapp.com/carts/addVariusItemsCart/"+dbLogin.data.id, localState)
+                    
+                            
+                        
+                    
+                    localStorage.removeItem("cart")
+                    
+                }
                 dispatch(
                     {
                         type: AUTH_LOGIN_SUCCESS,
@@ -130,16 +152,25 @@ export const startRegisterWithEmailAndPassword = (name, email, password) => {
                 
                 if(localStorage.getItem("cart")){
                 let localStorageState =  JSON.parse(localStorage.getItem("cart"))
+                
+                let localState = []
+                localStorageState.forEach(el =>{
+                    localState.push({
+                        id: el.id,
+                        quantity: el.quantity
+                    })
+                })
                                
-                localStorageState.forEach(el =>
+                
                         
-                        axios.post("https://pg-delsur.herokuapp.com/carts/addCartItem/"+register.data.id, {id: el.id, quantity: el.quantity})
+                let respuesta =axios.post("https://pg-delsur.herokuapp.com/carts/addVariusItemsCart/"+register.data.id, localState)
+                
                         
-                        
-                    )
+                    
                 
                 localStorage.removeItem("cart")
-                }
+                
+            }
 
 
                 updateProfile(auth.currentUser, {
@@ -229,7 +260,28 @@ export const startLoginWithEmailAndPassword = (email, password, name) => {
                 console.log('login:', login)
 
                 
-
+                if(localStorage.getItem("cart")){
+                    
+                    let localStorageState =  JSON.parse(localStorage.getItem("cart"))
+                    
+                    let localState = []
+                    localStorageState.forEach(el =>{
+                        localState.push({
+                            id: el.id,
+                            quantity: el.quantity
+                        })
+                    })
+                                   
+                    
+                            
+                    axios.post("https://pg-delsur.herokuapp.com/carts/addVariusItemsCart/"+login.data.id, localState)
+                    
+                            
+                        
+                    
+                    localStorage.removeItem("cart")
+                    
+                }
                 dispatch(
                     {
                         type: AUTH_LOGIN_SUCCESS,

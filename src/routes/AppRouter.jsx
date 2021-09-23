@@ -34,6 +34,7 @@ import Brands from '../components/brands/Brands';
 import OrderFeedback from '../pages/OrderFeedback/OrderFeedback';
 import { getUserFavorites } from '../redux/actions/manageProductsActions';
 import Packing from '../pages/Packing/Packing';
+import PayConfirmation from '../pages/PayConfirmation/PayConfirmation';
 
 const AppRouter = ({ authState, cartStateLogin, getTotalPrice, getUserFavorites }) => {
 
@@ -66,6 +67,7 @@ const AppRouter = ({ authState, cartStateLogin, getTotalPrice, getUserFavorites 
           <Route exact path= "/feedback" component={OrderFeedback} />
 
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/payconfirmation" component={PayConfirmation} />
           {/* <Route exact path="/notFound" component={NotFound} /> */}
              
           <PrivateRoute

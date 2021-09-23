@@ -5,19 +5,21 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartProduct from '../../components/cart_product/CartProduct';
 import { getTotalPrice } from '../../redux/actions/cartActions';
-
+import { cartStateLogin } from "../../redux/actions/cartActions";
 
 import { postCheckout } from '../../redux/actions/cartActions';
 import { useHistory } from 'react-router';
 
 
 
-const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, authState}) => {
+const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, authState, cartStateLogin}) => {
     const history = useHistory()
     
     useEffect(() => {
         
         getTotalPrice()
+        cartStateLogin(authState.uid)
+        .then(() => getTotalPrice())
         
     } , [getTotalPrice]);
     
@@ -63,7 +65,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, a
                             <b>${totalPrice}</b>
                             </div>
                             <hr className={styles.hr}></hr>
-                            <p onClick={handleCheckout} className={styles.buttonSubmit}>CHECKOUT</p>
+                            <p onClick={handleCheckout} className={styles.buttonSubmit}>COMPRAR</p>
                         </div>
                     </div>
                 </div>
@@ -88,7 +90,8 @@ const mapStateToProps = (state) => {
     return {
       addCartProduct: () => dispatch(addCartProduct()),
       getTotalPrice: () => dispatch(getTotalPrice()),
-      postCheckout: (products) => dispatch(postCheckout(products))
+      postCheckout: (products) => dispatch(postCheckout(products)),
+      cartStateLogin: (id) => dispatch(cartStateLogin(id))
     }
   }
 
