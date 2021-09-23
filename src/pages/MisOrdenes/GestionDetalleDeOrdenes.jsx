@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { format } from "date-fns";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTruck } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
 const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details, updateOrder, updateShippingStatus}) => {
@@ -70,6 +72,9 @@ const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details, updateOrder,
                         <option value="pending">Procesando</option>
                         <option value="cancelled">Cancelada</option>
                     </select>
+                    <button className={styles.botonstyle} onClick={sendShipping}> 
+                <FontAwesomeIcon className={styles.truckstyle} icon={faTruck} />
+                 </button>
                 </div>
                
                 <div className={styles.detalleitem}>
@@ -85,6 +90,7 @@ const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details, updateOrder,
                                         <td>{p.name}</td>
                                         <td>${p.cost}</td>
                                         <td><Link to={`/product/${p.id}`}>Ver detalle de producto</Link></td>
+            
                                     </tr>
                                 )
                             })
@@ -92,10 +98,8 @@ const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details, updateOrder,
                     </table >
                 </div>
 
-                <button onClick={sendShipping}>Delivery</button>
                 
-               
-
+    
             </div>
             <Footer />
         </>

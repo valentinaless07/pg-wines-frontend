@@ -114,3 +114,20 @@
 .customselectestado select {
     display: none; 
   }
+
+.botonstyle{
+    background:#3483fa;
+    margin-left: 5px; 
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+
+
+
+.truckstyle{
+    color: white;
+    font-size: 15px;
+      
+  }
