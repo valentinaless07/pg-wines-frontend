@@ -1,5 +1,4 @@
 import styles from './ProductsList.module.css';
-import './productList.css'
 import { useHistory, useLocation } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import { connect } from 'react-redux';

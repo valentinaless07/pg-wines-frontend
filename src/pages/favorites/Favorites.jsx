@@ -15,7 +15,7 @@ const Favorites = ({getUserFavorites, authState, stateFavorites, deleteUserFavor
         
         getUserFavorites(authState.uid)
         
-    } , [getUserFavorites]);
+    } , [getUserFavorites, authState.uid]);
 
     async function deleteFavorite (id) {
       deleteUserFavorite({userId: authState.uid, idProduct: id})

@@ -5,21 +5,23 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartProduct from '../../components/cart_product/CartProduct';
 import { getTotalPrice } from '../../redux/actions/cartActions';
-
-
+import { cartStateLogin } from "../../redux/actions/cartActions";
+import { userAddress } from '../../redux/actions/cartActions';
 import { postCheckout } from '../../redux/actions/cartActions';
 import { useHistory } from 'react-router';
 
 
 
-const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, authState}) => {
+const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, authState, cartStateLogin, userAddress}) => {
     const history = useHistory()
     
     useEffect(() => {
         
         getTotalPrice()
+        cartStateLogin(authState.uid)
+        .then(() => getTotalPrice())
         
-    } , [getTotalPrice]);
+    } , [getTotalPrice, authState.uid]);
     
 
     
@@ -30,6 +32,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, a
         let id = authState.uid
         
         await postCheckout({product: cartState, orderId: id})
+        await userAddress(authState.uid)
 
         history.push("/checkout")
     }
@@ -38,11 +41,13 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, a
 
     return (
         <div className={styles.container}>
-            
-            <Link to="/" className={styles.backicon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
-
-            <div className={styles.title}>    
-            <h1>Carrito de compras</h1>
+            <div className={styles.header}>
+                <div className={styles.back}>
+                    <Link to="/" className={styles.backicon}><i className="fas fa-arrow-circle-left"></i></Link>
+                </div>
+                <div className={styles.title}>    
+                    <h1>Carrito de compras</h1>
+                </div>
             </div>
 
             <div className={styles.cart_container}>
@@ -57,13 +62,13 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, a
 
                     </div>
                     <div className={styles.total_products}>
-                        <div className={styles.total_container}>
-                            <div className={styles.cost}>
-                            <p>Total</p><br/>
-                            <b>${totalPrice}</b>
-                            </div>
+                        <div className={styles.cost}>
+                            <p>Total</p>
+                            <b className={styles.total}>${totalPrice}</b>
+                        </div>
+                        <div>
                             <hr className={styles.hr}></hr>
-                            <p onClick={handleCheckout} className={styles.buttonSubmit}>CHECKOUT</p>
+                            <p onClick={handleCheckout} className={styles.buttonSubmit}>COMPRAR</p>
                         </div>
                     </div>
                 </div>
@@ -88,7 +93,9 @@ const mapStateToProps = (state) => {
     return {
       addCartProduct: () => dispatch(addCartProduct()),
       getTotalPrice: () => dispatch(getTotalPrice()),
-      postCheckout: (products) => dispatch(postCheckout(products))
+      postCheckout: (products) => dispatch(postCheckout(products)),
+      cartStateLogin: (id) => dispatch(cartStateLogin(id)),
+      userAddress: (address) => dispatch(userAddress(address))
     }
   }
 

@@ -5,7 +5,7 @@ export function addCartProduct (payload) {
     
     let auth = JSON.parse(localStorage.getItem("auth"))
             if(auth?.loggedIn){
-              let res = await axios.post("https://pg-delsur.herokuapp.com/carts/addCartItem/"+auth.uid, {id: payload.id, quantity: payload.quantity})
+              await axios.post("https://pg-delsur.herokuapp.com/carts/addCartItem/"+auth.uid, {id: payload.id, quantity: payload.quantity})
               
             }
 
@@ -22,7 +22,7 @@ export function deleteCartProduct(payload) {
         
         let auth = JSON.parse(localStorage.getItem("auth"))
             if(auth?.loggedIn === true){
-              let res = await axios.delete("https://pg-delsur.herokuapp.com/carts/deleteCartItem/"+auth.uid+"/"+payload)
+              await axios.delete("https://pg-delsur.herokuapp.com/carts/deleteCartItem/"+auth.uid+"/"+payload)
              
             }
 
@@ -40,7 +40,7 @@ export function editItemsAmount(payload){
     
         let auth = JSON.parse(localStorage.getItem("auth"))
         if(auth?.loggedIn === true){
-          let res = await axios.put("https://pg-delsur.herokuapp.com/carts/editCartQuantity/"+auth.uid, {id: payload.id, quantity: payload.amount})
+          await axios.put("https://pg-delsur.herokuapp.com/carts/editCartQuantity/"+auth.uid, {id: payload.id, quantity: payload.amount})
          
         }
     
@@ -81,6 +81,17 @@ export function cartStateLogin (payload) {
         return dispatch({
             type: "CART_STATE_LOGIN",
             payload: respuesta.data.products
+        })
+    }
+}
+
+export function userAddress (userId) {
+    return async function (dispatch) {
+        var address = await axios.get("https://pg-delsur.herokuapp.com/address/"+ userId)
+        
+        return dispatch({
+            type: "USER_ADDRESS",
+            payload: address.data
         })
     }
 }
