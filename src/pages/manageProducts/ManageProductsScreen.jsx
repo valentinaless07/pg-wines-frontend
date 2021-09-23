@@ -26,7 +26,7 @@ const ManageProductsScreen = ({products, getProductsPage, getProductsPagination}
 
 
         {/* <div className={styles.createProductIcon}><NavLink to="createproduct"><li>Crear producto</li></NavLink></div> */}
-
+        <div className={styles.scroll}>
         <div className={styles.productsList}>
 
           <div className={styles.h1_buttonCreate}> 
@@ -39,6 +39,7 @@ const ManageProductsScreen = ({products, getProductsPage, getProductsPagination}
                 return <ProductManageCard key={el.id} id={el.id} name={el.name} category={el.category} cost={el.cost}/>
             })}
         </div>
+        
         <ReactPaginate
         previousLabel={<i className="fas fa-chevron-left"></i>}
         nextLabel={<i className="fas fa-chevron-right"></i>}
@@ -46,6 +47,7 @@ const ManageProductsScreen = ({products, getProductsPage, getProductsPagination}
         onPageChange={changePage}
         activeClassName={'activePaginationBtn'}
         />
+        </div>
         </div>
     );
 }

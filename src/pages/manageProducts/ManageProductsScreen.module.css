@@ -26,6 +26,11 @@
   padding-bottom: 30px;
 }
 
+.scroll {
+  height: 90vh;
+  overflow-y: scroll;
+}
+
 .manageProductsContainer ul {
   list-style: none;
   display: flex;
