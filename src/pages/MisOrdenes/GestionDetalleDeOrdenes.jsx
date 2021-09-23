@@ -76,8 +76,18 @@ const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details, updateOrder,
                                 <><option value="pending">Procesando</option><option value="cancelled">Cancelada</option></>
 
                                 : 
+                                <></>
+
+
+                                }
+
+                                {
+                                orders_details[0]?.status === 'pending' ?
+                                
                                 <><option value="approved">Aprobada</option><option value="cancelled">Cancelada</option></>
 
+                                : 
+                                    <></>
                                 }
                             </select>
                         </>
