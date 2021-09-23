@@ -21,7 +21,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, a
         cartStateLogin(authState.uid)
         .then(() => getTotalPrice())
         
-    } , [getTotalPrice]);
+    } , [getTotalPrice, authState.uid]);
     
 
     

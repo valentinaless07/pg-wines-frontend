@@ -163,7 +163,7 @@ export const startRegisterWithEmailAndPassword = (name, email, password) => {
                                
                 
                         
-                let respuesta =axios.post("https://pg-delsur.herokuapp.com/carts/addVariusItemsCart/"+register.data.id, localState)
+                axios.post("https://pg-delsur.herokuapp.com/carts/addVariusItemsCart/"+register.data.id, localState)
                 
                         
                     
