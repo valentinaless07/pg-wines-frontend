@@ -110,7 +110,7 @@ const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details, updateOrder,
                                 return (
                                     <tr key={p.id}>
                                         <td><img src={p.image[0]} alt="" /></td>
-                                        <td>{p.quantity}</td>
+                                        <td>3 unidades</td>
                                         <td>{p.name}</td>
                                         <td>${p.cost}</td>
                                         <td><Link to={`/product/${p.id}`}>Ver detalle de producto</Link></td>
