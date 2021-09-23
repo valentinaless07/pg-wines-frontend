@@ -22,10 +22,10 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
 
     useEffect(() => {
         useRefEmail.current.select();
-    }, []); 
-    
+    }, []);
+
     useEffect(() => {
-        if (authState.loggedIn) {           
+        if (authState.loggedIn) {
             return history.replace('/');
         }
 
@@ -37,7 +37,7 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
         startGoogleLogin();
     }
 
-    const handleStarLoginWithEmailAndPassword = async(event) => {
+    const handleStarLoginWithEmailAndPassword = async (event) => {
         event.preventDefault();
         if (isFormValid()) {
             await startLoginWithEmailAndPassword(formValues.email, formValues.password);
@@ -73,7 +73,7 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
                         <img src={spinner} width="80px" alt="loading..." />
                     </div>
                 } */}
-                <h3 className="auth__title">Login to your account</h3>
+                <h3 className="auth__title">Acceder a tu cuenta</h3>
 
                 <form className="login_form" onSubmit={handleStarLoginWithEmailAndPassword}>
                     {
@@ -88,7 +88,7 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
                     <input
                         ref={useRefEmail}
                         type="text"
-                        placeholder="Email"
+                        placeholder="Escribí aquí tu correo electrónico"
                         name="email"
                         className="auth__input"
                         autoComplete="off"
@@ -98,30 +98,38 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
 
                     <input
                         type="password"
-                        placeholder="Password"
+                        placeholder="Contraseña"
                         name="password"
                         className="auth__input"
                         value={password}
                         onChange={handleInputChange}
                     />
 
-                    <button                        
+                    <button
                         disabled={authState.fetching}
                         onClick={handleStarLoginWithEmailAndPassword}
                         type="submit"
                         className="auth__button"
                     >
-                        Login
+                        Acceder
                     </button>
+                    <div className="auth_forgot_password">
+                        <Link                        
+                            to="/forgotpassword"
+                            className="link"
+                        >
+                            Olvidaste tu contraseña?
+                        </Link>
+                    </div>
 
                     {/* Login with social networks */}
                     <div className="auth__social-networks">
-                        <p>Login with social networks</p>
+                        <p>Acceder con redes sociales</p>
 
                         <div className="auth__social-buttons-container" >
                             <div className="social-icon">
                                 <img className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google button" />
-                                <div onClick={handleLoginWithGoogle} >Sign in with Google</div>
+                                <div onClick={handleLoginWithGoogle} >Inicia sesión con Google</div>
                             </div>
 
                         </div>
@@ -133,7 +141,7 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
                             to="/register"
                             className="link"
                         >
-                            Create new account
+                            Crear una cuenta
                         </Link>
 
                         <Link
@@ -141,7 +149,7 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
                             to="/"
                             className="link"
                         >
-                            Cancel
+                            Cancelar
                         </Link>
                     </div>
 
@@ -149,11 +157,11 @@ const LoginScreen = ({ authState, uiState, setError, removeError, startLoginWith
             </div>
 
             {
-                    authState.fetching && 
-                    <div style={{textAlign:'center', position:'fixed'}}>
-                        <img src={spinner} width="200px" alt="loading..." />
-                    </div>
-                }
+                authState.fetching &&
+                <div style={{ textAlign: 'center', position: 'fixed' }}>
+                    <img src={spinner} width="200px" alt="loading..." />
+                </div>
+            }
         </div >
 
     )

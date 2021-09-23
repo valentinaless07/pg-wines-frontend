@@ -71,7 +71,7 @@ const RegisterScreen = ({ authState, uiState, setError, removeError, startRegist
     return (
         <div className="register__main">
             <div className="register__box-container">
-                <h3 className="register__title">Register</h3>
+                <h3 className="register__title">Registrase</h3>
 
                 <form className="register_form" onSubmit={handleRegister}>
                     {
@@ -85,7 +85,7 @@ const RegisterScreen = ({ authState, uiState, setError, removeError, startRegist
                     <input
                         ref={useRefName}
                         type="text"
-                        placeholder="Name"
+                        placeholder="Nombre"
                         name="name"
                         className="register__input"
                         autoComplete="off"
@@ -95,7 +95,7 @@ const RegisterScreen = ({ authState, uiState, setError, removeError, startRegist
 
                     <input
                         type="text"
-                        placeholder="Email"
+                        placeholder="Correo electrónico"
                         name="email"
                         className="register__input"
                         autoComplete="off"
@@ -105,7 +105,7 @@ const RegisterScreen = ({ authState, uiState, setError, removeError, startRegist
 
                     <input
                         type="password"
-                        placeholder="Password"
+                        placeholder="Contraseña"
                         name="password"
                         className="register__input"
                         autoComplete="off"
@@ -115,7 +115,7 @@ const RegisterScreen = ({ authState, uiState, setError, removeError, startRegist
 
                     <input
                         type="password"
-                        placeholder="Confirm password"
+                        placeholder="Confirmar contraseña"
                         name="password2"
                         className="register__input"
                         autoComplete="off"
@@ -128,14 +128,14 @@ const RegisterScreen = ({ authState, uiState, setError, removeError, startRegist
                         type="submit"
                         className="register__button"
                     >
-                        Register
+                        Enviar
                     </button>
 
                     <Link
                         to="/login"
                         className="link"
                     >
-                        Already registered?
+                       Ya estas registrado?
                     </Link>
 
                 </form>
