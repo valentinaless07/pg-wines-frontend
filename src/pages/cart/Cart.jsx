@@ -9,7 +9,7 @@ import { cartStateLogin } from "../../redux/actions/cartActions";
 import { userAddress } from '../../redux/actions/cartActions';
 import { postCheckout } from '../../redux/actions/cartActions';
 import { useHistory } from 'react-router';
-
+import Navbar from "../../components/navbar/Navbar"
 
 
 const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, authState, cartStateLogin, userAddress}) => {
@@ -40,11 +40,11 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, a
     
 
     return (
+        <>
+        <Navbar/>
         <div className={styles.container}>
             <div className={styles.header}>
-                <div className={styles.back}>
-                    <Link to="/" className={styles.backicon}><i className="fas fa-arrow-circle-left"></i></Link>
-                </div>
+               
                 <div className={styles.title}>    
                     <h1>Carrito de compras</h1>
                 </div>
@@ -78,6 +78,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, a
             </div>
         
         </div>
+        </>
     );
 }
  

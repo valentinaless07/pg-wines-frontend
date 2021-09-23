@@ -7,15 +7,16 @@
 
 .container {
   background-color: white;
-  height: 100vh;
+  height: 87.9vh;
 }
 
 .header {
   background-color: var(--backTitel);
   display: flex;
-  height: 80px;
+  height: 60px;
   align-items: center;
   text-align: center;
+  box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
 }
 
 .back {
@@ -25,15 +26,13 @@
 }
 
 .title {
-  width: 90%;
-}
-.title > h1 {
-  padding-right: 80px;
+  width: 100%;
 }
 
 .cart_items_container {
   display: flex;
   height: auto;
+  padding-bottom: 15px;
 }
 
 .cart_items {
@@ -70,9 +69,10 @@
 }
 
 .cart_container {
-  height: 86vh;
-  padding-top: 4px;
+  height: 75vh;
+  padding-top: 2px;
   overflow-y: scroll;
+  margin-top: 8px;
 }
 
 .hr {
@@ -98,9 +98,6 @@
 }
 
 @media (max-width: 920px) {
-  .title > h1 {
-    padding-right: 0px;
-  }
   .total_container {
     margin-left: 90px;
   }
