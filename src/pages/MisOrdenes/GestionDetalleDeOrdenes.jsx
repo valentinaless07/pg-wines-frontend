@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTruck } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
-const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details, updateOrder, updateShippingStatus}) => {
+const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details, updateOrder, updateShippingStatus }) => {
 
     const { id } = useParams()
     useEffect(() => {
@@ -63,20 +63,28 @@ const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details, updateOrder,
                         </ul>
                         : <></>}
                 </div>
-                
+
                 <div className={styles.selectestado}>
-                    <h4>Cambiar su estado de: <span>{orders_details[0]?.status}</span>  A</h4>
-                    <select className={styles.customselectestado} onChange={updateStatus}>
-                         <option value=""  selected>Seleccionar...</option>
-                        <option value="approved">Aprobada</option>
-                        <option value="pending">Procesando</option>
-                        <option value="cancelled">Cancelada</option>
-                    </select>
-                    <button className={styles.botonstyle} onClick={sendShipping}> 
-                <FontAwesomeIcon className={styles.truckstyle} icon={faTruck} />
-                 </button>
+                    {orders_details[0]?.status !== 'approved' ?
+                        <>
+                            <h4>Cambiar su estado de: <span>{orders_details[0]?.status}</span>  A</h4>
+                            <select className={styles.customselectestado} onChange={updateStatus}>
+                                <option value="" selected>Seleccionar...</option>
+                                <option value="approved">Aprobada</option>
+                                <option value="pending">Procesando</option>
+                                <option value="cancelled">Cancelada</option>
+                            </select>
+                        </>
+                        : <div className={styles.shippingboton}>
+                            <h3>Hacer envio</h3>
+                            <button className={styles.botonstyle} onClick={sendShipping}>
+                                <FontAwesomeIcon className={styles.truckstyle} icon={faTruck} />
+                            </button>
+                        </div>
+
+                    }
                 </div>
-               
+
                 <div className={styles.detalleitem}>
                     <table>
 
@@ -90,7 +98,7 @@ const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details, updateOrder,
                                         <td>{p.name}</td>
                                         <td>${p.cost}</td>
                                         <td><Link to={`/product/${p.id}`}>Ver detalle de producto</Link></td>
-            
+
                                     </tr>
                                 )
                             })
@@ -98,8 +106,8 @@ const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details, updateOrder,
                     </table >
                 </div>
 
-                
-    
+
+
             </div>
             <Footer />
         </>

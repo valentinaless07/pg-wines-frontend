@@ -114,6 +114,16 @@
 .customselectestado select {
     display: none; 
   }
+  
+.shippingboton{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.shippingboton h3{
+    margin: 0;
+}
 
 .botonstyle{
     background:#3483fa;
