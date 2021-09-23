@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 import CartProduct from '../../components/cart_product/CartProduct';
 import { getTotalPrice } from '../../redux/actions/cartActions';
 import { cartStateLogin } from "../../redux/actions/cartActions";
-
+import { userAddress } from '../../redux/actions/cartActions';
 import { postCheckout } from '../../redux/actions/cartActions';
 import { useHistory } from 'react-router';
 
 
 
-const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, authState, cartStateLogin}) => {
+const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, authState, cartStateLogin, userAddress}) => {
     const history = useHistory()
     
     useEffect(() => {
@@ -32,6 +32,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, a
         let id = authState.uid
         
         await postCheckout({product: cartState, orderId: id})
+        await userAddress(authState.uid)
 
         history.push("/checkout")
     }
@@ -91,7 +92,8 @@ const mapStateToProps = (state) => {
       addCartProduct: () => dispatch(addCartProduct()),
       getTotalPrice: () => dispatch(getTotalPrice()),
       postCheckout: (products) => dispatch(postCheckout(products)),
-      cartStateLogin: (id) => dispatch(cartStateLogin(id))
+      cartStateLogin: (id) => dispatch(cartStateLogin(id)),
+      userAddress: (address) => dispatch(userAddress(address))
     }
   }
 

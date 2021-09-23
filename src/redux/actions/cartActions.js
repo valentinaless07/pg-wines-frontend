@@ -84,3 +84,14 @@ export function cartStateLogin (payload) {
         })
     }
 }
+
+export function userAddress (userId) {
+    return async function (dispatch) {
+        var address = await axios.get("https://pg-delsur.herokuapp.com/address/"+ userId)
+        
+        return dispatch({
+            type: "USER_ADDRESS",
+            payload: address.data
+        })
+    }
+}
