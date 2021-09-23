@@ -1,88 +1,89 @@
-.admin{
-    width: 100%;
+.admin {
+  width: 100%;
+  padding: 30px;
 }
 
-.form{
-    margin: 20px 0px 25px 0px;
+.form {
+  margin: 20px 0px 25px 0px;
 }
-.infoContainer{
-    height: calc(100vh - 150px);
-    overflow: auto;
-    width: 70%;
-    min-width: 320px;
-    max-width: 700px;
-}
-
-.optionsContainer{
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 20px;
-    transition: all 0.5s;
-    cursor: default;
+.infoContainer {
+  height: calc(100vh - 150px);
+  overflow: auto;
+  width: 70%;
+  min-width: 320px;
+  max-width: 700px;
 }
 
-.optionsContainer:hover{
-    background-color: #C0D1D2;
-    padding-left: 35px;
+.optionsContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+  transition: all 0.5s;
+  cursor: default;
 }
 
-.inputSearch{
-    border: none;
-    background-color: transparent;
-    border-bottom: 1px solid rgb(161, 161, 161);
-    outline: none;
-    margin: 0px 40px 0px 10px;
+.optionsContainer:hover {
+  background-color: #c0d1d2;
+  padding-left: 35px;
 }
 
-.btnCreate{
-    width: 100px;
-    border:none;
-    padding: 8px;
-    border-radius: 5px;
-    transition: 0.3s;
-    cursor: pointer;
+.inputSearch {
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid rgb(161, 161, 161);
+  outline: none;
+  margin: 0px 40px 0px 10px;
 }
 
-.btnCreate:hover{
-    background-color: #C0D1D2;
+.btnCreate {
+  width: 100px;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
-.icon{
-    padding: 4px;
-    margin: 0px 10px;
-    border-radius: 50%; 
-    transition: 0.3s;
+.btnCreate:hover {
+  background-color: #c0d1d2;
 }
 
-.icon:hover{
-    background-color: #3A6D70;
-    cursor: pointer;
+.icon {
+  padding: 4px;
+  margin: 0px 10px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.icon:hover {
+  background-color: #3a6d70;
+  cursor: pointer;
 }
 
 .infoContainer::-webkit-scrollbar {
-    width: 10px;
-  }
-  
+  width: 10px;
+}
+
 .infoContainer::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-  }
-   
+  background: #f1f1f1;
+}
+
 .infoContainer::-webkit-scrollbar-thumb {
-    background: #888; 
-  }
-  
+  background: #888;
+}
+
 .infoContainer::-webkit-scrollbar-thumb:hover {
-    background: #555;
+  background: #555;
 }
 
-@media (max-width: 500px){
-
-.infoContainer{
-    height: calc(100vh - 220px);}
+@media (max-width: 500px) {
+  .infoContainer {
+    height: calc(100vh - 220px);
+  }
 }
 
-.btnCreate{
-    background-color: #C0D1D2;
-    width: 150px;
-    margin-top: 10px;
+.btnCreate {
+  background-color: #c0d1d2;
+  width: 150px;
+  margin-top: 10px;
 }
