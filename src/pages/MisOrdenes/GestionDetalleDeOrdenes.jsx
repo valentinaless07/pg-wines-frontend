@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import styles from './GestionDetalleDeOrdenes.module.css';
-import { getOrderDetails } from '../../redux/actions/orderActions';
+import { getOrderDetails, updateOrder, updateShippingStatus } from '../../redux/actions/orderActions';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { format } from "date-fns";
+import Swal from 'sweetalert2';
 
-const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details }) => {
+const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details, updateOrder, updateShippingStatus}) => {
 
     const { id } = useParams()
     useEffect(() => {
@@ -31,6 +32,17 @@ const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details }) => {
         return t;
     }
 
+    const updateStatus = (e) => {
+        e.preventDefault();
+        updateOrder(orders_details[0].userId, e.target.value);
+        new Swal("Exito", "Estado actualizado", "success");
+    }
+
+    const sendShipping = () => {
+        updateShippingStatus(orders_details[0].id);
+        new Swal("Exito", "Tu orden ha sido despachada!", "success");
+    }
+
     return (
         <>
             <Navbar />
@@ -51,13 +63,12 @@ const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details }) => {
                 </div>
                 
                 <div className={styles.selectestado}>
-                    <h4>Cambiar su estado de: <span>estado</span>  A</h4>
-                    <select className={styles.customselectestado} name="" id="">
-                        <option value="">Todas</option>
-                        <option value="">Creadas</option>
-                        <option value="">Procesando</option>
-                        <option value="">Canceladas</option>
-                        <option value="">Completas</option>
+                    <h4>Cambiar su estado de: <span>{orders_details[0]?.status}</span>  A</h4>
+                    <select className={styles.customselectestado} onChange={updateStatus}>
+                         <option value=""  selected>Seleccionar...</option>
+                        <option value="approved">Aprobada</option>
+                        <option value="pending">Procesando</option>
+                        <option value="cancelled">Cancelada</option>
                     </select>
                 </div>
                
@@ -80,6 +91,9 @@ const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details }) => {
                         }
                     </table >
                 </div>
+
+                <button onClick={sendShipping}>Delivery</button>
+                
                
 
             </div>
@@ -97,9 +111,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         getOrderDetails: (id) => dispatch(getOrderDetails(id)),
-
-
-
+        updateOrder: (id, status) => dispatch(updateOrder(id, status)),
+        updateShippingStatus: (id) => dispatch(updateShippingStatus(id))
     };
 };
 

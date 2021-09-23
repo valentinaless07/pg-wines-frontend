@@ -17,11 +17,11 @@ export const getOrderHistory = () => {
     // console.log('userData', userData);
     return async function (dispatch) {
         await axios.get(`https://pg-delsur.herokuapp.com/orders/userOrders/${userData.uid}`)
-
             .then(results => {
+                let filteredResult = results.data.filter(o => o.status.toLowerCase() !== 'cart');
                 dispatch({
                     type: GET_ORDER_HISTORY,
-                    payload: results.data
+                    payload: filteredResult
                 })
             })
     }
@@ -40,10 +40,21 @@ export const getOrderDetails = (id) => {
     }
 }
 
-export const updateOrder = (id) => {
+export const updateOrder = (id, status) => {
     return async function (dispatch) {
-        await axios.get(`https://pg-delsur.herokuapp.com/orders/updateOrder/${id}`)
+        await axios.put(`https://pg-delsur.herokuapp.com/orders/updateOrderStatus/${id}`, {status})
+            .then(results => {
+                dispatch({
+                    type: UPDATE_ORDER,
+                    payload: results.data
+                })
+            })
+    }
+}
 
+export const updateShippingStatus = (id) => {
+    return async function (dispatch) {
+        await axios.put(`https://pg-delsur.herokuapp.com/orders/updateShipStatus`, {id, status: 'approved'})
             .then(results => {
                 dispatch({
                     type: UPDATE_ORDER,
@@ -78,7 +89,7 @@ export const filterOrders = (by) => (dispatch, getState) => {
             })
             break;
         case 'processing':
-            filteredOrders = orders.filter(o => o.status.toLowerCase() === 'processing');
+            filteredOrders = orders.filter(o => o.status.toLowerCase() === 'pending');
             dispatch({
                 type: PROCCESING_FILTER,
                 payload: filteredOrders
@@ -109,6 +120,8 @@ export const filterOrders = (by) => (dispatch, getState) => {
             return orders;
     }
 }
+
+
 
 
 
