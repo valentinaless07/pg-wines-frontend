@@ -1,6 +1,8 @@
 .bodyshipping {
   background: #f7f7f7;
   padding-bottom: 40px;
+  width: 93%;
+  padding-left: 40px;
 }
 
 .titlestilos {
@@ -10,8 +12,7 @@
 
 .buydetails {
   background: #fff;
-  width: 70%;
-  margin-left: 100px;
+  width: 100%;
   margin-top: 40px;
 }
 
@@ -135,27 +136,11 @@
   margin-left: 40px;
 }
 
-.datospersonales div {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.datospersonales input {
-  width: 42%;
-  margin: 15px 10px;
-  height: 1.8125rem;
-  font-weight: 700;
-  border: 0;
-  border-bottom: 1px solid #4e4e4e;
-}
-
 .direccionenvio div {
   width: 100%;
   display: flex;
-  justify-content: center;
-  margin-top: 10px;
+  justify-content: space-around;
+  margin-top: 30px;
 }
 
 .direccionenvio input {
@@ -170,8 +155,8 @@
 .ciudadestado div {
   width: 100%;
   display: flex;
-  justify-content: center;
-  margin-top: 10px;
+  justify-content: space-evenly;
+  margin-top: 30px;
 }
 
 .ciudadestado input {
@@ -185,27 +170,11 @@
   border-bottom: 1px solid #4e4e4e;
 }
 
-.correoelectronico div {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-.correoelectronico input {
-  width: 42%;
-  margin: 15px 10px;
-  height: 1.8125rem;
-  font-weight: 700;
-  border: 0;
-  border-bottom: 1px solid #4e4e4e;
-}
-
 .numerotelefono div {
   width: 100%;
   display: flex;
-  margin-top: 10px;
-  margin-left: 25px;
+  margin-top: 30px;
+  margin-left: 40px;
 }
 
 .numerotelefono input {
@@ -218,7 +187,7 @@
 }
 
 .botonlisto button {
-  margin-top: 20px;
+  margin-top: 5px;
   background-color: #3483fa;
   color: #fff;
   border: none;
@@ -227,8 +196,14 @@
   font-weight: bold;
   margin-left: 34px;
   margin-bottom: 30px;
+  cursor: pointer;
 }
-
+.botonlisto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
 .checkoutshipping {
   display: flex;
   width: 100%;
@@ -269,29 +244,17 @@
   margin: 50px auto 0 auto;
 }
 
-.labeltotaltext {
-  text-align: left;
-  padding-left: 15px;
-  padding-top: 15px;
-  font-weight: bolder;
-  color: #3483fa;
-}
-
-.labeltotalmount {
-  text-align: right;
-  padding-right: 15px;
-  padding-top: 15px;
-  font-weight: bolder;
-  color: #3483fa;
-}
-
 .cart_product {
-  margin-top: 30px;
+  margin-top: 70px;
   height: 100px;
-  width: 98%;
-  padding-left: 10px;
+  justify-content: center;
+  padding-right: 50px;
   display: flex;
   align-items: center;
+}
+
+.cart_product_container {
+  width: 100%;
 }
 
 .img_container {

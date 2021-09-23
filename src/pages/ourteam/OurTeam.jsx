@@ -5,6 +5,7 @@ import styles from './OurTeam.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AlexMarin from '../../Static/AlexMarin.jpeg';
 import ChristianQuevedo from '../../Static/ChristianQuevedo.jpeg';
+import Valentin from '../../Static/Valentin.jpg'
 
 import { faGithub, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
@@ -19,7 +20,7 @@ const OurTeam = () => {
                 </div>
                 <div className={styles.wholeteam}>
                 <div className={styles.personaldiv}>
-                    <div className={styles.picpersonal} style={{ backgroundImage: "url(" + "https://media-exp1.licdn.com/dms/image/C4E03AQETcKCzxV2E5g/profile-displayphoto-shrink_800_800/0/1627913246904?e=1637193600&v=beta&t=2TB0DVH3cCqtJ3ruSwSNgKZsZh9IIuoR-b29htQ7ooU" + ")" }}></div>
+                    <div className={styles.picpersonal} style={{ backgroundImage: `url(${Valentin})` }}></div>
                         <div className={styles.nameperson}>
                             <h2>Valentin Alessandrini </h2>
                             <h3>Full Stack Web Developer</h3>
@@ -28,7 +29,7 @@ const OurTeam = () => {
                                 <a href="https://www.linkedin.com/in/valentin-alessandrini-zapata/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faLinkedin} />
                                 </a>
-                                <a href="https://wa.link/a9hfcd" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.linkedin.com/in/valentin-alessandrini-zapata/" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon className={styles.footericon} icon={faWhatsapp} />
                                 </a>
                                 <a href="https://github.com/valentinaless07" target="_blank" rel="noopener noreferrer">

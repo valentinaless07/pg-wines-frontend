@@ -5,11 +5,13 @@ import CartProduct from '../../components/cart_product/CartProduct';
 import { getTotalPrice } from '../../redux/actions/cartActions';
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
+import { useState } from 'react';
+import { useHistory } from 'react-router';
 
 
 const ShippingPay = ({ cartState, getTotalPrice, totalPrice, idCheckout }) => {
 
-
+    const history = useHistory()
 
     useEffect(() => {
         getTotalPrice()
@@ -35,7 +37,7 @@ const ShippingPay = ({ cartState, getTotalPrice, totalPrice, idCheckout }) => {
             </div>
             <div className={styles.checkoutshipping}>
                 <div className={styles.buydetails}>
-                    <div>
+                    <div className={styles.cart_product_container}>
                         {cartState && cartState.map(el =>
                         <div className={styles.cart_product}>
                         <div className={styles.img_container}>
@@ -52,7 +54,7 @@ const ShippingPay = ({ cartState, getTotalPrice, totalPrice, idCheckout }) => {
 
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fillOpacity="1" d="M0,320L1440,224L1440,320L0,320Z"></path></svg>
 
-
+                     
                     <div className={styles.addres}>
                         <div>
                             <h2>Enviar a</h2>
@@ -61,16 +63,23 @@ const ShippingPay = ({ cartState, getTotalPrice, totalPrice, idCheckout }) => {
                         <div className={styles.pais}>
                             <p>País o región</p>
                             <select name="" id="">
-                                <option value="">usa</option>
-                                <option value="">nic</option>
+                                <option value="">Argentina</option>
+                                <option value="">Bolivia</option>
+                                <option value="">Brasil</option>
+                                <option value="">Chile</option>
+                                <option value="">Colombia</option>
+                                <option value="">Estados Unidos</option>
+                                <option value="">México</option>
+                                <option value="">Nicaragua</option>
+                                <option value="">Paraguay</option>
+                                <option value="">Perú</option>
+                                <option value="">Venezuela</option>
+                                
+                                
+
                             </select>
                         </div>
-                        <div className={styles.datospersonales}>
-                            <div>
-                                <input type="text" placeholder="Nombre" />
-                                <input type="text" placeholder="Apellido" />
-                            </div>
-                        </div>
+                        
                         <div className={styles.direccionenvio}>
                             <div>
                                 <input type="text" placeholder="Direccion" />
@@ -84,12 +93,7 @@ const ShippingPay = ({ cartState, getTotalPrice, totalPrice, idCheckout }) => {
                                 <input type="text" placeholder="Código Postal" />
                             </div>
                         </div>
-                        <div className={styles.correoelectronico}>
-                            <div>
-                                <input type="text" placeholder="Correo electronico" />
-                                <input type="text" placeholder="Confirmar correo electronico" />
-                            </div>
-                        </div>
+                        
                         <div className={styles.numerotelefono}>
                             <div>
                                 <input type="number" placeholder="Numero de telefono" />
@@ -97,53 +101,15 @@ const ShippingPay = ({ cartState, getTotalPrice, totalPrice, idCheckout }) => {
                         </div>
                         <div className={styles.botonlisto}>
                             <div>
-                                <button>Listo</button>
+                                <button onClick={() => history.push("/payconfirmation")}>Listo</button>
                             </div>
                         </div>
                     </div>
+                    
 
 
                 </div>
-                <div className={styles.confirmpay}>
-                    <div>
-                        <div>
-                            <table>
-                                {cartState && cartState.map(el =>
-                                    <tbody key={uniqid()}>
-                                        <tr>
-                                            <td className={styles.labelenvio}>{el.name}({el.quantity})</td>
-                                            <td className={styles.labelmount}>${el.cost}</td>
-                                        </tr>
-                                    </tbody>
-                                )}
-                            </table>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td className={styles.labelenvio}>Envio</td>
-                                        <td className={styles.labelmount}>Gratis</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className={styles.lineacheckout}></div>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td className={styles.labeltotaltext}>Total</td>
-                                    <td className={styles.labeltotalmount}>${totalPrice}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div className={styles.botonconfirmar}>
-                            <div id="checkout_container" className="checkout_container">
-                                
-                                
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+               
             </div>
         </div>
     </>
