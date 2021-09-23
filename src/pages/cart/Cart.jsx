@@ -38,11 +38,13 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, a
 
     return (
         <div className={styles.container}>
-            
-            <Link to="/" className={styles.backicon}><i className="fas fa-arrow-circle-left fa-3x"></i></Link>
-
-            <div className={styles.title}>    
-            <h1>Carrito de compras</h1>
+            <div className={styles.header}>
+                <div className={styles.back}>
+                    <Link to="/" className={styles.backicon}><i className="fas fa-arrow-circle-left"></i></Link>
+                </div>
+                <div className={styles.title}>    
+                    <h1>Carrito de compras</h1>
+                </div>
             </div>
 
             <div className={styles.cart_container}>
@@ -57,11 +59,11 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, a
 
                     </div>
                     <div className={styles.total_products}>
-                        <div className={styles.total_container}>
-                            <div className={styles.cost}>
-                            <p>Total</p><br/>
-                            <b>${totalPrice}</b>
-                            </div>
+                        <div className={styles.cost}>
+                            <p>Total</p>
+                            <b className={styles.total}>${totalPrice}</b>
+                        </div>
+                        <div>
                             <hr className={styles.hr}></hr>
                             <p onClick={handleCheckout} className={styles.buttonSubmit}>CHECKOUT</p>
                         </div>

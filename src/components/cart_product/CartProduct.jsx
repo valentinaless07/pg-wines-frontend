@@ -56,15 +56,15 @@ const CartProduct = (props) => {
             <p>Cantidad: {cantidadItems}</p>
             <div className={styles.icons_container}>
                 {!props.isCheckout ?
-                    <i onClick={res} className="fas fa-minus-circle fa-2x"></i>
+                    <i onClick={res} className="fas fa-minus-circle"></i>
                     : ''}
                 {props.isCheckout ? <></> :
-                    <i onClick={sum} className="fas fa-plus-circle fa-2x"></i>
+                    <i onClick={sum} className="fas fa-plus-circle"></i>
                 }
                 
                 {!props.isCheckout ?
 
-                    <i onClick={handleDelete} className="fas fa-trash-alt fa-2x"></i>
+                    <i onClick={handleDelete} className="fas fa-trash-alt"></i>
                     : ''}
 
             </div>
