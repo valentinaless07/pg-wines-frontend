@@ -40,12 +40,10 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, a
     
 
     return (
-        
+
         <div className={styles.container}>
             <div className={styles.header}>
-                <div className={styles.back}>
-                    <Link to="/" className={styles.backicon}><i className="fas fa-arrow-circle-left"></i></Link>
-                </div>
+               
                 <div className={styles.title}>    
                     <h1>Carrito de compras</h1>
                 </div>
@@ -79,6 +77,7 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, a
             </div>
         
         </div>
+        
     );
 }
  
