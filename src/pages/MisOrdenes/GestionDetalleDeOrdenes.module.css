@@ -114,3 +114,30 @@
 .customselectestado select {
     display: none; 
   }
+  
+.shippingboton{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.shippingboton h3{
+    margin: 0;
+}
+
+.botonstyle{
+    background:#3483fa;
+    margin-left: 5px; 
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+
+
+
+.truckstyle{
+    color: white;
+    font-size: 15px;
+      
+  }
