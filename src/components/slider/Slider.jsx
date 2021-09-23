@@ -12,8 +12,8 @@ import './Slider.css';
 const Slider = ({ width = '100%', getOffers, offersState, getFilteredProductsList }) => {
 
     const offers = offersState.offers;
+    const [status, setStatus] = useState(false);
     const [carouselIsVisible, setCarouselIsVisible] = useState(true);
-
     const [values, setValues] = useState({
         categoryId: '',
         initPrice: '',
@@ -24,7 +24,6 @@ const Slider = ({ width = '100%', getOffers, offersState, getFilteredProductsLis
     useEffect(() => {
         getOffers();
     }, [getOffers]);
-
 
 
     const handleClickItem = (idx) => {
@@ -38,20 +37,18 @@ const Slider = ({ width = '100%', getOffers, offersState, getFilteredProductsLis
                 ...values,
                 categoryId: categoryId
             });
-
-            console.log(values);
-            setCarouselIsVisible(false);
-
-
-
+            console.log(values)
+            setStatus(true);
+            getFilteredProductsList(values);
+            
+            if(status){
+             window.scrollTo(0,570);        
+            }
+            // setCarouselIsVisible(false);
         }
+          
+
     }
-
-
-
-
-
-
 
     return (
         (carouselIsVisible) &&
