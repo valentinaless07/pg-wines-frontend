@@ -26,7 +26,7 @@ import MisOrdenes from '../pages/MisOrdenes/MisOrdenes';
 import GestionDeOrdenes from '../pages/MisOrdenes/GestionDeOrdenes';
 import GestionDetalleDeOrdenes from '../pages/MisOrdenes/GestionDetalleDeOrdenes';
 import AdminArea from '../pages/adminArea/AdminArea';
-import OurTeam from '../pages/ourteam/OurTeam';
+// import OurTeam from '../pages/ourteam/OurTeam';
 // import UsersManager from '../pages/usersManager/UsersManager';
 import UsersManager from '../components/usersManager/UsersManager';
 import { cartStateLogin, getTotalPrice } from '../redux/actions/cartActions';
@@ -67,7 +67,7 @@ const AppRouter = ({ authState, cartStateLogin, getTotalPrice, getUserFavorites 
           {/* <Route exact path="/offersManager" component={OffersManager} /> */}
           <Route exact path="/misordenes" component={MisOrdenes} />
           <Route exact path="/order/:id" component={DetalleOrden} />
-          <Route exact path="/equipo" component={OurTeam} />
+          {/* <Route exact path="/equipo" component={OurTeam} /> */}
           <Route exact path= "/feedback" component={OrderFeedback} />
 
           <Route exact path="/cart" component={Cart} />
