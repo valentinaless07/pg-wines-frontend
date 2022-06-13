@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Swal from 'sweetalert2';
 export const USERS_MANAGER_LOADING = 'USERS_MANAGER_LOADING';
 export const USERS_MANAGER_SUCCESS = 'USERS_MANAGER_SUCCESS';
 export const USERS_MANAGER_ERROR = 'USERS_MANAGER_ERROR';

@@ -8,6 +8,7 @@ import { useLocation } from 'react-router';
 const AdminAreaNavbar = () => {
     let location = useLocation();
   const history = useHistory()
+  // eslint-disable-next-line no-unused-vars
   const [screenSize, setScreenSize] = useState(window.innerWidth);
     
     return (

@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 const MisOrdenes = ({ orders, getOrderHistory }) => {
     useEffect(() => {
         getOrderHistory()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
         <React.Fragment>

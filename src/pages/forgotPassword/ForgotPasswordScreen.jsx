@@ -19,7 +19,6 @@ const ForgotPasswordScreen = ({ authState, uiState, removeError, removeMsg, send
     const useRefName = useRef();
     const [formValues, handleInputChange] = useForm(initialState);
     const { email } = formValues;
-    const { msgError } = uiState;
     const [error, setError] = useState({ error: null })
 
     useEffect(() => {

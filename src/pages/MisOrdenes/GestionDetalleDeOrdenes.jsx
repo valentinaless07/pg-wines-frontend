@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import styles from './GestionDetalleDeOrdenes.module.css';
@@ -16,6 +16,7 @@ const GestionDetalleDeOrdenes = ({ getOrderDetails, orders_details, updateOrder,
     const { id } = useParams()
     useEffect(() => {
         getOrderDetails(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
 
     const formatDate = (date) => {

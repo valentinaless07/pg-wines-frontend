@@ -79,55 +79,7 @@ function UsersManager({ usersState, getInfo, getUsers, updateUserById }) {
         searchRef.current.select();
     }
 
-    function handleDelete(id) {
-        Swal.fire({
-            title: '¿Esta Seguro?',
-            text: "no podras deshacer esta acción",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, seguro'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // deleteElement(element, id)
-                Swal.fire(
-                    'Eliminado'
-                ).then(() => {
-                    getInfo(element)
-                })
-            }
-        })
-    }
 
-    function handleUpdate(user) {
-        Swal.fire({
-            title: `Actualizar ${user.name}`,
-            input: 'text',
-            inputAttributes: {
-                autocapitalize: 'off'
-            },
-            showCancelButton: true,
-            confirmButtonText: 'Actualizar',
-            showLoaderOnConfirm: true,
-            preConfirm: async (newValue) => {
-                if (newValue !== '') {
-                    user.name = newValue
-                    // await updateElement(element, user)
-                } else {
-                    Swal.showValidationMessage('El campo no puede estar vacío')
-                }
-            },
-            allowOutsideClick: () => !Swal.isLoading()
-        }).then((result) => {
-            if (result.isConfirmed) {
-                getInfo(element)
-                Swal.fire({
-                    title: `Actualización exitosa`,
-                })
-            }
-        })
-    }
 
     return (
         <React.Fragment>

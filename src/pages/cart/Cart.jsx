@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import styles from './Cart.module.css'
 import {addCartProduct} from "../../redux/actions/cartActions"
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import CartProduct from '../../components/cart_product/CartProduct';
 import { getTotalPrice } from '../../redux/actions/cartActions';
 import { cartStateLogin } from "../../redux/actions/cartActions";
@@ -22,7 +21,8 @@ const Cart = ({cartState, getTotalPrice, totalPrice, postCheckout, idCheckout, a
         cartStateLogin(authState.uid)
         .then(() => getTotalPrice())
         
-    } , [getTotalPrice, authState.uid]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    } , [getTotalPrice, authState.uid]); 
     
 
     

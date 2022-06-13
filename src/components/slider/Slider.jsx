@@ -13,6 +13,7 @@ const Slider = ({ width = '100%', getOffers, offersState, getFilteredProductsLis
 
     const offers = offersState.offers;
     const [status, setStatus] = useState(false);
+    // eslint-disable-next-line no-unused-vars
     const [carouselIsVisible, setCarouselIsVisible] = useState(true);
     const [values, setValues] = useState({
         categoryId: '',

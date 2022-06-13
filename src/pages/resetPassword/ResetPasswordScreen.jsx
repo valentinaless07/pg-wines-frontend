@@ -18,12 +18,11 @@ const initialState = {
 
 const ResetPasswordScreen = ({ authState, uiState, removeError, resetPassword, forgotPasswordState, removeMsg }) => {
     const history = useHistory();
-    const { userId, token } = useParams();
+    const { userId } = useParams();
     
     const useRefPassword = useRef();
     const [formValues, handleInputChange] = useForm(initialState);
     const { password, password2 } = formValues;
-    const { msgError } = uiState;
     const [error, setError] = useState({ error: null })
 
     useEffect(() => {

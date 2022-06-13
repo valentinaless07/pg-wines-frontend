@@ -21,6 +21,7 @@ function Comments({idUser, idProduct, authState, newComment, comments, postCommn
             ...comment,
             idProd: idProduct
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[idProduct])
 
     function handleChange(e){

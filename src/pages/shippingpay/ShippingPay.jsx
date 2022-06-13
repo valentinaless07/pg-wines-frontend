@@ -1,7 +1,6 @@
 import React from 'react';
 import uniqid from 'uniqid';
 import styles from './ShippingPay.module.css';
-import CartProduct from '../../components/cart_product/CartProduct';
 import { getTotalPrice } from '../../redux/actions/cartActions';
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
